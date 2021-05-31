@@ -1,0 +1,62 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <link rel="stylesheet" href="stats.css">
+    <!-- The core Firebase JS SDK is always required and must be listed first -->
+    <script src="https://www.gstatic.com/firebasejs/8.6.2/firebase-app.js" defer></script>
+
+    <!-- TODO: Add SDKs for Firebase products that you want to use
+     https://firebase.google.com/docs/web/setup#available-libraries -->
+    <!-- <script src="https://www.gstatic.com/firebasejs/8.6.2/firebase-analytics.js" defer></script> -->
+    <script src="https://www.gstatic.com/firebasejs/8.6.2/firebase-firestore.js" defer></script>
+    <script src="firebase.config.js" defer></script>
+
+</head>
+
+<body>
+    <main class="wrapper" id="stats-matrix">
+        <div class="points__left">Pozostało punktów:
+            <span data-points-left></span></div>
+
+        <div class="mini__wrapper">
+            <div class="statistics--element">Siła</div>
+            <div class="statistics--element" data-stat="str" id="strength--value"></div>
+            <div class="changing--element plus--0" id="plus--button" data-diff="str|+1">+</div>
+            <div class="changing--element minus--0" id="minus--button" data-diff="str|-1">-</div>
+        </div>
+        <div class="mini__wrapper">
+            <div class="statistics--element">Zręczność</div>
+            <div class="statistics--element" data-stat="agi" id="agility--value"></div>
+            <div class="changing--element plus--1" id="plus--button" data-diff="agi|+1">+</div>
+            <div class="changing--element minus--1" id="minus--button" data-diff="agi|-1">-</div>
+        </div>
+        <div class="mini__wrapper">
+            <div class="statistics--element">Wytrzymałość</div>
+            <div class="statistics--element" data-stat="tough" id="toughness--value"></div>
+            <div class="changing--element element--2" id="plus--button" data-diff="tough|+1">+</div>
+            <div class="changing--element" id="minus--button" data-diff="tough|-1">-</div>
+        </div>
+        <div class="mini__wrapper">
+            <div class="statistics--element">Inteligencja</div>
+            <div class="statistics--element" data-stat="int" id="intelligence--value"></div>
+            <div class="changing--element element--3" data-diff="int|+1" id="plus--button">+</div>
+            <div class="changing--element" id="minus--button" data-diff="int|-1">-</div>
+        </div>
+        <div class="mini__wrapper">
+            <div class="statistics--element">Spostrzegawczość</div>
+            <div class="statistics--element" data-stat="perc" id="perceptiveness--value"></div>
+            <div class="changing--element element--4" data-diff="perc|+1" id="plus--button">+</div>
+            <div class="changing--element" id="minus--button" data-diff="perc|-1">-</div>
+        </div>
+        <a href="#" class="myButton">Zatwierdź</a>
+    </main>
+
+    <script src="stats.js" type="module"></script>
+</body>
+
+</html>
