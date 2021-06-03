@@ -1,0 +1,133 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Monster Hunt v0.02</title>
+    <style>
+        @import url('https://fonts.googleapis.com/css2?family=Pangolin&display=swap');
+    </style>
+    <link rel="stylesheet" href="style.css">
+</head>
+
+<body>
+    <main class="wrapper">
+        <nav class="monster__stats">Statystyki potwora:
+            <ul class="stats__list">
+                <li class="stats__list--element" id="monster__pic">
+                    <img src="grizzly.png" class="monster__portrait" alt="The monster you are currently fighting with">
+                </li>
+                <li class="stats__list--element" id="monster__name"></li>
+                <li class="stats__list--element" id="monster__level"></li>
+                <li class="stats__list--element" id="monster__power"></li>
+                <li class="stats__list--element" id="monster__toughness"></li>
+            </ul>
+            <button type="submit" class="chose__monster">Losuj potwora</button>
+        </nav>
+        <div class="inside__wrapper">
+            <h2 class="game__title">Monster Hunt</h2>
+            <p class="plot__story" id="first_paragraph"></p>
+            <p class="plot__story" id="second_paragraph"></p>
+            <p class="plot__story" id="third_paragraph"></p>
+            <p class="plot__story" id="fourth_paragraph"></p>
+            <div class="fighting__bar">
+                <div class="fighting__bar--actual"></div>
+                <div class="moving__thing"></div>
+            </div>
+
+            <div class="fighting__form">
+                <!-- <input type="text" class="get__number" min="1" max="20"> -->
+                <button type="submit" class="fight">Walcz</button>
+                <div id="clockdiv"><span class="minutes"></span> : <span class="seconds"></span></div>
+            </div>
+
+            <div class="fight__result"></div>
+            <div class="new__level"></div>
+
+            <!-- <div class="health__points">Punkty życia:</div>
+            <div class="hp__bar">
+                <div class="hp__bar--actual">100%</div>
+            </div>
+            <div class="experience">Doświadczenie:</div>
+            <div class="progress__bar">
+                <div class="progress__bar--actual">0%</div>
+            </div> -->
+            <!-- <div class="riddle not__visible">
+                <div class="riddle__answers not__visible">
+                    <div class="first__pack not__visible">
+                        <input type="radio" name="riddle" class="riddle__options" id="riddle__first"><span id="first__option">Opcja 1</span>
+                        <input type="radio" name="riddle" class="riddle__options" id="riddle__second"><span id="second__option">Opcja 2</span>
+                    </div>
+                    <div class="second__pack not__visible">
+                        <input type="radio" name="riddle" class="riddle__options" id="riddle__third"><span id="third__option">Opcja 3</span>
+                        <input type="radio" name="riddle" class="riddle__options" id="riddle__fourth"><span id="fourth__option">Opcja 4</span>
+                    </div>
+                </div>
+                <button type="submit" class="riddle__answer not__visible">Odpowiedz</button>
+            </div> -->
+            <!-- <div class="arrow__wrapper">
+                <img src="arrow.png" alt="Choose your way (left)" class="green__arrow not__visible">
+                <img src="arrow.png" alt="Choose your way (forward)" class="green__arrow2 not__visible">
+                <img src="arrow.png" alt="Choose your way (right)" class="green__arrow3 not__visible">
+                <div class="riddle__answers not__visible">
+                    <div class="first__pack not__visible">
+                        <input type="radio" class="riddle__options" id="first__option not__visible">Opcja 1
+                        <input type="radio" class="riddle__options" id="second__option not__visible">Opcja 2
+                    </div>
+                    <div class="second__pack not__visible">
+                        <input type="radio" class="riddle__options" id="third__option not__visible">Opcja 3
+                        <input type="radio" class="riddle__options" id="fourth__option not__visible">Opcja 4
+                    </div>
+                    <button type="submit" class="fight not__visible">Odpowiedz</button>
+                </div> -->
+
+        </div>
+        <nav class="stats ">
+            <ul class="stats__list">Statystyki gracza:
+                <li class="stats__list--element" id="character"></li>
+                <li class="stats__list--element" id="char__power"></li>
+                <li class="stats__list--element" id="char__toughness"></li>
+                <li class="stats__list--element" id="char__hp"></li>
+                <!-- <li class="stats__list--element health__points "> -->
+                <!-- <div class="health__points "> -->
+                <!-- Punkty życia: -->
+                <!-- </div> -->
+                <!-- </li> -->
+                <li class="stats__list--element hp__bar">
+                    <!-- <div class="hp__bar "> -->
+                    <div class="hp__bar--actual">100%</div>
+                    <!-- </div> -->
+                </li>
+                <li class="stats__list--element" id="char__xp"></li>
+                <!-- <li class="stats__list--element experience "> -->
+                <!-- <div class="experience "> -->
+                <!-- Doświadczenie: -->
+                <!-- </div> -->
+                <!-- </li> -->
+                <li class="stats__list--element progress__bar">
+                    <!-- <div class="progress__bar "> -->
+                    <div class="progress__bar--actual">0%</div>
+                    <!-- </div> -->
+                </li>
+                <li class="stats__list--element" id="char__wins"></li>
+            </ul>
+            <section class="hearts">
+                <svg class="heart" id="heart1" viewBox="0 0 32 29.6">
+                <path d="M23.6,0c-3.4,0-6.3,2.7-7.6,5.6C14.7,2.7,11.8,0,8.4,0C3.8,0,0,3.8,0,8.4c0,9.4,9.5,11.9,16,21.2 c6.1-9.3,16-12.1,16-21.2C32,3.8,28.2,0,23.6,0z"/>
+              </svg>
+                <svg class="heart" id="heart2" viewBox="0 0 32 29.6">
+                <path d="M23.6,0c-3.4,0-6.3,2.7-7.6,5.6C14.7,2.7,11.8,0,8.4,0C3.8,0,0,3.8,0,8.4c0,9.4,9.5,11.9,16,21.2 c6.1-9.3,16-12.1,16-21.2C32,3.8,28.2,0,23.6,0z"/>
+              </svg>
+                <svg class="heart" id="heart3" viewBox="0 0 32 29.6">
+                <path d="M23.6,0c-3.4,0-6.3,2.7-7.6,5.6C14.7,2.7,11.8,0,8.4,0C3.8,0,0,3.8,0,8.4c0,9.4,9.5,11.9,16,21.2 c6.1-9.3,16-12.1,16-21.2C32,3.8,28.2,0,23.6,0z"/>
+              </svg>
+            </section>
+        </nav>
+    </main>
+    <script src="./game.js" type="module"></script>
+
+</body>
+
+</html>
