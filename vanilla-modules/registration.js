@@ -54,3 +54,17 @@ const submitData = (e) => {
 };
 
 btnSubmit.addEventListener("click", submitData);
+
+
+// MODAL
+
+const authModals = document.querySelectorAll('.auth .modal');
+const authSwitchModals = document.querySelectorAll('.switch');
+
+authSwitchModals.forEach(modalLink => {
+    modalLink.addEventListener('click', () => {
+        authModals.forEach(modal => {
+            modal.classList.toggle('active')
+        })
+    })
+});
