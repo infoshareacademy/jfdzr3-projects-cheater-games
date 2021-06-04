@@ -1,56 +1,111 @@
 <!DOCTYPE html>
 <html lang="en">
-
-    <head>
-        <meta charset="UTF-8">
-        <meta http-equiv="X-UA-Compatible" content="IE=edge">
-        <meta name="viewport" content="width=device-width, initial-scale=1.0">
-        <title>Document</title>
-        <link rel="stylesheet" href="registration.css">
-        <!-- The core Firebase JS SDK is always required and must be listed first -->
-        <script src="https://www.gstatic.com/firebasejs/8.6.2/firebase-app.js" defer></script>
-        <script src="https://www.gstatic.com/firebasejs/8.4.1/firebase-auth.js" defer></script>
-        <!-- TODO: Add SDKs for Firebase products that you want to use
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+    <link rel="stylesheet" href="registration.css" />
+    <!-- The core Firebase JS SDK is always required and must be listed first -->
+    <script
+      src="https://www.gstatic.com/firebasejs/8.6.2/firebase-app.js"
+      defer
+    ></script>
+    <script
+      src="https://www.gstatic.com/firebasejs/8.4.1/firebase-auth.js"
+      defer
+    ></script>
+    <!-- TODO: Add SDKs for Firebase products that you want to use
      https://firebase.google.com/docs/web/setup#available-libraries -->
-        <!-- <script src="https://www.gstatic.com/firebasejs/8.6.2/firebase-analytics.js" defer></script> -->
-        <script src="https://www.gstatic.com/firebasejs/8.6.2/firebase-firestore.js" defer></script>
-        <script src="firebase.config.js" defer></script>
+    <!-- <script src="https://www.gstatic.com/firebasejs/8.6.2/firebase-analytics.js" defer></script> -->
+    <script
+      src="https://www.gstatic.com/firebasejs/8.6.2/firebase-firestore.js"
+      defer
+    ></script>
+    <script src="firebase.config.js" defer></script>
+  </head>
 
-    </head>
+  <body>
+    <div class="root">
+      <header class="header">
+        <h1>MONSTER HUNT</h1>
+        <p>best game in internet</p>
+      </header>
+      <div class="content">
+        <nav class="nav"></nav>
+        <main class="main__section">
+          <div class="auth open">
+            <div class="modal active">
+              <h2>Login</h2>
 
-    <body>
-        <div class="root">
-            <header class="header">
-                <h1>MONSTER HUNT</h1>
-                <p>best game in internet</p>
-            </header>
-            <div class="content">
-                <nav class="nav">
-
-                </nav>
-                <main class="main__section">
-                    <form name="registration" class="registration__form">
-                        <label for="">Imię postaci:
-                            <input type="text" class="form__input" name="nickname">
-                        </label>
-                        <label for="">Adres email:
-                            <input type="email" class="form__input" name="email">
-                        </label>
-                        <label for="">Hasło:
-                            <input type="password" class="form__input" name="password">
-                        </label>
-                        <button type="submit" class="myButton">Utwórz postać!</button>
-                    </form>
-
-                </main>
-                <aside class="advertising">
-
-                </aside>
-
+              <form name="login__form" class="registration__form">
+                <label for="email"
+                  >Adres email:
+                  <input
+                    type="email"
+                    class="form__input"
+                    name="email"
+                    id="email"
+                    required
+                  />
+                </label>
+                <label for="password"
+                  >Hasło:
+                  <input
+                    type="password"
+                    class="form__input"
+                    name="password"
+                    id="password"
+                    required
+                  />
+                </label>
+                <button type="submit" class="myButton">Wejdź do gry!</button>
+              </form>
+              <div>Nie masz konta? <a class="switch">Zarejestruj się</a></div>
             </div>
-        </div>
+            <div class="modal">
+              <h2>Register</h2>
+              <form name="registration" class="registration__form">
+                <label for="nickname"
+                  >Imię postaci:
+                  <input
+                    type="text"
+                    class="form__input"
+                    name="nickname"
+                    id="nickname"
+                    required
+                  />
+                </label>
+                <label for="email"
+                  >Adres email:
+                  <input
+                    type="email"
+                    class="form__input"
+                    name="email"
+                    id="email"
+                    required
+                  />
+                </label>
+                <label for="password"
+                  >Hasło:
+                  <input
+                    type="password"
+                    class="form__input"
+                    name="password"
+                    id="password"
+                    required
+                  />
+                </label>
+                <button type="submit" class="myButton">Utwórz postać!</button>
+              </form>
+              <div>Masz konto? <a class="switch">Zaloguj się</a></div>
+            </div>
+          </div>
+        </main>
+        <aside class="advertising"></aside>
+      </div>
+    </div>
 
-        <script src="registration.js" type="module"></script>
-    </body>
-
+    <script src="registration.js" type="module"></script>
+  </body>
 </html>
