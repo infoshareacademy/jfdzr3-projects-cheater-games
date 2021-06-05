@@ -1,12 +1,11 @@
 const firebaseConfig = {
-    apiKey: "AIzaSyANB2VUsNdOBMB9W9TOj817TB-FXG2GAbk",
-    authDomain: "monster-hunt-c61db.firebaseapp.com",
-    projectId: "monster-hunt-c61db",
-    storageBucket: "monster-hunt-c61db.appspot.com",
-    messagingSenderId: "650406866566",
-    appId: "1:650406866566:web:963f60fe831b34a870ab07",
-    measurementId: "G-ZVD295T6K5"
-};
+    apiKey: "AIzaSyBin9gkJBodI-oJS4sH1kIesyIy8Xn-B2U",
+    authDomain: "monster-hunt-v1.firebaseapp.com",
+    projectId: "monster-hunt-v1",
+    storageBucket: "monster-hunt-v1.appspot.com",
+    messagingSenderId: "5712090032",
+    appId: "1:5712090032:web:cf39258621713586d7bc75"
+  };
 // Initialize Firebase
 firebase.initializeApp(firebaseConfig);
 // firebase.analytics();
