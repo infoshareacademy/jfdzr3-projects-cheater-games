@@ -23,8 +23,6 @@
 }
 .logo {
   display: block;
-  font-family: 'Reggae One', cursive;
-  justify-content: center;
   margin: 0px auto;
   padding-top: 30px;
 }
@@ -46,8 +44,9 @@
 .nav {
   width: 20vw;
   height: 80vh;
-  background-color: #e31f2b;
-  border-right: 4px solid black;
+  background-color: #181619;
+  border-top: 1px solid #e31f2b;
+  border-right: 1px solid #e31f2b;
   padding-left: 5vw;
 }
 ul {
@@ -64,6 +63,7 @@ ul {
   width: 60vw;
   height: 80vh;
   background-color: yellow;
+  background: url("./img/background1.jpeg");
 }
 .registration__form {
   display: flex;
@@ -74,11 +74,14 @@ ul {
 .form__input:nth-child(2n) {
   flex-grow: 1;
 }
+
 .advertising {
   width: 20vw;
   height: 80vh;
-  background-color: #e31f2b;
-  border-left: 4px solid black;
+  background-color: #181619;
+  border-left: 1px solid #e31f2b;
+  border-top: 1px solid #e31f2b;
+
 }
 
 
@@ -89,7 +92,7 @@ ul {
   padding: 30px;
   margin: 100px auto;
   border-radius: 10px;
-  background: white;
+  background: #fafafa;
   box-shadow: 0px 0px 8px rgba(0,0,0,0.1);
   text-align: center;
 }
@@ -104,6 +107,7 @@ input{
   border-width: 0 0 2px 0;
   width: 100%;
   outline: none;
+  background-color: #fafafa;
 }
 
 button{
@@ -113,18 +117,19 @@ button{
   background: #ffe100;
   border: 0;
   font-weight: bold;
-  font-family: inherit;
+  font-family: 'Reggae One', cursive;
+  font-size: 16px;
   cursor: pointer;
 }
 
 .auth{
-  /* /* width: 100%;  */
+  /*  width: 100%;  */
   /* height: 100%;  */
   width: 60vw;
   height: 80vh;
   position: fixed;
-  /* background: #fafafa; */
-  background: #e31f2b;
+  background-color: #181619;
+  border-top: 1px solid #e31f2b;
   display: none;
   z-index: 1;
 }

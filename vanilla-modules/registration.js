@@ -1,4 +1,5 @@
 const db = firebase.firestore();
+db.settings({ timestampsInSnapshots: true })
 
 // signup
 const signUpForm = document.querySelector("#signUp-form");
@@ -30,11 +31,7 @@ logout.addEventListener("click", (e) => {
   e.preventDefault();
   firebase
     .auth()
-    .signOut()
-    .then(() => {
-      console.log("user sign out");
-      logout.classList.toggle("hidden");
-    });
+    .signOut();
 });
 
 //login
@@ -54,7 +51,6 @@ const logInUser = (email, password) => {
     .then((token) => {
       console.log(token.user);
       logInForm.reset();
-      logout.classList.toggle("hidden");
     })
     .catch((err) => {
       console.log(err);
@@ -63,7 +59,20 @@ const logInUser = (email, password) => {
     });
 };
 
+// Auth State Changed
 
+firebase.auth().onAuthStateChanged(token => {
+  if (token) {
+    console.log(token);
+    logout.classList.toggle("hidden");
+  } else {
+    console.log('user logged out');
+    logout.classList.toggle("hidden");
+  }
+})
+
+
+// user settings 
 const createCharacter = (uid, nick) => {
   return db.collection("users").doc(uid).set({
     exp: 0,
