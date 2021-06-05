@@ -11,14 +11,40 @@ signUpForm.addEventListener("submit", (e) => {
   createUser(nick, email, password);
 });
 
-// login
+const createUser = (nick, email, password) => {
+    firebase
+      .auth()
+      .createUserWithEmailAndPassword(email, password)
+      .then((token) => {
+        signUpForm.reset();
+        createCharacter(token.user.uid, nick);
+        createPlayerStats(token.user.uid);
+        createPlayerResources(token.user.uid);
+      });
+  };
+
+// logout
 
 const logout = document.querySelector("#logout");
 logout.addEventListener("click", (e) => {
   e.preventDefault();
-  firebase.auth().signOut().then(() => {
-      console.log('user sign out');
-  });
+  firebase
+    .auth()
+    .signOut()
+    .then(() => {
+      console.log("user sign out");
+      logout.classList.toggle("hidden");
+    });
+});
+
+//login
+
+const logInForm = document.querySelector("#logIn-form");
+logInForm.addEventListener("submit", (e) => {
+  e.preventDefault();
+  const email = logInForm["logIn-email"].value;
+  const password = logInForm["logIn-password"].value;
+  logInUser(email, password);
 });
 
 const logInUser = (email, password) => {
@@ -26,8 +52,9 @@ const logInUser = (email, password) => {
     .auth()
     .signInWithEmailAndPassword(email, password)
     .then((token) => {
-      console.log(token);
-      console.log("weszłam");
+      console.log(token.user);
+      logInForm.reset();
+      logout.classList.toggle("hidden");
     })
     .catch((err) => {
       console.log(err);
@@ -36,17 +63,6 @@ const logInUser = (email, password) => {
     });
 };
 
-const createUser = (nick, email, password) => {
-  firebase
-    .auth()
-    .createUserWithEmailAndPassword(email, password)
-    .then((token) => {
-      signUpForm.reset();
-      createCharacter(token.user.uid, nick);
-      createPlayerStats(token.user.uid);
-      createPlayerResources(token.user.uid);
-    });
-};
 
 const createCharacter = (uid, nick) => {
   return db.collection("users").doc(uid).set({
@@ -75,16 +91,6 @@ const createPlayerResources = (uid) => {
   });
 };
 
-// const submitData = (e) => {
-//   e.preventDefault();
-//   const nickName = formData.elements.nickname.value;
-//   const emailAdress = formData.elements.email.value;
-//   const password = formData.elements.password.value;
-//   createUser(emailAdress, password, nickName);
-//   formData.reset();
-// };
-
-// btnSubmit.addEventListener("click", submitData);
 
 // MODAL
 
