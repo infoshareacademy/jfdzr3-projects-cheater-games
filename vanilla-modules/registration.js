@@ -11,6 +11,16 @@ signUpForm.addEventListener("submit", (e) => {
   createUser(nick, email, password);
 });
 
+// login
+
+const logout = document.querySelector("#logout");
+logout.addEventListener("click", (e) => {
+  e.preventDefault();
+  firebase.auth().signOut().then(() => {
+      console.log('user sign out');
+  });
+});
+
 const logInUser = (email, password) => {
   firebase
     .auth()

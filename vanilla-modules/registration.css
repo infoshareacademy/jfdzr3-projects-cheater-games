@@ -7,6 +7,9 @@
   height: 100vh;
   width: 100vw;
 }
+.hidden {
+  display: none;
+}
 .header {
   width: 100vw;
   min-height: 20vh;
@@ -31,6 +34,7 @@
   font-size: 20px;
   text-align: right;
   justify-content: center;
+  color: white;
 }
 
 .content {
@@ -44,7 +48,16 @@
   height: 80vh;
   background-color: #e31f2b;
   border-right: 4px solid black;
+  padding-left: 5vw;
 }
+ul {
+  list-style-type: none;
+  margin: 0;
+  padding: 0;
+  padding-top: 20px;
+  color: white;
+}
+
 
 .main__section {
   width: 60vw;
