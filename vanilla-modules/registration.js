@@ -62,7 +62,7 @@ const logInUser = (email, password) => {
 
 const components = document.querySelectorAll("[data-auth-visibility]");
 components.forEach((component) => component.classList.add("hidden"));
-const setupComponentsVisiblity = ((isAuthed, user) => {
+const setupComponentsVisiblity = (isAuthed, user) => {
   components.forEach((component) => {
     if (isAuthed) {
       component.dataset.authVisibility === "true"
@@ -74,7 +74,7 @@ const setupComponentsVisiblity = ((isAuthed, user) => {
         : component.classList.remove("hidden");
     }
   });
-});
+};
 
 // Auth State Changed
 
@@ -131,11 +131,9 @@ authSwitchModals.forEach((modalLink) => {
   });
 });
 
-
 const closeModal = () => {
-  document.querySelector('.auth.open').style.display = "none";
-}
+  document.querySelector(".auth.open").style.display = "none";
+};
 const openModal = () => {
-  document.querySelector('.auth.open').style.display = "block";
-
-}
+  document.querySelector(".auth.open").style.display = "block";
+};

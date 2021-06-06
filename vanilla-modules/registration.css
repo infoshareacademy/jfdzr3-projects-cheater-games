@@ -14,6 +14,7 @@
   width: 100vw;
   min-height: 20vh;
   background-color: #181619;
+  border-bottom: 1px solid #e31f2b;
 }
 .header h1 {
   padding-top: 30px;
@@ -25,16 +26,6 @@
   display: block;
   margin: 0px auto;
   padding-top: 30px;
-}
-
-.header p {
-  padding: 30px 30px 0 0;
-  font-size: 20px;
-  text-align: right;
-  justify-content: center;
-  color: white;
-  border-bottom: 1px solid #e31f2b;
-
 }
 
 .content {
@@ -59,11 +50,15 @@ ul {
   cursor: pointer;
 }
 
+.main-navi {
+  display: flex;
+  padding: 100px 0;
+}
 
 .main__section {
   width: 60vw;
   height: 80vh;
-  background: url("./img/background3.jpg") no-repeat top center fixed; 
+  background: url("./img/background3.jpg") no-repeat top center fixed;
   background-size: cover;
   background-size: auto 100%;
 }
@@ -84,23 +79,22 @@ ul {
   border-left: 1px solid #e31f2b;
 }
 
-
 /*  MODAL  */
 
-.modal{
+.modal {
   width: 300px;
   padding: 30px;
   margin: 100px auto;
   border-radius: 10px;
   background: #fafafa;
-  box-shadow: 0px 0px 8px rgba(0,0,0,0.1);
+  box-shadow: 0px 0px 8px rgba(0, 0, 0, 0.1);
   text-align: center;
 }
 label {
   margin-top: 20px;
   text-align: left;
 }
-input{
+input {
   display: block;
   margin: 8px 0;
   padding: 8px 2px;
@@ -110,19 +104,19 @@ input{
   background-color: #fafafa;
 }
 
-button{
+button {
   margin-top: 30px;
   margin-bottom: 30px;
   padding: 8px 12px;
   background: #ffe100;
   border: 0;
   font-weight: bold;
-  font-family: 'Reggae One', cursive;
+  font-family: "Reggae One", cursive;
   font-size: 16px;
   cursor: pointer;
 }
 
-.auth{
+.auth {
   /*  width: 100%;  */
   /* height: 100%;  */
   width: 60vw;
@@ -132,16 +126,16 @@ button{
   display: none;
   z-index: 1;
 }
-.auth.open{
+.auth.open {
   display: block;
 }
-.auth a{
+.auth a {
   text-decoration: underline;
   cursor: pointer;
 }
-.auth .modal{
+.auth .modal {
   display: none;
 }
-.auth .modal.active{
+.auth .modal.active {
   display: block;
 }

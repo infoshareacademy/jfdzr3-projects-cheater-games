@@ -1,29 +1,21 @@
 <!DOCTYPE html>
 <html lang="en">
+
   <head>
     <meta charset="UTF-8" />
     <meta http-equiv="X-UA-Compatible" content="IE=edge" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Document</title>
     <link rel="preconnect" href="https://fonts.gstatic.com">
-<link href="https://fonts.googleapis.com/css2?family=Reggae+One&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Reggae+One&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="registration.css" />
     <!-- The core Firebase JS SDK is always required and must be listed first -->
-    <script
-      src="https://www.gstatic.com/firebasejs/8.6.2/firebase-app.js"
-      defer
-    ></script>
-    <script
-      src="https://www.gstatic.com/firebasejs/8.4.1/firebase-auth.js"
-      defer
-    ></script>
+    <script src="https://www.gstatic.com/firebasejs/8.6.2/firebase-app.js" defer></script>
+    <script src="https://www.gstatic.com/firebasejs/8.4.1/firebase-auth.js" defer></script>
     <!-- TODO: Add SDKs for Firebase products that you want to use
      https://firebase.google.com/docs/web/setup#available-libraries -->
     <!-- <script src="https://www.gstatic.com/firebasejs/8.6.2/firebase-analytics.js" defer></script> -->
-    <script
-      src="https://www.gstatic.com/firebasejs/8.6.2/firebase-firestore.js"
-      defer
-    ></script>
+    <script src="https://www.gstatic.com/firebasejs/8.6.2/firebase-firestore.js" defer></script>
     <script src="firebase.config.js" defer></script>
   </head>
 
@@ -31,9 +23,9 @@
     <div class="root">
       <header class="header">
         <!-- <h1>MONSTER HUNT</h1> -->
-        
-          <img src="./img/logo-monster-hunt.png" alt="" class="logo">
-     
+
+        <img src="./img/logo-monster-hunt.png" alt="" class="logo">
+
         <p>best game in internet</p>
       </header>
       <div class="content">
@@ -41,32 +33,23 @@
           <ul>
             <li id="logout" data-auth-visibility="true">Log Out</li>
           </ul>
+          <div class="main-navi">
+            <ul>
+              <li>Idź na polowanie</li>
+            </ul>
+          </div>
         </nav>
         <main class="main__section">
-          <div class="auth open" >
+          <div class="auth open">
             <div class="modal active">
               <h2>Zaloguj się</h2>
 
               <form name="login__form" class="registration__form login__form" id="logIn-form">
-                <label for="logIn-email"
-                  >Adres email:
-                  <input
-                    type="email"
-                    class="form__input"
-                    name="email"
-                    id="logIn-email"
-                    required
-                  />
+                <label for="logIn-email">Adres email:
+                  <input type="email" class="form__input" name="email" id="logIn-email" required />
                 </label>
-                <label for="logIn-password"
-                  >Hasło:
-                  <input
-                    type="password"
-                    class="form__input"
-                    name="password"
-                    id="logIn-password"
-                    required
-                  />
+                <label for="logIn-password">Hasło:
+                  <input type="password" class="form__input" name="password" id="logIn-password" required />
                 </label>
                 <button type="submit" class="myButton">Wejdź do gry!</button>
               </form>
@@ -74,36 +57,15 @@
             </div>
             <div class="modal">
               <h2>Zarejestruj się</h2>
-              <form name="registration" class="registration__form"id="signUp-form">
-                <label for="nickname"
-                  >Imię postaci:
-                  <input
-                    type="text"
-                    class="form__input"
-                    name="nickname"
-                    id="nickname"
-                    required
-                  />
+              <form name="registration" class="registration__form" id="signUp-form">
+                <label for="nickname">Imię postaci:
+                  <input type="text" class="form__input" name="nickname" id="nickname" required />
                 </label>
-                <label for="signUp-email"
-                  >Adres email:
-                  <input
-                    type="email"
-                    class="form__input"
-                    name="email"
-                    id="signUp-email"
-                    required
-                  />
+                <label for="signUp-email">Adres email:
+                  <input type="email" class="form__input" name="email" id="signUp-email" required />
                 </label>
-                <label for="signUp-password"
-                  >Hasło:
-                  <input
-                    type="password"
-                    class="form__input"
-                    name="password"
-                    id="signUp-password"
-                    required
-                  />
+                <label for="signUp-password">Hasło:
+                  <input type="password" class="form__input" name="password" id="signUp-password" required />
                 </label>
                 <button type="submit" class="myButton">Utwórz postać!</button>
               </form>
@@ -117,4 +79,5 @@
 
     <script src="registration.js" type="module"></script>
   </body>
+
 </html>
