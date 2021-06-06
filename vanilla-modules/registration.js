@@ -1,5 +1,5 @@
 const db = firebase.firestore();
-db.settings({ timestampsInSnapshots: true })
+db.settings({ timestampsInSnapshots: true });
 
 // signup
 const signUpForm = document.querySelector("#signUp-form");
@@ -13,25 +13,23 @@ signUpForm.addEventListener("submit", (e) => {
 });
 
 const createUser = (nick, email, password) => {
-    firebase
-      .auth()
-      .createUserWithEmailAndPassword(email, password)
-      .then((token) => {
-        signUpForm.reset();
-        createCharacter(token.user.uid, nick);
-        createPlayerStats(token.user.uid);
-        createPlayerResources(token.user.uid);
-      });
-  };
+  firebase
+    .auth()
+    .createUserWithEmailAndPassword(email, password)
+    .then((token) => {
+      signUpForm.reset();
+      createCharacter(token.user.uid, nick);
+      createPlayerStats(token.user.uid);
+      createPlayerResources(token.user.uid);
+    });
+};
 
 // logout
 
 const logout = document.querySelector("#logout");
 logout.addEventListener("click", (e) => {
   e.preventDefault();
-  firebase
-    .auth()
-    .signOut();
+  firebase.auth().signOut();
 });
 
 //login
@@ -59,20 +57,37 @@ const logInUser = (email, password) => {
     });
 };
 
+// Components Visibility on Auth State Changed
+
+const components = document.querySelectorAll("[data-auth-visibility]");
+components.forEach((component) => component.classList.add("hidden"));
+const setupComponentsVisiblity = ((isAuthed, user) => {
+  components.forEach((component) => {
+    if (isAuthed) {
+      component.dataset.authVisibility === "true"
+        ? component.classList.remove("hidden")
+        : component.classList.add("hidden");
+    } else {
+      component.dataset.authVisibility === "true"
+        ? component.classList.add("hidden")
+        : component.classList.remove("hidden");
+    }
+  });
+});
+
 // Auth State Changed
 
-firebase.auth().onAuthStateChanged(token => {
+firebase.auth().onAuthStateChanged((token) => {
   if (token) {
     console.log(token);
-    logout.classList.toggle("hidden");
+    setupComponentsVisiblity(true, token);
   } else {
-    console.log('user logged out');
-    logout.classList.toggle("hidden");
+    console.log("user logged out");
+    setupComponentsVisiblity(false);
   }
-})
+});
 
-
-// user settings 
+// user settings
 const createCharacter = (uid, nick) => {
   return db.collection("users").doc(uid).set({
     exp: 0,
@@ -99,7 +114,6 @@ const createPlayerResources = (uid) => {
     wood: 50,
   });
 };
-
 
 // MODAL
 
