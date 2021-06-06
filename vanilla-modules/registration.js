@@ -1,7 +1,7 @@
 const db = firebase.firestore();
 db.settings({ timestampsInSnapshots: true });
 
-// signup
+// sign up
 const signUpForm = document.querySelector("#signUp-form");
 
 signUpForm.addEventListener("submit", (e) => {
@@ -24,7 +24,7 @@ const createUser = (nick, email, password) => {
     });
 };
 
-// logout
+// log out
 
 const logout = document.querySelector("#logout");
 logout.addEventListener("click", (e) => {
@@ -32,7 +32,7 @@ logout.addEventListener("click", (e) => {
   firebase.auth().signOut();
 });
 
-//login
+//log in
 
 const logInForm = document.querySelector("#logIn-form");
 logInForm.addEventListener("submit", (e) => {
@@ -48,6 +48,7 @@ const logInUser = (email, password) => {
     .signInWithEmailAndPassword(email, password)
     .then((token) => {
       console.log(token.user);
+      console.log(authModals);
       logInForm.reset();
     })
     .catch((err) => {
@@ -81,13 +82,15 @@ firebase.auth().onAuthStateChanged((token) => {
   if (token) {
     console.log(token);
     setupComponentsVisiblity(true, token);
+    closeModal();
   } else {
     console.log("user logged out");
     setupComponentsVisiblity(false);
+    openModal();
   }
 });
 
-// user settings
+// user settings after registration
 const createCharacter = (uid, nick) => {
   return db.collection("users").doc(uid).set({
     exp: 0,
@@ -127,3 +130,12 @@ authSwitchModals.forEach((modalLink) => {
     });
   });
 });
+
+
+const closeModal = () => {
+  document.querySelector('.auth.open').style.display = "none";
+}
+const openModal = () => {
+  document.querySelector('.auth.open').style.display = "block";
+
+}
