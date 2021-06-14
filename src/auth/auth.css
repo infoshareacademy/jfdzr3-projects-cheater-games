@@ -1,0 +1,94 @@
+* {
+    padding: 0;
+    margin: 0;
+    box-sizing: border-box;
+  }
+
+  .hidden {
+    display: none;
+  }
+  
+  .nav {
+    width: 20vw;
+    height: 80vh;
+    background-color: #181619;
+    border-right: 1px solid #e31f2b;
+    padding-left: 5vw;
+  }
+  ul {
+    list-style-type: none;
+    margin: 0;
+    padding: 0;
+    padding-top: 20px;
+    color: white;
+    cursor: pointer;
+  }
+  
+  .registration__form {
+    display: flex;
+    height: 40%;
+    flex-direction: column;
+    justify-content: space-around;
+  }
+  .form__input:nth-child(2n) {
+    flex-grow: 1;
+  }
+  
+  /*  MODAL  */
+  
+  .modal{
+    width: 300px;
+    padding: 30px;
+    margin: 100px auto;
+    border-radius: 10px;
+    background: #fafafa;
+    box-shadow: 0px 0px 8px rgba(0,0,0,0.1);
+    text-align: center;
+  }
+  label {
+    margin-top: 20px;
+    text-align: left;
+  }
+  input{
+    display: block;
+    margin: 8px 0;
+    padding: 8px 2px;
+    border-width: 0 0 2px 0;
+    width: 100%;
+    outline: none;
+    background-color: #fafafa;
+  }
+  
+  button{
+    margin-top: 30px;
+    margin-bottom: 30px;
+    padding: 8px 12px;
+    background: #ffe100;
+    border: 0;
+    font-weight: bold;
+    font-family: 'Reggae One', cursive;
+    font-size: 16px;
+    cursor: pointer;
+  }
+  
+  .auth{
+    /*  width: 100%;  */
+    /* height: 100%;  */
+    width: 60vw;
+    height: 80vh;
+    position: fixed;
+    background-color: #181619;
+    display: none;
+    z-index: 1;
+  }
+
+  .auth a{
+    text-decoration: underline;
+    cursor: pointer;
+  }
+  .auth .modal{
+    display: none;
+  }
+  .auth .modal.active{
+    display: block;
+  }
