@@ -1,28 +1,65 @@
-import "./auth.css"
+import "./auth.css";
+import { useState } from "react";
+import firebase from "firebase/app";
+import firebaseApp from "../firebaseConfig";
 
+const db = firebase.firestore();
+const createCharacter = (uid, nickname) => {
+  return db.collection("users").doc(uid).set({
+    exp: 0,
+    nextLevel: 100,
+    name: nickname,
+  });
+};
 export const Login = () => {
+  const [user, setUser] = useState({
+    email: "",
+    password: "",
+    error: "",
+  });
 
-    // const [nickname, setNickname] = useState('');
-    // const [email, setEmail] = useState('');
-    // const [password, setPassword] = useState('');
-    // const [emailError, setEmailError] = useState('');
-    // const [passwordError, setPasswordError] = useState('');
-    // const [hasAccount, sethasAccount] = useState(false);
-       
-    const handleLogin = () => {
+  const { email, password, error } = user;
 
-    }
+  const handleChange = (e) => {
+    setUser({
+      ...user,
+      [e.target.name]: e.target.value,
+      error: "",
+    });
+    return user;
+  };
 
-    return (
-      <>
-                  <div class="modal active">
+  const handleOnSubmit = (e) => {
+    e.preventDefault();
+    firebaseApp
+      .auth()
+      .signInWithEmailAndPassword(email, password)
+      .then((token) => {
+        console.log(token.user);
+        console.log(token.user.displayName);
+        alert(`Witaj w grze ${token.user.displayName}`);
+        createCharacter(token.user.uid, token.user.displayName);
+      })
+      .catch((error) => {
+        alert(error.message);
+        console.log("error", error);
+        setUser({
+          ...user,
+          error: error.message,
+        });
+      });
+  };
 
+  return (
+    <>
+      <div className="modal active">
         <h2>Zaloguj się</h2>
         <form
           className="registration__form login__form"
           id="logIn-form"
+          onSubmit={handleOnSubmit}
         >
-          <label for="logIn-email">
+          <label htmlFor="logIn-email">
             Adres email:
             <input
               type="email"
@@ -30,9 +67,10 @@ export const Login = () => {
               name="email"
               id="logIn-email"
               required
+              onChange={handleChange}
             />
           </label>
-          <label for="logIn-password">
+          <label htmlFor="logIn-password">
             Hasło:
             <input
               type="password"
@@ -40,16 +78,18 @@ export const Login = () => {
               name="password"
               id="logIn-password"
               required
+              onChange={handleChange}
             />
           </label>
           <button type="submit" className="myButton">
             Wejdź do gry!
           </button>
         </form>
-     
-        <div>Nie masz konta? <a className="switch">Zarejestruj się</a></div>
+
+        <div>
+          Nie masz konta? <a className="switch">Zarejestruj się</a>
         </div>
-      </>
-    );
-  };
-  
+      </div>
+    </>
+  );
+};
