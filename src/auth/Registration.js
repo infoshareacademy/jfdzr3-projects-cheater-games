@@ -1,6 +1,37 @@
 import "./auth.css";
 import { useState} from 'react';
+import firebase from 'firebase/app'
 import firebaseApp from "../firebaseConfig";
+
+
+const db = firebase.firestore();
+const createCharacter = (uid, nickname) => {
+    return db.collection("users").doc(uid).set({
+      exp: 0,
+      nextLevel: 100,
+      name: nickname,
+    });
+  };
+
+  const createPlayerStats = (uid) => {
+    return db.collection("stats").doc(uid).set({
+      str: 1,
+      agi: 1,
+      tough: 1,
+      int: 1,
+      perc: 1,
+      left: 10,
+    });
+  };
+  
+  const createPlayerResources = (uid) => {
+    return db.collection("resources").doc(uid).set({
+      gold: 100,
+      material: 50,
+      wood: 50,
+    });
+  };
+  
 
 export const Registration = () => {
 
@@ -21,36 +52,35 @@ const handleChange = e => {
 
     });
     console.log(e.target.name);
-
+    console.log(e.target.value);
+    console.log(user.nickname, user.password, user.email);
+    console.log(user);
+    return user;
 };
-
-// const [nickname, setNickname] = useState('');
-// const [email, setEmail] = useState('');
-// const [password, setPassword] = useState('');
-// const [emailError, setEmailError] = useState('');
-// const [passwordError, setPasswordError] = useState('');
-// const [hasAccount, sethasAccount] = useState(false);
-
-// const handleSignup = (nickname, email, password) => {
-//     firebaseApp.auth().createUserWithEmailAndPassword(email, password).then((token) => {
-//         console.log(token);
-//         console.log(token.user.nickname);
-//         console.log(token.user.uid);
-//     });
-// }
 
 
 const handleOnSubmit = (e) => {
     e.preventDefault();
     firebaseApp.auth().createUserWithEmailAndPassword(email, password).then((token) => {
+        token.user.updateProfile({
+            displayName: user.nickname
+        })
         console.log(token);
-        console.log(token.user.nickname);
-        console.log(token.user.uid);
-        console.log(user);
+        console.log(token.user.displayName);
         console.log(user.nickname);
-    });
+        alert(`Witaj w grze ${user.nickname}`);
+        createCharacter(token.user.uid, user.nickname);
+        createPlayerStats(token.user.uid);
+        createPlayerResources(token.user.uid);
+    }).catch(error => {
+        alert(error.message)
+        console.log('error', error);
+        setUser({
+            ...user,
+            error: error.message,
+        })
+    })
 }
-
 
 return (
       <>
