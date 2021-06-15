@@ -1,0 +1,34 @@
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+.race_description {
+  display: flex;
+  flex-flow: column;
+  /* min-width: 45vw; */
+}
+
+.race {
+  padding: 15px;
+  border: 1px solid black;
+  max-width: 30vw;
+  margin: 0 auto;
+  text-align: justify;
+}
+h3 {
+  padding-bottom: 15px;
+}
+
+ul {
+  list-style-type: none;
+}
+.race_description--bonuses {
+  text-align: center;
+}
+
+.race_description--bonuses p {
+  font-weight: bold;
+  padding: 5px 0 5px 0;
+}

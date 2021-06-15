@@ -1,4 +1,5 @@
 import { Race } from "./CHEAT-4/index";
+import "./CHEAT-4/index.css";
 function App() {
   return (
     <>
