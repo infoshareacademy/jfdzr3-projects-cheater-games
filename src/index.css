@@ -68,12 +68,12 @@ button {
 }
 
 button:first-of-type {
-  top: 21.5%;
+  top: 25%;
   left: 24.5%;
 }
 
 button:last-of-type {
-  top: 21.5%;
+  top: 25%;
   left: 73.5%;
 }
 
