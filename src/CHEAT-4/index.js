@@ -1,6 +1,7 @@
 export function Race() {
   const race = [
     {
+      id: 1,
       name: "Ludzie",
       description: `Kiedy dokładnie pojawili się na Kontynencie i z jakiej konkretnej
             przyczyny, nie jest do końca wiadome nawet Elfom. Choć uzurpują
@@ -15,7 +16,7 @@ export function Race() {
             zmniejszających się powierzchni leśnych. Wraz z rozwojem ludzkiej
             wiedzy i umiejętności, kurczą się też legendy, Ludzie chcą wszystko
             wyjaśnić, zracjonalizować, dlatego bez ustanku polują na wszelkie
-            przejawy \"legendarnych zabobonów\". Tym niemniej dzięki temu, Ludzie
+            przejawy "legendarnych zabobonów". Tym niemniej dzięki temu, Ludzie
             odznaczają się dużą sprawnością i odpornością na niespodziewane
             sytuacje.`,
       bonus: [
@@ -27,6 +28,7 @@ export function Race() {
       ],
     },
     {
+      id: 2,
       name: "Elfy",
       description: `Prawodpodobnie słusznie Elfy są uznawane za najmądrzejszą i
             najstarszą z ras zamieszkujących Kontynent. Ich wrodzona
@@ -51,6 +53,7 @@ export function Race() {
       ],
     },
     {
+      id: 3,
       name: "Krasnoludy",
       description: `Uparty i zawzięty lud z gór. Ich legendy głoszą, że pewnego dnia
             bogowie zaprosili siedmiu najznamienitszych kowali i rzemieślników
@@ -78,6 +81,7 @@ export function Race() {
       ],
     },
     {
+      id: 4,
       name: "Orki",
       description: `Pochodzący z południowo-zachodnich stepów i dżungli kontynentu, Orki
             i gobliny to przede wszystkim wyśmienici łucznicy i jeźdźcy. Kiedy
@@ -91,7 +95,7 @@ export function Race() {
             przydatniejsze umiejętności, nie tracąc zarazem nic ze swojej
             dzikości. Z niezwykłą lubością napadają na podróżujące karawany
             kupieckie - zwłaszcza te, które świadome ryzyka podróżują do ich
-            bardziej \"ucywilizowanych\" braci, misjonarze równie dobrze są
+            bardziej "ucywilizowanych" braci, misjonarze równie dobrze są
             obiektami uwielbienia wśród orkowych plemion, jak i stanowią
             przystawkę do upolowanej dziczyzny, a elficcy dyplomaci wciąż się
             uczą grzecznościowych zwrotów, po tym jak niejeden zapoznał się
@@ -111,5 +115,11 @@ export function Race() {
     },
   ];
 
-  return <></>;
+  return (
+    <>
+      {race.map((races) => (
+        <div key={races.id}>{races.description}</div>
+      ))}
+    </>
+  );
 }
