@@ -1,9 +1,11 @@
-export function Race() {
-  const race = [
-    {
-      id: 1,
-      name: "Ludzie",
-      description: `Kiedy dokładnie pojawili się na Kontynencie i z jakiej konkretnej
+import { useState } from "react";
+// import "./index.css";
+
+const races = [
+  {
+    id: 1,
+    name: "Ludzie",
+    description: `Kiedy dokładnie pojawili się na Kontynencie i z jakiej konkretnej
             przyczyny, nie jest do końca wiadome nawet Elfom. Choć uzurpują
             sobie prawo do wiedzy o wszystkim co się dzieje na świecie, historia
             ludzkości, a przynajmniej jej początki, umykają nawet pradawnym
@@ -19,18 +21,18 @@ export function Race() {
             przejawy "legendarnych zabobonów". Tym niemniej dzięki temu, Ludzie
             odznaczają się dużą sprawnością i odpornością na niespodziewane
             sytuacje.`,
-      bonus: [
-        { name: "Siła", change: "+5" },
-        { name: "Wytrzymałość", change: "+5" },
-        { name: "Żywotność", change: "+5" },
-        { name: "Obrona", change: "+15" },
-        { name: "Przyrost Materiału", change: "+6/h" },
-      ],
-    },
-    {
-      id: 2,
-      name: "Elfy",
-      description: `Prawodpodobnie słusznie Elfy są uznawane za najmądrzejszą i
+    bonus: [
+      { name: "Siła", change: 5 },
+      { name: "Wytrzymałość", change: 5 },
+      { name: "Żywotność", change: 5 },
+      { name: "Obrona", change: 15 },
+      { name: "Przyrost Materiału", change: 6 },
+    ],
+  },
+  {
+    id: 2,
+    name: "Elfy",
+    description: `Prawodpodobnie słusznie Elfy są uznawane za najmądrzejszą i
             najstarszą z ras zamieszkujących Kontynent. Ich wrodzona
             inteligencja i bystrość umysłu pozwalają im na unikanie wielu
             pułapek rozwijającego się świata. Wciąż stanowiąc nierozwiązaną
@@ -44,18 +46,18 @@ export function Race() {
             Ludzi pozostają pewną zagadką. Krasnoludy z kolei traktują Elfy z
             chłodnym dystansem, co nie przeszkadza im regularnie wysyłać
             handlowych karawan na ich tereny.`,
-      bonus: [
-        { name: "Zwinność", change: "+5" },
-        { name: "Inteligencja", change: "+10" },
-        { name: "Spostrzegawczość", change: "+5" },
-        { name: "Wytrzymałość", change: "-5" },
-        { name: "Przyrost Drewna", change: "+6/h" },
-      ],
-    },
-    {
-      id: 3,
-      name: "Krasnoludy",
-      description: `Uparty i zawzięty lud z gór. Ich legendy głoszą, że pewnego dnia
+    bonus: [
+      { name: "Zwinność", change: 5 },
+      { name: "Inteligencja", change: "0 },
+      { name: "Spostrzegawczość", change: 5 },
+      { name: "Wytrzymałość", change: 5 },
+      { name: "Przyrost Drewna", change: 6 },
+    ],
+  },
+  {
+    id: 3,
+    name: "Krasnoludy",
+    description: `Uparty i zawzięty lud z gór. Ich legendy głoszą, że pewnego dnia
             bogowie zaprosili siedmiu najznamienitszych kowali i rzemieślników
             na wielką ucztę w górach, aby zachwycać się ich kunsztem. W trakcie
             uczty, zauroczeni bogowie zapragnęli jeszcze piękniejszych wyrobów i
@@ -71,19 +73,19 @@ export function Race() {
             Krasnoludy za twardych i nieustępliwych wojowników. Również
             wydobyciem kruszców, zwłaszcza złota i rud metali, przewyższają
             nawet żyjących w górzystych terenach Ludzi.`,
-      bonus: [
-        { name: "Siła", change: "+5" },
-        { name: "Wytrzymałość", change: "+10" },
-        { name: "Żywotność", change: "+5" },
-        { name: "Szybkość", change: "-10" },
-        { name: "Obrona", change: "+15" },
-        { name: "Przyrost Złota", change: "+50/h" },
-      ],
-    },
-    {
-      id: 4,
-      name: "Orki",
-      description: `Pochodzący z południowo-zachodnich stepów i dżungli kontynentu, Orki
+    bonus: [
+      { name: "Siła", change: 5 },
+      { name: "Wytrzymałość", change: 10 },
+      { name: "Żywotność", change: 5 },
+      { name: "Szybkość", change: -10 },
+      { name: "Obrona", change: 15 },
+      { name: "Przyrost Złota", change: 50 },
+    ],
+  },
+  {
+    id: 4,
+    name: "Orki",
+    description: `Pochodzący z południowo-zachodnich stepów i dżungli kontynentu, Orki
             i gobliny to przede wszystkim wyśmienici łucznicy i jeźdźcy. Kiedy
             kilkaset lat temu pojawili się u rubieży ludzkich królestw,
             wszystkie pozostałe rasy szybko zrozumiały, że jeśli nie okiełznają
@@ -102,24 +104,29 @@ export function Race() {
             bliżej z wymyślnymi technikami torturowania jeńców. Generalnie
             proces asymilacji Orków trwa, ale z wielu różnych przyczyn idzie to
             trochę jak po grudzie.`,
-      bonus: [
-        { name: "Siła", change: "+10" },
-        { name: "Spostrzegawczość", change: "+10" },
-        { name: "Szybkość", change: "+5" },
-        { name: "Inteligencja", change: "-10" },
-        { name: "Obrona", change: "+10" },
-        { name: "Przyrost Złota", change: "+15/h" },
-        { name: "Przyrost Drewna", change: "+3/h" },
-        { name: "Przyrost Materiału", change: "+3/h" },
-      ],
-    },
-  ];
-
+    bonus: [
+      { name: "Siła", change: 10 },
+      { name: "Spostrzegawczość", change: 10 },
+      { name: "Szybkość", change: 5 },
+      { name: "Inteligencja", change: -10 },
+      { name: "Obrona", change: 10 },
+      { name: "Przyrost Złota", change: 15 },
+      { name: "Przyrost Drewna", change: 3 },
+      { name: "Przyrost Materiału", change: 3 },
+    ],
+  },
+];
+export function Race() {
+  const [currentRaceId, setCurrentRaceId] = useState(null);
+  const currentRace = races.find((race) => race.id === currentRaceId);
   return (
-    <>
-      {race.map((races) => (
-        <div key={races.id}>{races.description}</div>
+    <div>
+      {races.map((race) => (
+        <button key={race.id} onClick={() => setCurrentRaceId(race.id)}>
+          {race.name}
+        </button>
       ))}
-    </>
+      {currentRace && currentRace.description}
+    </div>
   );
 }
