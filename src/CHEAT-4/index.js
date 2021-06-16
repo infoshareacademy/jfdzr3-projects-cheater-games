@@ -1,11 +1,8 @@
 export function Race() {
-  return (
-    <>
-      <div class="race_description">
-        <div class="race race_description--people">
-          <h3>Ludzie</h3>
-          <p>
-            Kiedy dokładnie pojawili się na Kontynencie i z jakiej konkretnej
+  const race = [
+    {
+      name: "Ludzie",
+      description: `Kiedy dokładnie pojawili się na Kontynencie i z jakiej konkretnej
             przyczyny, nie jest do końca wiadome nawet Elfom. Choć uzurpują
             sobie prawo do wiedzy o wszystkim co się dzieje na świecie, historia
             ludzkości, a przynajmniej jej początki, umykają nawet pradawnym
@@ -18,26 +15,20 @@ export function Race() {
             zmniejszających się powierzchni leśnych. Wraz z rozwojem ludzkiej
             wiedzy i umiejętności, kurczą się też legendy, Ludzie chcą wszystko
             wyjaśnić, zracjonalizować, dlatego bez ustanku polują na wszelkie
-            przejawy "legendarnych zabobonów". Tym niemniej dzięki temu, Ludzie
+            przejawy \"legendarnych zabobonów\". Tym niemniej dzięki temu, Ludzie
             odznaczają się dużą sprawnością i odpornością na niespodziewane
-            sytuacje.
-          </p>
-          <div class="race_description--bonuses">
-            <p>Bonusy Rasowe:</p>
-            <ul>
-              <li>Siła: +5</li>
-              <li>Wytrzymałość: +5</li>
-              <li>Żywotność: +5</li>
-              <li>Obrona: +15</li>
-              <li>Przyrost Materiału +6/h</li>
-            </ul>
-          </div>
-        </div>
-
-        <div class="race race_description--elfs">
-          <h3>Elfy</h3>
-          <p>
-            Prawodpodobnie słusznie Elfy są uznawane za najmądrzejszą i
+            sytuacje.`,
+      bonus: [
+        { name: "Siła", change: "+5" },
+        { name: "Wytrzymałość", change: "+5" },
+        { name: "Żywotność", change: "+5" },
+        { name: "Obrona", change: "+15" },
+        { name: "Przyrost Materiału", change: "+6/h" },
+      ],
+    },
+    {
+      name: "Elfy",
+      description: `Prawodpodobnie słusznie Elfy są uznawane za najmądrzejszą i
             najstarszą z ras zamieszkujących Kontynent. Ich wrodzona
             inteligencja i bystrość umysłu pozwalają im na unikanie wielu
             pułapek rozwijającego się świata. Wciąż stanowiąc nierozwiązaną
@@ -50,23 +41,18 @@ export function Race() {
             zaczaić. Choć zdarza im się odwiedzać ludzkie miasta, to dla wielu
             Ludzi pozostają pewną zagadką. Krasnoludy z kolei traktują Elfy z
             chłodnym dystansem, co nie przeszkadza im regularnie wysyłać
-            handlowych karawan na ich tereny.
-          </p>
-          <div class="race_description--bonuses">
-            <p>Bonusy Rasowe:</p>
-            <ul>
-              <li>Zwinność +5</li>
-              <li>Inteligencja +10</li>
-              <li>Spostrzegawczość +5</li>
-              <li>Wytrzymałość -5</li>
-              <li>Przyrost Drewna +6/h</li>
-            </ul>
-          </div>
-        </div>
-        <div class="race race_description--dwarfs">
-          <h3>Krasnoludy</h3>
-          <p>
-            Uparty i zawzięty lud z gór. Ich legendy głoszą, że pewnego dnia
+            handlowych karawan na ich tereny.`,
+      bonus: [
+        { name: "Zwinność", change: "+5" },
+        { name: "Inteligencja", change: "+10" },
+        { name: "Spostrzegawczość", change: "+5" },
+        { name: "Wytrzymałość", change: "-5" },
+        { name: "Przyrost Drewna", change: "+6/h" },
+      ],
+    },
+    {
+      name: "Krasnoludy",
+      description: `Uparty i zawzięty lud z gór. Ich legendy głoszą, że pewnego dnia
             bogowie zaprosili siedmiu najznamienitszych kowali i rzemieślników
             na wielką ucztę w górach, aby zachwycać się ich kunsztem. W trakcie
             uczty, zauroczeni bogowie zapragnęli jeszcze piękniejszych wyrobów i
@@ -81,24 +67,19 @@ export function Race() {
             krasnoludzka broń jest uznawana za najlepszą na świecie, a
             Krasnoludy za twardych i nieustępliwych wojowników. Również
             wydobyciem kruszców, zwłaszcza złota i rud metali, przewyższają
-            nawet żyjących w górzystych terenach Ludzi.
-          </p>
-          <div class="race_description--bonuses">
-            <p>Bonusy Rasowe:</p>
-            <ul>
-              <li>Siła +5</li>
-              <li>Wytrzymałość +10</li>
-              <li>Żywotność +5</li>
-              <li>Szybkość -10</li>
-              <li>Obrona +15</li>
-              <li>Przyrost Złota +50/h</li>
-            </ul>
-          </div>
-        </div>
-        <div class="race race_description--orcs">
-          <h3>Orki</h3>
-          <p>
-            Pochodzący z południowo-zachodnich stepów i dżungli kontynentu, Orki
+            nawet żyjących w górzystych terenach Ludzi.`,
+      bonus: [
+        { name: "Siła", change: "+5" },
+        { name: "Wytrzymałość", change: "+10" },
+        { name: "Żywotność", change: "+5" },
+        { name: "Szybkość", change: "-10" },
+        { name: "Obrona", change: "+15" },
+        { name: "Przyrost Złota", change: "+50/h" },
+      ],
+    },
+    {
+      name: "Orki",
+      description: `Pochodzący z południowo-zachodnich stepów i dżungli kontynentu, Orki
             i gobliny to przede wszystkim wyśmienici łucznicy i jeźdźcy. Kiedy
             kilkaset lat temu pojawili się u rubieży ludzkich królestw,
             wszystkie pozostałe rasy szybko zrozumiały, że jeśli nie okiełznają
@@ -110,29 +91,25 @@ export function Race() {
             przydatniejsze umiejętności, nie tracąc zarazem nic ze swojej
             dzikości. Z niezwykłą lubością napadają na podróżujące karawany
             kupieckie - zwłaszcza te, które świadome ryzyka podróżują do ich
-            bardziej "ucywilizowanych" braci, misjonarze równie dobrze są
+            bardziej \"ucywilizowanych\" braci, misjonarze równie dobrze są
             obiektami uwielbienia wśród orkowych plemion, jak i stanowią
             przystawkę do upolowanej dziczyzny, a elficcy dyplomaci wciąż się
             uczą grzecznościowych zwrotów, po tym jak niejeden zapoznał się
             bliżej z wymyślnymi technikami torturowania jeńców. Generalnie
             proces asymilacji Orków trwa, ale z wielu różnych przyczyn idzie to
-            trochę jak po grudzie.
-          </p>
-          <div class="race_description--bonuses">
-            <p>Bonusy Rasowe:</p>
-            <ul>
-              <li>Siła +10</li>
-              <li>Spostrzegawczość +10</li>
-              <li>Szybkość +5</li>
-              <li>Inteligencja -10</li>
-              <li>Obrona +10</li>
-              <li>Przyrost Złota +15/h</li>
-              <li>Przyrost Drewna +3/h</li>
-              <li>Przyrost Materiału +3/h</li>
-            </ul>
-          </div>
-        </div>
-      </div>
-    </>
-  );
+            trochę jak po grudzie.`,
+      bonus: [
+        { name: "Siła", change: "+10" },
+        { name: "Spostrzegawczość", change: "+10" },
+        { name: "Szybkość", change: "+5" },
+        { name: "Inteligencja", change: "-10" },
+        { name: "Obrona", change: "+10" },
+        { name: "Przyrost Złota", change: "+15/h" },
+        { name: "Przyrost Drewna", change: "+3/h" },
+        { name: "Przyrost Materiału", change: "+3/h" },
+      ],
+    },
+  ];
+
+  return <></>;
 }
