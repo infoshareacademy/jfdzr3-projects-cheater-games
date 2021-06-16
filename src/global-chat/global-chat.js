@@ -1,4 +1,4 @@
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import "./global-chat.css";
 import Message from "./Message";
 
@@ -6,18 +6,29 @@ import Message from "./Message";
 export function GlobalChat() {
 
     const [input, setInput] = useState('');
-    const [messages, setMessages] = useState([]);
+    const [messages, setMessages] = useState([
+        {username: 'Aga', text: 'Cześć'},
+        {username: 'Ola', text: 'Witaj'}
+    ]);
+    const [username, setUsername] = useState('');
+
+    useEffect(() => {
+        setUsername(prompt('Please enter your name'));
+        console.log(username);
+    }, [] );
 
     console.log(input);
     console.log(messages);
 
     const sendMessage = event => {
         event.preventDefault();
-        setMessages([...messages, input]);
+        setMessages([...messages, {username: username, text: input}]);
         setInput('');
     }
 
     return (
+    <>
+        <h2>Welcome {username}</h2>
         <div className="chat">
 
             {/* using form and button type="submit" to allow sending messages by clicking Enter */}
@@ -31,12 +42,13 @@ export function GlobalChat() {
             {
                 messages.map(message => {
                     return (
-                    <Message text={message}/>
+                    <Message username={message.username} text={message.text}/>
                     )
                 })
             }
 
 
         </div>
+    </>    
     )
 } 
