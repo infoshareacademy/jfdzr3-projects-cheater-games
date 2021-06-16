@@ -1,5 +1,6 @@
 import { useState } from "react";
-
+import "./global-chat.css";
+import Message from "./Message";
 
 
 export function GlobalChat() {
@@ -22,14 +23,16 @@ export function GlobalChat() {
             {/* using form and button type="submit" to allow sending messages by clicking Enter */}
             <form>
 
-            <input value={input} onChange={event => setInput(event.target.value)}></input>
-            <button type="submit"onClick={sendMessage}>Wyślij</button>
+            <input placeholder="Wpisz wiadomość...."  value={input} onChange={event => setInput(event.target.value)}></input>
+            <button disabled={!input} type="submit"onClick={sendMessage}>Wyślij</button>
 
             </form>
 
             {
                 messages.map(message => {
-                    return <p>{message}</p>
+                    return (
+                    <Message text={message}/>
+                    )
                 })
             }
 
