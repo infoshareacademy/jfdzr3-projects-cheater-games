@@ -1,5 +1,5 @@
 import { useState } from "react";
-import firebase from "./firebaseConfig";
+// import firebase from "./firebaseConfig";
 // import dwarf from "../public/img/races/./dwarf.jpg";
 // import "./styles.css";
 
@@ -109,7 +109,7 @@ export const Slider = () => {
       ),
       )}
       </div>
-      <div className="choose__race" onClick={updateRace}>Wybierz rasę: {slides[1].name}</div>
+      {/* <div className="choose__race" onClick={updateRace}>Wybierz rasę: {slides[1].name}</div> */}
       </div>
     </>
   );
