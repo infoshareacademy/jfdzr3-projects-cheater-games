@@ -48,7 +48,7 @@ const races = [
             handlowych karawan na ich tereny.`,
     bonus: [
       { name: "Zwinność", change: 5 },
-      { name: "Inteligencja", change: "0 },
+      { name: "Inteligencja", change: 0 },
       { name: "Spostrzegawczość", change: 5 },
       { name: "Wytrzymałość", change: 5 },
       { name: "Przyrost Drewna", change: 6 },
