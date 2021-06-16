@@ -1,6 +1,10 @@
 import { useState } from "react";
+import firebase from "firebase";
+import firebaseApp from "./firebaseConfig.js"
 // import dwarf from "../public/img/races/./dwarf.jpg";
 // import "./styles.css";
+
+// firebaseApp();
 
 const cards = [
   {
@@ -77,14 +81,18 @@ export const Slider = () => {
     currentSlide + cards.length + 2
   );
 
-  // const db = firebase.firestore();
+  const db = firebase.firestore();
+  // console.log(db.collection("users").doc(uid).get());
 
-  //   const updateRace = () => {
-  //     db.collection("users").doc(uid).set({
-  //       race: slides[1].name,
-  //       bonus: slides[1].bonus
-  //     })
-  //   }
+    const updateRace = () => {
+      db.collection("users").doc(uid).update({
+        // exp: exp,
+        // name: name,
+        // nextLevel: nextLevel,
+        race: slides[1].name,
+        bonus: slides[1].bonus
+      })
+    }
 
   return (
     <>
@@ -111,8 +119,7 @@ export const Slider = () => {
       ),
       )}
       </div>
-      <div className="choose__race">Wybierz rasę: {slides[1].name}</div>
-      {/* onClick={updateRace} */}
+      <div className="choose__race" onClick={updateRace}>Wybierz rasę: {slides[1].name}</div>
       </div>
     </>
   );
