@@ -92,3 +92,7 @@
   .auth .modal.active{
     display: block;
   }
+  .error p{
+      margin-top: 20px;
+color: red;
+  }

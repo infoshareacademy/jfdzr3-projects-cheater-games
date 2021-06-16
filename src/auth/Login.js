@@ -11,6 +11,11 @@ const createCharacter = (uid, nickname) => {
     name: nickname,
   });
 };
+
+const resetFormOnSubmit = (e, user) => {
+  e.target.reset();
+};
+
 export const Login = () => {
   const [user, setUser] = useState({
     email: "",
@@ -39,9 +44,10 @@ export const Login = () => {
         console.log(token.user.displayName);
         alert(`Witaj w grze ${token.user.displayName}`);
         createCharacter(token.user.uid, token.user.displayName);
+        resetFormOnSubmit(e);
       })
       .catch((error) => {
-        alert(error.message);
+        // alert(error.message);
         console.log("error", error);
         setUser({
           ...user,
@@ -88,6 +94,9 @@ export const Login = () => {
 
         <div>
           Nie masz konta? <a className="switch">Zarejestruj się</a>
+        </div>
+        <div className="error">
+          <p>{error}</p>
         </div>
       </div>
     </>

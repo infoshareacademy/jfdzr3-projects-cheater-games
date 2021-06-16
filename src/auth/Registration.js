@@ -3,9 +3,6 @@ import { useState } from "react";
 import firebase from "firebase/app";
 import firebaseApp from "../firebaseConfig";
 
-const resetFormOnSubmit = (e, user) => {
-  e.target.reset();
-};
 
 const db = firebase.firestore();
 // const createCharacter = (uid, nickname) => {
@@ -35,6 +32,10 @@ const createPlayerResources = (uid) => {
   });
 };
 
+const resetFormOnSubmit = (e) => {
+    e.target.reset();
+  };
+
 export const Registration = () => {
   const [user, setUser] = useState({
     nickname: "",
@@ -57,7 +58,7 @@ export const Registration = () => {
     console.log(user);
     return user;
   };
-
+  
   const handleOnSubmit = (e) => {
     e.preventDefault();
     firebaseApp
@@ -74,10 +75,9 @@ export const Registration = () => {
         // createCharacter(token.user.uid, user.nickname);
         createPlayerStats(token.user.uid);
         createPlayerResources(token.user.uid);
-        resetFormOnSubmit(e, user);
+        resetFormOnSubmit(e);
       })
       .catch((error) => {
-        alert(error.message);
         console.log("error", error);
         setUser({
           ...user,
@@ -139,6 +139,8 @@ export const Registration = () => {
         <div>
           Masz konto? <a className="switch">Zaloguj się</a>
         </div>
+        <div className="error"> <p>
+        {error} </p></div>
       </div>
     </>
   );
