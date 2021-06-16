@@ -62,6 +62,8 @@ const cards = [
 ];
 
 export const Slider = () => {
+  const playerUID = "tq0omzA0rZW9GQIloxiLQpCkfiL2";
+
   const [currentSlide, setCurrentSlide] = useState(0);
 
   const getNextSlide = () => setCurrentSlide((old) => (old + 1) % cards.length);
@@ -75,14 +77,14 @@ export const Slider = () => {
 
   return (
     <>
-      <button onClick={getPrevSlide}>prev</button>
-      <button onClick={getNextSlide}>next</button>
+    <button onClick={getPrevSlide}>{"<"}</button>
+      <button onClick={getNextSlide}>{">"}</button>
       <div className="wrapper">
       <div className="slider">
         {slides.map((slide) => (
           <div
             key={slide.id}
-            className="card"
+            className={slide === slides[1] ? "selected" : "card"}
             style={{ backgroundImage: `url(${slide.src})` }}
           >
             <h2>{slide.name}</h2>
@@ -90,14 +92,15 @@ export const Slider = () => {
         ))}
       </div>
       </div>
-      <p>{slides[1].description}</p>
-      <div>{slides[1].bonus.map((bonus) => (
+      <div className="wrapper__desc">
+      <div className="description">{slides[1].description}</div>
+      <div className="bonus bonus__title">Bonus rasowy:</div>
+      <div className="bonus">{slides[1].bonus.map((bonus) => (
         <div key={bonus.id}>{bonus.name}{bonus.change}</div>
       ),
       )}
       </div>
+      </div>
     </>
   );
 };
-
-
