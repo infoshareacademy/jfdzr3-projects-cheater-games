@@ -85,7 +85,7 @@ export const Slider = () => {
           <div
             key={slide.id}
             className={slide === slides[1] ? "selected" : "card"}
-            style={{ backgroundImage: `url(${slide.src})` }}
+            style={{ backgroundImage: `url(${slide.src})`}}
           >
             <h2>{slide.name}</h2>
           </div>

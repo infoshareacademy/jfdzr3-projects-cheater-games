@@ -33,6 +33,7 @@ code {
   background-position: center;
   background-repeat: no-repeat;
   flex-grow: 1;
+  transform: scale3d(80%, 80%, 100%);
 }
 
 .selected {
