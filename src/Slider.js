@@ -1,4 +1,5 @@
 import { useState } from "react";
+import firebase from "./firebaseConfig";
 // import dwarf from "../public/img/races/./dwarf.jpg";
 // import "./styles.css";
 
@@ -61,6 +62,8 @@ const cards = [
   }
 ];
 
+const uid = "tq0omzA0rZW9GQIloxiLQpCkfiL2";
+
 export const Slider = () => {
   const playerUID = "tq0omzA0rZW9GQIloxiLQpCkfiL2";
 
@@ -75,6 +78,12 @@ export const Slider = () => {
     currentSlide + cards.length + 2
   );
 
+  // const db = firebase.firestore();
+
+  //   const updateRace = () => {
+
+  //   }
+
   return (
     <>
     <button onClick={getPrevSlide}>{"<"}</button>
@@ -87,12 +96,12 @@ export const Slider = () => {
             className={slide === slides[1] ? "selected" : "card"}
             style={{ backgroundImage: `url(${slide.src})`}}
           >
-            <h2>{slide.name}</h2>
           </div>
         ))}
       </div>
       </div>
       <div className="wrapper__desc">
+      <h2 className="description race__name">{slides[1].name}</h2>
       <div className="description">{slides[1].description}</div>
       <div className="bonus bonus__title">Bonus rasowy:</div>
       <div className="bonus">{slides[1].bonus.map((bonus) => (
@@ -100,6 +109,7 @@ export const Slider = () => {
       ),
       )}
       </div>
+      <div className="choose__race" onClick={updateRace}>Wybierz rasę: {slides[1].name}</div>
       </div>
     </>
   );

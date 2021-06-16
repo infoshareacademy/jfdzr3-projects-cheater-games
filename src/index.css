@@ -93,6 +93,10 @@ button:last-of-type {
   box-sizing: border-box;
 }
 
+.race__name {
+  text-align: center;
+}
+
 .bonus {
   width: 80vw;
   text-align: justify;
@@ -104,4 +108,21 @@ button:last-of-type {
 
 .bonus__title {
   font-weight: bold;
+}
+
+.choose__race {
+  align-self: center;
+  border: 3px solid red;
+  background-color: white;
+  box-shadow: 0 12px 8px rgba(0, 0, 0, 0.5);
+  width: fit-content;
+  padding: 20px 50px;
+  cursor: pointer;
+  margin-top: 18px;
+  /* height: 60px; */
+}
+
+.choose__race:hover {
+  background-color: red;
+  color: white;
 }
