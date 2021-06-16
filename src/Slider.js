@@ -104,17 +104,17 @@ export const Slider = () => {
       db.collection("users").doc(uid).update({
         race: slides[1].name,
         bonus: {
-        str: slides[1].bonus[0].change,
-        agi: slides[1].bonus[1].change,
-        tough: slides[1].bonus[2].change,
-        vit: slides[1].bonus[3].change,
-        perc: slides[1].bonus[4].change,
-        int: slides[1].bonus[5].change,
-        speed: slides[1].bonus[6].change,
-        def: slides[1].bonus[7].change,
-        gold: slides[1].bonus[8].change,
-        wood: slides[1].bonus[9].change,
-        mat: slides[1].bonus[10].change,
+        str: slides[1].bonus[0].change === "" ? "0" : slides[1].bonus[0].change,
+        agi: slides[1].bonus[1].change === "" ? "0" : slides[1].bonus[1].change,
+        tough: slides[1].bonus[2].change === "" ? "0" : slides[1].bonus[2].change,
+        vit: slides[1].bonus[3].change === "" ? "0" : slides[1].bonus[3].change,
+        perc: slides[1].bonus[4].change === "" ? "0" : slides[1].bonus[4].change,
+        int: slides[1].bonus[5].change === "" ? "0" : slides[1].bonus[5].change,
+        speed: slides[1].bonus[6].change === "" ? "0" : slides[1].bonus[6].change,
+        def: slides[1].bonus[7].change === "" ? "0" : slides[1].bonus[7].change,
+        gold: slides[1].bonus[8].change === "" ? "0" : slides[1].bonus[8].change,
+        wood: slides[1].bonus[9].change === "" ? "0" : slides[1].bonus[9].change,
+        mat: slides[1].bonus[10].change === "" ? "0" : slides[1].bonus[10].change,
         }
       })
     }
