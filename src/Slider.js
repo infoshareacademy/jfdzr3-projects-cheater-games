@@ -1,5 +1,4 @@
 import { useState } from "react";
-// import firebase from "./firebaseConfig";
 // import dwarf from "../public/img/races/./dwarf.jpg";
 // import "./styles.css";
 
@@ -81,7 +80,10 @@ export const Slider = () => {
   // const db = firebase.firestore();
 
   //   const updateRace = () => {
-
+  //     db.collection("users").doc(uid).set({
+  //       race: slides[1].name,
+  //       bonus: slides[1].bonus
+  //     })
   //   }
 
   return (
@@ -109,7 +111,8 @@ export const Slider = () => {
       ),
       )}
       </div>
-      {/* <div className="choose__race" onClick={updateRace}>Wybierz rasę: {slides[1].name}</div> */}
+      <div className="choose__race">Wybierz rasę: {slides[1].name}</div>
+      {/* onClick={updateRace} */}
       </div>
     </>
   );
