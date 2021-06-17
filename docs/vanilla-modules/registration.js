@@ -24,6 +24,7 @@ const createUser = (nick, email, password) => {
     });
 };
 
+
 // log out
 
 const logout = document.querySelector("#logout");
