@@ -42,7 +42,7 @@ export function GlobalChat() {
             {
                 messages.map(message => {
                     return (
-                    <Message username={message.username} text={message.text}/>
+                    <Message username={username} message={message}/>
                     )
                 })
             }
