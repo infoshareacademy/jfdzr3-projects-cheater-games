@@ -23,6 +23,7 @@ export default function Stats() {
         <Stat title="Wytrzymałość" statAbr="tough" statPoints={stats.tough} />
         <Stat title="Inteligencja" statAbr="int" statPoints={stats.int} />
         <Stat title="Spostrzegawczość" statAbr="perc" statPoints={stats.perc} />
+        <button class="btn">Zatwierdź</button>
       </Wrapper>
     </main>
   );
