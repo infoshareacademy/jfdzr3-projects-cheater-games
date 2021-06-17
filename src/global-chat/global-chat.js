@@ -1,6 +1,7 @@
 import { useState, useEffect } from "react";
 import "./global-chat.css";
 import Message from "./Message";
+import firestoreDatabase from "../firebaseConfig";
 
 
 export function GlobalChat() {

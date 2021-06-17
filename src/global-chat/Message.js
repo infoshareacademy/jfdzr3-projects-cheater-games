@@ -1,5 +1,6 @@
 import React from 'react';
 import './Message.css';
+import firestoreDatabase from '../firebaseConfig';
 
 function Message({username, message}) {
     return (
