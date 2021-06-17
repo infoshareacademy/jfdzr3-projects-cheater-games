@@ -1,0 +1,31 @@
+.heading-container {
+  text-align: center;
+}
+
+.user-stats {
+  display: flex;
+  justify-content: space-between;
+}
+
+.user-stats__wrapper {
+  text-align: center;
+}
+
+.user-stats__right {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.user-stats__right .user-stats__button:not(:last-child) {
+  margin-right: 10px;
+}
+
+.user-stats__points {
+  margin-right: 10px;
+}
+
+.user-stats__button {
+  all: unset;
+  cursor: pointer;
+}
