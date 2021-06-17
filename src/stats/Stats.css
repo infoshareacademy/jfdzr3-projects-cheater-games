@@ -1,3 +1,10 @@
+.main {
+  display: grid;
+  place-items: center;
+  gap: 40px;
+  padding-top: 40px;
+}
+
 .heading-container {
   text-align: center;
 }
@@ -7,8 +14,17 @@
   justify-content: space-between;
 }
 
+.user-stats__title {
+  font-weight: bold;
+}
+
+.user-stats:not(:first-child) {
+  margin-top: 50px;
+}
+
 .user-stats__wrapper {
   text-align: center;
+  width: 30%;
 }
 
 .user-stats__right {
