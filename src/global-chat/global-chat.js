@@ -14,7 +14,9 @@ export function GlobalChat() {
 
     //Following all changes in messages database, returns object {username: "", text: "" .....}
     useEffect(() => {
-        db.collection('messages').onSnapshot(messages => {
+        db.collection('messages')
+        .orderBy('time', 'desc')
+        .onSnapshot(messages => {
             setMessages(messages.docs.map(doc => doc.data()))
         })
     }, []);
