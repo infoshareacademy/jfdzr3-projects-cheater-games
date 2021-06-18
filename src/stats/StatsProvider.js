@@ -1,4 +1,5 @@
 import firebase from 'firebase/app';
+import 'firebase/firestore';
 import { useState, useEffect, createContext } from 'react';
 
 const db = firebase.firestore();
@@ -23,6 +24,10 @@ export function StatsProvider(props) {
       .catch((error) => {
         console.log('Error getting document:', error);
       });
-  }, {});
-  return <StatsContext.Provider>{props.children}</StatsContext.Provider>;
+  }, []);
+  return (
+    <StatsContext.Provider value={[points, setPoints]}>
+      {props.children}
+    </StatsContext.Provider>
+  );
 }
