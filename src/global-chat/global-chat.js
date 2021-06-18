@@ -8,7 +8,7 @@ import { db } from "../firebaseConfig";
 export function GlobalChat() {
 
     const [input, setInput] = useState('');
-    const [messages, setMessages] = useState("");
+    const [messages, setMessages] = useState([]);
     const [username, setUsername] = useState('');
 
     //Following all changes in messages database, returns object {username: "", text: "" .....}
