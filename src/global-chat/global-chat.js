@@ -1,17 +1,22 @@
 import { useState, useEffect } from "react";
 import "./global-chat.css";
 import Message from "./Message";
-import firestoreDatabase from "../firebaseConfig";
+import firebaseApp from "../firebaseConfig";
+import { db } from "../firebaseConfig";
 
 
 export function GlobalChat() {
 
     const [input, setInput] = useState('');
-    const [messages, setMessages] = useState([
-        {username: 'Aga', text: 'Cześć'},
-        {username: 'Ola', text: 'Witaj'}
-    ]);
+    const [messages, setMessages] = useState("");
     const [username, setUsername] = useState('');
+
+    //Following all changes in messages database, returns object {username: "", text: "" .....}
+    useEffect(() => {
+        db.collection('messages').onSnapshot(snapshot => {
+            setMessages(snapshot.docs.map(doc => doc.data()))
+        })
+    }, []);
 
     useEffect(() => {
         setUsername(prompt('Please enter your name'));
