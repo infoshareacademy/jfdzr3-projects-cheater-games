@@ -3,6 +3,7 @@ import "./global-chat.css";
 import Message from "./Message";
 import firebaseApp from "../firebaseConfig";
 import { db } from "../firebaseConfig";
+import firebase from "firebase";
 
 
 export function GlobalChat() {
@@ -13,8 +14,8 @@ export function GlobalChat() {
 
     //Following all changes in messages database, returns object {username: "", text: "" .....}
     useEffect(() => {
-        db.collection('messages').onSnapshot(snapshot => {
-            setMessages(snapshot.docs.map(doc => doc.data()))
+        db.collection('messages').onSnapshot(messages => {
+            setMessages(messages.docs.map(doc => doc.data()))
         })
     }, []);
 
@@ -28,6 +29,12 @@ export function GlobalChat() {
 
     const sendMessage = event => {
         event.preventDefault();
+        db.collection('messages').add({
+            text: input,
+            time: firebase.firestore.FieldValue.serverTimestamp(),
+            username: username
+
+        });
         setMessages([...messages, {username: username, text: input}]);
         setInput('');
     }
