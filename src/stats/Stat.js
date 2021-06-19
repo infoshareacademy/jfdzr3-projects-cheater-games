@@ -1,8 +1,8 @@
-import './Stats.css';
+// import './Stats.css';
 import { StatsContext } from './StatsProvider';
 import { useContext } from 'react';
 
-export default function Stat(props) {
+export function Stat(props) {
   const { title, statAbr } = props;
   const [points, setPoints] = useContext(StatsContext);
   return (
