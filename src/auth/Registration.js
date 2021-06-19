@@ -1,5 +1,14 @@
 import "./auth.css";
+import React from "react";
 import { useState } from "react";
+import {
+  BrowserRouter as Router,
+  Switch,
+  Route,
+  Link,
+  useRouteMatch,
+  useParams,
+} from "react-router-dom";
 import firebase from "firebase/app";
 import firebaseApp from "../firebaseConfig";
 
@@ -30,7 +39,6 @@ const createPlayerResources = (uid) => {
     wood: 50,
   });
 };
-
 
 export const Registration = () => {
   const [user, setUser] = useState({
@@ -138,11 +146,10 @@ export const Registration = () => {
           </button>
         </form>
         <div>
-          Masz konto? <a className="switch">Zaloguj się</a>
+          Masz konto? <Link to="/login">Zaloguj się</Link>
         </div>
         <div className="error">
-          {" "}
-          <p>{error} </p>
+          <p>{error}</p>
         </div>
       </div>
     </>

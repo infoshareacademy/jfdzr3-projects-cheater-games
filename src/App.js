@@ -1,36 +1,50 @@
+import React from "react";
+import {
+  BrowserRouter as Router,
+  Switch,
+  Route,
+  Link,
+  useRouteMatch,
+  useParams,
+} from "react-router-dom";
+import firebase from "firebase/app";
+import useFirebaseAuthentication from "./auth/useFirebaseAuthentication";
+import { LoginPage } from "./components/LoginPage";
+import { RegistrationPage } from "./components/RegistrationPage";
+
+import { HomePage } from "./components/HomePage";
 import { Registration } from "./auth/Registration";
 import { Login } from "./auth/Login";
-import { Logout } from "./auth/Logout";
-import firebase from "firebase/app";
-
-import useFirebaseAuthentication  from "./auth/useFirebaseAuthentication";
 
 function App() {
   const authUser = useFirebaseAuthentication(firebase);
-
 
   return (
     <>
       <header className="header">
         <img src="./logo-monster-hunt.png" alt="" className="logo" />
       </header>
-      <div className="content">
-        <nav className="nav">
-          <ul>
-            <Logout />
-            <li>Widok postaci</li>
-            <li>Statystyki</li>
-            <li>Quest</li>
-            <li>Rynek</li>
-            <li>Idź na polowanie</li>
-          </ul>
-        </nav>
-        <main className="main__section">
-          <Login />
-          <Registration />
-        </main>
-        <aside className="advertising"></aside>
-      </div>
+      <Router>
+        {authUser ? (
+          <Switch>
+            <Route path="/">
+              <HomePage />
+            </Route>
+          </Switch>
+        ) : (
+          <Switch>
+            <Route path="/register">
+              <RegistrationPage />
+            </Route>
+            <Route path="/">
+              <LoginPage />
+            </Route>
+            <Route path="/register">
+              <RegistrationPage />
+            </Route>
+          </Switch>
+        )}
+      </Router>
     </>
   );
 }

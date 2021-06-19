@@ -18,7 +18,7 @@ const useFirebaseAuthentication = (firebase) => {
            unlisten();
        }
     });
-
+    console.log(authUser);
     return authUser
 }
 
