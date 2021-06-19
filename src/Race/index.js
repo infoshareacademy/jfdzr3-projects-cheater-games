@@ -117,7 +117,7 @@ const races = [
   },
 ];
 export function Race() {
-  const [currentRaceId, setCurrentRaceId] = useState(null);
+  const [currentRaceId, setCurrentRaceId] = useState("Ludzie");
   const currentRace = races.find((race) => race.id === currentRaceId);
   return (
     <div
@@ -132,10 +132,17 @@ export function Race() {
         border: "1px solid black",
       }}
     >
-      <p style={{ fontSize: "24px", fontWeight: "bold", textAlign: "center" }}>
+      <p
+        style={{
+          height: "20px",
+          fontSize: "30px",
+          fontWeight: "bold",
+          textAlign: "center",
+        }}
+      >
         {currentRace && currentRace.name}
       </p>
-      <div style={{ height: "50%" }}>
+      <div style={{ height: "50%", textAlign: "justify", padding: "0 15px" }}>
         {currentRace && currentRace.description}
       </div>
       <div
@@ -149,8 +156,9 @@ export function Race() {
         {races.map((race) => (
           <button
             style={{
-              padding: "15px",
+              padding: "10px",
               width: "130px",
+              backgroundColor: "orange",
             }}
             key={race.id}
             onClick={() => setCurrentRaceId(race.id)}
