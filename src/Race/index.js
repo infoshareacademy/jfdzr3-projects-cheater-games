@@ -120,13 +120,45 @@ export function Race() {
   const [currentRaceId, setCurrentRaceId] = useState(null);
   const currentRace = races.find((race) => race.id === currentRaceId);
   return (
-    <div>
-      {races.map((race) => (
-        <button key={race.id} onClick={() => setCurrentRaceId(race.id)}>
-          {race.name}
-        </button>
-      ))}
-      {currentRace && currentRace.description}
+    <div
+      style={{
+        display: "flex",
+        padding: "15px",
+        margin: "0 auto",
+        flexFlow: "column",
+        flexWrap: "nowrap",
+        width: "80vw",
+        height: "80vh",
+        border: "1px solid black",
+      }}
+    >
+      <p style={{ fontSize: "24px", fontWeight: "bold", textAlign: "center" }}>
+        {currentRace && currentRace.name}
+      </p>
+      <div style={{ height: "50%" }}>
+        {currentRace && currentRace.description}
+      </div>
+      <div
+        style={{
+          display: "flex",
+          height: "50%",
+          alignItems: "flex-end",
+          justifyContent: "center",
+        }}
+      >
+        {races.map((race) => (
+          <button
+            style={{
+              padding: "15px",
+              width: "130px",
+            }}
+            key={race.id}
+            onClick={() => setCurrentRaceId(race.id)}
+          >
+            {race.name}
+          </button>
+        ))}
+      </div>
     </div>
   );
 }

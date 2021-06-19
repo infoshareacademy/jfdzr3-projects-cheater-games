@@ -4,7 +4,7 @@ function App() {
   return (
     <>
       <h1>Monster Hunt</h1>
-      <Race />
+      <Race style={{ margin: "0 auto" }} />
     </>
   );
 }
