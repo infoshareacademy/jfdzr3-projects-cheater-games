@@ -5,15 +5,47 @@ import { useContext } from 'react';
 export function Stat(props) {
   const { title, statAbr } = props;
   const [points, setPoints] = useContext(StatsContext);
+
+  const increasePoints = () => {
+    if (points.left === 0) return;
+    setPoints((oldPoints) => {
+      console.log(oldPoints);
+      return {
+        ...oldPoints,
+        [statAbr]: oldPoints[statAbr] + 1,
+        left: oldPoints.left - 1,
+      };
+    });
+  };
+
+  const decreasePoints = () => {
+    if (points[statAbr] === 0) return;
+    setPoints((oldPoints) => {
+      return {
+        ...oldPoints,
+        [statAbr]: oldPoints[statAbr] - 1,
+        left: oldPoints.left + 1,
+      };
+    });
+  };
+
   return (
     <div className="user-stats">
       <div className="user-stats__title">{title}</div>
       <div className="user-stats__right">
         <div className="user-stats__points">{points[statAbr]}</div>
-        <button className="user-stats__button" id={statAbr}>
+        <button
+          className="user-stats__button"
+          id={statAbr}
+          onClick={increasePoints}
+        >
           +
         </button>
-        <button className="user-stats__button" id={statAbr}>
+        <button
+          className="user-stats__button"
+          id={statAbr}
+          onClick={decreasePoints}
+        >
           -
         </button>
       </div>
