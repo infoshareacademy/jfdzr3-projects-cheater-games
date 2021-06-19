@@ -1,13 +1,34 @@
-import { Slider } from "./Slider.js"
-
+import { Registration } from "./auth/Registration";
+import { Login } from "./auth/Login";
+import { Logout } from "./auth/Logout";
+import { Slider } from "./Slider";
 
 function App() {
   return (
-  <>
-  <h1>Monster Hunt</h1>
-  <Slider />
-  </>
-  )
+    <>
+      <header className="header">
+        <img src="./logo-monster-hunt.png" alt="" className="logo" />
+      </header>
+      <div className="content">
+        <nav className="nav">
+          <ul>
+            <Logout />
+            <li>Widok postaci</li>
+            <li>Statystyki</li>
+            <li>Quest</li>
+            <li>Rynek</li>
+            <li>Idź na polowanie</li>
+          </ul>
+        </nav>
+        <main className="main__section">
+          <Login />
+          <Registration />
+          <Slider />
+        </main>
+        <aside className="advertising"></aside>
+      </div>
+    </>
+  );
 }
 
 export default App;
