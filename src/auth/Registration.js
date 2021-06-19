@@ -31,9 +31,6 @@ const createPlayerResources = (uid) => {
   });
 };
 
-const resetFormOnSubmit = (e) => {
-  e.target.reset();
-};
 
 export const Registration = () => {
   const [user, setUser] = useState({
@@ -58,6 +55,10 @@ export const Registration = () => {
     return user;
   };
 
+  const resetFormOnSubmit = (e) => {
+    e.target.reset();
+  };
+
   const handleOnSubmit = (e) => {
     e.preventDefault();
     firebaseApp
@@ -75,6 +76,7 @@ export const Registration = () => {
         createPlayerStats(token.user.uid);
         createPlayerResources(token.user.uid);
         resetFormOnSubmit(e);
+        // setUser("");
       })
       .catch((error) => {
         console.log("error", error);

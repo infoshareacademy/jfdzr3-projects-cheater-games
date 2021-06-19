@@ -1,8 +1,14 @@
 import { Registration } from "./auth/Registration";
 import { Login } from "./auth/Login";
 import { Logout } from "./auth/Logout";
+import firebase from "firebase/app";
+
+import useFirebaseAuthentication  from "./auth/useFirebaseAuthentication";
 
 function App() {
+  const authUser = useFirebaseAuthentication(firebase);
+
+
   return (
     <>
       <header className="header">

@@ -45,6 +45,13 @@ export const Login = () => {
         alert(`Witaj w grze ${token.user.displayName}`);
         createCharacter(token.user.uid, token.user.displayName);
         resetFormOnSubmit(e);
+        const storage = firebaseApp.storage();
+
+        storage.ref('avatar-test2.png').getDownloadURL()
+          .then((url) => {
+console.log(url);
+          })
+        
       })
       .catch((error) => {
         // alert(error.message);
