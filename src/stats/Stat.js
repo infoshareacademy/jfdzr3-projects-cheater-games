@@ -35,15 +35,15 @@ export function Stat(props) {
       <div className="user-stats__right">
         <div className="user-stats__points">{points[statAbr]}</div>
         <button
+          type="button"
           className="user-stats__button"
-          id={statAbr}
           onClick={increasePoints}
         >
           +
         </button>
         <button
+          type="button"
           className="user-stats__button"
-          id={statAbr}
           onClick={decreasePoints}
         >
           -

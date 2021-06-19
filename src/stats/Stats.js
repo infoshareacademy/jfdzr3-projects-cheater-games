@@ -1,5 +1,3 @@
-import firebase from 'firebase/app';
-import 'firebase/firestore';
 import { Heading } from './Heading';
 import { Form } from './Form';
 import { Stat } from './Stat';
@@ -8,11 +6,6 @@ import { PointsLeft } from './PointsLeft';
 import { SubmitButton } from './SubmitButton';
 import { Main } from './Main';
 import './Stats.css';
-
-const db = firebase.firestore();
-
-// Test
-const id = 'test-user';
 
 export default function Stats() {
   return (
