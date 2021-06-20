@@ -8,6 +8,7 @@ import {
   Link,
   useRouteMatch,
   useParams,
+  useHistory,
 } from "react-router-dom";
 import firebase from "firebase/app";
 import firebaseApp from "../firebaseConfig";
@@ -47,6 +48,8 @@ export const Registration = () => {
     password: "",
     error: "",
   });
+  const history = useHistory();
+  
 
   const { nickname, email, password, error } = user;
 
@@ -79,7 +82,8 @@ export const Registration = () => {
         console.log(token);
         console.log(token.user.displayName);
         console.log(user.nickname);
-        alert(`Witaj w grze ${user.nickname}`);
+        history.push("/")
+    
         // createCharacter(token.user.uid, user.nickname);
         createPlayerStats(token.user.uid);
         createPlayerResources(token.user.uid);

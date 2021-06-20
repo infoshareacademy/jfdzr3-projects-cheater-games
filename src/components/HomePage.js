@@ -9,6 +9,7 @@ import firebaseApp from "../firebaseConfig";
 export const HomePage = () => {
   const authUser = useFirebaseAuthentication(firebase);
   let currentUser = firebaseApp.auth().currentUser;
+  console.log(currentUser.displayName);
   // console.log(authUser.displayName);
   return (
     <>

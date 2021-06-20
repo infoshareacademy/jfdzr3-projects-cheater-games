@@ -8,6 +8,7 @@ import {
   useRouteMatch,
   useParams,
   Redirect,
+  useHistory,
 } from "react-router-dom";
 import { useState } from "react";
 import firebase from "firebase/app";
@@ -34,6 +35,8 @@ export const Login = () => {
     error: "",
   });
 
+  const history = useHistory();
+
   const { email, password, error } = user;
 
   const handleChange = (e) => {
@@ -56,6 +59,8 @@ export const Login = () => {
         alert(`Witaj w grze ${token.user.displayName}`);
         createCharacter(token.user.uid, token.user.displayName);
         resetFormOnSubmit(e);
+        history.push("/")
+
 
         const storage = firebaseApp.storage();
 
