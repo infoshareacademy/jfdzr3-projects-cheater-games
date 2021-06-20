@@ -9,7 +9,6 @@ export function Stat(props) {
   const increasePoints = () => {
     if (points.left === 0) return;
     setPoints((oldPoints) => {
-      console.log(oldPoints);
       return {
         ...oldPoints,
         [statAbr]: oldPoints[statAbr] + 1,
