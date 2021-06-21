@@ -1,4 +1,4 @@
-import React from "react";
+import { React, useState, useEffect } from "react";
 import {
   BrowserRouter as Router,
   Switch,
@@ -19,6 +19,31 @@ import { Logout } from "./auth/Logout";
 
 function App() {
   const authUser = useFirebaseAuthentication(firebase);
+  const db = firebase.firestore();
+
+  // console.log(authUser)
+
+  const checkIfUserLoggedIn = () => {
+    return firebase.auth().currentUser;
+  };
+
+  const user = checkIfUserLoggedIn();
+  console.log(user.uid)
+
+const getDocumentFromDB = () => {
+  return db.collection("users").doc(user.uid).get().then(doc => {
+    console.log(35, doc.id)
+    return doc.data();
+  })
+}
+
+  const [document, setDocument] = useState("");
+
+  useEffect(() => {
+    getDocumentFromDB().then((docFromDB) => {
+      setDocument(docFromDB);
+    });
+  }, "");
 
   return (
     <>
@@ -28,9 +53,15 @@ function App() {
       <Router>
         {authUser ? (
           <Switch>
+            {document ? (
             <Route path="/">
               <HomePage />
             </Route>
+            ) : (
+              <Route path="/race">
+                <SelectRace />
+              </Route>
+            )}
           </Switch>
         ) : (
           <Switch>

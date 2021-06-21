@@ -132,7 +132,30 @@ code {
   padding: 20px 50px;
   cursor: pointer;
   margin-top: 18px;
+  position: relative;
 }
+
+/* .choose__race::after {
+  content: "";
+  width: 30px;
+  height: 75px;
+  border-top: turquoise 5px solid;
+  position: absolute;
+  top: -35%;
+  right: 50%;
+  transform: rotateZ(35deg);
+}
+
+.choose__race::before {
+  content: "";
+  width: 30px;
+  height: 75px;
+  border-top: turquoise 5px solid;
+  position: absolute;
+  top: -140%;
+  left: 30%;
+  transform: rotateZ(145deg);
+} */
 
 .choose__race:hover {
   background-color: red;
