@@ -28,22 +28,25 @@ function App() {
   };
 
   const user = checkIfUserLoggedIn();
-  console.log(user.uid)
+  console.log(user.uid);
 
-const getDocumentFromDB = () => {
-  return db.collection("users").doc(user.uid).get().then(doc => {
-    console.log(35, doc.id)
-    return doc.data();
-  })
-}
+  const getDocumentFromDB = () => {
+    return db
+      .collection("users")
+      .doc(user.uid)
+      .get()
+      .then((doc) => {
+        return doc.data();
+      });
+  };
 
-  const [document, setDocument] = useState("");
+  const [document, setDocument] = useState([]);
 
   useEffect(() => {
     getDocumentFromDB().then((docFromDB) => {
       setDocument(docFromDB);
     });
-  }, "");
+  }, []);
 
   return (
     <>
@@ -53,21 +56,21 @@ const getDocumentFromDB = () => {
       <Router>
         {authUser ? (
           <Switch>
-            {document ? (
-            <Route path="/">
-              <HomePage />
-            </Route>
-            ) : (
+            {!document.race ? (
               <Route path="/race">
                 <SelectRace />
+              </Route>
+            ) : (
+              <Route path="/">
+                <HomePage />
               </Route>
             )}
           </Switch>
         ) : (
           <Switch>
-            <Route path="/race">
+            {/* <Route path="/race">
               <SelectRace />
-            </Route>
+            </Route> */}
             <Route path="/register">
               <RegistrationPage />
             </Route>
