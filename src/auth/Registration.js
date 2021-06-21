@@ -1,5 +1,14 @@
 import "./auth.css";
+import React from "react";
 import { useState } from "react";
+import {
+  BrowserRouter as Router,
+  Switch,
+  Route,
+  Link,
+  useRouteMatch,
+  useParams,
+} from "react-router-dom";
 import firebase from "firebase/app";
 import firebaseApp from "../firebaseConfig";
 
@@ -31,10 +40,6 @@ const createPlayerResources = (uid) => {
   });
 };
 
-const resetFormOnSubmit = (e) => {
-  e.target.reset();
-};
-
 export const Registration = () => {
   const [user, setUser] = useState({
     nickname: "",
@@ -58,6 +63,10 @@ export const Registration = () => {
     return user;
   };
 
+  const resetFormOnSubmit = (e) => {
+    e.target.reset();
+  };
+
   const handleOnSubmit = (e) => {
     e.preventDefault();
     firebaseApp
@@ -75,6 +84,7 @@ export const Registration = () => {
         createPlayerStats(token.user.uid);
         createPlayerResources(token.user.uid);
         resetFormOnSubmit(e);
+        // setUser("");
       })
       .catch((error) => {
         console.log("error", error);
@@ -136,11 +146,10 @@ export const Registration = () => {
           </button>
         </form>
         <div>
-          Masz konto? <a className="switch">Zaloguj się</a>
+          Masz konto? <Link to="/login">Zaloguj się</Link>
         </div>
         <div className="error">
-          {" "}
-          <p>{error} </p>
+          <p>{error}</p>
         </div>
       </div>
     </>
