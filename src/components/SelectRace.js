@@ -3,11 +3,11 @@ import firebase from "firebase";
 
 const db = firebase.firestore();
 
-const races = [];
+const cards2 = [];
 
 db.collection('races').get().then(race => {
   race.docs.forEach((doc, i) =>  {
-    races[i] = {
+    cards2[i] = {
       id: i+1,
       src: `${process.env.PUBLIC_URL + "./img/races/" + `${doc.id}` + ".jpg"}`,
       description: doc.data().descr,
@@ -113,16 +113,16 @@ export const SelectRace = () => {
 setTimeout(() => console.log("Hello"), 1000);
   const [currentSlide, setCurrentSlide] = useState(0);
 
-  const getNextSlide = () => setCurrentSlide((old) => (old + 1) % races.length);
+  const getNextSlide = () => setCurrentSlide((old) => (old + 1) % cards2.length);
   const getPrevSlide = () =>
-    setCurrentSlide((old) => (old - 1 + races.length) % races.length);
+    setCurrentSlide((old) => (old - 1 + cards2.length) % cards2.length);
 
-  const slides = [...races, ...races, ...races].slice(
-    currentSlide + races.length - 1,
-    currentSlide + races.length + 2
+  const slides = [...cards2, ...cards2, ...cards2].slice(
+    currentSlide + cards2.length - 1,
+    currentSlide + cards2.length + 2
   );
 
-  console.log(126, ...races)
+  console.log(126, ...cards2)
     console.log(127, slides)
 
   const uid = "tq0omzA0rZW9GQIloxiLQpCkfiL2";
