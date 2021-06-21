@@ -11,10 +11,11 @@ export function GlobalChat() {
 
     const [input, setInput] = useState('');
     const [messages, setMessages] = useState([]);
-    const [username, setUsername] = useState('');
+    // const [username, setUsername] = useState('');
 
-    
-    
+    const user = auth.currentUser;
+    console.log(user);
+
     //Following all changes in messages database, returns object {username: "", text: "" .....}
     useEffect(() => {
         db.collection('messages')
@@ -23,45 +24,35 @@ export function GlobalChat() {
             setMessages(messages.docs.map(doc => doc.data()))
         })
     }, []);
-    
+
     if (auth.currentUser === null) {
         return <p>loading</p>
     }
-    // useEffect(() => {
-    //     setUsername(auth.currentUser.name);
-    const { email: name, uid, } = auth.currentUser;
-    //     console.log(username);
-    // }, [auth.currentUser] );
     
+    const { displayName, uid, } = auth.currentUser;
+        
     console.log(input);
     console.log(messages);
     
     const sendMessage = event => {
         event.preventDefault();
-        console.log({
-            text: input,
-            time: firebase.firestore.FieldValue.serverTimestamp(),
-            username: name,
-            uid: uid,
-            // photoURL: photoURL
-
-        })
+        
         db.collection('messages').add({
             text: input,
             time: firebase.firestore.FieldValue.serverTimestamp(),
-            username: name,
+            username: displayName,
             uid: uid,
             // photoURL: photoURL
 
         });
-        setMessages([...messages, {username: name, text: input}]);
+        setMessages([...messages, {username: displayName, text: input}]);
         setInput('');
     }
 
     return (
     <>
-        <h2>Welcome {name}</h2>
         <div className="chat">
+        <h2>Jesteś zalogowany jako: {displayName}</h2>
 
             {/* using form and button type="submit" to allow sending messages by clicking Enter */}
             <form>
@@ -74,7 +65,7 @@ export function GlobalChat() {
             {
                 messages.map(message => {
                     return (
-                    <Message username={name} message={message}/>
+                    <Message username={displayName} message={message}/>
                     )
                 })
             }

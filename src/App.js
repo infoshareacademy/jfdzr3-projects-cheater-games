@@ -16,7 +16,6 @@ import { HomePage } from "./components/HomePage";
 import { Registration } from "./auth/Registration";
 import { Login } from "./auth/Login";
 
-import { useState } from "react";
 import { GlobalChat } from "./global-chat/global-chat";
 
 function App() {
