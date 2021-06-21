@@ -1,34 +1,37 @@
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import firebase from "firebase";
 
 const db = firebase.firestore();
 
 const cards2 = [];
 
-db.collection('races').get().then(race => {
-  race.docs.forEach((doc, i) =>  {
-    cards2[i] = {
-      id: i+1,
-      src: `${process.env.PUBLIC_URL + "./img/races/" + `${doc.id}` + ".jpg"}`,
-      description: doc.data().descr,
-      bonus: [
-        { name: "str", change: doc.data().str },
-        { name: "agi", change: doc.data().agi },
-        { name: "tough", change: doc.data().tough },
-        { name: "vit", change: doc.data().vit },
-        { name: "perc", change: doc.data().perc },
-        { name: "int", change: doc.data().int },
-        { name: "speed", change: doc.data().speed },
-        { name: "def", change: doc.data().def },
-        { name: "gold", change: doc.data().gold },
-        { name: "wood", change: doc.data().wood },
-        { name: "mat", change: doc.data().mat },
-      ]
-    };
-  });
-})
+// const getRaceFromDB = () => {
+//   db.collection('races').get().then(race => {
+//   race.docs.forEach((doc, i) =>  {
+//     cards2[i] = {
+//       id: i+1,
+//       src: `${process.env.PUBLIC_URL + "./img/races/" + `${doc.id}` + ".jpg"}`,
+//       description: doc.data().descr,
+//       bonus: [
+//         { name: "str", change: doc.data().str },
+//         { name: "agi", change: doc.data().agi },
+//         { name: "tough", change: doc.data().tough },
+//         { name: "vit", change: doc.data().vit },
+//         { name: "perc", change: doc.data().perc },
+//         { name: "int", change: doc.data().int },
+//         { name: "speed", change: doc.data().speed },
+//         { name: "def", change: doc.data().def },
+//         { name: "gold", change: doc.data().gold },
+//         { name: "wood", change: doc.data().wood },
+//         { name: "mat", change: doc.data().mat },
+//       ]
+//     };
+//   });
+// })
+// return cards2;
+// }
 
-const cards = [
+const cardsX = [
   {
     id: 1,
     src: `${process.env.PUBLIC_URL + "./img/races/Krasnolud.jpg"}`,
@@ -107,23 +110,58 @@ const cards = [
   },
 ];
 
-// const uid = "tq0omzA0rZW9GQIloxiLQpCkfiL2";
-
 export const SelectRace = () => {
-setTimeout(() => console.log("Hello"), 1000);
+  const getRaceFromDB = () => {
+      return db.collection("races")
+        .get()
+        .then((race) => {
+          const cards3 = race.docs.map((doc, i) => {
+            return {
+              id: i + 1,
+              name: doc.id,
+              src: `${
+                process.env.PUBLIC_URL + "./img/races/" + `${doc.id}` + ".jpg"
+              }`,
+              description: doc.data().descr,
+              bonus: [
+                { name: "str", change: doc.data().str },
+                { name: "agi", change: doc.data().agi },
+                { name: "tough", change: doc.data().tough },
+                { name: "vit", change: doc.data().vit },
+                { name: "perc", change: doc.data().perc },
+                { name: "int", change: doc.data().int },
+                { name: "speed", change: doc.data().speed },
+                { name: "def", change: doc.data().def },
+                { name: "gold", change: doc.data().gold },
+                { name: "wood", change: doc.data().wood },
+                { name: "mat", change: doc.data().mat },
+              ],
+            };
+          });
+          return cards3
+        });
+  };
+
+  console.log(getRaceFromDB());
+
+  const [races, setRaces] = useState([]);
+
+  useEffect(() => {
+    getRaceFromDB().then((racesFromDB) => {
+      setRaces(racesFromDB);
+    });
+  }, []);
+
   const [currentSlide, setCurrentSlide] = useState(0);
 
-  const getNextSlide = () => setCurrentSlide((old) => (old + 1) % cards2.length);
+  const getNextSlide = () => setCurrentSlide((old) => (old + 1) % races.length);
   const getPrevSlide = () =>
-    setCurrentSlide((old) => (old - 1 + cards2.length) % cards2.length);
+    setCurrentSlide((old) => (old - 1 + races.length) % races.length);
 
-  const slides = [...cards2, ...cards2, ...cards2].slice(
-    currentSlide + cards2.length - 1,
-    currentSlide + cards2.length + 2
+  const slides = [...races, ...races, ...races].slice(
+    currentSlide + races.length - 1,
+    currentSlide + races.length + 2
   );
-
-  console.log(126, ...cards2)
-    console.log(127, slides)
 
   const uid = "tq0omzA0rZW9GQIloxiLQpCkfiL2";
 
@@ -155,20 +193,27 @@ setTimeout(() => console.log("Hello"), 1000);
   const unitsMap = {
     str: { label: "Siła" },
     agi: { label: "Zręczność" },
-    tough: { label: "Wytrzymałość"},
-    vit: { label: "Żywotność"},
-    perc: { label: "Spostrzegawczość"},
-    int: { label: "Inteligencja"},
-    speed: { label: "Szybkość"},
-    def: { label: "Obrona"},
-    gold: { label: "Przyrost złoto", unit: "/h"},
-    wood: { label: "Przyrost drewna", unit: "/h"},
-    mat: { label: "Przyrost materiału", unit: "/h"},
+    tough: { label: "Wytrzymałość" },
+    vit: { label: "Żywotność" },
+    perc: { label: "Spostrzegawczość" },
+    int: { label: "Inteligencja" },
+    speed: { label: "Szybkość" },
+    def: { label: "Obrona" },
+    gold: { label: "Przyrost złoto", unit: "/h" },
+    wood: { label: "Przyrost drewna", unit: "/h" },
+    mat: { label: "Przyrost materiału", unit: "/h" },
   };
+  if (slides.length === 0) {
+    return <p>Loading...</p>;
+  }
   return (
     <>
-      <button className="change__race" onClick={getPrevSlide}>{"<"}</button>
-      <button className="change__race" onClick={getNextSlide}>{">"}</button>
+      <button className="change__race" onClick={getPrevSlide}>
+        {"<"}
+      </button>
+      <button className="change__race" onClick={getNextSlide}>
+        {">"}
+      </button>
       <div className="wrapper">
         <div className="slider">
           {slides.map((slide) => (
