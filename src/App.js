@@ -44,12 +44,13 @@ function App() {
             </Route>
             <Route path="/register">
               <RegistrationPage />
+              <GlobalChat/>
             </Route>
-            <GlobalChat/>
           </Switch>
         )}
+        <GlobalChat/>
       </Router>
     </>
-}
+  )};
 
 export default App;

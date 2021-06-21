@@ -4,6 +4,7 @@ import Message from "./Message";
 import firebaseApp from "../firebaseConfig";
 import { db } from "../firebaseConfig";
 import firebase from "firebase";
+import { auth } from "../firebaseConfig";
 
 
 export function GlobalChat() {
@@ -11,6 +12,7 @@ export function GlobalChat() {
     const [input, setInput] = useState('');
     const [messages, setMessages] = useState([]);
     const [username, setUsername] = useState('');
+    
 
     //Following all changes in messages database, returns object {username: "", text: "" .....}
     useEffect(() => {
@@ -22,7 +24,7 @@ export function GlobalChat() {
     }, []);
 
     useEffect(() => {
-        setUsername(prompt('Please enter your name'));
+        setUsername(auth.currentUser.name);
         console.log(username);
     }, [] );
 
