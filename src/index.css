@@ -61,7 +61,7 @@ code {
   width: 50vw;
 }
 
-button {
+.change__race {
   position: absolute;
   border-radius: 100%;
   background-color: red;
@@ -73,17 +73,17 @@ button {
   cursor: pointer;
 }
 
-button:first-of-type {
+.change__race:first-of-type {
   top: 25%;
   left: 24.5%;
 }
 
-button:last-of-type {
+.change__race:last-of-type {
   top: 25%;
   left: 73.5%;
 }
 
-button:hover {
+.change__race:hover {
   color: red;
   border: 1px solid red;
   background-color: white;

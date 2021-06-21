@@ -11,12 +11,11 @@ import firebase from "firebase/app";
 import useFirebaseAuthentication from "./auth/useFirebaseAuthentication";
 import { LoginPage } from "./components/LoginPage";
 import { RegistrationPage } from "./components/RegistrationPage";
-
+import { SelectRace } from "./components/SelectRace";
 import { HomePage } from "./components/HomePage";
 import { Registration } from "./auth/Registration";
 import { Login } from "./auth/Login";
 import { Logout } from "./auth/Logout";
-import { Slider } from "./Slider";
 
 function App() {
   const authUser = useFirebaseAuthentication(firebase);
@@ -35,14 +34,14 @@ function App() {
           </Switch>
         ) : (
           <Switch>
+            <Route path="/race">
+              <SelectRace />
+            </Route>
             <Route path="/register">
               <RegistrationPage />
             </Route>
             <Route path="/">
               <LoginPage />
-            </Route>
-            <Route path="/register">
-              <RegistrationPage />
             </Route>
           </Switch>
         )}
