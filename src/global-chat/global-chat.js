@@ -12,8 +12,9 @@ export function GlobalChat() {
     const [input, setInput] = useState('');
     const [messages, setMessages] = useState([]);
     const [username, setUsername] = useState('');
-    
 
+    
+    
     //Following all changes in messages database, returns object {username: "", text: "" .....}
     useEffect(() => {
         db.collection('messages')
@@ -22,30 +23,44 @@ export function GlobalChat() {
             setMessages(messages.docs.map(doc => doc.data()))
         })
     }, []);
-
-    useEffect(() => {
-        setUsername(auth.currentUser.name);
-        console.log(username);
-    }, [] );
-
+    
+    if (auth.currentUser === null) {
+        return <p>loading</p>
+    }
+    // useEffect(() => {
+    //     setUsername(auth.currentUser.name);
+    const { email: name, uid, } = auth.currentUser;
+    //     console.log(username);
+    // }, [auth.currentUser] );
+    
     console.log(input);
     console.log(messages);
-
+    
     const sendMessage = event => {
         event.preventDefault();
+        console.log({
+            text: input,
+            time: firebase.firestore.FieldValue.serverTimestamp(),
+            username: name,
+            uid: uid,
+            // photoURL: photoURL
+
+        })
         db.collection('messages').add({
             text: input,
             time: firebase.firestore.FieldValue.serverTimestamp(),
-            username: username
+            username: name,
+            uid: uid,
+            // photoURL: photoURL
 
         });
-        setMessages([...messages, {username: username, text: input}]);
+        setMessages([...messages, {username: name, text: input}]);
         setInput('');
     }
 
     return (
     <>
-        <h2>Welcome {username}</h2>
+        <h2>Welcome {name}</h2>
         <div className="chat">
 
             {/* using form and button type="submit" to allow sending messages by clicking Enter */}
@@ -59,7 +74,7 @@ export function GlobalChat() {
             {
                 messages.map(message => {
                     return (
-                    <Message username={username} message={message}/>
+                    <Message username={name} message={message}/>
                     )
                 })
             }
