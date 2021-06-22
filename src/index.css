@@ -16,6 +16,8 @@ code {
     monospace;
 }
 
+<<<<<<< HEAD
+=======
 .App {
   font-family: sans-serif;
   text-align: center;
@@ -139,6 +141,7 @@ code {
   transition-delay: 0.3s;
   transition: cubic-bezier(0.68, -0.55, 0.265, 1.55) 1s;
 }
+>>>>>>> 32cbb924776cd6a9a177ced1876ae2fe8fff9168
 .header {
   width: 100vw;
   min-height: 10vh;
@@ -197,4 +200,23 @@ li {
   height: 90vh;
   background-color: #f5f4f6;
   border-left: 1px solid #e31f2b;
+}
+
+.hunting__screen--choose_level {
+  display: inline-flex;
+  flex-flow: row;
+}
+.hunting__screen--choose_level label {
+  padding: 10px 20px;
+}
+
+.hunting__screen--choose_ways {
+  display: flex;
+  justify-content: space-around;
+  padding-top: 50px;
+}
+.hunting__screen--choose_ways a {
+  width: 30%;
+  text-decoration: none;
+  color: inherit;
 }

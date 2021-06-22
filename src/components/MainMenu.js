@@ -1,5 +1,6 @@
 import React from "react";
 import { Logout } from "../auth/Logout";
+import { Link } from "react-router-dom";
 
 export const MainMenu = () => {
   return (
@@ -12,7 +13,11 @@ export const MainMenu = () => {
         <li>Statystyki</li>
         <li>Quest</li>
         <li>Rynek</li>
-        <li>Idź na polowanie</li>
+        <li>
+          <Link to="/hunt" style={{ textDecoration: "none", color: "inherit" }}>
+            Idź na polowanie
+          </Link>
+        </li>
       </ul>
     </nav>
   );
