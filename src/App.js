@@ -28,7 +28,7 @@ function App() {
   };
 
   const user = checkIfUserLoggedIn();
-  console.log(user.uid);
+  // console.log(user.uid);
 
   const getDocumentFromDB = () => {
     return db
@@ -57,8 +57,8 @@ function App() {
         {authUser ? (
           <Switch>
             {!document.race ? (
-              <Route path="/race">
-                <SelectRace />
+              <Route path="/">
+                <SelectRace />,
               </Route>
             ) : (
               <Route path="/">

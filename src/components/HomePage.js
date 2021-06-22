@@ -15,7 +15,7 @@ export const HomePage = () => {
       <div className="content">
         <nav className="nav">
           <ul>
-            <Logout />
+            <li><Logout /></li>
             <li>Widok postaci</li>
             <li>Statystyki</li>
             <li>Quest</li>
