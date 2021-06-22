@@ -18,14 +18,12 @@ export const HuntingScreen = () => {
         <div className="hunting_screen-main">
           <p>Poziom trudności: </p>
           <div className="hunting_screen--choose_level">
-            <form>
-              <input type="radio" />
-              <label>Łatwy</label>
-              <input type="radio" />
-              <label>Średni</label>
-              <input type="radio" />
-              <label>Trudny</label>
-            </form>
+            <input type="radio" name="level" value="easy" />
+            <label>Łatwy</label>
+            <input type="radio" name="level" value="mid" />
+            <label>Średni</label>
+            <input type="radio" name="level" value="hard" />
+            <label>Trudny</label>
           </div>
           <div className="hunting_screen--level_description">
             <h3>Idź na polowanie</h3>
