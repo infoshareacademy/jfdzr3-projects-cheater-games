@@ -11,6 +11,7 @@ import firebase from "firebase/app";
 import useFirebaseAuthentication from "./auth/useFirebaseAuthentication";
 import { LoginPage } from "./components/LoginPage";
 import { RegistrationPage } from "./components/RegistrationPage";
+import { HuntingScreen } from "./components/HuntingScreen";
 
 import { HomePage } from "./components/HomePage";
 import { Registration } from "./auth/Registration";
@@ -27,6 +28,9 @@ function App() {
       <Router>
         {authUser ? (
           <Switch>
+            <Route path="/hunt">
+              <HuntingScreen />
+            </Route>
             <Route path="/">
               <HomePage />
             </Route>
