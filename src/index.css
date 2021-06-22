@@ -74,3 +74,22 @@ li {
   background-color: #f5f4f6;
   border-left: 1px solid #e31f2b;
 }
+
+.hunting__screen--choose_level {
+  display: inline-flex;
+  flex-flow: row;
+}
+.hunting__screen--choose_level label {
+  padding: 10px 20px;
+}
+
+.hunting__screen--choose_ways {
+  display: flex;
+  justify-content: space-around;
+  padding-top: 50px;
+}
+.hunting__screen--choose_ways a {
+  width: 30%;
+  text-decoration: none;
+  color: inherit;
+}
