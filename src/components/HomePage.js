@@ -5,6 +5,7 @@ import firebase from "firebase/app";
 import { Redirect } from "react-router-dom";
 import useFirebaseAuthentication from "../auth/useFirebaseAuthentication";
 import firebaseApp from "../firebaseConfig";
+import { Items } from "./Items";
 
 export const HomePage = () => {
   const authUser = useFirebaseAuthentication(firebase);
@@ -26,6 +27,7 @@ export const HomePage = () => {
         </nav>
         <main className="main__section">
           <h1 className="welcome">Witaj w grze {currentUser.displayName}</h1>
+          <Items />
         </main>
 
         <aside className="advertising"></aside>
