@@ -2,7 +2,6 @@ import { useState, useEffect } from "react";
 import firebase from "firebase";
 import { Logout } from "../auth/Logout";
 import {
-  BrowserRouter as Router,
   Link,
 } from "react-router-dom";
 import { useUser } from "../hooks/useUser";
@@ -18,9 +17,7 @@ export const SelectRace = () => {
             return {
               id: i + 1,
               name: doc.id,
-              src: `${
-                process.env.PUBLIC_URL + "./img/races/" + `${doc.id}` + ".jpg"
-              }`,
+              src: `${process.env.PUBLIC_URL}/img/races/${doc.id}.jpg`,
               description: doc.data().descr,
               bonus: [
                 { name: "str", change: doc.data().str },

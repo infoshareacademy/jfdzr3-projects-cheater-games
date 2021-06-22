@@ -1,18 +1,11 @@
 import "./auth.css";
 import React from "react";
 import {
-  BrowserRouter as Router,
-  Switch,
-  Route,
   Link,
-  useRouteMatch,
-  useParams,
-  Redirect,
 } from "react-router-dom";
 import { useState } from "react";
 import firebase from "firebase/app";
 import firebaseApp from "../firebaseConfig";
-import { RegistrationPage } from "../components/RegistrationPage"
 
 const db = firebase.firestore();
 const createCharacter = (uid, nickname) => {
