@@ -1,54 +1,58 @@
-import React from "react";
-import {
-  BrowserRouter as Router,
-  Switch,
-  Route,
-  Link,
-  useRouteMatch,
-  useParams,
-} from "react-router-dom";
-import firebase from "firebase/app";
-import useFirebaseAuthentication from "./auth/useFirebaseAuthentication";
+import { React } from "react";
+import { BrowserRouter as Router, Switch, Route } from "react-router-dom";
+
 import { LoginPage } from "./components/LoginPage";
 import { RegistrationPage } from "./components/RegistrationPage";
 import { HuntingScreen } from "./components/HuntingScreen";
 
+import { SelectRace } from "./components/SelectRace";
 import { HomePage } from "./components/HomePage";
-import { Registration } from "./auth/Registration";
-import { Login } from "./auth/Login";
+import { MainMenu } from "./components/MainMenu";
+import { useUser } from "./hooks/useUser";
 
 function App() {
-  const authUser = useFirebaseAuthentication(firebase);
+  const user = useUser();
 
   return (
     <>
       <header className="header">
         <img src="./logo-monster-hunt.png" alt="" className="logo" />
       </header>
-      <Router>
-        {authUser ? (
-          <Switch>
-            <Route path="/hunt">
-              <HuntingScreen />
-            </Route>
-            <Route path="/">
-              <HomePage />
-            </Route>
-          </Switch>
-        ) : (
-          <Switch>
-            <Route path="/register">
-              <RegistrationPage />
-            </Route>
-            <Route path="/">
-              <LoginPage />
-            </Route>
-            <Route path="/register">
-              <RegistrationPage />
-            </Route>
-          </Switch>
-        )}
-      </Router>
+      <div className="content">
+        <MainMenu />
+        <main className="main__section">
+          <Router>
+            {user ? (
+              <Switch>
+                {user === null || user.race === undefined ? (
+                  <Route path="/">
+                    <SelectRace />
+                  </Route>
+                ) : (
+                  <>
+                    <Route path="/hunt">
+                      <HuntingScreen />
+                    </Route>
+                    <Route path="/">
+                      <HomePage />
+                    </Route>
+                  </>
+                )}
+              </Switch>
+            ) : (
+              <Switch>
+                <Route path="/register">
+                  <RegistrationPage />
+                </Route>
+                <Route path="/">
+                  <LoginPage />
+                </Route>
+              </Switch>
+            )}
+          </Router>
+        </main>
+        <aside className="advertising"></aside>
+      </div>
     </>
   );
 }
