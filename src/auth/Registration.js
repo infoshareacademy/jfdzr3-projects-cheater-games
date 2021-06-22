@@ -14,13 +14,13 @@ import firebase from "firebase/app";
 import firebaseApp from "../firebaseConfig";
 
 const db = firebase.firestore();
-// const createCharacter = (uid, nickname) => {
-//   return db.collection("users").doc(uid).set({
-//     exp: 0,
-//     nextLevel: 100,
-//     name: nickname,
-//   });
-// };
+const createCharacter = (uid, nickname) => {
+  return db.collection("users").doc(uid).set({
+    exp: 0,
+    nextLevel: 100,
+    name: nickname,
+  });
+};
 
 const createPlayerStats = (uid) => {
   return db.collection("stats").doc(uid).set({

@@ -9,9 +9,9 @@ export const Logout = () => {
 
   return (
     <>
-      <li id="logout" data-auth-visibility="true" onClick={logoutClick}>
+      <div id="logout" data-auth-visibility="true" onClick={logoutClick}>
         Log Out
-      </li>
+      </div>
     </>
   );
 };
