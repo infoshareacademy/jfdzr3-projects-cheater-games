@@ -2,12 +2,11 @@ import "./auth.css";
 import React from "react";
 import { useState } from "react";
 import {
-  Link,
+  Link, useHistory,
 } from "react-router-dom";
-import firebase from "firebase/app";
 import firebaseApp from "../firebaseConfig";
+import {db} from "../firebaseConfig"
 
-const db = firebase.firestore();
 const createCharacter = (uid, nickname) => {
   return db.collection("users").doc(uid).set({
     exp: 0,
@@ -42,6 +41,7 @@ export const Registration = () => {
     password: "",
     error: "",
   });
+  const history = useHistory();
 
   const { nickname, email, password, error } = user;
 
@@ -51,10 +51,6 @@ export const Registration = () => {
       [e.target.name]: e.target.value,
       error: "",
     });
-    console.log(e.target.name);
-    console.log(e.target.value);
-    console.log(user.nickname, user.password, user.email);
-    console.log(user);
     return user;
   };
 
@@ -62,7 +58,7 @@ export const Registration = () => {
     e.target.reset();
   };
 
-  const handleOnSubmit = (e) => {
+  const handleOnSubmit = async (e) => {
     e.preventDefault();
     firebaseApp
       .auth()
@@ -71,15 +67,11 @@ export const Registration = () => {
         token.user.updateProfile({
           displayName: user.nickname,
         });
-        console.log(token);
-        console.log(token.user.displayName);
-        console.log(user.nickname);
-        alert(`Witaj w grze ${user.nickname}`);
+        history.push("/")
         createCharacter(token.user.uid, user.nickname);
         createPlayerStats(token.user.uid);
         createPlayerResources(token.user.uid);
         resetFormOnSubmit(e);
-        // setUser("");
       })
       .catch((error) => {
         console.log("error", error);
@@ -87,7 +79,6 @@ export const Registration = () => {
           ...user,
           error: error.message,
         });
-        console.log(user);
       });
   };
 
