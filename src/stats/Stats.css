@@ -1,0 +1,47 @@
+.main {
+  display: grid;
+  place-items: center;
+  gap: 40px;
+  padding-top: 40px;
+}
+
+.heading-container {
+  text-align: center;
+}
+
+.user-stats {
+  display: flex;
+  justify-content: space-between;
+}
+
+.user-stats__title {
+  font-weight: bold;
+}
+
+.user-stats:not(:first-child) {
+  margin-top: 50px;
+}
+
+.user-stats__form {
+  text-align: center;
+  width: 30%;
+}
+
+.user-stats__right {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.user-stats__right .user-stats__button:not(:last-child) {
+  margin-right: 10px;
+}
+
+.user-stats__points {
+  margin-right: 10px;
+}
+
+.user-stats__button {
+  all: unset;
+  cursor: pointer;
+}
