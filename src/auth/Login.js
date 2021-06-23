@@ -1,22 +1,15 @@
 import "./auth.css";
 import React from "react";
 import {
-  Link,
+  Link, useHistory,
 } from "react-router-dom";
 import { useState } from "react";
-import firebase from "firebase/app";
 import firebaseApp from "../firebaseConfig";
 
-const db = firebase.firestore();
-const createCharacter = (uid, nickname) => {
-  return db.collection("users").doc(uid).set({
-    exp: 0,
-    nextLevel: 100,
-    name: nickname,
-  });
-};
 
-const resetFormOnSubmit = (e, user) => {
+
+
+const resetFormOnSubmit = (e) => {
   e.target.reset();
 };
 
@@ -46,14 +39,12 @@ export const Login = () => {
       .auth()
       .signInWithEmailAndPassword(email, password)
       .then((token) => {
-        console.log(token.user);
-        console.log(token.user.displayName);
-        alert(`Witaj w grze ${token.user.displayName}`);
-        createCharacter(token.user.uid, token.user.displayName);
-        resetFormOnSubmit(e);     
+        // createCharacter(token.user.uid, token.user.displayName);
+        resetFormOnSubmit(e);  
+        history.push("/")
+   
       })
       .catch((error) => {
-        // alert(error.message);
         console.log("error", error);
         setUser({
           ...user,
