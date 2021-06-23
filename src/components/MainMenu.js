@@ -1,6 +1,7 @@
 import React from "react";
 import { Logout } from "../auth/Logout";
 import { Link } from "react-router-dom";
+import { GlobalChat } from "../global-chat/global-chat";
 
 export const MainMenu = () => {
   return (
@@ -19,6 +20,7 @@ export const MainMenu = () => {
           </Link>
         </li>
       </ul>
+      <GlobalChat/>
     </nav>
   );
 };
