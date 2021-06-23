@@ -2,13 +2,7 @@ import "./auth.css";
 import React from "react";
 import { useState } from "react";
 import {
-  BrowserRouter as Router,
-  Switch,
-  Route,
   Link,
-  useRouteMatch,
-  useParams,
-  useHistory,
 } from "react-router-dom";
 import firebase from "firebase/app";
 import firebaseApp from "../firebaseConfig";
