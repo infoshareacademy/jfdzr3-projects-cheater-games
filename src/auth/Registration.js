@@ -60,7 +60,7 @@ export const Registration = () => {
 
   const handleOnSubmit = async (e) => {
     e.preventDefault();
-    const token = await firebaseApp
+    firebaseApp
       .auth()
       .createUserWithEmailAndPassword(email, password)
       .then((token) => {
@@ -68,7 +68,6 @@ export const Registration = () => {
           displayName: user.nickname,
         });
         history.push("/")
-       
         createCharacter(token.user.uid, user.nickname);
         createPlayerStats(token.user.uid);
         createPlayerResources(token.user.uid);
@@ -80,9 +79,7 @@ export const Registration = () => {
           ...user,
           error: error.message,
         });
-        console.log(user);
       });
-      console.log(token);
   };
 
   return (
