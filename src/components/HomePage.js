@@ -1,6 +1,10 @@
 import "../auth/auth.css";
 import React from "react";
 import { useUser } from "../hooks/useUser";
+import firebaseApp from "../firebaseConfig";
+import firebase from "firebase/app";
+import useFirebaseAuthentication from "../auth/useFirebaseAuthentication"
+
 
 export const HomePage = () => {
   const authUser = useFirebaseAuthentication(firebase);
