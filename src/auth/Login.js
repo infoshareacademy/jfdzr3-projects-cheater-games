@@ -1,29 +1,15 @@
 import "./auth.css";
 import React from "react";
 import {
-  BrowserRouter as Router,
-  Switch,
-  Route,
-  Link,
-  useRouteMatch,
-  useParams,
-  Redirect,
+  Link, useHistory,
 } from "react-router-dom";
 import { useState } from "react";
-import firebase from "firebase/app";
 import firebaseApp from "../firebaseConfig";
-import { RegistrationPage } from "../components/RegistrationPage"
 
-const db = firebase.firestore();
-const createCharacter = (uid, nickname) => {
-  return db.collection("users").doc(uid).set({
-    exp: 0,
-    nextLevel: 100,
-    name: nickname,
-  });
-};
 
-const resetFormOnSubmit = (e, user) => {
+
+
+const resetFormOnSubmit = (e) => {
   e.target.reset();
 };
 
@@ -33,6 +19,8 @@ export const Login = () => {
     password: "",
     error: "",
   });
+
+  const history = useHistory();
 
   const { email, password, error } = user;
 
@@ -51,22 +39,12 @@ export const Login = () => {
       .auth()
       .signInWithEmailAndPassword(email, password)
       .then((token) => {
-        console.log(token.user);
-        console.log(token.user.displayName);
-        alert(`Witaj w grze ${token.user.displayName}`);
-        createCharacter(token.user.uid, token.user.displayName);
-        resetFormOnSubmit(e);
-
-        const storage = firebaseApp.storage();
-
-        storage.ref('avatar-test2.png').getDownloadURL()
-          .then((url) => {
-console.log(url);
-          })
-        
+        // createCharacter(token.user.uid, token.user.displayName);
+        resetFormOnSubmit(e);  
+        history.push("/")
+   
       })
       .catch((error) => {
-        // alert(error.message);
         console.log("error", error);
         setUser({
           ...user,

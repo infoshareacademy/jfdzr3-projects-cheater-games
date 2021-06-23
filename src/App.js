@@ -5,7 +5,6 @@ import { LoginPage } from "./components/LoginPage";
 import { RegistrationPage } from "./components/RegistrationPage";
 import { HuntingScreen } from "./components/HuntingScreen";
 
-import { SelectRace } from "./components/SelectRace";
 import { HomePage } from "./components/HomePage";
 import { MainMenu } from "./components/MainMenu";
 import { useUser } from "./hooks/useUser";
@@ -23,12 +22,7 @@ function App() {
       <div className="content">
         <MainMenu />
         <main className="main__section">
-          {user ? (
-            user === null || user.race === undefined ? (
-              <Route path="/">
-                <SelectRace />
-              </Route>
-            ) : (
+          {user !== null ? (
               <Switch>
                 <Route path="/hunt">
                   <HuntingScreen />
@@ -37,7 +31,6 @@ function App() {
                   <HomePage />
                 </Route>
               </Switch>
-            )
           ) : (
             <Switch>
               <Route path="/register">
