@@ -1,18 +1,11 @@
 import "./auth.css";
 import React from "react";
 import {
-  BrowserRouter as Router,
-  Switch,
-  Route,
   Link,
-  useRouteMatch,
-  useParams,
-  Redirect,
 } from "react-router-dom";
 import { useState } from "react";
 import firebase from "firebase/app";
 import firebaseApp from "../firebaseConfig";
-import { RegistrationPage } from "../components/RegistrationPage"
 
 const db = firebase.firestore();
 const createCharacter = (uid, nickname) => {
@@ -55,15 +48,7 @@ export const Login = () => {
         console.log(token.user.displayName);
         alert(`Witaj w grze ${token.user.displayName}`);
         createCharacter(token.user.uid, token.user.displayName);
-        resetFormOnSubmit(e);
-
-        const storage = firebaseApp.storage();
-
-        storage.ref('avatar-test2.png').getDownloadURL()
-          .then((url) => {
-console.log(url);
-          })
-        
+        resetFormOnSubmit(e);     
       })
       .catch((error) => {
         // alert(error.message);
