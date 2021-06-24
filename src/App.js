@@ -8,6 +8,7 @@ import { HuntingScreen } from "./components/HuntingScreen";
 import { HomePage } from "./components/HomePage";
 import { MainMenu } from "./components/MainMenu";
 import { useUser } from "./hooks/useUser";
+import { StorePage } from "./components/store/StorePage";
 
 function App() {
   const user = useUser();
@@ -22,6 +23,9 @@ function App() {
         <main className="main__section">
           {user !== null ? (
               <Switch>
+                  <Route path="/store">
+                  <StorePage />
+                </Route>
                 <Route path="/hunt">
                   <HuntingScreen />
                 </Route>

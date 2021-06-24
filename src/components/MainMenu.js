@@ -12,7 +12,12 @@ export const MainMenu = () => {
         <li>Widok postaci</li>
         <li>Statystyki</li>
         <li>Quest</li>
-        <li>Rynek</li>
+        <li>
+          <Link
+            to="/store" style={{ textDecoration: "none", color: "inherit" }}>
+            Rynek
+          </Link>
+        </li>
         <li>
           <Link to="/hunt" style={{ textDecoration: "none", color: "inherit" }}>
             Idź na polowanie

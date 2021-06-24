@@ -1,5 +1,7 @@
 import { useEffect, useState } from "react";
 import { db } from "../../firebaseConfig";
+import { ItemGrid } from "./ItemGrid";
+import { ItemTile } from "./ItemTile";
 
 export const BasicItems = () => {
   const fetchItems = async () => {
@@ -30,15 +32,21 @@ export const BasicItems = () => {
     return <p>Loading...</p>;
   }
   return (
-    <div>
-      {items.map((item) => (
-        <ul key={item.id}>
-          <li>{item.name}</li>
-          <li>{item.bonus1}</li>
-          <li>{item.bonus2}</li>
-          <li>{item.bonus3}</li>
-        </ul>
-      ))}
-    </div>
+    <>
+      <ItemGrid>
+  
+        {items.map((item) => (
+           <ul key={item.id} style=
+          {{
+            border: "1px solid lightgrey"
+          }}>
+            <li>{item.name}</li>
+            <li>{item.bonus1}</li>
+            <li>{item.bonus2}</li>
+            <li>{item.bonus3}</li>
+          </ul> 
+        ))} 
+        </ItemGrid>
+      </>
   );
 };
