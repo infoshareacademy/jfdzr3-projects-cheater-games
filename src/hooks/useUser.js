@@ -1,21 +1,23 @@
 import { useEffect, useState } from "react";
 import firebase from "firebase/app";
-
-
 export const useUser = () => {
-    const [document, setDocument] = useState(null);
-    const user = firebase.auth().currentUser;
-    useEffect(() => {
-      if (user === null) {
-        return;
-      }
-        const db = firebase.firestore();
-        return db
-          .collection("users")
-          .doc(user.uid)
-          .onSnapshot((doc) => {
-            setDocument(doc.data());
-          });
-    }, [user]);
-    return document;
-  };
+  const [user, setUser] = useState(null);
+  const [token, setToken] = useState(null);
+  useEffect(() => {
+    return firebase.auth().onAuthStateChanged(setToken);
+  }, []);
+  useEffect(() => {
+    if (token === null) {
+      setUser(null);
+      return;
+    }
+    return firebase
+      .firestore()
+      .collection("users")
+      .doc(token.uid)
+      .onSnapshot((doc) => {
+        setUser(doc.data());
+      });
+  }, [token]);
+  return user;
+};

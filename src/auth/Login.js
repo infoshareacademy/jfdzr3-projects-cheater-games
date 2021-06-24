@@ -57,12 +57,12 @@ export const Login = () => {
         createCharacter(token.user.uid, token.user.displayName);
         resetFormOnSubmit(e);
 
-        const storage = firebaseApp.storage();
+//         const storage = firebaseApp.storage();
 
-        storage.ref('avatar-test2.png').getDownloadURL()
-          .then((url) => {
-console.log(url);
-          })
+//         storage.ref('avatar-test2.png').getDownloadURL()
+//           .then((url) => {
+// console.log(url);
+//           })
         
       })
       .catch((error) => {

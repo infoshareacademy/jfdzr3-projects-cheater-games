@@ -22,7 +22,7 @@ function App() {
         <MainMenu />
         <main className="main__section">
           {user ? (
-            user === null || user.race === undefined ? (
+            user.race === undefined ? (
               <Route path="/">
                 <SelectRace />
               </Route>
