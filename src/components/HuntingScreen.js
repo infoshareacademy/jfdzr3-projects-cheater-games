@@ -1,18 +1,21 @@
-import React from "react";
+import React, { useState } from "react";
 import { Link } from "react-router-dom";
 
 const description = [
   {
+    id: 1,
     name: "easy",
     desc: "Praesent ac odio ut nulla semper faucibus. Nam vel molestie lorem. Curabitur vulputate viverra pretium. Suspendisse velit ipsum, dapibus vitae blandit et, porta eget libero. Pellentesque eros mi, tincidunt ac suscipit eget, congue ut libero.",
   },
   {
+    id: 2,
     name: "mid",
     desc: `Ut lobortis eleifend arcu, sed ornare mi molestie varius. Sed vel facilisis mi, non hendrerit arcu. Ut scelerisque, diam ut gravida convallis, 
     ligula arcu laoreet dui, laoreet malesuada ex turpis quis sem.Mauris vitae massa eu tortor volutpat cursus ut auctor quam.
     Proin nisl tellus, venenatis non magna in, eleifend dapibus ipsum.Nullam eget elementum turpis.`,
   },
   {
+    id: 3,
     name: "hard",
     desc: `unc imperdiet auctor dapibus. Suspendisse dolor metus, efficitur ac diam eget, porttitor 
     pellentesque justo.Donec in posuere turpis.Ut non ligula nunc.Mauris mollis ipsum ornare dolor pulvinar vulputate.V
@@ -22,6 +25,8 @@ const description = [
 ];
 
 export const HuntingScreen = () => {
+  const [currentLevelId, setCurrentLevel] = useState("easy");
+  const currentLevel = description.find((desc) => desc.id === currentLevel);
   return (
     <>
       <div className="content">
@@ -55,13 +60,7 @@ export const HuntingScreen = () => {
             </div>
             <div className="hunting__screen--level_description">
               <h3>Idź na polowanie</h3>
-              <p>
-                Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do
-                eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut
-                enim ad minim veniam, quis nostrud exercitation ullamco laboris
-                nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor
-                in reprehenderit in voluptate velit esse cillum dolore
-              </p>
+              <p>{currentLevel}</p>
             </div>
             <div className="hunting__screen--choose_ways">
               <Link to="/">LEWO</Link>
