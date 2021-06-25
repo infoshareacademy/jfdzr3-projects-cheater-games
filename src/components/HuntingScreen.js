@@ -6,7 +6,6 @@ export const HuntingScreen = () => {
   return (
     <>
       <div className="content">
-        <MainMenu />
         <main className="main__section">
           <div className="hunting__screen-title">
             <h2>Polowanie</h2>
@@ -52,7 +51,6 @@ export const HuntingScreen = () => {
             </div>
           </div>
         </main>
-        <aside className="advertising"></aside>
       </div>
     </>
   );
