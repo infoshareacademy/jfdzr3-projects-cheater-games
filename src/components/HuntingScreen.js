@@ -1,6 +1,25 @@
 import React from "react";
-import { MainMenu } from "./MainMenu";
 import { Link } from "react-router-dom";
+
+const description = [
+  {
+    name: "easy",
+    desc: "Praesent ac odio ut nulla semper faucibus. Nam vel molestie lorem. Curabitur vulputate viverra pretium. Suspendisse velit ipsum, dapibus vitae blandit et, porta eget libero. Pellentesque eros mi, tincidunt ac suscipit eget, congue ut libero.",
+  },
+  {
+    name: "mid",
+    desc: `Ut lobortis eleifend arcu, sed ornare mi molestie varius. Sed vel facilisis mi, non hendrerit arcu. Ut scelerisque, diam ut gravida convallis, 
+    ligula arcu laoreet dui, laoreet malesuada ex turpis quis sem.Mauris vitae massa eu tortor volutpat cursus ut auctor quam.
+    Proin nisl tellus, venenatis non magna in, eleifend dapibus ipsum.Nullam eget elementum turpis.`,
+  },
+  {
+    name: "hard",
+    desc: `unc imperdiet auctor dapibus. Suspendisse dolor metus, efficitur ac diam eget, porttitor 
+    pellentesque justo.Donec in posuere turpis.Ut non ligula nunc.Mauris mollis ipsum ornare dolor pulvinar vulputate.V
+    estibulum ante ipsum primis in faucibus orci luctus et ultrices posuere cubilia curae; Nullam lorem nisi, pretium sit amet sem et,
+    sodales sodales mauris.`,
+  },
+];
 
 export const HuntingScreen = () => {
   return (
