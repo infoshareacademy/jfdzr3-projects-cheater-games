@@ -34,7 +34,6 @@ export function GlobalChat() {
             username: displayName,
             uid: uid,
         });
-        setMessages([...messages, {username: displayName, text: input}]);
         setInput('');
     }
 
@@ -54,7 +53,7 @@ export function GlobalChat() {
             messages.map((message, index) => {
             return (<Message key={message.time} username={displayName} message={message}/>)
                 })
-            };
+            }
         </div>
     </>    
     )
