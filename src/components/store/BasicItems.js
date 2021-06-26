@@ -53,3 +53,11 @@ export const BasicItems = () => {
     </>
   );
 };
+
+
+// var myUserId = firebase.auth().currentUser.uid;
+// var myReviews = firebase.firestore().collectionGroup('reviews')
+//   .where('author', '==', myUserId);
+// myReviews.get().then(function (querySnapshot) {
+//    // Do something with these reviews!
+// })

@@ -8,24 +8,41 @@ export const UserItems = () => {
   console.log(uid);
   console.log(user);
   const fetchItems = async () => {
-    return db
-      .collection("userItems")
-      .doc(uid)
-      .get()
-      .then((item) => {
-        console.log(item.data());
-        const items = item.data();
-        console.log(items);
-        return {
-          name: items.name,
-          bonus1: items.bonus1,
-          bonus2: items.bonus2,
-          bonus3: items.bonus3,
-          id: items.id,
-          photo: items.photo,
-          items,
-        };
-      });
+    const userWeapon = db
+      .collection("userItems/uid/weapon")
+      // .doc(uid)
+      console.log(userWeapon);
+      userWeapon.get()
+      .then((querySnapshot) => {
+        console.log(querySnapshot);
+        console.log(querySnapshot.docs);
+        querySnapshot.forEach((snap) => {
+          console.log(snap);
+          console.log(snap.docs());
+
+          const items = snap.data()
+          console.log(items);
+        })
+        // items.forEach((item) =>{
+        //   const item = item.data();
+        //   console.log(item);
+        })
+      
+        // console.log(item.docs.data());
+
+        // console.log(item.data());
+        // const items = item.data();
+        // console.log(items);
+        // return {
+        //   name: items.name,
+        //   bonus1: items.bonus1,
+        //   bonus2: items.bonus2,
+        //   bonus3: items.bonus3,
+        //   id: items.id,
+        //   photo: items.photo,
+        //   items,
+        // };
+      // });
   };
   const [items, setItems] = useState([]);
   useEffect(() => {
@@ -38,7 +55,8 @@ export const UserItems = () => {
   }
   return (
     <>
-      <div
+    null
+      {/* <div
         key={items.id}
         style={{
           border: "1px solid lightgrey",
@@ -58,7 +76,7 @@ export const UserItems = () => {
         <h4>{items.bonus1}</h4>
         <h4>{items.bonus2}</h4>
         <h4>{items.bonus3}</h4>
-      </div>
+      </div> */}
     </>
   );
 };
