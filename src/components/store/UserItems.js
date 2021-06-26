@@ -7,65 +7,62 @@ export const UserItems = () => {
   const uid = auth.currentUser.uid;
   console.log(uid);
   console.log(user);
+  
   const fetchItems = async () => {
-    const userWeapon = db
-      .collection("userItems/uid/weapon")
-      // .doc(uid)
-      console.log(userWeapon);
-      userWeapon.get()
-      .then((querySnapshot) => {
-        console.log(querySnapshot);
-        console.log(querySnapshot.docs);
-        querySnapshot.forEach((snap) => {
-          console.log(snap);
-          console.log(snap.docs());
+    return db
+      .collection("userItems").doc(uid).collection("weapon").get()
+      .then((snapshot) => {
+        console.log(snapshot);
+         const weapons = snapshot.docs.map((weapon) => {
+           console.log(weapon.data());
+           console.log(weapon.data().name);
 
-          const items = snap.data()
-          console.log(items);
-        })
-        // items.forEach((item) =>{
-        //   const item = item.data();
-        //   console.log(item);
-        })
-      
-        // console.log(item.docs.data());
+           console.log(weapon);
 
-        // console.log(item.data());
-        // const items = item.data();
-        // console.log(items);
-        // return {
-        //   name: items.name,
-        //   bonus1: items.bonus1,
-        //   bonus2: items.bonus2,
-        //   bonus3: items.bonus3,
-        //   id: items.id,
-        //   photo: items.photo,
-        //   items,
-        // };
-      // });
+          return {
+              name: weapon.data().name,
+              bonus1: weapon.data().bonus1,
+              bonus2: weapon.data().bonus2,
+              bonus3: weapon.data().bonus3,
+              id: weapon.data().id,
+              photo: weapon.data().photo,
+            };
+          });
+          console.table(weapons)
+
+          return weapons;
+        });
+          
   };
-  const [items, setItems] = useState([]);
+  const [weapons, setWeapons] = useState([]);
+  console.log(weapons);
+
   useEffect(() => {
     fetchItems().then((itemsFromDB) => {
-      setItems(itemsFromDB);
+      setWeapons(itemsFromDB);
     });
   }, []);
-  if (items === null) {
+  console.log(weapons);
+
+  if (weapons === null) {
+
     return <p>Loading...</p>;
   }
+  console.log(weapons);
+
   return (
     <>
-    null
-      {/* <div
-        key={items.id}
+    {weapons.map((weapon) => (
+       <div
+        key={weapon.id}
         style={{
           border: "1px solid lightgrey",
         }}
       >
-        <h2>{items.name}</h2>
+        <h2>{weapon.name}</h2>
         <h4>
           <img
-            src={items.photo} alt={items.name}
+            src={weapon.photo} alt={weapon.name}
             style={{
               width: "100%",
               border: "2px solid #e1984d",
@@ -73,10 +70,11 @@ export const UserItems = () => {
             }}
           />
         </h4>
-        <h4>{items.bonus1}</h4>
-        <h4>{items.bonus2}</h4>
-        <h4>{items.bonus3}</h4>
-      </div> */}
+        <h4>{weapon.bonus1}</h4>
+        <h4>{weapon.bonus2}</h4>
+        <h4>{weapon.bonus3}</h4>
+      </div> 
+  ))}
     </>
   );
 };
