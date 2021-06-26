@@ -1,9 +1,8 @@
 import { useEffect, useState } from "react";
-import { db } from "../../firebaseConfig";
-import { ItemGrid } from "./ItemGrid";
-import { ItemTile } from "./ItemTile";
+import { auth, db } from "../../firebaseConfig";
 
 export const BasicItems = () => {
+
   const fetchItems = async () => {
     return db
       .collection("testItems")
@@ -16,6 +15,7 @@ export const BasicItems = () => {
             bonus2: item.data().bonus2,
             bonus3: item.data().bonus3,
             id: item.id,
+            photo: item.data().photo,
           };
         });
         return items;
@@ -27,26 +27,29 @@ export const BasicItems = () => {
       setItems(itemsFromDB);
     });
   }, []);
-  console.log(items);
+ 
   if (items === null) {
     return <p>Loading...</p>;
   }
   return (
     <>
-      <ItemGrid>
-  
         {items.map((item) => (
-           <ul key={item.id} style=
-          {{
-            border: "1px solid lightgrey"
-          }}>
-            <li>{item.name}</li>
-            <li>{item.bonus1}</li>
-            <li>{item.bonus2}</li>
-            <li>{item.bonus3}</li>
-          </ul> 
-        ))} 
-        </ItemGrid>
-      </>
+          
+            <div
+              key={item.id}
+              style={{
+                border: "1px solid lightgrey",
+              }}
+            >
+              <h2>{item.name}</h2>
+              <h4>
+                <img src={item.photo} style={{ width: "100%", border: "2px solid #e1984d", borderRadius: "10%"  }} />
+              </h4>
+              <h4>{item.bonus1}</h4>
+              <h4>{item.bonus2}</h4>
+              <h4>{item.bonus3}</h4>
+            </div>
+        ))}
+    </>
   );
 };

@@ -1,26 +1,18 @@
-import firebaseApp, { auth } from "../firebaseConfig";
-import {useState, useEffect} from "react";
-
-
+import { auth } from "../firebaseConfig";
+import { useState, useEffect } from "react";
 
 const useFirebaseAuthentication = (firebase) => {
-    const [authUser, setAuthUser] = useState(null);
+  const [authUser, setAuthUser] = useState(null);
 
-    useEffect(() =>{
-       const unlisten = auth.onAuthStateChanged(
-          authUser => {
-            authUser
-              ? setAuthUser(authUser)
-              : setAuthUser(null);
-          },
-       );
-       return () => {
-           unlisten();
-       }
+  useEffect(() => {
+    const unlisten = auth.onAuthStateChanged((authUser) => {
+      authUser ? setAuthUser(authUser) : setAuthUser(null);
     });
-    // console.log(authUser.uid);
-    return authUser
-}
+    return () => {
+      unlisten();
+    };
+  });
+  return authUser;
+};
 
 export default useFirebaseAuthentication;
-
