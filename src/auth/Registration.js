@@ -29,6 +29,10 @@ const createCharacter = (uid, nickname) => {
     });
 };
 
+const createPlayerArmory = (uid) => {
+  return db.collection("users").doc(uid).collection("armory").add({});
+};
+
 export const Registration = () => {
   const [user, setUser] = useState({
     nickname: "",
@@ -64,6 +68,7 @@ export const Registration = () => {
         });
         history.push("/");
         createCharacter(token.user.uid, user.nickname);
+        createPlayerArmory(token.user.uid);
         resetFormOnSubmit(e);
       })
       .catch((error) => {
