@@ -1,37 +1,32 @@
 import "./auth.css";
 import React from "react";
 import { useState } from "react";
-import {
-  Link, useHistory,
-} from "react-router-dom";
+import { Link, useHistory } from "react-router-dom";
 import firebaseApp from "../firebaseConfig";
-import {db} from "../firebaseConfig"
+import { db } from "../firebaseConfig";
 
 const createCharacter = (uid, nickname) => {
-  return db.collection("users").doc(uid).set({
-    exp: 0,
-    nextLevel: 100,
-    name: nickname,
-  });
-};
-
-const createPlayerStats = (uid) => {
-  return db.collection("stats").doc(uid).set({
-    str: 1,
-    agi: 1,
-    tough: 1,
-    int: 1,
-    perc: 1,
-    left: 10,
-  });
-};
-
-const createPlayerResources = (uid) => {
-  return db.collection("resources").doc(uid).set({
-    gold: 100,
-    material: 50,
-    wood: 50,
-  });
+  return db
+    .collection("users")
+    .doc(uid)
+    .set({
+      exp: 0,
+      nextLevel: 100,
+      name: nickname,
+      stats: {
+        str: 1,
+        agi: 1,
+        tough: 1,
+        int: 1,
+        perc: 1,
+        left: 10,
+      },
+      resources: {
+        gold: 100,
+        material: 50,
+        wood: 50,
+      },
+    });
 };
 
 export const Registration = () => {
@@ -67,10 +62,8 @@ export const Registration = () => {
         token.user.updateProfile({
           displayName: user.nickname,
         });
-        history.push("/")
+        history.push("/");
         createCharacter(token.user.uid, user.nickname);
-        createPlayerStats(token.user.uid);
-        createPlayerResources(token.user.uid);
         resetFormOnSubmit(e);
       })
       .catch((error) => {
