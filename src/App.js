@@ -8,6 +8,8 @@ import { HuntingScreen } from "./components/HuntingScreen";
 import { HomePage } from "./components/HomePage";
 import { MainMenu } from "./components/MainMenu";
 import { useUser } from "./hooks/useUser";
+import { AgilityTrial } from "./components/AgilityTrial";
+import { AdminPanel } from "./components/AdminPanel"
 
 function App() {
   const user = useUser();
@@ -25,7 +27,10 @@ function App() {
                 <Route path="/hunt">
                   <HuntingScreen />
                 </Route>
-                <Route path="/">
+                <Route path="/agi">
+                  <AgilityTrial />
+                </Route>
+                <Route exact path="/">
                   <HomePage />
                 </Route>
               </Switch>
@@ -34,11 +39,21 @@ function App() {
               <Route path="/register">
                 <RegistrationPage />
               </Route>
-              <Route path="/">
+              <Route exact path="/">
                 <LoginPage />
               </Route>
             </Switch>
           )}
+          {user?.role === "admin" ? (
+            <Switch>
+              <Route path="/admin">
+                <AdminPanel />
+              </Route>
+            </Switch> )
+            : (
+              <>
+              </>
+            )}
         </main>
         <aside className="advertising"></aside>
       </div>
