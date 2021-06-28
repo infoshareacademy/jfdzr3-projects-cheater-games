@@ -13,6 +13,7 @@ const createCharacter = (uid, nickname) => {
       exp: 0,
       nextLevel: 100,
       name: nickname,
+      role: "player",
       stats: {
         str: 1,
         agi: 1,
