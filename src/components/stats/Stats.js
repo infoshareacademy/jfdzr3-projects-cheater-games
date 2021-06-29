@@ -1,13 +1,13 @@
-import { Heading } from './Heading';
-import { Form } from './Form';
-import { Stat } from './Stat';
-import { StatsProvider } from './StatsProvider';
-import { PointsLeft } from './PointsLeft';
-import { SubmitButton } from './SubmitButton';
-import { Main } from './Main';
-import './Stats.css';
+import { Heading } from "./Heading";
+import { Form } from "./Form";
+import { Stat } from "./Stat";
+import { StatsProvider } from "./StatsProvider";
+import { PointsLeft } from "./PointsLeft";
+import { SubmitButton } from "./SubmitButton";
+import { Main } from "./Main";
+import "./Stats.css";
 
-export default function Stats() {
+export function Stats() {
   return (
     <StatsProvider>
       <Main>
