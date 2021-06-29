@@ -33,7 +33,15 @@ export const Links = () => {
       return <li key={i}>{el}</li>;
     });
   } else if (user?.role === "player" && user?.race === undefined) {
-    return <li>{userLinks[userLinks.length - 1]}</li>;
+    return (
+      <li>
+        <Logout />
+      </li>
+    );
   }
-  return null;
+  return (
+    <li>
+      <Logout />
+    </li>
+  );
 };
