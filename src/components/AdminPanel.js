@@ -95,7 +95,7 @@ export const AdminPanel = (props) => {
     e.preventDefault();
     db.collection("items")
       .doc(itemType)
-      .set({
+      .update({
         [itemName]: {
           value: parseInt(itemValue),
           dmgLow: parseInt(itemLower),
