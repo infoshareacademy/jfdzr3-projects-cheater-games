@@ -1,15 +1,10 @@
 import React from "react";
 import { makeStyles } from "@material-ui/core/styles";
 import { useState } from "react";
-import { Logout } from "../auth/Logout";
-import { Link } from "react-router-dom";
 import { useUser } from "../hooks/useUser";
-import firebaseApp from "../firebaseConfig";
 import { db } from "../firebaseConfig";
-import { TextField } from "@material-ui/core/";
 import InputLabel from "@material-ui/core/InputLabel";
 import MenuItem from "@material-ui/core/MenuItem";
-import FormHelperText from "@material-ui/core/FormHelperText";
 import FormControl from "@material-ui/core/FormControl";
 import Select from "@material-ui/core/Select";
 import Input from "@material-ui/core/Input";
@@ -40,6 +35,7 @@ export const AdminPanel = (props) => {
     itemType: "",
     itemLower: "",
     itemUpper: "",
+    totalDmg: "",
     str: 0,
     agi: 0,
     tough: 0,
@@ -49,7 +45,7 @@ export const AdminPanel = (props) => {
     speed: 0,
   });
 
-  let { itemName, itemValue, itemType, itemLower, itemUpper } = item;
+  let { itemName, itemValue, itemType, itemLower, itemUpper, totalDmg, itemDef } = item;
 
   const handleChange = (e) => {
     setItem({
@@ -83,6 +79,8 @@ export const AdminPanel = (props) => {
           value: itemValue,
           dmgLow: itemLower,
           dmgUpp: itemUpper,
+          totDmg: totalDmg,
+          def: itemDef,
           str: item.str,
           agi: item.agi,
           tough: item.tough,
@@ -147,11 +145,41 @@ export const AdminPanel = (props) => {
             name="itemValue"
           ></Input>
         </FormControl>
+        <FormControl variant="outlined" className={classes.formControl}>
+          <InputLabel id="simple-select-outlined-label">
+            Obrażenia
+          </InputLabel>
+          <Input
+            id="simple-select-outlined-label"
+            onChange={handleChange}
+            value={totalDmg}
+            name="itemValue"
+          ></Input>
+        </FormControl>
+        {itemType !== "handWeapon" && itemType !== "handWeaponPrefix" && itemType !== "handWeaponSuffix" ? (
+      <>
+        <FormControl variant="outlined" className={classes.formControl}>
+          <InputLabel id="simple-select-outlined-label">
+            Obrona
+          </InputLabel>
+          <Input
+            id="simple-select-outlined-label"
+            onChange={handleChange}
+            value={itemDef}
+            name="itemDef"
+          ></Input>
+        </FormControl>
+      </>
+        ) : (
+          <>
+          </>
+        )}
       </div>
+      {itemType !== "helmet" && itemType !== "armor" ? (
       <div>
         <FormControl variant="outlined" className={classes.formControl}>
           <InputLabel id="simple-select-outlined-label">
-            Dolna wartość obrażeń
+            Minimalne obrażenia
           </InputLabel>
           <Input
             id="simple-select-outlined-label"
@@ -162,7 +190,7 @@ export const AdminPanel = (props) => {
         </FormControl>
         <FormControl variant="outlined" className={classes.formControl}>
           <InputLabel id="simple-select-outlined-label">
-            Górna wartość obrażeń
+            Maksymalne obrażenia
           </InputLabel>
           <Input
             id="simple-select-outlined-label"
@@ -172,6 +200,10 @@ export const AdminPanel = (props) => {
           ></Input>
         </FormControl>
       </div>
+        ) : (
+          <>
+          </>
+        )}
       {stats.map((stat) => {
         return (
           <div key={stat}>
