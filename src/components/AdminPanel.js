@@ -31,11 +31,12 @@ export const AdminPanel = (props) => {
 
   const [item, setItem] = useState({
     itemName: "",
-    itemValue: "",
+    itemValue: 0,
     itemType: "",
-    itemLower: "",
-    itemUpper: "",
-    totalDmg: "",
+    itemLower: 0,
+    itemUpper: 0,
+    totalDmg: 0,
+    itemDef: 0,
     str: 0,
     agi: 0,
     tough: 0,
@@ -76,18 +77,18 @@ export const AdminPanel = (props) => {
       .doc(itemType)
       .set({
         [itemName]: {
-          value: itemValue,
-          dmgLow: itemLower,
-          dmgUpp: itemUpper,
-          totDmg: totalDmg,
-          def: itemDef,
-          str: item.str,
-          agi: item.agi,
-          tough: item.tough,
-          vit: item.vit,
-          perc: item.perc,
-          int: item.int,
-          speed: item.speed,
+          value: parseInt(itemValue),
+          dmgLow: parseInt(itemLower),
+          dmgUpp: parseInt(itemUpper),
+          totDmg: parseInt(totalDmg),
+          def: parseInt(itemDef),
+          str: parseInt(item.str),
+          agi: parseInt(item.agi),
+          tough: parseInt(item.tough),
+          vit: parseInt(item.vit),
+          perc: parseInt(item.perc),
+          int: parseInt(item.int),
+          speed: parseInt(item.speed),
         },
       });
   };
@@ -153,7 +154,7 @@ export const AdminPanel = (props) => {
             id="simple-select-outlined-label"
             onChange={handleChange}
             value={totalDmg}
-            name="itemValue"
+            name="totalDmg"
           ></Input>
         </FormControl>
         {itemType !== "handWeapon" && itemType !== "handWeaponPrefix" && itemType !== "handWeaponSuffix" ? (
