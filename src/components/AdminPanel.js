@@ -1,13 +1,11 @@
 import React from "react";
 import { makeStyles } from "@material-ui/core/styles";
 import { useState } from "react";
-import { useUser } from "../hooks/useUser";
 import { db } from "../firebaseConfig";
 import InputLabel from "@material-ui/core/InputLabel";
 import MenuItem from "@material-ui/core/MenuItem";
 import FormControl from "@material-ui/core/FormControl";
 import Select from "@material-ui/core/Select";
-import Input from "@material-ui/core/Input";
 import Button from "@material-ui/core/Button";
 import { TextField } from "@material-ui/core";
 
@@ -16,8 +14,6 @@ const useStyles = makeStyles((theme) => ({
     display: "flex",
     flexWrap: "wrap",
     alignSelf: "center",
-    // alignItems: "center",
-    // justifyContent: "center",
     "& > *": {
       margin: theme.spacing(1),
       width: "25ch",
@@ -42,7 +38,6 @@ const useStyles = makeStyles((theme) => ({
 
 export const AdminPanel = (props) => {
   const classes = useStyles();
-  const user = useUser();
 
   const stats = ["str", "agi", "tough", "vit", "perc", "int", "speed"];
 
@@ -188,7 +183,6 @@ export const AdminPanel = (props) => {
         itemType !== "handWeaponSuffix" ? (
           <>
             <FormControl variant="outlined" className={classes.root}>
-              {/* <InputLabel id="simple-select-outlined-label">Obrona</InputLabel> */}
               <TextField
                 label="Obrona"
                 id="outlined-margin-normal"
