@@ -9,8 +9,6 @@ import { HomePage } from "./components/HomePage";
 import { MainMenu } from "./components/MainMenu";
 import { useUser } from "./hooks/useUser";
 
-import { GlobalChat } from "./global-chat/global-chat";
-
 function App() {
   const user = useUser();
 
