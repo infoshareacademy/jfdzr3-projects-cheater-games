@@ -19,6 +19,8 @@ export default function Stats() {
           <Stat title="Wytrzymałość" statAbr="tough" />
           <Stat title="Inteligencja" statAbr="int" />
           <Stat title="Spostrzegawczość" statAbr="perc" />
+          <Stat title="Szybkość" statAbr="speed" />
+          <Stat title="Żywotność" statAbr="vit" />
           <SubmitButton />
         </Form>
       </Main>
