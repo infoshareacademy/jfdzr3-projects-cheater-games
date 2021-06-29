@@ -9,8 +9,20 @@ import FormControl from "@material-ui/core/FormControl";
 import Select from "@material-ui/core/Select";
 import Input from "@material-ui/core/Input";
 import Button from "@material-ui/core/Button";
+import { TextField } from "@material-ui/core";
 
 const useStyles = makeStyles((theme) => ({
+  root: {
+    display: "flex",
+    flexWrap: "wrap",
+    alignSelf: "center",
+    // alignItems: "center",
+    // justifyContent: "center",
+    "& > *": {
+      margin: theme.spacing(1),
+      width: "25ch",
+    },
+  },
   formControl: {
     margin: theme.spacing(1),
     minWidth: 150,
@@ -20,6 +32,11 @@ const useStyles = makeStyles((theme) => ({
   },
   inputLabel: {
     margin: theme.spacing(30),
+  },
+  textField: {
+    marginLeft: theme.spacing(1),
+    marginRight: theme.spacing(1),
+    width: "25ch",
   },
 }));
 
@@ -31,10 +48,10 @@ export const AdminPanel = (props) => {
 
   const [item, setItem] = useState({
     itemName: "",
-    itemValue: 0,
+    itemValue: "",
     itemType: "",
-    itemLower: 0,
-    itemUpper: 0,
+    itemLower: "",
+    itemUpper: "",
     totalDmg: 0,
     itemDef: 0,
     str: 0,
@@ -46,7 +63,15 @@ export const AdminPanel = (props) => {
     speed: 0,
   });
 
-  let { itemName, itemValue, itemType, itemLower, itemUpper, totalDmg, itemDef } = item;
+  let {
+    itemName,
+    itemValue,
+    itemType,
+    itemLower,
+    itemUpper,
+    totalDmg,
+    itemDef,
+  } = item;
 
   const handleChange = (e) => {
     setItem({
@@ -80,7 +105,7 @@ export const AdminPanel = (props) => {
           value: parseInt(itemValue),
           dmgLow: parseInt(itemLower),
           dmgUpp: parseInt(itemUpper),
-          totDmg: parseInt(totalDmg),
+          totalDmg: parseInt(totalDmg),
           def: parseInt(itemDef),
           str: parseInt(item.str),
           agi: parseInt(item.agi),
@@ -94,30 +119,19 @@ export const AdminPanel = (props) => {
   };
 
   return (
-    <form onSubmit={addItem}>
-      <div>
-        <FormControl variant="outlined" className={classes.formControl}>
-          <InputLabel id="simple-select-outlined-label">
-            Nazwa przedmiotu
-          </InputLabel>
-          <Input
-            id="simple-select-outlined-label"
-            value={itemName}
-            name="itemName"
-            onChange={handleChange}
-          ></Input>
-        </FormControl>
-        <FormControl variant="outlined" className={classes.formControl}>
-          <InputLabel id="simple-select-outlined-label">
+    <form onSubmit={addItem} autoComplete="off">
+      <div className={classes.root}>
+        <FormControl variant="outlined" className={classes.root}>
+          <InputLabel id="simple-select-label" labelId="simple-select-label">
             Typ przedmiotu
           </InputLabel>
           <Select
-            labelId="simple-select-outlined-label"
             id="simple-select-outlined"
             value={itemType}
             onChange={handleChange}
             label="Typ przedmiotu"
             name="itemType"
+            required
           >
             <MenuItem value="" name="itemType">
               <em>None</em>
@@ -133,91 +147,104 @@ export const AdminPanel = (props) => {
             <MenuItem value={"helmetSuffix"}>helmetSuffix</MenuItem>
           </Select>
         </FormControl>
-      </div>
-      <div>
-        <FormControl variant="outlined" className={classes.formControl}>
-          <InputLabel id="simple-select-outlined-label">
-            Wartość przedmiotu
-          </InputLabel>
-          <Input
-            id="simple-select-outlined-label"
+        <FormControl variant="outlined" className={classes.root}>
+          <TextField
+            label="Nazwa przedmiotu"
+            id="outlined-margin-normal"
+            className={classes.root}
+            variant="outlined"
+            value={itemName}
+            name="itemName"
+            onChange={handleChange}
+          />
+        </FormControl>
+        <FormControl variant="outlined" className={classes.root}>
+          <TextField
+            label="Wartość przedmiotu"
+            id="outlined-margin-normal"
+            className={classes.root}
+            variant="outlined"
+            type="number"
             onChange={handleChange}
             value={itemValue}
             name="itemValue"
-          ></Input>
+          />
         </FormControl>
-        <FormControl variant="outlined" className={classes.formControl}>
-          <InputLabel id="simple-select-outlined-label">
-            Obrażenia
-          </InputLabel>
-          <Input
-            id="simple-select-outlined-label"
+      </div>
+      <div className={classes.root}>
+        <FormControl variant="outlined" className={classes.root}>
+          <TextField
+            label="Obrażenia"
+            id="outlined-margin-normal"
+            type="number"
+            className={classes.root}
             onChange={handleChange}
             value={totalDmg}
             name="totalDmg"
-          ></Input>
+          />
         </FormControl>
-        {itemType !== "handWeapon" && itemType !== "handWeaponPrefix" && itemType !== "handWeaponSuffix" ? (
-      <>
-        <FormControl variant="outlined" className={classes.formControl}>
-          <InputLabel id="simple-select-outlined-label">
-            Obrona
-          </InputLabel>
-          <Input
-            id="simple-select-outlined-label"
-            onChange={handleChange}
-            value={itemDef}
-            name="itemDef"
-          ></Input>
-        </FormControl>
-      </>
-        ) : (
+        {itemType !== "handWeapon" &&
+        itemType !== "handWeaponPrefix" &&
+        itemType !== "handWeaponSuffix" ? (
           <>
+            <FormControl variant="outlined" className={classes.root}>
+              {/* <InputLabel id="simple-select-outlined-label">Obrona</InputLabel> */}
+              <TextField
+                label="Obrona"
+                id="outlined-margin-normal"
+                className={classes.root}
+                type="number"
+                onChange={handleChange}
+                value={itemDef}
+                name="itemDef"
+              />
+            </FormControl>
           </>
+        ) : (
+          <></>
         )}
       </div>
       {itemType !== "helmet" && itemType !== "armor" ? (
-      <div>
-        <FormControl variant="outlined" className={classes.formControl}>
-          <InputLabel id="simple-select-outlined-label">
-            Minimalne obrażenia
-          </InputLabel>
-          <Input
-            id="simple-select-outlined-label"
-            onChange={handleChange}
-            value={itemLower}
-            name="itemLower"
-          ></Input>
-        </FormControl>
-        <FormControl variant="outlined" className={classes.formControl}>
-          <InputLabel id="simple-select-outlined-label">
-            Maksymalne obrażenia
-          </InputLabel>
-          <Input
-            id="simple-select-outlined-label"
-            onChange={handleChange}
-            value={itemUpper}
-            name="itemUpper"
-          ></Input>
-        </FormControl>
-      </div>
-        ) : (
-          <>
-          </>
-        )}
+        <div className={classes.root}>
+          <FormControl variant="outlined" className={classes.root}>
+            <TextField
+              label="Minimalne obrażenia"
+              id="outlined-margin-normal"
+              className={classes.root}
+              type="number"
+              onChange={handleChange}
+              value={itemLower}
+              name="itemLower"
+            />
+          </FormControl>
+          <FormControl variant="outlined" className={classes.root}>
+            <TextField
+              label="Maksymalne obrażenia"
+              id="outlined-margin-normal"
+              className={classes.root}
+              type="number"
+              onChange={handleChange}
+              value={itemUpper}
+              name="itemUpper"
+            />
+          </FormControl>
+        </div>
+      ) : (
+        <></>
+      )}
       {stats.map((stat) => {
         return (
           <div key={stat}>
-            <FormControl variant="outlined" className={classes.formControl}>
-              <InputLabel id="simple-select-outlined-label">
-                {`${unitsMap[stat]?.label || stat.name}`}
-              </InputLabel>
-              <Input
-                id="simple-select-outlined-label"
+            <FormControl variant="outlined" className={classes.root}>
+              <TextField
+                label={`${unitsMap[stat]?.label || stat.name}`}
+                id="outlined-margin-normal"
+                className={classes.root}
+                type="number"
                 onChange={handleChange}
                 value={item.stat}
                 name={`${stat}`}
-              ></Input>
+              />
             </FormControl>
           </div>
         );
