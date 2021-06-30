@@ -2,6 +2,7 @@ import React from "react";
 import { Logout } from "../auth/Logout";
 import { useUser } from "../hooks/useUser";
 import { HuntLink } from "./HuntLink";
+import { StatsLink } from "./StatsLink";
 import { AdminLink } from "./AdminLink";
 
 export const Links = () => {
@@ -10,7 +11,7 @@ export const Links = () => {
   const adminLinks = [
     <AdminLink />,
     "Widok postaci",
-    "Statystyki",
+    <StatsLink />,
     <HuntLink />,
     "Rynek",
     <Logout />,
@@ -18,7 +19,7 @@ export const Links = () => {
 
   const userLinks = [
     "Widok postaci",
-    "Statystyki",
+    <StatsLink />,
     <HuntLink />,
     "Rynek",
     <Logout />,

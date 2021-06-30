@@ -1,21 +1,25 @@
 import firebase from 'firebase/app';
 import 'firebase/firestore';
 import { useState, useEffect, createContext } from 'react';
+import { useUser } from '../hooks/useUser';
 
 const db = firebase.firestore();
-const id = 'test-user';
+// const id = 'test-user';
 
 export const StatsContext = createContext();
 
 export function StatsProvider(props) {
   const [points, setPoints] = useState({});
+
+  const user = useUser();
+
   useEffect(() => {
-    db.collection('stats')
-      .doc(id)
+    db.collection('users')
+      .doc(user?.uid)
       .get()
       .then((doc) => {
         if (doc.exists) {
-          const stats = doc.data();
+          const stats = doc.data().stats;
           setPoints(stats);
         } else {
           console.log('No such document!');

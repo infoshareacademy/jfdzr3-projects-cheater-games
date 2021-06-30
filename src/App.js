@@ -4,12 +4,13 @@ import { BrowserRouter as Router, Switch, Route } from "react-router-dom";
 import { LoginPage } from "./components/LoginPage";
 import { RegistrationPage } from "./components/RegistrationPage";
 import { HuntingScreen } from "./components/HuntingScreen";
-
+import Stats from "./stats/Stats";
 import { HomePage } from "./components/HomePage";
 import { MainMenu } from "./components/MainMenu";
 import { useUser } from "./hooks/useUser";
 import { AgilityTrial } from "./components/AgilityTrial";
-import { AdminPanel } from "./components/AdminPanel"
+import { AdminPanel } from "./components/AdminPanel";
+import { FightingBar } from "./components/FightingBar";
 
 function App() {
   const user = useUser();
@@ -23,17 +24,23 @@ function App() {
         <MainMenu />
         <main className="main__section">
           {user !== null ? (
-              <Switch>
-                <Route path="/hunt">
-                  <HuntingScreen />
-                </Route>
-                <Route path="/agi">
-                  <AgilityTrial />
-                </Route>
-                <Route exact path="/">
-                  <HomePage />
-                </Route>
-              </Switch>
+            <Switch>
+              <Route path="/hunt">
+                <HuntingScreen />
+              </Route>
+              <Route path="/agi">
+                <AgilityTrial />
+              </Route>
+              <Route exact path="/">
+                <HomePage />
+              </Route>
+              <Route path="/stats">
+                <Stats />
+              </Route>
+              <Route path="/fight">
+                <FightingBar />
+              </Route>
+            </Switch>
           ) : (
             <Switch>
               <Route path="/register">
@@ -49,11 +56,10 @@ function App() {
               <Route path="/admin">
                 <AdminPanel />
               </Route>
-            </Switch> )
-            : (
-              <>
-              </>
-            )}
+            </Switch>
+          ) : (
+            <></>
+          )}
         </main>
         <aside className="advertising"></aside>
       </div>
