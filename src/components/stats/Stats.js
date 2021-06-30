@@ -17,10 +17,10 @@ export function Stats() {
           <Stat title="Siła" statAbr="str" />
           <Stat title="Zręczność" statAbr="agi" />
           <Stat title="Wytrzymałość" statAbr="tough" />
-          <Stat title="Inteligencja" statAbr="int" />
-          <Stat title="Spostrzegawczość" statAbr="perc" />
-          <Stat title="Szybkość" statAbr="speed" />
           <Stat title="Żywotność" statAbr="vit" />
+          <Stat title="Spostrzegawczość" statAbr="perc" />
+          <Stat title="Inteligencja" statAbr="int" />
+          <Stat title="Szybkość" statAbr="speed" />
           <SubmitButton />
         </Form>
       </Main>
