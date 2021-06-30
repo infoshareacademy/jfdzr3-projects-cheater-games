@@ -20,11 +20,22 @@ export const FightingBar = (props) => {
     { name: "speed", value: user?.stats.speed },
   ];
 
+  const unitsMap = {
+    str: { label: "Siła" },
+    agi: { label: "Zręczność" },
+    tough: { label: "Wytrzymałość" },
+    vit: { label: "Żywotność" },
+    perc: { label: "Spostrzegawczość" },
+    int: { label: "Inteligencja" },
+    speed: { label: "Szybkość" },
+    def: { label: "Obrona" },
+  };
+
   return (
     <>
       <div>Punkty życia: {hitPoints}</div>
       {statsArray.map((el, i) => {
-        return <div key={i}>{el.name}: {el.value === null ? "loading" : el.value}</div>;
+        return <div key={i}>{unitsMap[el.name].label}: {el.value}</div>;
       })}
     </>
   );
