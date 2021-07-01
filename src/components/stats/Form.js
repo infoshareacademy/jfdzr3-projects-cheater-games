@@ -1,18 +1,18 @@
 import { useContext } from "react";
 import { StatsContext } from "./StatsProvider";
-import { useUser } from "../../hooks/useUser";
 import { db } from "../../firebaseConfig";
+import { useUser } from "../../hooks/useUser";
 
-export function Form(props) {
+export function Form({ children }) {
   const user = useUser();
   const [points] = useContext(StatsContext);
   const addPointsToDatabase = (e) => {
     e.preventDefault();
-    db.collection("users").doc(user.uid).set(points);
+    db.collection("users").doc(user?.uid).set(points);
   };
   return (
     <form className="user-stats__form" onSubmit={addPointsToDatabase}>
-      {props.children}
+      {children}
     </form>
   );
 }

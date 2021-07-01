@@ -4,12 +4,12 @@ import { useUser } from "../../hooks/useUser";
 
 export const StatsContext = createContext();
 
-export function StatsProvider(props) {
-  const [points, setPoints] = useState({});
+export function StatsProvider({ children }) {
   const user = useUser();
+  const [points, setPoints] = useState([]);
   useEffect(() => {
     db.collection("users")
-      .doc(user.uid)
+      .doc(user?.uid)
       .get()
       .then((doc) => {
         if (doc.exists) {
@@ -21,11 +21,11 @@ export function StatsProvider(props) {
       })
       .catch((error) => {
         console.log("Error getting document:", error);
-      });
-  }, []);
+      }, []);
+  });
   return (
     <StatsContext.Provider value={[points, setPoints]}>
-      {props.children}
+      {children}
     </StatsContext.Provider>
   );
 }
