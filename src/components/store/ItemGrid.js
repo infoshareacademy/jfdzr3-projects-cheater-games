@@ -16,7 +16,10 @@ export const ItemGrid = ({ children }) => (
       style={{
         display: "grid",
         gridGap: 10,
-        gridTemplateColumns: "repeat(auto-fill, minmax(130px, 1fr)",
+        // gridTemplateColumns: "repeat(auto-fill, minmax(130px, 1fr)",
+        gridTemplateColumns: "repeat(4, 20%)",
+
+
         padding: "5px",
       }}
     >

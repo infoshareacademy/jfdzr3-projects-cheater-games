@@ -29,6 +29,8 @@ export const UserItems = () => {
             bonus2: weapon.data().bonus2,
             bonus3: weapon.data().bonus3,
             id: weapon.data().id,
+            id2: weapon.id,
+
             photo: weapon.data().photo,
           };
         });
@@ -40,15 +42,12 @@ export const UserItems = () => {
   };
 
   const [weapons, setWeapons] = useState([]);
-  console.log(weapons);
 
   useEffect(() => {
     fetchItems().then((itemsFromDB) => {
       setWeapons(itemsFromDB);
     });
   }, []);
-
-  console.log(weapons);
 
   if (weapons === null) {
     return <p>Loading...</p>;
