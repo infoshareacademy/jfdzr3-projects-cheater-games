@@ -10,16 +10,9 @@ import { FightBar } from "./FightBar";
 export const FightingPanel = (props) => {
   
   const user = useUser();
-  // const hitPoints = useHitPoints(user);
-  const initialHP = useHitPoints(user);
-
-  const [hitPoints, setHitPoints] = useState(initialHP)
-
-  useEffect(()=> {
-    setHitPoints(initialHP)}, [initialHP])
-
+  
   const monster = {
-    level: 5,
+    level: 12,
     str: 10,
     agi: 10,
     tough: 10,
@@ -29,7 +22,15 @@ export const FightingPanel = (props) => {
     speed: 10,
   };
 
-  const monsterPoints = useHitPoints(monster);
+  const initialHP = useHitPoints(user);
+  const initialMonsterHP = useHitPoints(monster);
+
+  const [hitPoints, setHitPoints] = useState(initialHP)
+  const [monsterPoints, setMonsterPoints] = useState(initialMonsterHP)
+  useEffect(()=> {
+    setHitPoints(initialHP);
+    setMonsterPoints(initialMonsterHP)
+  }, [initialHP, initialMonsterHP])
 
   const statsArray = [
     { name: "level", value: user?.level },
@@ -129,7 +130,7 @@ export const FightingPanel = (props) => {
           style={{ width: "220px", height: "280px", border: "2px solid black" }}
         ></div>
       </div>
-      <div style={{marginTop: "20px"}}><FightBar toChild={hitPoints} sendToParent={setHitPoints}/></div>
+      <div style={{marginTop: "20px"}}><FightBar userHP={hitPoints} monsterHP = {monsterPoints} updateUserHP={setHitPoints} updateMonsterHP={setMonsterPoints}/></div>
       </div>
     </>
   );

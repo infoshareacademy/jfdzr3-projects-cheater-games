@@ -11,9 +11,10 @@ export const FightBar = (props) => {
       const random = Math.floor(Math.random() * 100);
       if (random < 80) {
         console.log("Hit");
+        props.updateMonsterHP(props.monsterHP-20)
       } else {
         console.log("Miss");
-        props.sendToParent(props.toChild-20);
+        props.updateUserHP(props.userHP-20);
       }
     //   return hitEffect;
     };
