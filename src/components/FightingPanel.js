@@ -59,6 +59,12 @@ export const FightingPanel = (props) => {
 
   return (
     <>
+    <div style={{
+          display: "flex",
+          flexFlow: "column",
+          justifyContent: "flex-start",
+          height: "100vh"
+        }} >
       <div
         style={{
           display: "flex",
@@ -114,6 +120,8 @@ export const FightingPanel = (props) => {
         <div
           style={{ width: "220px", height: "280px", border: "2px solid black" }}
         ></div>
+      </div>
+      <div style={{marginTop: "20px"}}>Fighting Bar</div>
       </div>
     </>
   );
