@@ -10,7 +10,7 @@ import { MainMenu } from "./components/MainMenu";
 import { useUser } from "./hooks/useUser";
 import { AgilityTrial } from "./components/AgilityTrial";
 import { AdminPanel } from "./components/AdminPanel";
-import { FightingBar } from "./components/FightingBar";
+import { FightingPanel } from "./components/FightingPanel";
 
 function App() {
   const user = useUser();
@@ -38,7 +38,7 @@ function App() {
                 <Stats />
               </Route>
               <Route path="/fight">
-                <FightingBar />
+                <FightingPanel />
               </Route>
             </Switch>
           ) : (
