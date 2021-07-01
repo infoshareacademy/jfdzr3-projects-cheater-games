@@ -3,15 +3,23 @@ import "firebase/firestore";
 import { useState, useEffect, createContext } from "react";
 import { useHitPoints } from "../hooks/useHitPoints";
 import { useUser } from "../hooks/useUser";
+import { FightBar } from "./FightBar";
 
 // export const StatsContext = createContext();
 
 export const FightingPanel = (props) => {
+  
   const user = useUser();
-  const hitPoints = useHitPoints(user);
+  // const hitPoints = useHitPoints(user);
+  const initialHP = useHitPoints(user);
+
+  const [hitPoints, setHitPoints] = useState(initialHP)
+
+  useEffect(()=> {
+    setHitPoints(initialHP)}, [initialHP])
 
   const monster = {
-    level: 1,
+    level: 5,
     str: 10,
     agi: 10,
     tough: 10,
@@ -121,7 +129,7 @@ export const FightingPanel = (props) => {
           style={{ width: "220px", height: "280px", border: "2px solid black" }}
         ></div>
       </div>
-      <div style={{marginTop: "20px"}}>Fighting Bar</div>
+      <div style={{marginTop: "20px"}}><FightBar toChild={hitPoints} sendToParent={setHitPoints}/></div>
       </div>
     </>
   );
