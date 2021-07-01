@@ -1,15 +1,13 @@
 import { useState, useEffect, createContext } from "react";
 import { db } from "../../firebaseConfig";
-import { useUser } from "../../hooks/useUser";
 
 export const StatsContext = createContext();
 
-export function StatsProvider({ children }) {
-  const user = useUser();
+export function StatsProvider({ uid, children }) {
   const [points, setPoints] = useState([]);
   useEffect(() => {
     db.collection("users")
-      .doc(user?.uid)
+      .doc(uid)
       .get()
       .then((doc) => {
         if (doc.exists) {
@@ -21,8 +19,8 @@ export function StatsProvider({ children }) {
       })
       .catch((error) => {
         console.log("Error getting document:", error);
-      }, []);
-  });
+      });
+  }, []);
   return (
     <StatsContext.Provider value={[points, setPoints]}>
       {children}
