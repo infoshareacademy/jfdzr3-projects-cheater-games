@@ -1,11 +1,8 @@
-import firebase from "firebase/app";
 import "firebase/firestore";
-import { useState, useEffect, createContext } from "react";
+import { useState, useEffect } from "react";
 import { useHitPoints } from "../hooks/useHitPoints";
 import { useUser } from "../hooks/useUser";
 import { FightBar } from "./FightBar";
-
-// export const StatsContext = createContext();
 
 export const FightingPanel = (props) => {
   
@@ -91,7 +88,6 @@ export const FightingPanel = (props) => {
             flexFlow: "column",
             height: "240px",
             alignItems: "flex-start",
-            margin: "0 auto",
             justifyContent: "space-evenly",
             margin: "15px",
           }}
@@ -112,7 +108,6 @@ export const FightingPanel = (props) => {
             flexFlow: "column",
             height: "240px",
             alignItems: "flex-end",
-            margin: "0 auto",
             justifyContent: "space-evenly",
             margin: "15px",
           }}

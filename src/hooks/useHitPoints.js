@@ -1,6 +1,6 @@
 import firebase from "firebase/app";
 import "firebase/firestore";
-import { useState, useEffect, createContext } from "react";
+import { useState, useEffect } from "react";
 
 export const useHitPoints = (user) => {
   const [hitPoints, setHitPoints] = useState(null);

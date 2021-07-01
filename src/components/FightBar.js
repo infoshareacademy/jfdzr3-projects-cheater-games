@@ -1,11 +1,6 @@
-import firebase from "firebase/app";
 import "firebase/firestore";
-import { useState, useEffect, createContext } from "react";
-import { useHitPoints } from "../hooks/useHitPoints";
-import { useUser } from "../hooks/useUser";
 
 export const FightBar = (props) => {
-//   const [hitEffect, setHitEffect] = useState("");
   
   const handleClick = () => {
       const random = Math.floor(Math.random() * 100);
@@ -16,7 +11,6 @@ export const FightBar = (props) => {
         console.log("Miss");
         props.updateUserHP(props.userHP-20);
       }
-    //   return hitEffect;
     };
 
   return <button onClick={handleClick}>Hit me!</button>;
