@@ -1,3 +1,3 @@
-export function Main(props) {
-  return <main className="main">{props.children}</main>;
+export function Main({ children }) {
+  return <main className="main">{children}</main>;
 }
