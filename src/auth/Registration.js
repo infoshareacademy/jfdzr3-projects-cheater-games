@@ -1,11 +1,9 @@
 import "./auth.css";
 import React from "react";
 import { useState } from "react";
-import {
-  Link, useHistory,
-} from "react-router-dom";
+import { Link, useHistory } from "react-router-dom";
 import firebaseApp from "../firebaseConfig";
-import {db} from "../firebaseConfig"
+import { db } from "../firebaseConfig";
 
 const createCharacter = (uid, nickname) => {
   return db.collection("users").doc(uid).set({
@@ -64,8 +62,9 @@ export const Registration = () => {
         token.user.updateProfile({
           displayName: user.nickname,
         });
-        history.push("/")
+        history.push("/");
         createCharacter(token.user.uid, user.nickname);
+        createPlayerArmory(token.user.uid);
         resetFormOnSubmit(e);
       })
       .catch((error) => {

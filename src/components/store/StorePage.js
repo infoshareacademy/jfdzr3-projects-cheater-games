@@ -7,12 +7,12 @@ export const StorePage = () => (
     <h1>Mirek Handlarz</h1>
     <div style={{display: "flex"}}>
       <Users />
-      <ItemGrid>
+      {/* <ItemGrid>
         <BasicItems />
       </ItemGrid>
       <ItemGrid>
         <UserItems />
-      </ItemGrid>
+      </ItemGrid> */}
     </div>
    
   </>

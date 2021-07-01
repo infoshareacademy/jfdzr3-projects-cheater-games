@@ -1,0 +1,8 @@
+.message_view {
+  margin: 5px;
+  padding: 0 10px 0;
+  border-color: black;
+  border-radius: 10px;
+  border-style: dotted;
+  width: fit-content;
+}
