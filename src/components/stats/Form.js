@@ -6,7 +6,7 @@ export function Form({ uid, children }) {
   const [points] = useContext(StatsContext);
   const addPointsToDatabase = (e) => {
     e.preventDefault();
-    db.collection("users").doc(uid).set(points);
+    db.collection("users").doc(uid).update({ stats: points });
   };
   return (
     <form className="user-stats__form" onSubmit={addPointsToDatabase}>
