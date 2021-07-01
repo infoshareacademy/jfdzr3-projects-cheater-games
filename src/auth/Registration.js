@@ -10,6 +10,7 @@ import {db} from "../firebaseConfig"
 const createCharacter = (uid, nickname) => {
   return db.collection("users").doc(uid).set({
     exp: 0,
+    level: 1,
     nextLevel: 100,
     name: nickname,
     stats: {
@@ -19,6 +20,8 @@ const createCharacter = (uid, nickname) => {
       int: 1,
       perc: 1,
       left: 10,
+      speed: 1,
+      vit: 1
     },
     resources: {
       gold: 100,
