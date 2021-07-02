@@ -1,28 +1,20 @@
 import "firebase/firestore";
 import { useState, useEffect } from "react";
 import { useHitPoints } from "../hooks/useHitPoints";
+import { useMonster } from "../hooks/useMonster";
 import { useUser } from "../hooks/useUser";
 import { FightBar } from "./FightBar";
 
 export const FightingPanel = ({opponent}) => {
   
-  const user = useUser();
-  
-  const monster = {
-    level: 12,
-    str: 10,
-    agi: 10,
-    tough: 10,
-    vit: 10,
-    perc: 10,
-    int: 10,
-    speed: 10,
-  };
+  const difficultyArray = [1, 1.5, 2.5]
 
-  console.log(opponent);
+  const difficulty = difficultyArray[2];
+
+  const user = useUser();
+  const monster = useMonster(user, difficulty);
 
   const initialHP = useHitPoints(user);
-  
   const initialMonsterHP = useHitPoints(monster);
 
   const [hitPoints, setHitPoints] = useState(initialHP)
