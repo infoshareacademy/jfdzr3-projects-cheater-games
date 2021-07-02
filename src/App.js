@@ -38,7 +38,7 @@ function App() {
                 <Stats />
               </Route>
               <Route path="/fight">
-                <FightingPanel />
+                <FightingPanel opponent="PVE"/>
               </Route>
             </Switch>
           ) : (

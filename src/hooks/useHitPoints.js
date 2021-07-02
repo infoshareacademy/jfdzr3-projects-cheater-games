@@ -39,7 +39,7 @@ export const useHitPoints = (user) => {
           console.log("Error getting document:", error);
         });
     }
-  }, null);
+  }, [user, db]);
 
   return hitPoints;
 };

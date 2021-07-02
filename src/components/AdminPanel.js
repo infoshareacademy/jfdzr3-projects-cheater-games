@@ -117,7 +117,7 @@ export const AdminPanel = (props) => {
     <form onSubmit={addItem} autoComplete="off">
       <div className={classes.root}>
         <FormControl variant="outlined" className={classes.root}>
-          <InputLabel id="simple-select-label" labelId="simple-select-label">
+          <InputLabel id="simple-select-label">
             Typ przedmiotu
           </InputLabel>
           <Select

@@ -4,7 +4,7 @@ import { useHitPoints } from "../hooks/useHitPoints";
 import { useUser } from "../hooks/useUser";
 import { FightBar } from "./FightBar";
 
-export const FightingPanel = (props) => {
+export const FightingPanel = ({opponent}) => {
   
   const user = useUser();
   
@@ -19,7 +19,10 @@ export const FightingPanel = (props) => {
     speed: 10,
   };
 
+  console.log(opponent);
+
   const initialHP = useHitPoints(user);
+  
   const initialMonsterHP = useHitPoints(monster);
 
   const [hitPoints, setHitPoints] = useState(initialHP)
