@@ -6,10 +6,10 @@ import { PointsLeft } from "./PointsLeft";
 import { SubmitButton } from "./SubmitButton";
 import { Main } from "./Main";
 import "./Stats.css";
-import { auth } from "../../firebaseConfig";
+import { useUser } from "../../hooks/useUser";
 
 export function Stats() {
-  const user = auth.currentUser;
+  const user = useUser();
   return (
     <StatsProvider uid={user?.uid}>
       <Main>

@@ -20,7 +20,7 @@ export function StatsProvider({ uid, children }) {
       .catch((error) => {
         console.log("Error getting document:", error);
       });
-  }, []);
+  }, [uid, children]);
   return (
     <StatsContext.Provider value={[points, setPoints]}>
       {children}
