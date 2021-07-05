@@ -1,5 +1,5 @@
 import { useEffect, useState } from "react";
-import { db } from "../../firebaseConfig";
+import { db } from "../firebaseConfig";
 
 export const useItems = () => {
   const [items, setItems] = useState([]);
@@ -10,7 +10,7 @@ export const useItems = () => {
       snapshot.docs.map((doc) => {
         for (const property in doc.data()) {
           newItems.push({
-            id: doc.id,
+            type: doc.id,
             key: property,
             val: doc.data()[property],
           });
