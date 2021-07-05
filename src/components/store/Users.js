@@ -2,13 +2,13 @@ import { useEffect, useState } from "react";
 import { auth, db } from "../../firebaseConfig";
 import { useUser } from "../../hooks/useUser";
 
-
-
 export const Users = () => {
   // const uid = auth.currentUser.uid;
- 
+
   const user = useUser();
   console.log(user);
+  console.log(user?.uid);
+
   // const fetchItems = async () => {
   //   return db.collection("users")
   //     // .doc("test")
@@ -96,6 +96,57 @@ export const Users = () => {
   //       </div>
   //     ))}
   //   </>
-//  );
-return null
+  //  );
+  if (user === null) {
+    return <p>Loading...</p>;
+  }
+  return (
+    <>
+      {/* <h4>{user.name}</h4> */}
+    </>
+  );
 };
+
+// export const useItems = () => {
+//   const [items, setItems] = useState(null);
+
+// const user = useUser();
+
+//   useEffect(() => {
+//     if (user?.uid === null) {
+//       setItems(null);
+//       return;
+//     }
+//     return db.collection("items").onSnapshot((doc) => {
+//       console.log(doc);
+//         setItems({ id: doc.id, ...doc.data() });
+//       });
+//   }, []);
+
+// console.log(items);
+//   return items;
+// };
+
+export const useItems = () => {
+  const [items, setItems] = useState(null);
+
+  const user = useUser();
+
+  useEffect(() => {
+    if (user?.uid === null) {
+      setItems(null);
+      return;
+    }
+      return  db.collection("items")
+      .onSnapshot((doc) => {
+        doc.forEach((doc) => {
+        const data = doc.data()
+        console.log(data);
+        console.log(doc.id);
+        setItems({ id: doc.id, ...doc.data() })
+        })
+      })
+      }, [items]);
+      console.log(items);
+  return items;
+}

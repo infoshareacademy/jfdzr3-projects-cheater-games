@@ -3,6 +3,7 @@ import { Logout } from "../auth/Logout";
 import { useUser } from "../hooks/useUser";
 import { HuntLink } from "./HuntLink";
 import { AdminLink } from "./AdminLink";
+import { StoreLink } from "./StoreLink";
 
 export const Links = () => {
   const user = useUser();
@@ -12,7 +13,7 @@ export const Links = () => {
     "Widok postaci",
     "Statystyki",
     <HuntLink />,
-    "Rynek",
+    <StoreLink />,
     <Logout />,
   ];
 
@@ -20,7 +21,7 @@ export const Links = () => {
     "Widok postaci",
     "Statystyki",
     <HuntLink />,
-    "Rynek",
+    <StoreLink />,
     <Logout />,
   ];
 

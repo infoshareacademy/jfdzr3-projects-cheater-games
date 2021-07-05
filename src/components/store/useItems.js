@@ -29,17 +29,22 @@ export const useItems = () => {
 
 export const Test = () => {
   const items = useItems();
+  console.log("-- Items --");
   console.log(items);
   items.map((item) => {
+      console.log("---- item key: ----");
     console.log(item.key);
   });
   items.map((item) => {
+      console.log("--- item val: ---");
     console.log(item.val);
   });
   items.map((item) => {
+      console.log("---value:-- ");
     console.log(item.val.value);
   });
   items.map((item) => {
+      console.log("--- vit:--- " );
     console.log(item.val.vit);
   });
 
@@ -58,7 +63,8 @@ export const Test = () => {
         {items &&
           items.map((item, index) => (
             <div key={index}>
-              <p>{item.key}</p>
+              <h3>{item.key}</h3>
+              <h4>{item.val.value}</h4>
             </div>
           ))}
       </div>

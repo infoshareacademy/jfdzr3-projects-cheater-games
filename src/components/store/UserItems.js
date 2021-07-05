@@ -4,10 +4,8 @@ import { useUser } from "../../hooks/useUser";
 
 export const UserItems = () => {
   const user = useUser();
-  const uid = auth.currentUser.uid;
-  // console.log(uid);
+  const uid = user?.uid;
 
-  console.log(user);
   const fetchItems = async () => {
     if (uid) {
     return db
@@ -83,3 +81,63 @@ export const UserItems = () => {
     </>
   );
 };
+
+
+export const useItems = () => {
+  const [items, setItems] = useState(null);
+
+  const user = useUser();
+
+  useEffect(() => {
+    if (user?.uid === null) {
+      setItems(null);
+      return;
+    }
+      return  db.collection("items")
+      .onSnapshot((doc) => {
+        doc.forEach((doc) => {
+        const data = doc.data()
+        console.log(data);
+        console.log(doc.id);
+        setItems({ id: doc.id, ...doc.data() })
+        })
+      })
+      }, [items]);
+      console.log(items);
+  return items;
+}
+
+//--------
+// import { useEffect, useState } from "react"
+// import { db } from "../../firebaseConfig"
+
+// export const Test = () => {
+   
+//     const [items, setItems] = useState([])
+  
+//     useEffect(()=> {
+//         db.collection('items').onSnapshot((snapshot)=> {
+//             const newItems = snapshot.docs.map((doc)=>{
+//                 for (const property in doc.data()) {
+//                     setItems({key: property, val: doc.data()[property]});
+                    
+                    
+//                 }
+//             })
+//             return newItems
+//         })
+//     },[])
+    
+    
+    
+//     console.log(items);
+//     console.log(items.key);
+//     console.log(items.val);
+
+//     console.log(items.val.value);
+//     console.log(items.val.vit);
+
+
+
+//     return null
+// }

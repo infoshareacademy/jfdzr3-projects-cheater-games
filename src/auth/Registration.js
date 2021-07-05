@@ -29,6 +29,10 @@ const createCharacter = (uid, nickname) => {
   });
 };
 
+const createPlayerArmory = (uid) => {
+  return db.collection("users").doc(uid).collection("armory").add({});
+};
+
 export const Registration = () => {
   const [user, setUser] = useState({
     nickname: "",

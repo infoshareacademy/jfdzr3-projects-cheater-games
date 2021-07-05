@@ -4,7 +4,7 @@ export const ItemGrid = ({ children }) => (
   <div
     style={{
       display: "grid",
-      width: "50%",
+      width: "100%",
       border: "1px solid #e1984d",
       borderRadius: "3%",
       marginTop: "20px",
@@ -16,8 +16,8 @@ export const ItemGrid = ({ children }) => (
       style={{
         display: "grid",
         gridGap: 10,
-        // gridTemplateColumns: "repeat(auto-fill, minmax(130px, 1fr)",
-        gridTemplateColumns: "repeat(4, 20%)",
+        gridTemplateColumns: "repeat(auto-fill, minmax(130px, 1fr)",
+        // gridTemplateColumns: "repeat(4, 20%)",
 
 
         padding: "5px",
