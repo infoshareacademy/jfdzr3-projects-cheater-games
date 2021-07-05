@@ -1,4 +1,19 @@
 .store-wrapper {
     display: grid;
-    grid-template-columns: 40% 20% 40%;;
+    grid-template-columns: 40% 20% 40%;
+}
+.items-wrapper {
+    display: "grid";
+    width: "100%";
+    border: "1px solid #e1984d";
+    border-radius: "3%";
+    margin-top: "20px";
+}
+
+.items-grid {
+    display: "grid";
+    grid-gap: "10px";
+    /* grid-template-columns: "repeat(auto-fill, minmax(130px, 1fr)"; */
+    grid-template-columns: "repeat(4, 20%)";
+    padding: "5px";
 }

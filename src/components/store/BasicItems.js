@@ -154,10 +154,10 @@ export const BasicItems = () => {
           //   role,
           //   stats: { str, agi, tough, int, perc, vit, speed, left },
           // } = user.data();
-          console.log(user.data());
-          console.log(user.id);
+          // console.log(user.data());
+          // console.log(user.id);
           // console.log(race);
-          console.log(user.data().resources);
+          // console.log(user.data().resources);
 
           // return {
           //   exp,

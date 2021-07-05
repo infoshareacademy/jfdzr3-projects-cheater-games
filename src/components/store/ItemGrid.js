@@ -1,7 +1,7 @@
 import { TextBlock } from "./TextBlock";
 
 export const ItemGrid = ({ children }) => (
-  <div
+  <div className="items-wrapper"
     style={{
       display: "grid",
       width: "100%",
@@ -12,7 +12,7 @@ export const ItemGrid = ({ children }) => (
   >
     <TextBlock>For Sale</TextBlock>
 
-    <div
+    <div className="items-grid"
       style={{
         display: "grid",
         gridGap: 10,
