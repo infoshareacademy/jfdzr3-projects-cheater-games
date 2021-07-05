@@ -78,7 +78,7 @@ export const Login = () => {
             <input
               type="password"
               className="form__input"
-              name="password"
+              name="current-password"
               id="logIn-password"
               required
               onChange={handleChange}

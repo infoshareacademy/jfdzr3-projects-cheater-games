@@ -120,7 +120,7 @@ export const Registration = () => {
               value={password}
               type="password"
               className="form__input"
-              name="password"
+              name="new-password"
               id="signUp-password"
               required
               onChange={handleChange}
