@@ -1,7 +1,9 @@
 import "./auth.css";
 import firebaseApp from "../firebaseConfig";
 
+
 export const Logout = () => {
+
   const logoutClick = () => {
     firebaseApp.auth().signOut();
     console.log("Wylogowano");
