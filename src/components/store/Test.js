@@ -1,64 +1,38 @@
-import { useEffect, useState } from "react";
-import { db } from "../../firebaseConfig";
-
-export const useItems = () => {
-  const [items, setItems] = useState([]);
-
-  useEffect(() => {
-    db.collection("items").onSnapshot((snapshot) => {
-      const newItems = [];
-      snapshot.docs.map((doc) => {
-        for (const property in doc.data()) {
-          // console.log({id: doc.id,key: property, val: doc.data()[property]});
-          newItems.push({
-            id: doc.id,
-            key: property,
-            val: doc.data()[property],
-          });
-          // setItems({id: doc.id,key: property, val: doc.data()[property]});
-        }
-
-        return newItems;
-      });
-      console.log(newItems);
-      setItems(newItems);
-    });
-  }, []);
-  return items;
-};
+import firebaseApp from "../../firebaseConfig";
+import { useItems } from "../../hooks/useItems";
 
 export const Test = () => {
   const items = useItems();
   console.log("-- Items --");
   console.log(items);
-  items.map((item) => {
-      console.log("---- item key: ----");
-    console.log(item.key);
-  });
-  items.map((item) => {
-      console.log("--- item val: ---");
-    console.log(item.val);
-  });
-  items.map((item) => {
-      console.log("---value:-- ");
-    console.log(item.val.value);
-  });
-  items.map((item) => {
-      console.log("--- vit:--- " );
-    console.log(item.val.vit);
-  });
+  // items.map((item) => {
+  //     console.log("---- item key: ----");
+  //   console.log(item.key);
+  // });
+  // items.map((item) => {
+  //     console.log("--- item val: ---");
+  //   console.log(item.val);
+  // });
+  // items.map((item) => {
+  //     console.log("---value:-- ");
+  //   console.log(item.val.value);
+  // });
+  // items.map((item) => {
+  //     console.log("--- vit:--- " );
+  //   console.log(item.val.vit);
+  // });
 
-  items.map((item) => {
-    console.log(item.id);
-  });
+  // items.map((item) => {
+  //   console.log(item.id);
+  // });
 
-  if (items === null) {
-    return <p>Loading...</p>;
-  }
+  // if (items === null) {
+  //   return <p>Loading...</p>;
+  // }
 
   return (
     <>
-      <div className="item-list">
+      {/* <div className="item-list">
         <h2>For Sale</h2>
         {items &&
           items.map((item, index) => (
@@ -67,7 +41,7 @@ export const Test = () => {
               <h4>{item.val.value}</h4>
             </div>
           ))}
-      </div>
+      </div> */}
     </>
   );
 };

@@ -144,45 +144,43 @@ export const BasicItems = () => {
       .get()
       .then((snapshot) => {
         const users = snapshot.docs.map((user) => {
-          const {
-            exp,
-            level,
-            name,
-            nextLevel,
-            race,
-            resources: { material, wood, gold },
-            role,
-            stats: { str, agi, tough, int, perc, vit, speed, left },
-          } = user.data();
+          // const {
+          //   exp,
+          //   level,
+          //   name,
+          //   nextLevel,
+          //   race,
+          //   resources: { material, wood, gold },
+          //   role,
+          //   stats: { str, agi, tough, int, perc, vit, speed, left },
+          // } = user.data();
           console.log(user.data());
           console.log(user.id);
-          console.log(race);
+          // console.log(race);
           console.log(user.data().resources);
-          console.log(material);
 
-          console.log(name);
-          return {
-            exp,
-            level,
-            name,
-            nextLevel,
-            race,
-            resources: user.data().resources,
-            gold,
-            material,
-            wood,
-            role,
-            stats: user.data().resources,
-            str,
-            agi,
-            tough,
-            int,
-            perc,
-            vit,
-            speed,
-            left,
-            uid: user.id,
-          };
+          // return {
+          //   exp,
+          //   level,
+          //   name,
+          //   nextLevel,
+          //   race,
+          //   resources: user.data().resources,
+          //   gold,
+          //   material,
+          //   wood,
+          //   role,
+          //   stats: user.data().resources,
+          //   str,
+          //   agi,
+          //   tough,
+          //   int,
+          //   perc,
+          //   vit,
+          //   speed,
+          //   left,
+          //   uid: user.id,
+          // };
         });
         console.log(users);
       });
@@ -223,7 +221,7 @@ export const BasicItems = () => {
   }
   return (
     <>
-      {items.map((item) => (
+      {/* {items.map((item) => (
         <div
           key={item.id}
           style={{
@@ -244,8 +242,8 @@ export const BasicItems = () => {
           <h4>{item.bonus1}</h4>
           <h4>{item.bonus2}</h4>
           <h4>{item.bonus3}</h4>
-        </div>
-      ))}
+        </div> */}
+      {/* ))} */}
     </>
   );
 };

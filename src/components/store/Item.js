@@ -1,7 +1,7 @@
 import { useState, useEffect } from "react";
 import { db } from "../../firebaseConfig";
 import { useUser } from "../../hooks/useUser";
-
+import { useItems } from "../../hooks/useItems";
 const Test = () => {
   const [items, setItems] = useState([]);
 
@@ -37,7 +37,7 @@ export const useItemsId = () => {
   return itemsId;
 };
 
-export const useItems = () => {
+export const useItemsitems = () => {
   const [items, setItems] = useState([]);
   const [itemsId, setItemsId] = useState([]);
 

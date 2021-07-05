@@ -53,16 +53,16 @@ console.log(data.kosa);
         console.log(Object.values(data));
 
       
-               const testkey=  Object.keys(data).map((k) => {
-                   console.log(k);
-                   valuesArr.push({k: data[k]})
-                    console.log(`key: ${k}`);
-                    console.log("key:" +k, data[k]);
-                    console.log(data[k]);
+              //  const testkey=  Object.keys(data).map((k) => {
+              //      console.log(k);
+              //      valuesArr.push({k: data[k]})
+              //       console.log(`key: ${k}`);
+              //       console.log("key:" +k, data[k]);
+              //       console.log(data[k]);
 
-                    return  data[k]
-                  });
-            console.log(testkey);
+              //       return  data[k]
+              //     });
+            // console.log(testkey);
 
                 //   testarr.push({id: doc.id,key: testkey, ...doc.data() })
                 testarr.push({...doc.data() })
@@ -96,9 +96,7 @@ console.log(data.kosa);
     
             //   console.log(items.key);
     
-              console.log(keys);
     
-      console.log(user);
      
       
 

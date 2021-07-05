@@ -1,6 +1,7 @@
 import { useEffect, useState } from "react";
 import { auth, db } from "../../firebaseConfig";
 import { useUser } from "../../hooks/useUser";
+import { useItems } from "../../hooks/useItems";
 
 export const UserItems = () => {
   const user = useUser();
@@ -54,7 +55,7 @@ export const UserItems = () => {
 
   return (
     <>
-      {weapons.map((weapon) => (
+      {/* {weapons.map((weapon) => (
         <div
           key={weapon.id}
           style={{
@@ -77,67 +78,9 @@ export const UserItems = () => {
           <h4>{weapon.bonus2}</h4>
           <h4>{weapon.bonus3}</h4>
         </div>
-      ))}
+      ))} */}
     </>
   );
 };
 
 
-export const useItems = () => {
-  const [items, setItems] = useState(null);
-
-  const user = useUser();
-
-  useEffect(() => {
-    if (user?.uid === null) {
-      setItems(null);
-      return;
-    }
-      return  db.collection("items")
-      .onSnapshot((doc) => {
-        doc.forEach((doc) => {
-        const data = doc.data()
-        console.log(data);
-        console.log(doc.id);
-        setItems({ id: doc.id, ...doc.data() })
-        })
-      })
-      }, [items]);
-      console.log(items);
-  return items;
-}
-
-//--------
-// import { useEffect, useState } from "react"
-// import { db } from "../../firebaseConfig"
-
-// export const Test = () => {
-   
-//     const [items, setItems] = useState([])
-  
-//     useEffect(()=> {
-//         db.collection('items').onSnapshot((snapshot)=> {
-//             const newItems = snapshot.docs.map((doc)=>{
-//                 for (const property in doc.data()) {
-//                     setItems({key: property, val: doc.data()[property]});
-                    
-                    
-//                 }
-//             })
-//             return newItems
-//         })
-//     },[])
-    
-    
-    
-//     console.log(items);
-//     console.log(items.key);
-//     console.log(items.val);
-
-//     console.log(items.val.value);
-//     console.log(items.val.vit);
-
-
-
-//     return null
-// }
