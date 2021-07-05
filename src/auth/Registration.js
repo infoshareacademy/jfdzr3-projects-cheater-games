@@ -109,6 +109,7 @@ export const Registration = () => {
               type="email"
               className="form__input"
               name="email"
+              autoComplete="username email" 
               id="signUp-email"
               required
               onChange={handleChange}
@@ -120,6 +121,7 @@ export const Registration = () => {
               value={password}
               type="password"
               className="form__input"
+              autoComplete="new-password"
               name="new-password"
               id="signUp-password"
               required
