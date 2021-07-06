@@ -5,13 +5,13 @@
     grid-template-areas: "items avatar items";
     margin-top: 50px;
 }
+
 .items-wrapper {
-    display: "grid";
-    /* grid-area: items; */
-    width: "100%";
-    border: "1px solid #e1984d";
-    border-radius: "3%";
-    margin-top: "20px";
+        border: 1px solid black;
+        box-shadow: 0 5px 10px rgba(0, 0, 0, 0.5);
+        width: 100%;
+        margin: 0 auto;       
+        transform: scale3d(95%, 95%, 100%);
 }
 
 .items-grid {
@@ -21,6 +21,6 @@
     grid-template-columns: "repeat(4, 20%)";
     padding: "5px";
 }
-.avatar {
-    width: 80%;
+.avatar img {
+    width: 100%;
 }

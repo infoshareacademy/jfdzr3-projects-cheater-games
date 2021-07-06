@@ -1,7 +1,7 @@
+import "./store.css";
 import { Avatar } from "./Avatar";
 import { Item } from "./Items";
 import { ItemsGrid } from "./ItemsGrid";
-import "./store.css";
 import { TextBlock } from "./TextBlok";
 
 export const StorePage = () => (
