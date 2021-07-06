@@ -10,6 +10,7 @@ import { MainMenu } from "./components/MainMenu";
 import { useUser } from "./hooks/useUser";
 import { AgilityTrial } from "./components/AgilityTrial";
 import { AdminPanel } from "./components/AdminPanel"
+import { StorePage } from "./components/rynek/StorePage";
 
 function App() {
   const user = useUser();
@@ -24,6 +25,9 @@ function App() {
         <main className="main__section">
           {user !== null ? (
               <Switch>
+                <Route path="/store">
+                <StorePage />
+              </Route>
                 <Route path="/hunt">
                   <HuntingScreen />
                 </Route>
