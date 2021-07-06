@@ -7,7 +7,6 @@ export const Logout = () => {
   const logoutClick = () => {
     firebaseApp.auth().signOut();
     history.push("/");
-    console.log("Wylogowano");
   };
 
   return (
