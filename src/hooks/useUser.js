@@ -14,10 +14,7 @@ export const useUser = () => {
       setUser(null);
       return;
     }
-    return firebase.firestore()
-      .collection("users")
-      .doc(token.uid)
-      .onSnapshot((doc) => {
+    return firebase.firestore().collection("users").doc(token.uid).onSnapshot((doc) => {
         setUser({ uid: token.uid, ...doc.data() });
       });
   }, [token]);

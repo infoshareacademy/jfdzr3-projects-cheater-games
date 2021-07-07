@@ -11,6 +11,7 @@ const createCharacter = (uid, nickname) => {
     .doc(uid)
     .set({
       exp: 0,
+      level: 1,
       nextLevel: 100,
       name: nickname,
       role: "player",
@@ -21,6 +22,8 @@ const createCharacter = (uid, nickname) => {
         int: 1,
         perc: 1,
         left: 10,
+        speed: 1,
+        vit: 1,
       },
       resources: {
         gold: 100,
@@ -120,7 +123,7 @@ export const Registration = () => {
               value={password}
               type="password"
               className="form__input"
-              name="password"
+              name="new-password"
               id="signUp-password"
               required
               onChange={handleChange}
