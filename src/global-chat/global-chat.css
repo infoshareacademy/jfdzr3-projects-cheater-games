@@ -1,6 +1,8 @@
 .chat {
   margin: 0;
-  padding: 0;
+  padding: initial;
+  font-size: 26px;
+  line-height: 35px;
   box-sizing: border-box;
   display: flex;
   flex-direction: column;
@@ -8,4 +10,21 @@
   background-color: #f5f4f6;
   width: 100%;
   padding: 10px;
+}
+
+.chat_userinfo {
+  margin: 10px 0 0;
+  word-break: break-word;
+}
+
+.chat_input {
+  background-color: #f5f4f6;
+  border: none;
+}
+
+.chat_button {
+  background-color: #f5f4f6;
+  color: black;
+  box-shadow: 0 5px 10px rgb(0 0 0 / 50%);
+  margin: 0 0 15px;
 }

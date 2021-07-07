@@ -40,12 +40,12 @@ export function GlobalChat() {
     return (
     <>
         <div className="chat">
-            <h2>Jesteś zalogowany jako: {displayName}</h2>
+            <p className="chat_userinfo">Jesteś zalogowany jako: {displayName}</p>
 
             <form>
 
-                <input placeholder="Wpisz wiadomość...."  value={input} onChange={event => setInput(event.target.value)}></input>
-                <button disabled={!input} type="submit"onClick={sendMessage}>Wyślij</button>
+                <input className="chat_input" placeholder="Wpisz wiadomość...."  value={input} onChange={event => setInput(event.target.value)}></input>
+                <button className="chat_button" disabled={!input} type="submit" onClick={sendMessage}>Wyślij</button>
 
             </form>
 
