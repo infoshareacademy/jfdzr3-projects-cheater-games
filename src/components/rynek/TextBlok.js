@@ -4,5 +4,5 @@ export const TextBlock = ({children}) => {
         fontWeight: "bold",
         marginTop: "10px"
     }
-    return <p style={style}>{children}</p>
+    return <span style={style}>{children}</span>
 }
