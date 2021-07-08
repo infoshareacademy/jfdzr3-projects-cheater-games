@@ -2,6 +2,8 @@
   --color-primary-green: #315e3c;
   --color-secondary-gray: #2e2c2f;
   --background-color-light: #f2f2f2;
+  --box-shadow-1: rgba(50, 50, 93, 0.25) 0px 13px 27px -5px,
+    rgba(0, 0, 0, 0.3) 0px 8px 16px -8px;
 }
 
 * {
@@ -11,7 +13,6 @@
 }
 
 body {
-  min-height: 100vh;
   font-family: "Montserrat", sans-serif;
   font-weight: 300;
   font-size: 16px;
@@ -142,9 +143,11 @@ body {
 }
 .header {
   background-color: var(--color-primary-green);
-  height: 10vh;
   display: grid;
   place-items: center;
+  box-shadow: var(--box-shadow);
+  position: relative;
+  z-index: 10;
 }
 .logo {
   padding: 20px 0;
