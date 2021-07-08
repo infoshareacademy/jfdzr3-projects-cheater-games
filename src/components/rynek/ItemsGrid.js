@@ -1,3 +1,4 @@
+import { Items } from "./Items";
 import "./store.css";
 import { TextBlock } from "./TextBlok";
 
@@ -11,6 +12,8 @@ import { TextBlock } from "./TextBlok";
 export const ItemsGrid = ({ text, children }) => (
   <div className="items-wrapper git s">
     <TextBlock>{text}</TextBlock>
-    <div className="items-grid">{children}</div>
+    {/* <div className="items-grid">{children}</div> */}
+    <Items/>
+    {/* {children} */}
   </div>
 );
