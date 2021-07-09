@@ -1,3 +1,16 @@
+.chat-form {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.chat input {
+  width: 50%;
+  box-shadow: 0 5px 10px rgb(0 0 0 / 50%);
+  padding: 10px 5px;
+  font-family: inherit;
+}
+
 .chat {
   margin: 0;
   padding: 0;
@@ -25,10 +38,10 @@
   background-color: #f5f4f6;
   color: black;
   box-shadow: 0 5px 10px rgb(0 0 0 / 50%);
-  margin: 0 0 15px;
+  margin-left: 8px;
 }
 
 .chat_messages {
-  height: 100vh;
-  overflow: auto;
+  height: 300px;
+  overflow: scroll;
 }
