@@ -4,7 +4,7 @@ import './Message.css';
 function Message({username, message}) {
     return (
         <div className="message_view">
-            <p>{message.username}: {message.text}</p>
+            <p><strong>{message.username}</strong>: {message.text}</p>
         </div>
     )
 };
