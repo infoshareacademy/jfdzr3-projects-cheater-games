@@ -1,12 +1,11 @@
 import { useState, useEffect } from "react";
-import firebase from "firebase/app";
 import { Logout } from "../auth/Logout";
 import {
   Link,
 } from "react-router-dom";
 import { useUser } from "../hooks/useUser";
+import { db } from "../firebaseConfig";
 
-const db = firebase.firestore();
 
 export const SelectRace = () => {
   const getRaceFromDB = () => {

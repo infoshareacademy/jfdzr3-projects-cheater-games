@@ -1,5 +1,5 @@
-import firebase from "firebase/app";
 import { useEffect, useState } from "react";
+import { db } from "../firebaseConfig";
 
 export const usePlayerStats = (user) => {
   const [stats, setStats] = useState(null);
@@ -9,8 +9,7 @@ export const usePlayerStats = (user) => {
       setStats(null);
       return;
     }
-    return firebase
-      .firestore()
+    return db
       .collection("stats")
       .doc(user)
       .onSnapshot((doc) => {

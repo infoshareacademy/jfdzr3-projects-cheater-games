@@ -4,7 +4,8 @@ import {
   Link, useHistory,
 } from "react-router-dom";
 import { useState } from "react";
-import firebaseApp from "../firebaseConfig";
+import { auth } from "../firebaseConfig";
+
 
 
 
@@ -35,8 +36,7 @@ export const Login = () => {
 
   const handleOnSubmit = (e) => {
     e.preventDefault();
-    firebaseApp
-      .auth()
+    auth
       .signInWithEmailAndPassword(email, password)
       .then((token) => {
         // createCharacter(token.user.uid, token.user.displayName);
@@ -78,7 +78,7 @@ export const Login = () => {
             <input
               type="password"
               className="form__input"
-              name="current-password"
+              name="password"
               id="logIn-password"
               required
               onChange={handleChange}

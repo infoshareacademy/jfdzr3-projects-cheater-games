@@ -81,11 +81,10 @@ export const HuntingScreen = () => {
                 <Link to="/">
                   <HoverImage
                     src={
-                      `${process.env.PUBLIC_URL}` + "/img/arrows/left-arrow.png"
+                      `${process.env.PUBLIC_URL}/img/arrows/left-arrow.png`
                     }
                     hoverSrc={
-                      `${process.env.PUBLIC_URL}` +
-                      "/img/arrows/left-arrow-hover.png"
+                      `${process.env.PUBLIC_URL}/img/arrows/left-arrow-hover.png`
                     }
                     style={{ height: "70px", width: "70px" }}
                   />
@@ -93,11 +92,10 @@ export const HuntingScreen = () => {
                 <Link to="/">
                   <HoverImage
                     src={
-                      `${process.env.PUBLIC_URL}` + "/img/arrows/up-arrow.png"
+                      `${process.env.PUBLIC_URL}img/arrows/up-arrow.png`
                     }
                     hoverSrc={
-                      `${process.env.PUBLIC_URL}` +
-                      "/img/arrows/up-arrow-hover.png"
+                      `${process.env.PUBLIC_URL}/img/arrows/up-arrow-hover.png`
                     }
                     style={{ height: "70px", width: "70px" }}
                   />
@@ -105,12 +103,10 @@ export const HuntingScreen = () => {
                 <Link to="/">
                   <HoverImage
                     src={
-                      `${process.env.PUBLIC_URL}` +
-                      "/img/arrows/right-arrow.png"
+                      `${process.env.PUBLIC_URL}/img/arrows/right-arrow.png`
                     }
                     hoverSrc={
-                      `${process.env.PUBLIC_URL}` +
-                      "/img/arrows/right-arrow-hover.png"
+                      `${process.env.PUBLIC_URL}/img/arrows/right-arrow-hover.png`
                     }
                     style={{ height: "70px", width: "70px" }}
                   />
