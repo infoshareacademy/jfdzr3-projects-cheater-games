@@ -48,11 +48,15 @@ export function GlobalChat() {
 
             </form>
 
-            {
-            messages.map((message, index) => {
-            return (<Message key={message.time} username={user?.name} message={message}/>)
-                })
-            }
+            <div className="chat_messages">
+
+                {
+                messages.map((message, index) => {
+                return (<Message key={message.time} username={user?.name} message={message}/>)
+                    })
+                }
+
+            </div>
         </div>
     </>    
     )
