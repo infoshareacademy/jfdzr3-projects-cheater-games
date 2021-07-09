@@ -62,6 +62,7 @@ export const Login = () => {
               type="email"
               className="form__input"
               name="email"
+              autoComplete="username email" 
               id="logIn-email"
               required
               onChange={handleChange}
@@ -72,7 +73,8 @@ export const Login = () => {
             <input
               type="password"
               className="form__input"
-              name="current-password"
+              autoComplete="current-password"
+              name="password"
               id="logIn-password"
               required
               onChange={handleChange}
