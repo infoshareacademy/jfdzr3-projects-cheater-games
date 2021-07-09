@@ -80,8 +80,7 @@ export const Login = () => {
               type="password"
               className="form__input"
               autoComplete="current-password"
-
-              name="current-password"
+              name="password"
               id="logIn-password"
               required
               onChange={handleChange}

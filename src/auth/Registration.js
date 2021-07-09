@@ -122,7 +122,7 @@ export const Registration = () => {
               type="password"
               className="form__input"
               autoComplete="new-password"
-              name="new-password"
+              name="password"
               id="signUp-password"
               required
               onChange={handleChange}
