@@ -1,12 +1,12 @@
 import "./auth.css";
-import firebaseApp from "../firebaseConfig";
+import { auth } from "../firebaseConfig";
 import { useHistory } from "react-router-dom";
 
 export const Logout = () => {
   const history = useHistory();
 
   const logoutClick = () => {
-    firebaseApp.auth().signOut();
+    auth.signOut();
     history.push("/");
   };
 

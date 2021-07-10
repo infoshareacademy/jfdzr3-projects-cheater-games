@@ -2,8 +2,7 @@ import "./auth.css";
 import React from "react";
 import { useState } from "react";
 import { Link, useHistory } from "react-router-dom";
-import firebaseApp from "../firebaseConfig";
-import { db } from "../firebaseConfig";
+import { auth, db } from "../firebaseConfig";
 
 const createCharacter = (uid, nickname) => {
   return db
@@ -63,8 +62,7 @@ export const Registration = () => {
 
   const handleOnSubmit = async (e) => {
     e.preventDefault();
-    firebaseApp
-      .auth()
+    auth
       .createUserWithEmailAndPassword(email, password)
       .then((token) => {
         token.user.updateProfile({
