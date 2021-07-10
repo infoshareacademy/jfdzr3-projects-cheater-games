@@ -3,58 +3,69 @@ import "./global-chat.css";
 import Message from "./Message";
 import { db } from "../firebaseConfig";
 import firebase from "firebase/app";
-import { auth } from "../firebaseConfig";
-
+import { useUser } from "../hooks/useUser";
 
 export function GlobalChat() {
+  const [input, setInput] = useState("");
+  const [messages, setMessages] = useState([]);
+  const user = useUser();
 
-    const [input, setInput] = useState('');
-    const [messages, setMessages] = useState([]);
-    
-    useEffect(() => {
-        db.collection('messages')
-        .orderBy('time', 'desc')
-        .onSnapshot(messages => {
-            setMessages(messages.docs.map(doc => doc.data()))
-        })
-    }, []);
+  useEffect(() => {
+    db.collection("messages")
+      .orderBy("time", "desc")
+      .onSnapshot((messages) => {
+        setMessages(messages.docs.map((doc) => doc.data()));
+      });
+  }, []);
 
-    if (auth.currentUser === null) {
-        return <p>loading</p>
-    }
-    
-    const { displayName, uid, } = auth.currentUser;
-        
-    const sendMessage = event => {
-        event.preventDefault();
-        
-        db.collection('messages').add({
-            text: input,
-            time: firebase.firestore.FieldValue.serverTimestamp(),
-            username: displayName,
-            uid: uid,
-        });
-        setInput('');
-    }
+  if (user === null) {
+    return <p>loading</p>;
+  }
 
-    return (
+  const sendMessage = (event) => {
+    event.preventDefault();
+
+    db.collection("messages").add({
+      text: input,
+      time: firebase.firestore.FieldValue.serverTimestamp(),
+      username: user?.name,
+      uid: user?.uid,
+    });
+    setInput("");
+  };
+
+  return (
     <>
-        <div className="chat">
-            <h2>Jesteś zalogowany jako: {displayName}</h2>
+      <div className="chat">
+        <form className="chat-form">
+          <input
+            className="chat_input"
+            placeholder="Wpisz wiadomość...."
+            value={input}
+            onChange={(event) => setInput(event.target.value)}
+          ></input>
+          <button
+            className="chat_button"
+            disabled={!input}
+            type="submit"
+            onClick={sendMessage}
+          >
+            Wyślij
+          </button>
+        </form>
 
-            <form>
-
-                <input placeholder="Wpisz wiadomość...."  value={input} onChange={event => setInput(event.target.value)}></input>
-                <button disabled={!input} type="submit"onClick={sendMessage}>Wyślij</button>
-
-            </form>
-
-            {
-            messages.map((message, index) => {
-            return (<Message key={message.time} username={displayName} message={message}/>)
-                })
-            }
+        <div className="chat_messages">
+          {messages.map((message, index) => {
+            return (
+              <Message
+                key={message.time}
+                username={user?.name}
+                message={message}
+              />
+            );
+          })}
         </div>
-    </>    
-    )
-}; 
+      </div>
+    </>
+  );
+}
