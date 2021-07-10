@@ -40,9 +40,5 @@ export const Links = () => {
       </li>
     );
   }
-  return (
-    <li>
-      <Logout />
-    </li>
-  );
+  return <li></li>;
 };
