@@ -5,4 +5,8 @@
   border-radius: 10px;
   border-style: dotted;
   width: fit-content;
+  word-break: break-word;
+  font-size: 15px;
+  line-height: 25px;
+  text-align: left;
 }

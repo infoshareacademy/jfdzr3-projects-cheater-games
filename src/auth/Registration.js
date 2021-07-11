@@ -2,8 +2,7 @@ import "./auth.css";
 import React from "react";
 import { useState } from "react";
 import { Link, useHistory } from "react-router-dom";
-import firebaseApp from "../firebaseConfig";
-import { db } from "../firebaseConfig";
+import { auth, db } from "../firebaseConfig";
 
 const createCharacter = (uid, nickname) => {
   return db
@@ -11,6 +10,7 @@ const createCharacter = (uid, nickname) => {
     .doc(uid)
     .set({
       exp: 0,
+      level: 1,
       nextLevel: 100,
       name: nickname,
       role: "player",
@@ -21,6 +21,8 @@ const createCharacter = (uid, nickname) => {
         int: 1,
         perc: 1,
         left: 10,
+        speed: 1,
+        vit: 1,
       },
       resources: {
         gold: 100,
@@ -60,8 +62,7 @@ export const Registration = () => {
 
   const handleOnSubmit = async (e) => {
     e.preventDefault();
-    firebaseApp
-      .auth()
+    auth
       .createUserWithEmailAndPassword(email, password)
       .then((token) => {
         token.user.updateProfile({
@@ -109,6 +110,7 @@ export const Registration = () => {
               type="email"
               className="form__input"
               name="email"
+              autoComplete="username email" 
               id="signUp-email"
               required
               onChange={handleChange}
@@ -120,6 +122,7 @@ export const Registration = () => {
               value={password}
               type="password"
               className="form__input"
+              autoComplete="new-password"
               name="password"
               id="signUp-password"
               required

@@ -1,6 +1,5 @@
-// import './Stats.css';
-import { StatsContext } from './StatsProvider';
-import { useContext } from 'react';
+import { StatsContext } from "./StatsProvider";
+import { useContext } from "react";
 
 export function Stat(props) {
   const { title, statAbr } = props;

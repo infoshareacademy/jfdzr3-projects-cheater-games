@@ -4,6 +4,7 @@ import { useUser } from "../hooks/useUser";
 import { HuntLink } from "./HuntLink";
 import { AdminLink } from "./AdminLink";
 import { StoreLink } from "./StoreLink";
+import { StatsLink } from "./StatsLink";
 
 export const Links = () => {
   const user = useUser();
@@ -11,7 +12,7 @@ export const Links = () => {
   const adminLinks = [
     <AdminLink />,
     "Widok postaci",
-    "Statystyki",
+    <StatsLink />,
     <HuntLink />,
     <StoreLink />,
     <Logout />,
@@ -19,7 +20,7 @@ export const Links = () => {
 
   const userLinks = [
     "Widok postaci",
-    "Statystyki",
+    <StatsLink />,
     <HuntLink />,
     <StoreLink />,
     <Logout />,
@@ -40,9 +41,5 @@ export const Links = () => {
       </li>
     );
   }
-  return (
-    <li>
-      <Logout />
-    </li>
-  );
+  return <li></li>;
 };

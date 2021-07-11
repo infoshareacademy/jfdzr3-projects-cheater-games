@@ -9,8 +9,9 @@ import { HomePage } from "./components/HomePage";
 import { MainMenu } from "./components/MainMenu";
 import { useUser } from "./hooks/useUser";
 import { AgilityTrial } from "./components/AgilityTrial";
-import { AdminPanel } from "./components/AdminPanel"
+import { AdminPanel } from "./components/AdminPanel";
 import { StorePage } from "./components/rynek/StorePage";
+import { Stats } from "./components/stats/Stats";
 
 function App() {
   const user = useUser();
@@ -24,26 +25,29 @@ function App() {
         <MainMenu />
         <main className="main__section">
           {user !== null ? (
-              <Switch>
-                <Route path="/store">
+            <Switch>
+              <Route path="/store">
                 <StorePage />
               </Route>
-                <Route path="/hunt">
-                  <HuntingScreen />
-                </Route>
-                <Route path="/agi">
-                  <AgilityTrial />
-                </Route>
-                <Route exact path="/">
-                  <HomePage />
-                </Route>
-              </Switch>
+              <Route path="/hunt">
+                <HuntingScreen />
+              </Route>
+              <Route path="/agi">
+                <AgilityTrial />
+              </Route>
+              <Route path="/stats">
+                <Stats />
+              </Route>
+              <Route exact path="/">
+                <HomePage />
+              </Route>
+            </Switch>
           ) : (
             <Switch>
               <Route path="/register">
                 <RegistrationPage />
               </Route>
-              <Route exact path="/">
+              <Route path="/">
                 <LoginPage />
               </Route>
             </Switch>
@@ -53,11 +57,10 @@ function App() {
               <Route path="/admin">
                 <AdminPanel />
               </Route>
-            </Switch> )
-            : (
-              <>
-              </>
-            )}
+            </Switch>
+          ) : (
+            <></>
+          )}
         </main>
         <aside className="advertising"></aside>
       </div>
