@@ -1,6 +1,5 @@
 import React from "react";
-import { Links } from "./Links"
-import { GlobalChat } from "../global-chat/global-chat";
+import { Links } from "./Links";
 
 export const MainMenu = () => {
   return (
@@ -8,8 +7,6 @@ export const MainMenu = () => {
       <ul>
         <Links />
       </ul>
-      <GlobalChat/>
-
     </nav>
   );
 };
