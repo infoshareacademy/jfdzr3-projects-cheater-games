@@ -1,7 +1,7 @@
 // import { db } from "../../firebaseConfig";
 // import { useItems } from "../../hooks/useItems";
 // import { useUserItems } from "../../hooks/useUserItems";
-import { useUser } from "../../hooks/useUser";
+// import { useUser } from "../../hooks/useUser";
 
 export const Items = ({ items }) => {
   console.log(items);

@@ -2,12 +2,12 @@ import "./store.css";
 import { Avatar } from "./Avatar";
 import { Items } from "./Items";
 import { ItemsGrid } from "./ItemsGrid";
-import { useUser } from "../../hooks/useUser";
+// import { useUser } from "../../hooks/useUser";
 import { useItems } from "../../hooks/useItems";
 import { useUserItems } from "../../hooks/useUserItems";
 
 export const StorePage = () => {
-  const user = useUser();
+  // const user = useUser();
   // const itemsCollectionPath = db.collection('items');
   // const userItemsCollectionPath = db.collection('users').doc(user?.uid).collection('armory');
   const itemsRef = useItems();
