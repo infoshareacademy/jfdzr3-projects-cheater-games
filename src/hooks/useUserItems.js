@@ -7,11 +7,14 @@ export const useUserItems = () => {
   const user = useUser();
 
   useEffect(() => {
-    db.collection("users").doc(user?.uid).collection('armory').onSnapshot((snapshot) => {
-      const newUserItems = [];
-      snapshot.docs.map((doc) => {
-          if (doc.exists) {
-
+    if (user?.uid) {
+      db.collection("users")
+        .doc(user?.uid)
+        .collection("armory")
+        .onSnapshot((snapshot) => {
+          const newUserItems = [];
+          snapshot.docs.map((doc) => {
+            if (doc.exists) {
               for (const property in doc.data()) {
                 newUserItems.push({
                   id: doc.id,
@@ -19,12 +22,12 @@ export const useUserItems = () => {
                   val: doc.data()[property],
                 });
               }
-          }
-
-        return newUserItems;
-      });
-      setUserItems(newUserItems);
-    });
+            }
+            return newUserItems;
+          });
+          setUserItems(newUserItems);
+        });
+    }
   }, [user?.uid]);
   return userItems;
 };
