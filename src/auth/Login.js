@@ -2,7 +2,8 @@ import "./auth.css";
 import React from "react";
 import { Link, useHistory } from "react-router-dom";
 import { useState } from "react";
-import firebaseApp from "../firebaseConfig";
+import { auth } from "../firebaseConfig";
+
 
 const resetFormOnSubmit = (e) => {
   e.target.reset();
@@ -30,8 +31,7 @@ export const Login = () => {
 
   const handleOnSubmit = (e) => {
     e.preventDefault();
-    firebaseApp
-      .auth()
+    auth
       .signInWithEmailAndPassword(email, password)
       .then((token) => {
         // createCharacter(token.user.uid, token.user.displayName);

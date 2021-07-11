@@ -2,7 +2,7 @@ import { useState, useEffect } from "react";
 import "./global-chat.css";
 import Message from "./Message";
 import { db } from "../firebaseConfig";
-import firebase from "firebase";
+import firebase from "firebase/app";
 import { useUser } from "../hooks/useUser";
 
 export function GlobalChat() {
