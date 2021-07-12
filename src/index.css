@@ -27,7 +27,6 @@ body {
   font-weight: 300;
   font-size: 16px;
   background-color: var(--color-grey-light);
-  color: #111;
 }
 
 .App {
@@ -131,7 +130,7 @@ body {
 }
 
 .bonus__title {
-  font-weight: bold;
+  text-align: center;
 }
 
 .choose__race {
@@ -158,6 +157,7 @@ body {
   box-shadow: var(--box-shadow-1);
   position: relative;
   z-index: 10;
+  grid-column: 1/-1;
 }
 .logo {
   padding: 20px 0;
@@ -168,6 +168,8 @@ body {
   display: grid;
   grid-template-columns: 20vw 1fr 20vw;
   background-color: var(--background-color-light);
+  min-height: 100vh;
+  grid-auto-rows: auto 1fr;
 }
 .nav {
   padding-left: 30px;
@@ -190,20 +192,37 @@ li {
 .main__section {
   display: grid;
   grid-template-rows: auto 1fr;
+  align-items: center;
+  justify-content: center;
   gap: 40px;
 }
+
 .welcome {
   text-align: center;
   margin-top: 20px;
   font-family: var(--font-metamorphous);
 }
-.advertising {
-  height: 90vh;
+
+.hunting-screen {
+  display: grid;
+  place-items: center;
+  gap: 40px;
+  padding: 40px 25px 0 25px;
+}
+
+.hunting__screen-main {
+  width: 100%;
+  text-align: center;
 }
 
 .hunting__screen-description {
   padding: 20px 0;
 }
+
+.hunting__screen--level_description p {
+  text-align: left;
+}
+
 .hunting__screen--choose_level {
   display: inline-flex;
   flex-flow: row;
@@ -231,9 +250,6 @@ li {
   height: 15vh;
   padding: 20px 0;
 }
-.hunting__screen--level_description p {
-  font-size: 14px;
-}
 
 a {
   color: var(--color-red);
@@ -254,9 +270,13 @@ button {
 .btn {
   font-size: 18px;
   padding: 10px 40px;
-  margin-right: 20px;
   transition: all 0.1s;
   font-family: var(--font-metamorphous);
+}
+
+.btn-small {
+  font-size: 14px;
+  padding: 0 25px;
 }
 
 .btn:hover {
@@ -289,6 +309,10 @@ button {
   background-color: var(--color-blue);
   color: #fff;
   border-bottom: 3px solid var(--color-dark-blue);
+}
+
+.margin-right-medium {
+  margin-right: 15px;
 }
 
 h1,

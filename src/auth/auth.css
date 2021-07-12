@@ -15,6 +15,7 @@
 /*  MODAL  */
 
 .modal {
+  grid-row: 2/3;
   width: 25vw;
   padding: 30px;
   background: #fafafa;
@@ -50,19 +51,6 @@ label[for="logIn-password"] {
 .user-action {
   margin-top: 15px;
 }
-
-/* button {
-  margin-top: 30px;
-  margin-bottom: 30px;
-  padding: 8px 12px;
-  background: green;
-  border: 0;
-  font-weight: bold;
-  font-family: "Metamorphous", cursive;
-
-  font-size: 16px;
-  cursor: pointer;
-} */
 
 .auth {
   width: 60vw;

@@ -120,7 +120,7 @@ export const SelectRace = () => {
             style={{ textDecoration: "none", color: "inherit" }}
             onClick={updateRace}
           >
-            <button className="btn btn-green">
+            <button className="btn btn-green margin-right-medium">
               Wybierz rasę: {slides[1].name}
             </button>
           </Link>
