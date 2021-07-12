@@ -18,13 +18,17 @@
   font-weight: bold;
 }
 
-.user-stats:not(:first-child) {
-  margin-top: 50px;
+.user-stats {
+  margin-bottom: 45px;
+}
+
+.user-stats__points-left {
+  margin-bottom: 50px;
 }
 
 .user-stats__form {
   text-align: center;
-  width: 30%;
+  width: 100%;
 }
 
 .user-stats__right {
