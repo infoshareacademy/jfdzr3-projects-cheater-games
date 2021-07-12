@@ -1,40 +1,38 @@
 import { useState, useEffect } from "react";
 import { Logout } from "../auth/Logout";
-import {
-  Link,
-} from "react-router-dom";
+import { Link } from "react-router-dom";
 import { useUser } from "../hooks/useUser";
 import { db } from "../firebaseConfig";
 
-
 export const SelectRace = () => {
   const getRaceFromDB = () => {
-      return db.collection("races")
-        .get()
-        .then((race) => {
-          const cards = race.docs.map((doc, i) => {
-            return {
-              id: i + 1,
-              name: doc.id,
-              src: `${process.env.PUBLIC_URL}/img/races/${doc.id}.jpg`,
-              description: doc.data().descr,
-              bonus: [
-                { name: "str", change: doc.data().str },
-                { name: "agi", change: doc.data().agi },
-                { name: "tough", change: doc.data().tough },
-                { name: "vit", change: doc.data().vit },
-                { name: "perc", change: doc.data().perc },
-                { name: "int", change: doc.data().int },
-                { name: "speed", change: doc.data().speed },
-                { name: "def", change: doc.data().def },
-                { name: "gold", change: doc.data().gold },
-                { name: "wood", change: doc.data().wood },
-                { name: "mat", change: doc.data().mat },
-              ],
-            };
-          });
-          return cards
+    return db
+      .collection("races")
+      .get()
+      .then((race) => {
+        const cards = race.docs.map((doc, i) => {
+          return {
+            id: i + 1,
+            name: doc.id,
+            src: `${process.env.PUBLIC_URL}/img/races/${doc.id}.jpg`,
+            description: doc.data().descr,
+            bonus: [
+              { name: "str", change: doc.data().str },
+              { name: "agi", change: doc.data().agi },
+              { name: "tough", change: doc.data().tough },
+              { name: "vit", change: doc.data().vit },
+              { name: "perc", change: doc.data().perc },
+              { name: "int", change: doc.data().int },
+              { name: "speed", change: doc.data().speed },
+              { name: "def", change: doc.data().def },
+              { name: "gold", change: doc.data().gold },
+              { name: "wood", change: doc.data().wood },
+              { name: "mat", change: doc.data().mat },
+            ],
+          };
         });
+        return cards;
+      });
   };
 
   const [races, setRaces] = useState([]);
@@ -60,12 +58,10 @@ export const SelectRace = () => {
 
   const updateRace = () => {
     const { name } = slides[1];
-    db.collection("users")
-      .doc(user.uid)
-      .update({
-        race: name,
-      })
-  }
+    db.collection("users").doc(user.uid).update({
+      race: name,
+    });
+  };
 
   const unitsMap = {
     str: { label: "Siła" },
@@ -84,14 +80,14 @@ export const SelectRace = () => {
     return <p>Loading...</p>;
   }
   return (
-    <>
-      <button className="change__race" onClick={getPrevSlide}>
-        {"<"}
-      </button>
-      <button className="change__race" onClick={getNextSlide}>
-        {">"}
-      </button>
+    <section className="select-race">
       <div className="wrapper">
+        <button className="change__race" onClick={getPrevSlide}>
+          &#10157;
+        </button>
+        <button className="change__race" onClick={getNextSlide}>
+          &#10157;
+        </button>
         <div className="slider">
           {slides.map((slide) => (
             <div
@@ -119,14 +115,20 @@ export const SelectRace = () => {
             ))}
         </div>
         <div className="wrapper">
-        <Link to="/" style={{textDecoration: "none", color: "inherit"}} onClick={updateRace}>
-          <div className="choose__race">
-          Wybierz rasę: {slides[1].name}
-        </div>
-        </Link>
-        <div className="choose__race"><Logout /></div>
+          <Link
+            to="/"
+            style={{ textDecoration: "none", color: "inherit" }}
+            onClick={updateRace}
+          >
+            <button className="btn btn-green">
+              Wybierz rasę: {slides[1].name}
+            </button>
+          </Link>
+          <button className="btn btn-red">
+            <Logout />
+          </button>
         </div>
       </div>
-    </>
+    </section>
   );
 };
