@@ -4,7 +4,6 @@
   box-sizing: border-box;
 }
 body {
-  hyphens: auto;
   height: 100vh;
   width: 100vw;
   font-family: "Metamorphous", cursive;
