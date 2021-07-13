@@ -9,8 +9,14 @@ export const HomePage = () => {
 
   return (
     <>
-      <h1 className="welcome">Witaj w grze {user?.name}</h1>
-      {user?.race === undefined ? <SelectRace /> : <GlobalChat />}
+   {user !== null ? (
+        <>
+          <h1 className="welcome">Witaj w grze {user?.name}</h1>
+          {user?.race === undefined ? <SelectRace /> : <GlobalChat />}
+        </>
+      ) : (
+        <></>
+      )}
     </>
   );
 };
