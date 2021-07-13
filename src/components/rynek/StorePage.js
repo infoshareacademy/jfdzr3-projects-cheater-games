@@ -35,6 +35,7 @@ export const StorePage = () => {
         <Avatar />
         <ItemsGrid text="Sprzedaj">
           <Items items={userItemsRef} />
+          
         </ItemsGrid>
       </div>
       </>

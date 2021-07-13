@@ -10,14 +10,14 @@ import { TextBlock } from "./TextBlok";
 import styled from 'styled-components'
 const Wrapper = styled.div`
 display: grid;
-justify-content: space-between;
+justify-content: space-around;
 align-items: flex-start;
-// grid-gap: 3px;
+grid-gap: 3px;
 
 width: 100%;
 grid-template-columns: repeat(4, 20%);
-border: 1px solid gray;
-box-shadow: 0 5px 10px rgba(0, 0, 0, 0.5);
+grid-template-rows: repeat(3, 33%) ;
+
 `
 export const ItemsGrid = ({ text, children }) => (
    <> 
