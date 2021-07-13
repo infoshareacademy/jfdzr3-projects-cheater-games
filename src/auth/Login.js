@@ -6,10 +6,6 @@ import {
 import { useState } from "react";
 import { auth } from "../firebaseConfig";
 
-
-
-
-
 const resetFormOnSubmit = (e) => {
   e.target.reset();
 };
@@ -34,7 +30,12 @@ export const Login = () => {
     return user;
   };
 
-  const handleOnSubmit = (e) => {
+  const translatedFirebaseErrors = [
+    { id: 'auth/user-not-found', description: "Użytkownik nie istnieje"},
+    { id: 'auth/email-already-in-use', description : "Email już używany"}
+  ]
+
+   const handleOnSubmit = (e) => {
     e.preventDefault();
     auth
       .signInWithEmailAndPassword(email, password)
@@ -52,6 +53,8 @@ export const Login = () => {
         });
       });
   };
+
+
 
   return (
     <>
@@ -95,9 +98,27 @@ export const Login = () => {
         Nie masz konta? <Link to="/register">Zarejestruj się</Link>
       
         </div>
-        <div className="error">
-          <p>{error}</p>
-        </div>
+       
+        {translatedFirebaseErrors.map(({id, description}) => {
+                    
+          if (id === error.code) {
+          return (<div className="error">
+                    <p>{description}</p>
+                    </div>)
+          } else {
+            return <p>nic</p>
+          }
+        })}
+                
+         
+                    
+
+        
+        {/* <div className="error">
+                    <p>{error}</p>
+                    </div> */}
+          
+          
       </div>
     </>
   );
