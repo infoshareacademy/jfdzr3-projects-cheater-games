@@ -30,12 +30,13 @@ export const Login = () => {
     return user;
   };
 
-  const translatedFirebaseErrors = [
-    { id: 'auth/user-not-found', description: "Użytkownik nie istnieje"},
-    { id: 'auth/email-already-in-use', description : "Email już używany"}
-  ]
+  const translatedFirebaseErrors = {
+    'There is no user record corresponding to this identifier. The user may have been deleted.': "Próbowano się zalogować do nieistniejącego konta. Przyczyn może być wiele: takiego konta nigdy nie było lub istniało, ale zostało skasowane.",
+    'Access to this account has been temporarily disabled due to many failed login attempts. You can immediately restore it by resetting your password or you can try again later.': "Dostęp do konta został tymczasowo ograniczony z powodu wielokrotnych nieudanych prób zalogowania. Możesz odzyskać dostęp poprzez zresetowanie hasła albo spróbuj zalogować się później.",
+    'The password is invalid or the user does not have a password.': "Podane hasło jest błędne."
+  };
 
-   const handleOnSubmit = (e) => {
+  const handleOnSubmit = (e) => {
     e.preventDefault();
     auth
       .signInWithEmailAndPassword(email, password)
@@ -98,28 +99,16 @@ export const Login = () => {
         Nie masz konta? <Link to="/register">Zarejestruj się</Link>
       
         </div>
-       
-        {translatedFirebaseErrors.map(({id, description}) => {
-                    
-          if (id === error.code) {
-          return (<div className="error">
-                    <p>{description}</p>
-                    </div>)
-          } else {
-            return <p>nic</p>
-          }
-        })}
-                
-         
-                    
+         <div className="error"> 
+         {error && <p>{translatedFirebaseErrors[error] || error}</p>}      
 
-        
-        {/* <div className="error">
-                    <p>{error}</p>
-                    </div> */}
-          
-          
-      </div>
+         </div>
+{/* 
+        <div className="error">
+          <p>{error}</p>
+        </div> */}
+
+        </div>
     </>
   );
 };
