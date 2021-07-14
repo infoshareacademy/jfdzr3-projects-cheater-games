@@ -55,8 +55,6 @@ export const Login = () => {
       });
   };
 
-
-
   return (
     <>
       <div className="modal active">
@@ -99,15 +97,9 @@ export const Login = () => {
         Nie masz konta? <Link to="/register">Zarejestruj się</Link>
       
         </div>
-         <div className="error"> 
-         {error && <p>{translatedFirebaseErrors[error] || error}</p>}      
-
-         </div>
-{/* 
-        <div className="error">
-          <p>{error}</p>
-        </div> */}
-
+              <div className="error"> 
+              {error && <p>{translatedFirebaseErrors[error] || error}</p>}      
+              </div>
         </div>
     </>
   );
