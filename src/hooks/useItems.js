@@ -10,6 +10,7 @@ export const useItems = (collectionPath) => {
       collectionPath.onSnapshot((snapshot) => {
         const newItems = [];
         snapshot.docs.map((doc) => {
+          if (doc.exists) {
           for (const property in doc.data()) {
             newItems.push({
               type: doc.id,
@@ -17,6 +18,7 @@ export const useItems = (collectionPath) => {
               val: doc.data()[property],
             });
           }
+        }
           return newItems;
         });
         setItems(newItems);
