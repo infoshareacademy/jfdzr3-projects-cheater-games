@@ -1,9 +1,10 @@
 :root {
-  --color-primary-green: #468656;
+  --color-primary-green: #315e3c;
   --color-primary-dark-green: #315e3c;
   --color-secondary-gray: #2e2c2f;
   --color-grey-light: #f2f2f2;
   --color-grey-dark: #857891;
+  --color-grey-dark-1: #333;
   --color-red: #f14156;
   --color-dark-red: #ab0d1f;
   --color-yellow: #f9c610;
@@ -167,35 +168,38 @@ body {
 
 .content {
   display: grid;
-  grid-template-columns: 20vw 1fr 20vw;
+  grid-template-columns: 250px 1fr;
   background-color: var(--background-color-light);
   min-height: 100vh;
   grid-auto-rows: auto 1fr;
 }
 .nav {
-  padding-left: 30px;
+  background-color: var(--color-grey-dark-1);
+  padding-top: 50px;
+  color: #fff;
 }
 ul {
   list-style-type: none;
-  margin: 0;
-  padding: 0;
-  padding-top: 20px;
-  color: black;
-  cursor: pointer;
+  text-align: center;
 }
 li {
-  margin-top: 10px;
-  font-size: 26px;
-  font-family: var(--font-metamorphous);
-  line-height: 35px;
-  font-weight: 400;
+  font-size: 18px;
+  background-color: var(--color-primary-green);
+  cursor: pointer;
+  padding: 10px 5px;
+  width: 80%;
+  margin: 5px auto;
+  transition: all 0.2s;
+}
+li:hover {
+  background-color: #cf873e;
 }
 .main__section {
   display: grid;
   grid-template-rows: auto 1fr;
   align-items: center;
   justify-content: center;
-  gap: 40px;
+  padding: 40px 0;
 }
 
 .welcome {
@@ -208,7 +212,7 @@ li {
   display: grid;
   place-items: center;
   gap: 40px;
-  padding: 40px 25px 0 25px;
+  padding: 0 25px;
 }
 
 .hunting__screen-main {
