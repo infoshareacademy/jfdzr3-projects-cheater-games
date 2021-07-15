@@ -5,16 +5,10 @@ import ShoppingCartRoundedIcon from "@material-ui/icons/ShoppingCartRounded";
 const ItemStyle = styled.div`
   height: max-content;
   width: "100%";
-  justify-content: space-around;
-  // margin: "0 10px";
-  // position: "absolute";
-  // border: 1px solid lightgray;
   box-shadow: 0 3px 7px rgba(0, 0, 0, 0.5);
-  // white-space: nowrap;
   padding: 0 5px;
   min-width: 80px;
   min-height: 110px;
-  // max-height: 110px;
 `;
 export const Items = ({ items }) => {
   console.log(items);

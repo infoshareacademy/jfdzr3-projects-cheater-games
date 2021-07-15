@@ -4,8 +4,6 @@ import styled from "styled-components";
 
 const Wrapper = styled.div`
   display: grid;
-  justify-content: space-around;
-  align-items: center;
   width: 100%;
   grid-template-columns: repeat(auto-fill, minmax(75px, 1fr));
   grid-auto-rows: 110px;

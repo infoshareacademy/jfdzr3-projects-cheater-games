@@ -5,29 +5,6 @@ import { Link, useHistory } from "react-router-dom";
 import { auth, db } from "../firebaseConfig";
 
 const createCharacter = (uid, nickname) => {
-<<<<<<< HEAD
-  return db.collection("users").doc(uid).set({
-    exp: 0,
-    level: 1,
-    nextLevel: 100,
-    name: nickname,
-    stats: {
-      str: 1,
-      agi: 1,
-      tough: 1,
-      int: 1,
-      perc: 1,
-      left: 10,
-      speed: 1,
-      vit: 1
-    },
-    resources: {
-      gold: 100,
-      material: 50,
-      wood: 50,
-    }
-  });
-=======
   return db
     .collection("users")
     .doc(uid)
@@ -53,7 +30,6 @@ const createCharacter = (uid, nickname) => {
         wood: 50,
       },
     });
->>>>>>> feature/store
 };
 
 const createPlayerArmory = (uid) => {
