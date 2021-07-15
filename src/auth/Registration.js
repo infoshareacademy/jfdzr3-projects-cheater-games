@@ -61,9 +61,9 @@ export const Registration = () => {
   };
 
   const translatedFirebaseErrors = {
-    'Password should be at least 6 characters' : "Hasło powinno mieć co najmniej 6 znaków.",
-    'The email address is already in use by another account.' : "Adres email jest już używany.",
-    'A network error (such as timeout, interrupted connection or unreachable host) has occurred.' : "Brak połączenia z serwerem."
+    'auth/weak-password' : "Hasło powinno mieć co najmniej 6 znaków.",
+    'auth/email-already-in-use' : "Adres email jest już używany.",
+    'auth/network-request-failed' : "Brak połączenia z serwerem."
   };
 
   const handleOnSubmit = async (e) => {
@@ -83,7 +83,7 @@ export const Registration = () => {
         console.log("error", error);
         setUser({
           ...user,
-          error: error.message,
+          error,
         });
       });
   };
@@ -143,7 +143,7 @@ export const Registration = () => {
           Masz konto? <Link to="/login">Zaloguj się</Link>
         </div>
         <div className="error">
-        {error && <p>{translatedFirebaseErrors[error] || error}</p>}   
+        {error && <p>{translatedFirebaseErrors[error.code] || error.message}</p>}   
         </div>
       </div>
     </>
