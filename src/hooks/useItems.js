@@ -1,29 +1,29 @@
 import { useEffect, useState } from "react";
-import { db } from "../firebaseConfig"
+import { useUser } from "./useUser";
 
-export const useItems = () => {
+export const useItems = (collectionPath) => {
   const [items, setItems] = useState([]);
+  const user = useUser();
 
   useEffect(() => {
-    db.collection("items").onSnapshot((snapshot) => {
-      const newItems = [];
-      snapshot.docs.map((doc) => {
-        for (const property in doc.data()) {
-          newItems.push({
-            id: doc.id,
-            key: property,
-            val: doc.data()[property],
-          });
+    if (user?.uid) {
+      collectionPath.onSnapshot((snapshot) => {
+        const newItems = [];
+        snapshot.docs.map((doc) => {
+          if (doc.exists) {
+          for (const property in doc.data()) {
+            newItems.push({
+              type: doc.id,
+              key: property,
+              val: doc.data()[property],
+            });
+          }
         }
-
-        return newItems;
+          return newItems;
+        });
+        setItems(newItems);
       });
-      setItems(newItems);
-    });
-  }, []);
-  console.log(items);
+    }
+  }, [user?.uid]);
   return items;
 };
-
-export default useItems;
-

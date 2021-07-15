@@ -1,9 +1,3 @@
-import { useState, useEffect } from "react";
-import firebase from "firebase/app";
-import { Logout } from "../auth/Logout";
-import {
-  Link,
-} from "react-router-dom";
 import { useUser } from "../hooks/useUser";
 import { usePlayerStats } from "../hooks/usePlayerStats";
 

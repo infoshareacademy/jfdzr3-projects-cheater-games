@@ -10,7 +10,8 @@ import { MainMenu } from "./components/MainMenu";
 import { useUser } from "./hooks/useUser";
 import { AgilityTrial } from "./components/AgilityTrial";
 import { AdminPanel } from "./components/AdminPanel";
-import { StorePage } from "./components/store/StorePage";
+import { StorePage } from "./components/rynek/StorePage";
+import { Stats } from "./components/stats/Stats";
 
 function App() {
   const user = useUser();
@@ -34,6 +35,9 @@ function App() {
               <Route path="/agi">
                 <AgilityTrial />
               </Route>
+              <Route path="/stats">
+                <Stats />
+              </Route>
               <Route exact path="/">
                 <HomePage />
               </Route>
@@ -43,7 +47,7 @@ function App() {
               <Route path="/register">
                 <RegistrationPage />
               </Route>
-              <Route exact path="/">
+              <Route path="/">
                 <LoginPage />
               </Route>
             </Switch>

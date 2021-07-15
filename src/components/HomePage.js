@@ -2,14 +2,15 @@ import "../auth/auth.css";
 import React from "react";
 import { useUser } from "../hooks/useUser";
 import { SelectRace } from "./SelectRace";
+import { GlobalChat } from "../global-chat/global-chat";
 
 export const HomePage = () => {
-const user = useUser();
+  const user = useUser();
 
   return (
     <>
       <h1 className="welcome">Witaj w grze {user?.name}</h1>
-      {user?.race === undefined && <SelectRace />}
+      {user?.race === undefined ? <SelectRace /> : <GlobalChat />}
     </>
   );
 };

@@ -1,0 +1,18 @@
+.store-wrapper {
+  display: grid;
+  grid-template-columns: 40% 20% 40%;
+  grid-template-areas: "items avatar items";
+  margin-top: 50px;
+}
+
+.items-wrapper {
+  display: grid;
+  width: 100%;
+  box-shadow: 0 5px 10px rgba(0, 0, 0, 0.5);
+  margin: 0 auto;
+  transform: scale3d(95%, 95%, 100%);
+}
+
+.avatar img {
+  width: 100%;
+}
