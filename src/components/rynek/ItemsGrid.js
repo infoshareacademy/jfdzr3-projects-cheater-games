@@ -1,29 +1,21 @@
 import "./store.css";
 import { TextBlock } from "./TextBlok";
+import styled from "styled-components";
 
-// export const ItemsGrid = ({ text, children }) => (
-//   <div className="items-wrapper wrapper">
-//     <TextBlock>{text}</TextBlock>
-//     <div className="items-grid">{children}</div>
-//   </div>
-// );
-import styled from 'styled-components'
 const Wrapper = styled.div`
-display: grid;
-justify-content: space-around;
-align-items: flex-start;
-grid-gap: 3px;
-
-width: 100%;
-grid-template-columns: repeat(4, 20%);
-grid-template-rows: repeat(3, 33%) ;
-
-`
+  display: grid;
+  justify-content: space-around;
+  align-items: center;
+  width: 100%;
+  grid-template-columns: repeat(auto-fill, minmax(75px, 1fr));
+  grid-auto-rows: 110px;
+  grid-gap: 10px;
+`;
 export const ItemsGrid = ({ text, children }) => (
-   <> 
-  <div className="items-wrapper">
-   <TextBlock>{text}</TextBlock>
-    <Wrapper className="items-grid">{children}</Wrapper>
-  </div>
+  <>
+    <div className="items-wrapper">
+      <TextBlock>{text}</TextBlock>
+      <Wrapper className="items-grid">{children}</Wrapper>
+    </div>
   </>
 );
