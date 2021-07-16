@@ -6,6 +6,7 @@ import { useUser } from "../../hooks/useUser";
 import { useItems } from "../../hooks/useItems";
 import { useUserItems } from "../../hooks/useUserItems";
 import { db } from "../../firebaseConfig";
+import { CartInformation } from "./CartInformation";
 
 export const StorePage = () => {
   const user = useUser();
@@ -20,13 +21,14 @@ export const StorePage = () => {
   return (
     <>
       <h1>Mirek Handlarz</h1>
+      <CartInformation productCount={1} />
       <div className="store-wrapper">
-        <ItemsGrid text="Kup">
-          <Items items={itemsRef} />
-        </ItemsGrid>
-        <Avatar />
         <ItemsGrid text="Sprzedaj">
           <Items items={userItemsRef} />
+        </ItemsGrid>
+        <Avatar />
+        <ItemsGrid text="Kup">
+          <Items items={itemsRef} />
         </ItemsGrid>
       </div>
     </>
