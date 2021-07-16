@@ -15,7 +15,7 @@ export const Items = ({ items }) => {
   console.log(items);
 
   if (items.length === 0) {
-    return <p>Loading</p>;
+    return <p>Nie posiadasz jeszcze przedmiotów</p>;
   } else {
     return (
       <>
