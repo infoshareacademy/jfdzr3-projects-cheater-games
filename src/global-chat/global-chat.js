@@ -45,7 +45,7 @@ export function GlobalChat() {
             onChange={(event) => setInput(event.target.value)}
           ></input>
           <button
-            className="chat_button"
+            className="btn btn-small btn-green"
             disabled={!input}
             type="submit"
             onClick={sendMessage}
