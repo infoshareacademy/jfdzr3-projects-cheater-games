@@ -56,10 +56,10 @@ body {
 
 .content {
   display: grid;
-  grid-template-columns: minmax(auto, 250px) 1fr;
+  grid-template-columns: 250px 1fr;
+  grid-auto-rows: auto 1fr;
   background-color: var(--background-color-light);
   min-height: 100vh;
-  grid-auto-rows: auto 1fr;
 }
 .nav {
   background-color: var(--color-grey-dark-1);
@@ -218,6 +218,7 @@ li:hover {
   place-items: center;
   gap: 40px;
   padding: 0 25px;
+  grid-row: 2/3;
 }
 
 .hunting__screen-main {
@@ -331,4 +332,8 @@ h3,
 h4,
 h5 {
   font-family: "Metamorphous";
+}
+
+h1 {
+  font-size: 32px;
 }

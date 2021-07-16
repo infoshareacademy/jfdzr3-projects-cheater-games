@@ -16,19 +16,19 @@
 
 .modal {
   grid-row: 2/3;
-  width: 25vw;
   padding: 30px;
   background: #fafafa;
   box-shadow: rgb(0 0 0 / 10%) 0px 10px 15px -3px,
     rgb(0 0 0 / 5%) 0px 4px 6px -2px;
   text-align: center;
 }
+
 label {
   margin-top: 20px;
   text-align: left;
 }
+
 input {
-  display: block;
   margin: 8px 0;
   padding: 8px 2px;
   border-width: 0 0 2px 0;
@@ -36,7 +36,7 @@ input {
   outline: none;
   background-color: #fafafa;
   font-family: inherit;
-  font-size: 14px;
+  font-size: 15px;
   transition: all 0.2s;
 }
 

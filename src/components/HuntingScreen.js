@@ -45,7 +45,7 @@ export const HuntingScreen = () => {
   return (
     <section className="hunting-screen">
       <div className="hunting__screen-title">
-        <h2>Polowanie</h2>
+        <h1>Polowanie</h1>
       </div>
       <div className="hunting__screen-description">
         <p>
