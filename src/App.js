@@ -44,10 +44,14 @@ function App() {
             </Switch>
           ) : (
             <Switch>
+              
+              <Route exact path="/">
+                <HomePage />
+              </Route>
               <Route path="/register">
                 <RegistrationPage />
               </Route>
-              <Route path="/">
+              <Route path="/login">
                 <LoginPage />
               </Route>
             </Switch>
