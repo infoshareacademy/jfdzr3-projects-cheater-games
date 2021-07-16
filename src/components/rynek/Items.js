@@ -1,6 +1,7 @@
 import styled from "styled-components";
 import Chip from "@material-ui/core/Chip";
 import ShoppingCartRoundedIcon from "@material-ui/icons/ShoppingCartRounded";
+import { Item } from "./Item";
 
 const ItemStyle = styled.div`
   height: max-content;
@@ -11,7 +12,7 @@ const ItemStyle = styled.div`
   min-width: 80px;
   min-height: 110px;
 `;
-export const Items = ({ items }) => {
+export const Items = ({ items, onBuyClick }) => {
   console.log(items);
 
   if (items.length === 0) {
@@ -22,19 +23,10 @@ export const Items = ({ items }) => {
         {items &&
           items.map((item, index) => (
             <ItemStyle key={index}>
-              <h5>{item.key}</h5>
-              <h6 style={{ marginTop: "5px" }}>gold: {item.val.value}</h6>
-              <Chip
-                label={item.val.value}
-                icon={<ShoppingCartRoundedIcon style={{ color: "green" }} />}
-                variant="outlined"
-                size="small"
-                style={{
-                  marginTop: "10px",
-                  color: "green",
-                  borderColor: "green",
-                  alignSelf: "flex-end",
-                }}
+              <Item 
+              name={item.key} 
+              value={item.val.value}
+              onBuyClick={() => onBuyClick(item.id)}
               />
             </ItemStyle>
           ))}

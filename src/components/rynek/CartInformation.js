@@ -18,11 +18,14 @@ export const CartInformation = ({ productCount, totalValue }) => {
     return <></>;
   } else {
     return (
+        <>
       <IconButton aria-label="cart" style={{ float: "right" }}>
         <StyledBadge badgeContent={productCount} color="secondary">
           <ShoppingCartIcon />
         </StyledBadge>
       </IconButton>
+      <div>{totalValue}</div>
+      </>
     );
   }
 };
