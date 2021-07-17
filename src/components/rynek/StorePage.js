@@ -22,22 +22,26 @@ export const StorePage = () => {
 
   return (
     <>
-    <section className="store__screen" style={{margin: "0 auto"}}>
-    <div>
-      <h1 style={{textAlign: "center"}}>Mirek Handlarz</h1>
-      <CartInformation productCount={1} />
-      </div>
-      <div className="store-wrapper">
-        <ItemsGrid text="Sprzedaj">
-          <Items items={userItemsRef} />
-        </ItemsGrid>
-        <Avatar />
-        <ItemsGrid text="Kup">
-          <Items items={itemsRef} />
-        </ItemsGrid>
-      </div>
-    </section>
-      <GlobalChat />
-      </>
+      <section className="store__screen" style={{ margin: "0 auto" }}>
+        <div>
+          <h1 style={{ textAlign: "center" }}>Mirek Handlarz</h1>
+          <CartInformation productCount={1} />
+        </div>
+        <div className="store-wrapper">
+          <ItemsGrid text="Sprzedaj">
+            <Items items={userItemsRef} />
+          </ItemsGrid>
+          <Avatar />
+          <ItemsGrid text="Kup">
+            <Items items={itemsRef} />
+            <Items items={itemsRef} />
+           
+          </ItemsGrid>
+        </div>
+        <section style={{height: "250px"}}>
+        <GlobalChat />
+        </section>
+      </section>
+    </>
   );
 };

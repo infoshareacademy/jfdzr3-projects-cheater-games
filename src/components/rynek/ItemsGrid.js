@@ -8,6 +8,7 @@ const Wrapper = styled.div`
   grid-template-columns: repeat(auto-fill, minmax(80px, 1fr));
   grid-auto-rows: 110px;
   grid-gap: 10px;
+
 `;
 
 export const ItemsGrid = ({ text, children }) => (

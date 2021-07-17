@@ -2,24 +2,32 @@
   width: 100%;
   height: 100%;
   display:grid;
+  grid-template-columns: 1fr;
+  align-items: flex-start;
+  /* grid-template-rows: auto auto 250px; */
+  grid-template-rows: 8% 62% 30%;
   align-items: center;
   text-align: center;
-  padding: 0 25px 25px 25px;
+  padding: 0 25px;
 }
 .store-wrapper {
   display: grid;
   width: 100%;
+  height: 100%;
   grid-template-columns: 40% 20% 40%;
-  margin-top: 10px;
+  overflow: scroll;
+
 }
 
 .items-wrapper {
   display: grid;
+  align-content: start;
   width: 100%;
+  height: 100%;
   box-shadow: 0 5px 10px rgba(0, 0, 0, 0.5);
   margin: 0 auto;
   transform: scale3d(95%, 95%, 100%);
-  align-self: flex-start;
+  /* align-self: flex-start; */
 }
 
 .avatar img {
