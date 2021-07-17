@@ -8,6 +8,7 @@ import { useUserItems } from "../../hooks/useUserItems";
 import { db } from "../../firebaseConfig";
 import { CartInformation } from "./CartInformation";
 import { TextBlock } from "./TextBlok";
+import { GlobalChat } from "../../global-chat/global-chat";
 
 export const StorePage = () => {
   const user = useUser();
@@ -20,6 +21,7 @@ export const StorePage = () => {
   const userItemsRef = useUserItems(userItemsCollectionPath);
 
   return (
+    <>
     <section className="store__screen" style={{margin: "0 auto"}}>
     <div>
       <h1 style={{textAlign: "center"}}>Mirek Handlarz</h1>
@@ -35,5 +37,7 @@ export const StorePage = () => {
         </ItemsGrid>
       </div>
     </section>
+      <GlobalChat />
+      </>
   );
 };
