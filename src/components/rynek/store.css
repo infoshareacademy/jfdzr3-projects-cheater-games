@@ -1,7 +1,15 @@
+.store__screen{
+  width: 100%;
+  display:grid;
+  align-items: center;
+  text-align: center;
+  padding: 0 25px;
+}
 .store-wrapper {
   display: grid;
+  width: 100%;
   grid-template-columns: 40% 20% 40%;
-  margin-top: 50px;
+  margin-top: 10px;
 }
 
 .items-wrapper {

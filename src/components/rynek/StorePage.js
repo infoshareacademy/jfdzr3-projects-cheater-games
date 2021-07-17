@@ -7,6 +7,7 @@ import { useItems } from "../../hooks/useItems";
 import { useUserItems } from "../../hooks/useUserItems";
 import { db } from "../../firebaseConfig";
 import { CartInformation } from "./CartInformation";
+import { TextBlock } from "./TextBlok";
 
 export const StorePage = () => {
   const user = useUser();
@@ -19,9 +20,11 @@ export const StorePage = () => {
   const userItemsRef = useUserItems(userItemsCollectionPath);
 
   return (
-    <>
-      <h1>Mirek Handlarz</h1>
+    <section className="store__screen" style={{margin: "0 auto"}}>
+    <div>
+      <h1 style={{textAlign: "center"}}>Mirek Handlarz</h1>
       <CartInformation productCount={1} />
+      </div>
       <div className="store-wrapper">
         <ItemsGrid text="Sprzedaj">
           <Items items={userItemsRef} />
@@ -31,6 +34,6 @@ export const StorePage = () => {
           <Items items={itemsRef} />
         </ItemsGrid>
       </div>
-    </>
+    </section>
   );
 };

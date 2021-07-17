@@ -1,6 +1,4 @@
 import styled from "styled-components";
-import Chip from "@material-ui/core/Chip";
-import ShoppingCartRoundedIcon from "@material-ui/icons/ShoppingCartRounded";
 import { Item } from "./Item";
 
 const ItemStyle = styled.div`
