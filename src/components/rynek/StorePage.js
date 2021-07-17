@@ -33,8 +33,7 @@ export const StorePage = () => {
           </ItemsGrid>
           <Avatar />
           <ItemsGrid text="Kup">
-            <Items items={itemsRef} />
-            <Items items={itemsRef} />
+            <Items items={itemsRef} onBuyClick={(id) => console.log(id)} />
            
           </ItemsGrid>
         </div>

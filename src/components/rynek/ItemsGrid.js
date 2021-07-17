@@ -5,7 +5,7 @@ import styled from "styled-components";
 const Wrapper = styled.div`
   display: grid;
   width: 100%;
-  grid-template-columns: repeat(auto-fill, minmax(80px, 1fr));
+  grid-template-columns: repeat(auto-fill, minmax(90px, 1fr));
   grid-auto-rows: 110px;
   grid-gap: 10px;
 

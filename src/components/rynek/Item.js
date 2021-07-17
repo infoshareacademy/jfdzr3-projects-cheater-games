@@ -18,8 +18,7 @@ export const Item = ({ name, value, onBuyClick }) => {
           borderColor: "green",
           alignSelf: "flex-end",
         }}
-        // onClick={() => onBuyClick()}
-        onClick={() => console.log("kupiłeś")}
+        onClick={() => onBuyClick()}
       />
     </>
   );
