@@ -41,5 +41,5 @@ export const Links = () => {
       </li>
     );
   }
-  return <li></li>;
+  return null;
 };
