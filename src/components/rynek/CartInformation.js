@@ -13,14 +13,14 @@ const StyledBadge = styled(Badge)(({ theme }) => ({
   },
 }));
 
-export const CartInformation = ({ productCount, totalValue }) => {
-  if (productCount === 0) {
+export const CartInformation = ({ orderCount, totalValue }) => {
+  if (orderCount === 0) {
     return <></>;
   } else {
     return (
         <>
       <IconButton aria-label="cart" style={{ float: "right" }}>
-        <StyledBadge badgeContent={productCount} color="secondary">
+        <StyledBadge badgeContent={orderCount} color="secondary">
           <ShoppingCartIcon />
         </StyledBadge>
       </IconButton>

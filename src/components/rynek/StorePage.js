@@ -9,6 +9,7 @@ import { db } from "../../firebaseConfig";
 import { CartInformation } from "./CartInformation";
 import { TextBlock } from "./TextBlok";
 import { GlobalChat } from "../../global-chat/global-chat";
+import { useState } from "react";
 
 export const StorePage = () => {
   const user = useUser();
@@ -20,12 +21,31 @@ export const StorePage = () => {
   const itemsRef = useItems(itemsCollectionPath);
   const userItemsRef = useUserItems(userItemsCollectionPath);
 
+  const [cart, setCart] = useState([]);
+
+  const orderCount = cart.reduce((sum, cartItem) => sum + cartItem.orderCount, 0);
+
+  const addToCart = (key) => {
+    setCart((cart) => {
+      const existingItem = cart.find((cartItem) => cartItem.key === key);
+      if (!existingItem) {
+        return [...cart, { key, orderCount: 1 }];
+      } else {
+        return cart.map((cartItem) =>
+        cartItem === existingItem
+        ? { ...cartItem, orderCount: cartItem.orderCount + 1 }
+        : cartItem
+        );
+      }
+    });
+  };
+
   return (
     <>
       <section className="store__screen" style={{ margin: "0 auto" }}>
         <div>
           <h1 style={{ textAlign: "center" }}>Mirek Handlarz</h1>
-          <CartInformation productCount={1} />
+          <CartInformation orderCount={orderCount} />
         </div>
         <div className="store-wrapper">
           <ItemsGrid text="Sprzedaj">
@@ -33,12 +53,11 @@ export const StorePage = () => {
           </ItemsGrid>
           <Avatar />
           <ItemsGrid text="Kup">
-            <Items items={itemsRef} onBuyClick={(id) => console.log(id)} />
-           
+            <Items items={itemsRef} onBuyClick={(key) => addToCart(key)} />
           </ItemsGrid>
         </div>
-        <section style={{height: "250px"}}>
-        <GlobalChat />
+        <section style={{ height: "250px" }}>
+          <GlobalChat />
         </section>
       </section>
     </>
