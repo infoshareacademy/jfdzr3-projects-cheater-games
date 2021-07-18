@@ -130,7 +130,7 @@ export const SelectRace = () => {
               </div>
             ))}
         </div>
-        <div className="wrapper">
+        <div className="wrapper-choosing-race">
           <Link
             to="/"
             style={{ textDecoration: "none", color: "inherit" }}
