@@ -40,7 +40,6 @@ function App() {
             </Switch>
           ) : (
             <Switch>
-              
               <Route exact path="/">
                 <HomePage />
               </Route>

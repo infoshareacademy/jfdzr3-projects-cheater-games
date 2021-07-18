@@ -4,7 +4,7 @@ import { Link } from "react-router-dom";
 import { useUser } from "../hooks/useUser";
 import { db } from "../firebaseConfig";
 import Slider from "react-slick";
-import { FaArrowRight, FaArrowLeft } from "react-icons/fa";
+import { BsChevronLeft, BsChevronRight } from "react-icons/bs";
 
 export const SelectRace = () => {
   const getRaceFromDB = () => {
@@ -85,7 +85,7 @@ export const SelectRace = () => {
   const NextArrow = ({ onClick }) => {
     return (
       <div className="arrow next" onClick={onClick}>
-        <FaArrowRight />
+        <BsChevronRight />
       </div>
     );
   };
@@ -93,38 +93,27 @@ export const SelectRace = () => {
   const PrevArrow = ({ onClick }) => {
     return (
       <div className="arrow prev" onClick={onClick}>
-        <FaArrowLeft />
+        <BsChevronLeft />
       </div>
     );
   };
 
-  const settings = {
-    infinite: false,
-    lazyLoad: true,
-    speed: 300,
-    slidesToShow: 4,
-    centerMode: true,
-    centerPadding: 0,
-    nextArrow: <NextArrow />,
-    prevArrow: <PrevArrow />,
-  };
-
   return (
     <section className="select-race">
-      <div className="carousel">
-        <Slider {...settings}>
+      <div className="wrapper">
+        <PrevArrow onClick={getPrevSlide} />
+        <NextArrow onClick={getNextSlide} />
+        <div className="slider">
           {slides.map((slide) => (
-            <div className={slide === slide[1] ? "slide activeSlide" : "slide"}>
-              <img
-                key={slide.id}
-                src={slide.src}
-                alt={slide.src}
-                style={{ height: "400px", width: "350px" }}
-              ></img>
-            </div>
+            <div
+              key={slide.id}
+              className={slide === slides[1] ? "selected" : "card"}
+              style={{ backgroundImage: `url(${slide.src})` }}
+            ></div>
           ))}
-        </Slider>
+        </div>
       </div>
+      ;
       <div className="wrapper__desc">
         <h2 className="description race__name">{slides[1].name}</h2>
         <div className="description">{slides[1].description}</div>
