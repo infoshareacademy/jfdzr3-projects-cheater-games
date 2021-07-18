@@ -10,14 +10,6 @@ export function GlobalChat() {
   const [messages, setMessages] = useState([]);
   const user = useUser();
 
-  useEffect(() => {
-    db.collection("messages")
-      .orderBy("time")
-      .onSnapshot((messages) => {
-        setMessages(messages.docs.map((doc) => doc.data()));
-      });
-  }, []);
-
   const messagesEndRef = useRef(null)
 
   const scrollToBottom = () => {
@@ -27,6 +19,16 @@ export function GlobalChat() {
   useEffect(() => {
     scrollToBottom()
   }, [messages]);
+
+  useEffect(() => {
+    db.collection("messages")
+      .orderBy("time")
+      .onSnapshot((messages) => {
+        setMessages(messages.docs.map((doc) => doc.data()));
+      });
+  }, []);
+
+ 
 
   if (user === null) {
     return <p>loading</p>;
