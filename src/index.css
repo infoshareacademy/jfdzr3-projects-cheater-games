@@ -1,3 +1,13 @@
+@import "~slick-carousel/slick/slick.css";
+@import "~slick-carousel/slick/slick-theme.css";
+
+.carousel {
+  width: 50%;
+  margin: 5rem auto;
+  height: 500px;
+  /* background-color: lightcoral; */
+}
+
 :root {
   --color-primary-green: #315e3c;
   --color-primary-dark-green: #315e3c;

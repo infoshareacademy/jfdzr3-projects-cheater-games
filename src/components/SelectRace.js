@@ -3,6 +3,8 @@ import { Logout } from "../auth/Logout";
 import { Link } from "react-router-dom";
 import { useUser } from "../hooks/useUser";
 import { db } from "../firebaseConfig";
+import Slider from "react-slick";
+import { FaArrowRight, FaArrowLeft } from "react-icons/fa";
 
 export const SelectRace = () => {
   const getRaceFromDB = () => {
@@ -79,24 +81,49 @@ export const SelectRace = () => {
   if (slides.length === 0) {
     return <p>Loading...</p>;
   }
+
+  const NextArrow = ({ onClick }) => {
+    return (
+      <div className="arrow next" onClick={onClick}>
+        <FaArrowRight />
+      </div>
+    );
+  };
+
+  const PrevArrow = ({ onClick }) => {
+    return (
+      <div className="arrow prev" onClick={onClick}>
+        <FaArrowLeft />
+      </div>
+    );
+  };
+
+  const settings = {
+    infinite: false,
+    lazyLoad: true,
+    speed: 300,
+    slidesToShow: 4,
+    centerMode: true,
+    centerPadding: 0,
+    nextArrow: <NextArrow />,
+    prevArrow: <PrevArrow />,
+  };
+
   return (
     <section className="select-race">
-      <div className="wrapper">
-        <button className="change__race" onClick={getPrevSlide}>
-          &#10157;
-        </button>
-        <button className="change__race" onClick={getNextSlide}>
-          &#10157;
-        </button>
-        <div className="slider">
+      <div className="carousel">
+        <Slider {...settings}>
           {slides.map((slide) => (
-            <div
-              key={slide.id}
-              className={slide === slides[1] ? "selected" : "card"}
-              style={{ backgroundImage: `url(${slide.src})` }}
-            ></div>
+            <div className={slide === slide[1] ? "slide activeSlide" : "slide"}>
+              <img
+                key={slide.id}
+                src={slide.src}
+                alt={slide.src}
+                style={{ height: "400px", width: "350px" }}
+              ></img>
+            </div>
           ))}
-        </div>
+        </Slider>
       </div>
       <div className="wrapper__desc">
         <h2 className="description race__name">{slides[1].name}</h2>
