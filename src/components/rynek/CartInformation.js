@@ -3,7 +3,7 @@ import IconButton from "@material-ui/core/IconButton";
 import ShoppingCartIcon from "@material-ui/icons/ShoppingCart";
 import Badge from "@material-ui/core/Badge";
 import { styled } from "@material-ui/core/styles";
-
+import {Link} from "react-router-dom"
 const StyledBadge = styled(Badge)(({ theme }) => ({
   "& .MuiBadge-badge": {
     right: -3,
@@ -14,26 +14,16 @@ const StyledBadge = styled(Badge)(({ theme }) => ({
 }));
 
 export const CartInformation = ({ orderCount, totalValue }) => {
-  // if (orderCount === 0) {
-  //   return (
-  //     <>
-  //       <IconButton aria-label="cart" style={{ float: "right" }}>
-  //         <StyledBadge badgeContent={orderCount} color="secondary">
-  //           <ShoppingCartIcon />
-  //         </StyledBadge>
-  //       </IconButton>
-  //     </>
-  //   );
-  // } else {
-    return (
+  return (
+    <Link to="/koszyk">
       <div>
-        <IconButton aria-label="cart" style={{ float: "right" }}>
+        <IconButton aria-label="cart">
           <StyledBadge badgeContent={orderCount} color="secondary">
             <ShoppingCartIcon />
           </StyledBadge>
         </IconButton>
         <div>{totalValue}</div>
       </div>
-    );
-  // }
+    </Link>
+  );
 };
