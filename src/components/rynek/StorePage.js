@@ -10,6 +10,16 @@ import { CartInformation } from "./CartInformation";
 import { TextBlock } from "./TextBlok";
 import { GlobalChat } from "../../global-chat/global-chat";
 import { useState } from "react";
+import styled from "styled-components";
+import { WidgetsTwoTone } from "@material-ui/icons";
+
+const CartInfoWrapper = styled.div`
+  display: flex;
+  width: 40%;
+  float: right;
+  transform: scale3d(0.95, 0.95, 1);
+  justify-content: space-between;
+`;
 
 export const StorePage = () => {
   const user = useUser();
@@ -23,7 +33,10 @@ export const StorePage = () => {
 
   const [cart, setCart] = useState([]);
 
-  const orderCount = cart.reduce((sum, cartItem) => sum + cartItem.orderCount, 0);
+  const orderCount = cart.reduce(
+    (sum, cartItem) => sum + cartItem.orderCount,
+    0
+  );
 
   const addToCart = (key) => {
     setCart((cart) => {
@@ -32,9 +45,9 @@ export const StorePage = () => {
         return [...cart, { key, orderCount: 1 }];
       } else {
         return cart.map((cartItem) =>
-        cartItem === existingItem
-        ? { ...cartItem, orderCount: cartItem.orderCount + 1 }
-        : cartItem
+          cartItem === existingItem
+            ? { ...cartItem, orderCount: cartItem.orderCount + 1 }
+            : cartItem
         );
       }
     });
@@ -45,7 +58,10 @@ export const StorePage = () => {
       <section className="store__screen" style={{ margin: "0 auto" }}>
         <div>
           <h1 style={{ textAlign: "center" }}>Mirek Handlarz</h1>
-          <CartInformation orderCount={orderCount} />
+          <CartInfoWrapper>
+            <TextBlock>Twoje złoto: {user?.resources.gold}</TextBlock>
+            <CartInformation orderCount={orderCount} />
+          </CartInfoWrapper>
         </div>
         <div className="store-wrapper">
           <ItemsGrid text="Sprzedaj">

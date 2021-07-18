@@ -14,18 +14,26 @@ const StyledBadge = styled(Badge)(({ theme }) => ({
 }));
 
 export const CartInformation = ({ orderCount, totalValue }) => {
-  if (orderCount === 0) {
-    return <></>;
-  } else {
+  // if (orderCount === 0) {
+  //   return (
+  //     <>
+  //       <IconButton aria-label="cart" style={{ float: "right" }}>
+  //         <StyledBadge badgeContent={orderCount} color="secondary">
+  //           <ShoppingCartIcon />
+  //         </StyledBadge>
+  //       </IconButton>
+  //     </>
+  //   );
+  // } else {
     return (
-        <>
-      <IconButton aria-label="cart" style={{ float: "right" }}>
-        <StyledBadge badgeContent={orderCount} color="secondary">
-          <ShoppingCartIcon />
-        </StyledBadge>
-      </IconButton>
-      <div>{totalValue}</div>
-      </>
+      <div>
+        <IconButton aria-label="cart" style={{ float: "right" }}>
+          <StyledBadge badgeContent={orderCount} color="secondary">
+            <ShoppingCartIcon />
+          </StyledBadge>
+        </IconButton>
+        <div>{totalValue}</div>
+      </div>
     );
-  }
+  // }
 };
