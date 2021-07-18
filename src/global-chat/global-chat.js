@@ -1,4 +1,4 @@
-import { useState, useEffect } from "react";
+import { useState, useEffect, useRef } from "react";
 import "./global-chat.css";
 import Message from "./Message";
 import { db } from "../firebaseConfig";
@@ -12,11 +12,21 @@ export function GlobalChat() {
 
   useEffect(() => {
     db.collection("messages")
-      .orderBy("time", "desc")
+      .orderBy("time")
       .onSnapshot((messages) => {
         setMessages(messages.docs.map((doc) => doc.data()));
       });
   }, []);
+
+  const messagesEndRef = useRef(null)
+
+  const scrollToBottom = () => {
+    messagesEndRef.current?.scrollIntoView({ behavior: "smooth", block: 'end' })
+  }
+
+  useEffect(() => {
+    scrollToBottom()
+  }, [messages]);
 
   if (user === null) {
     return <p>loading</p>;
@@ -34,9 +44,25 @@ export function GlobalChat() {
     setInput("");
   };
 
+
+
   return (
     <>
       <div className="chat">
+      
+        <div className="chat_messages">
+          {messages.map((message, index) => {
+            return (
+              <Message
+                key={message.time}
+                username={user?.name}
+                message={message}
+              />
+            );
+          })}
+          <div ref={messagesEndRef}></div>
+        </div>
+
         <form className="chat-form">
           <input
             className="chat_input"
@@ -54,17 +80,6 @@ export function GlobalChat() {
           </button>
         </form>
 
-        <div className="chat_messages">
-          {messages.map((message, index) => {
-            return (
-              <Message
-                key={message.time}
-                username={user?.name}
-                message={message}
-              />
-            );
-          })}
-        </div>
       </div>
     </>
   );
