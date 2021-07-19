@@ -3,7 +3,6 @@ import { Logout } from "../auth/Logout";
 import { Link } from "react-router-dom";
 import { useUser } from "../hooks/useUser";
 import { db } from "../firebaseConfig";
-import Slider from "react-slick";
 import { BsChevronLeft, BsChevronRight } from "react-icons/bs";
 
 export const SelectRace = () => {
@@ -48,6 +47,7 @@ export const SelectRace = () => {
   const [currentSlide, setCurrentSlide] = useState(0);
 
   const getNextSlide = () => setCurrentSlide((old) => (old + 1) % races.length);
+
   const getPrevSlide = () =>
     setCurrentSlide((old) => (old - 1 + races.length) % races.length);
 
