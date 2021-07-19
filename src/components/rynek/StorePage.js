@@ -52,6 +52,7 @@ const itemsToDisplayInCart = cart.map((cartItem) => {
   return joinItemWithCart(cartItem.key)
 })
 
+console.log(itemsToDisplayInCart);
 
   const orderCount = cart.reduce(
     (sum, cartItem) => sum + cartItem.orderCount,
@@ -74,6 +75,8 @@ const itemsToDisplayInCart = cart.map((cartItem) => {
   };
 
   return (
+<>
+{isOpen === false ? (
     <>
       <section className="store__screen" >
         <div>
@@ -98,5 +101,26 @@ const itemsToDisplayInCart = cart.map((cartItem) => {
         </section>
       </section>
     </>
+
+
+
+) : (
+  <>
+{itemsToDisplayInCart.length === 0 ? (
+  <TextBlock>Nie masz przedmiotów w koszyku</TextBlock>
+) : (
+  <></>
+)
+
+}
+
+
+
+  
+
+  </>
+)}
+</>
+    
   );
 };
