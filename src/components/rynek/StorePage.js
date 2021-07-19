@@ -7,11 +7,11 @@ import { useItems } from "../../hooks/useItems";
 import { useUserItems } from "../../hooks/useUserItems";
 import { db } from "../../firebaseConfig";
 import { CartInformation } from "./CartInformation";
-import { TextBlock } from "./TextBlok";
+import { TextBlock } from "./TextBlock";
 import { GlobalChat } from "../../global-chat/global-chat";
 import { useState } from "react";
 import styled from "styled-components";
-import { WidgetsTwoTone } from "@material-ui/icons";
+
 
 const CartInfoWrapper = styled.div`
   display: flex;
@@ -23,15 +23,31 @@ const CartInfoWrapper = styled.div`
 
 export const StorePage = () => {
   const user = useUser();
+
+
   const itemsCollectionPath = db.collection("items");
   const userItemsCollectionPath = db
     .collection("users")
     .doc(user?.uid)
     .collection("armory");
   const itemsRef = useItems(itemsCollectionPath);
-  const userItemsRef = useUserItems(userItemsCollectionPath);
+  // const userItemsRef = useUserItems(userItemsCollectionPath);
+  const userItemsRef = useItems(userItemsCollectionPath);
 
+console.log(itemsRef);
   const [cart, setCart] = useState([]);
+
+  const joinItemWithCart = (key) => {
+    const items = itemsRef.find((item) => item.key === key);
+    const cartItem = cart.find((el) => el.key === key);
+  
+    return { ...items, ...cartItem}
+  }
+
+const itemsToDisplayInCart = cart.map((cartItem) => {
+  return joinItemWithCart(cartItem.key)
+})
+
 
   const orderCount = cart.reduce(
     (sum, cartItem) => sum + cartItem.orderCount,
@@ -55,9 +71,9 @@ export const StorePage = () => {
 
   return (
     <>
-      <section className="store__screen" style={{ margin: "0 auto" }}>
+      <section className="store__screen" >
         <div>
-          <h1 style={{ textAlign: "center" }}>Mirek Handlarz</h1>
+          <TextBlock>Mirek Handlarz</TextBlock>
           <CartInfoWrapper>
             <TextBlock>Twoje złoto: {user?.resources.gold}</TextBlock>
             <CartInformation orderCount={orderCount} />

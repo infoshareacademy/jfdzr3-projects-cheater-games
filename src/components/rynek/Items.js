@@ -25,7 +25,7 @@ export const Items = ({ items, onBuyClick }) => {
               name={item.key} 
               value={item.val.value}
               onBuyClick={() => {
-                if (item.type) {
+                if (item.type === "test" || "handWeapon" ||"armor" || "armorPrefix" || "armorSuffix" || "handWeaponPrefix" || "handWeaponSuffix" || "helmet" || "helmetPrefix" || "helmetSuffix" ) {
                   onBuyClick(item.key)
                 }
               }}

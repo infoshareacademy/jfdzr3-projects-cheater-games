@@ -1,5 +1,5 @@
 import "./store.css";
-import { TextBlock } from "./TextBlok";
+import { TextBlock } from "./TextBlock";
 import styled from "styled-components";
 
 const Wrapper = styled.div`

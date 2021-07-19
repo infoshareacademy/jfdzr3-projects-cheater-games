@@ -12,6 +12,7 @@ import { AgilityTrial } from "./components/AgilityTrial";
 import { AdminPanel } from "./components/AdminPanel";
 import { StorePage } from "./components/rynek/StorePage";
 import { Stats } from "./components/stats/Stats";
+import { CartPage } from "./components/rynek/CartPage";
 
 function App() {
   const user = useUser();
@@ -26,6 +27,9 @@ function App() {
         <main className="main__section">
           {user !== null ? (
             <Switch>
+               <Route path="/koszyk">
+                <CartPage itemsToDisplayInCart={itemsToDisplayInCart}/>
+              </Route>
               <Route path="/store">
                 <StorePage />
               </Route>

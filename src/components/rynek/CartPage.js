@@ -1,13 +1,16 @@
 import React from 'react';
-import {TextBlok} from "./TextBlok"
+import {TextBlock} from "./TextBlock"
 
-export const CartPage = () => {
+import styled from "styled-components";
+import { Item } from "./Item";
+export const CartPage = (items) => {
     if (items.length === 0) {
-        return <TextBlok>Nie masz przedmiotów w koszyku</TextBlok>;
+        return <TextBlock>Nie masz przedmiotów w koszyku</TextBlock>;
       } else {
         return (
           <>
-            {items &&
+          <TextBlock>Koszyk test</TextBlock>
+            {/* {items &&
               items.map((item, index) => (
                 <ItemStyle key={index}>
                   <Item 
@@ -20,14 +23,12 @@ export const CartPage = () => {
                   }}
                   />
                 </ItemStyle>
-              ))}
+              ))} */}
           </>
         );
       };
 }
 
-import styled from "styled-components";
-import { Item } from "./Item";
 
 const ItemStyle = styled.div`
   height: max-content;

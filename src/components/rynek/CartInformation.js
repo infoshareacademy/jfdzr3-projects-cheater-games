@@ -4,6 +4,8 @@ import ShoppingCartIcon from "@material-ui/icons/ShoppingCart";
 import Badge from "@material-ui/core/Badge";
 import { styled } from "@material-ui/core/styles";
 import {Link} from "react-router-dom"
+import {CartPageLink} from "../CartPageLink"
+import {CartPage} from "./CartPage"
 const StyledBadge = styled(Badge)(({ theme }) => ({
   "& .MuiBadge-badge": {
     right: -3,
@@ -15,7 +17,7 @@ const StyledBadge = styled(Badge)(({ theme }) => ({
 
 export const CartInformation = ({ orderCount, totalValue }) => {
   return (
-    <Link to="/koszyk">
+    <Link to="/koszyk"  >
       <div>
         <IconButton aria-label="cart">
           <StyledBadge badgeContent={orderCount} color="secondary">
