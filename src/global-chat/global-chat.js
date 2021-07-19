@@ -13,12 +13,12 @@ export function GlobalChat() {
   const messagesEndRef = useRef(null)
 
   const scrollToBottom = () => {
-    messagesEndRef.current?.scrollIntoView({ behavior: "smooth", block: 'end' })
+    messagesEndRef.current?.scrollIntoView({ behavior: "auto", block: 'end' })
   }
 
   useEffect(() => {
     scrollToBottom()
-  }, [messages]);
+  }, [messages, user] );
 
   useEffect(() => {
     db.collection("messages")
