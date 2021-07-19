@@ -37,10 +37,9 @@ export const StorePage = () => {
   const [cart, setCart] = useState([]);
   const [isOpen, setIsOpen] = useState(false);
 
-  const openModal = () => {
-    setIsOpen(true)
-  }
-
+  const openModal = () => setIsOpen(true);
+  const closeModal = () => setIsOpen(false);
+  
   const joinItemWithCart = (key) => {
     const items = itemsRef.find((item) => item.key === key);
     const cartItem = cart.find((el) => el.key === key);
@@ -105,20 +104,40 @@ console.log(itemsToDisplayInCart);
 
 
 ) : (
-  <>
+  <section onClick={() => closeModal()} style={{width: '100vw', minHeight: "800px"}}>
 {itemsToDisplayInCart.length === 0 ? (
   <TextBlock>Nie masz przedmiotów w koszyku</TextBlock>
 ) : (
-  <></>
+  <>
+  {}
+  </>
 )
 
 }
 
-
+{/*
+          <TextBlock>Koszyk test</TextBlock> */}
+            {/* {items &&
+              items.map((item, index) => (
+                <ItemStyle key={index}>
+                  <Item 
+                  name={item.key} 
+                  value={item.val.value}
+                  onBuyClick={() => {
+                    if (item.type) {
+                      onBuyClick(item.key)
+                    }
+                  }}
+                  />
+                </ItemStyle>
+              ))} */}
+          {/* </>
+        );
+      }; */}
 
   
 
-  </>
+  </section>
 )}
 </>
     
