@@ -43,78 +43,62 @@ export const HuntingScreen = () => {
     }
   };
   return (
-    <>
-      <div className="content">
-        <main className="main__section">
-          <div className="hunting__screen-title">
-            <h2>Polowanie</h2>
-          </div>
-          <div className="hunting__screen-description">
-            <p>
-              Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do
-              eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut
-              enim ad minim veniam, quis nostrud exercitation ullamco laboris
-              nisi ut aliquip ex ea commodo consequat.
-            </p>
-          </div>
-          <div className="hunting__screen-main">
-            <h3>Poziom trudności: </h3>
-            <div className="hunting__screen--choose_level">
-              {description.map((desc, index) => (
-                <label key={index}>
-                  {desc.name}
-                  <input
-                    type="radio"
-                    name="level"
-                    onClick={() => setCurrentLevel(desc.name)}
-                  ></input>
-                </label>
-              ))}
-            </div>
-            <div className="hunting__screen--level_description">
-              <p>{ifEmpty()}</p>
-            </div>
-            <div>
-              <h3>Wybierz ścieżkę polowania</h3>
-              <div className="hunting__screen--choose_ways">
-                <Link to="/">
-                  <HoverImage
-                    src={
-                      `${process.env.PUBLIC_URL}/img/arrows/left-arrow.png`
-                    }
-                    hoverSrc={
-                      `${process.env.PUBLIC_URL}/img/arrows/left-arrow-hover.png`
-                    }
-                    style={{ height: "70px", width: "70px" }}
-                  />
-                </Link>
-                <Link to="/">
-                  <HoverImage
-                    src={
-                      `${process.env.PUBLIC_URL}img/arrows/up-arrow.png`
-                    }
-                    hoverSrc={
-                      `${process.env.PUBLIC_URL}/img/arrows/up-arrow-hover.png`
-                    }
-                    style={{ height: "70px", width: "70px" }}
-                  />
-                </Link>
-                <Link to="/">
-                  <HoverImage
-                    src={
-                      `${process.env.PUBLIC_URL}/img/arrows/right-arrow.png`
-                    }
-                    hoverSrc={
-                      `${process.env.PUBLIC_URL}/img/arrows/right-arrow-hover.png`
-                    }
-                    style={{ height: "70px", width: "70px" }}
-                  />
-                </Link>
-              </div>
-            </div>
-          </div>
-        </main>
+    <section className="hunting-screen">
+      <div className="hunting__screen-title">
+        <h1>Polowanie</h1>
       </div>
-    </>
+      <div className="hunting__screen-description">
+        <p>
+          Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do
+          eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad
+          minim veniam, quis nostrud exercitation ullamco laboris nisi ut
+          aliquip ex ea commodo consequat.
+        </p>
+      </div>
+      <div className="hunting__screen-main">
+        <h3>Poziom trudności: </h3>
+        <div className="hunting__screen--choose_level">
+          {description.map((desc, index) => (
+            <label key={index}>
+              {desc.name}
+              <input
+                type="radio"
+                name="level"
+                onClick={() => setCurrentLevel(desc.name)}
+              ></input>
+            </label>
+          ))}
+        </div>
+        <div className="hunting__screen--level_description">
+          <p>{ifEmpty()}</p>
+        </div>
+        <div>
+          <h3>Wybierz ścieżkę polowania</h3>
+          <div className="hunting__screen--choose_ways">
+            <Link to="/">
+              <HoverImage
+                src={`${process.env.PUBLIC_URL}/img/arrows/left-arrow.png`}
+                hoverSrc={`${process.env.PUBLIC_URL}/img/arrows/left-arrow-hover.png`}
+                style={{ height: "70px", width: "70px" }}
+              />
+            </Link>
+            <Link to="/">
+              <HoverImage
+                src={`${process.env.PUBLIC_URL}img/arrows/up-arrow.png`}
+                hoverSrc={`${process.env.PUBLIC_URL}/img/arrows/up-arrow-hover.png`}
+                style={{ height: "70px", width: "70px" }}
+              />
+            </Link>
+            <Link to="/">
+              <HoverImage
+                src={`${process.env.PUBLIC_URL}/img/arrows/right-arrow.png`}
+                hoverSrc={`${process.env.PUBLIC_URL}/img/arrows/right-arrow-hover.png`}
+                style={{ height: "70px", width: "70px" }}
+              />
+            </Link>
+          </div>
+        </div>
+      </div>
+    </section>
   );
 };
