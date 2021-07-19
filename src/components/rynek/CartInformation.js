@@ -15,10 +15,10 @@ const StyledBadge = styled(Badge)(({ theme }) => ({
   },
 }));
 
-export const CartInformation = ({ orderCount, totalValue }) => {
+export const CartInformation = ({ orderCount, totalValue, openModal }) => {
   return (
-    <Link to="/koszyk"  >
-      <div>
+    // <Link to="/koszyk"  >
+      <div onClick={() => openModal()}>
         <IconButton aria-label="cart">
           <StyledBadge badgeContent={orderCount} color="secondary">
             <ShoppingCartIcon />
@@ -26,6 +26,6 @@ export const CartInformation = ({ orderCount, totalValue }) => {
         </IconButton>
         <div>{totalValue}</div>
       </div>
-    </Link>
+    // </Link>
   );
 };

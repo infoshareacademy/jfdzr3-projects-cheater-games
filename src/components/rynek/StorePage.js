@@ -34,8 +34,12 @@ export const StorePage = () => {
   // const userItemsRef = useUserItems(userItemsCollectionPath);
   const userItemsRef = useItems(userItemsCollectionPath);
 
-console.log(itemsRef);
   const [cart, setCart] = useState([]);
+  const [isOpen, setIsOpen] = useState(false);
+
+  const openModal = () => {
+    setIsOpen(true)
+  }
 
   const joinItemWithCart = (key) => {
     const items = itemsRef.find((item) => item.key === key);
@@ -76,7 +80,8 @@ const itemsToDisplayInCart = cart.map((cartItem) => {
           <TextBlock>Mirek Handlarz</TextBlock>
           <CartInfoWrapper>
             <TextBlock>Twoje złoto: {user?.resources.gold}</TextBlock>
-            <CartInformation orderCount={orderCount} />
+            <CartInformation orderCount={orderCount} openModal={(value) => {openModal()
+            console.log("działa");}} />
           </CartInfoWrapper>
         </div>
         <div className="store-wrapper">

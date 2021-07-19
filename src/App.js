@@ -28,7 +28,7 @@ function App() {
           {user !== null ? (
             <Switch>
                <Route path="/koszyk">
-                <CartPage itemsToDisplayInCart={itemsToDisplayInCart}/>
+                <CartPage />
               </Route>
               <Route path="/store">
                 <StorePage />
