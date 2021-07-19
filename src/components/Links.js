@@ -1,27 +1,29 @@
 import React from "react";
 import { Logout } from "../auth/Logout";
 import { useUser } from "../hooks/useUser";
-import { HuntLink } from "./HuntLink";
-import { AdminLink } from "./AdminLink";
-import { StatsLink } from "./StatsLink";
+import { HuntLink } from "../links/HuntLink";
+import { AdminLink } from "../links/AdminLink"
+import { StatsLink } from "../links/StatsLink";
+import { CharacterViewLink } from "../links/CharacterViewLink";
+import { StoreLink } from "../links/StoreLink";
 
 export const Links = () => {
   const user = useUser();
 
   const adminLinks = [
     <AdminLink />,
-    "Widok postaci",
+    <CharacterViewLink />,
     <StatsLink />,
     <HuntLink />,
-    "Rynek",
+    <StoreLink />,
     <Logout />,
   ];
 
   const userLinks = [
-    "Widok postaci",
+    <CharacterViewLink />,
     <StatsLink />,
     <HuntLink />,
-    "Rynek",
+    <StoreLink />,
     <Logout />,
   ];
 
@@ -40,5 +42,5 @@ export const Links = () => {
       </li>
     );
   }
-  return <li></li>;
+  return null;
 };
