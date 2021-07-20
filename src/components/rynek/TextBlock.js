@@ -6,5 +6,5 @@ export const TextBlock = ({ children }) => {
     margin: "15px 0",
     textAlign: "center"
   };
-  return <span style={style}>{children}</span>;
+  return <div style={style}>{children}</div>;
 };

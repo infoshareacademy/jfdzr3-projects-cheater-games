@@ -1,7 +1,7 @@
 import styled from "styled-components";
 import { Item } from "./Item";
 
-const ItemStyle = styled.div`
+export const ItemStyle = styled.div`
   height: max-content;
   width: "100%";
   justify-content: space-around;

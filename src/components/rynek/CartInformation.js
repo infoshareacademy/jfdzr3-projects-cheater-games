@@ -15,6 +15,8 @@ const StyledBadge = styled(Badge)(({ theme }) => ({
   },
 }));
 
+
+
 export const CartInformation = ({ orderCount, totalValue, openModal }) => {
   return (
     // <Link to="/koszyk"  >
@@ -26,6 +28,6 @@ export const CartInformation = ({ orderCount, totalValue, openModal }) => {
         </IconButton>
         <div>{totalValue}</div>
       </div>
-    // </Link>
+    //  </Link>
   );
 };
