@@ -1,16 +1,16 @@
 import { React } from "react";
 import { BrowserRouter as Router, Switch, Route } from "react-router-dom";
-
 import { LoginPage } from "./components/LoginPage";
 import { RegistrationPage } from "./components/RegistrationPage";
 import { HuntingScreen } from "./components/HuntingScreen";
-
 import { HomePage } from "./components/HomePage";
 import { MainMenu } from "./components/MainMenu";
-import { useUser } from "./hooks/useUser";
 import { AgilityTrial } from "./components/AgilityTrial";
 import { AdminPanel } from "./components/AdminPanel";
 import { Stats } from "./components/stats/Stats";
+import { StorePage } from "./components/store/StorePage";
+import { CharacterViewPage } from "./components/CharacterViewPage";
+import { useUser } from "./hooks/useUser";
 
 function App() {
   const user = useUser();
@@ -25,6 +25,12 @@ function App() {
         <main className="main__section">
           {user !== null ? (
             <Switch>
+              <Route path="/character">
+                <CharacterViewPage />
+              </Route>
+              <Route path="/store">
+                <StorePage />
+              </Route>
               <Route path="/hunt">
                 <HuntingScreen />
               </Route>

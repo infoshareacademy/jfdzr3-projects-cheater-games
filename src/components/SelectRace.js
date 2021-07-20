@@ -82,13 +82,13 @@ export const SelectRace = () => {
   return (
     <section className="select-race">
       <div className="wrapper">
-        <button className="change__race" onClick={getPrevSlide}>
-          &#10157;
-        </button>
-        <button className="change__race" onClick={getNextSlide}>
-          &#10157;
-        </button>
         <div className="slider">
+          <button className="change__race" onClick={getPrevSlide}>
+            &#10157;
+          </button>
+          <button className="change__race" onClick={getNextSlide}>
+            &#10157;
+          </button>
           {slides.map((slide) => (
             <div
               key={slide.id}

@@ -6,15 +6,10 @@ export const Logout = () => {
   const history = useHistory();
 
   const logoutClick = () => {
-    auth.signOut();
-    history.push("/");
+    auth.signOut().then(() => {
+      history.push("/");
+    });
   };
 
-  return (
-    <>
-      <div id="logout" data-auth-visibility="true" onClick={logoutClick}>
-        Log Out
-      </div>
-    </>
-  );
+  return <div onClick={logoutClick}>Wyloguj</div>;
 };
