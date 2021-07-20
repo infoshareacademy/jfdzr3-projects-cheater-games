@@ -4,6 +4,11 @@ import { Link } from "react-router-dom";
 import { useUser } from "../hooks/useUser";
 import { db } from "../firebaseConfig";
 import { BsChevronLeft, BsChevronRight } from "react-icons/bs";
+import { Slider } from "react-slick";
+// import orc from `${process.env.PUBLIC_URL}/img/races/Orc.jpg`;
+// import human from `${process.env.PUBLIC_URL}/img/races/Człowiek.jpg`;
+// import elf from `${process.env.PUBLIC_URL}/img/races/Elf.jpg`;
+// import dwarf from `${process.env.PUBLIC_URL}/img/races/Krasnolud.jpg`;
 
 export const SelectRace = () => {
   const getRaceFromDB = () => {
@@ -35,6 +40,8 @@ export const SelectRace = () => {
         return cards;
       });
   };
+
+  const images = [orc, human, elf, dwarf];
 
   const [races, setRaces] = useState([]);
 
@@ -82,6 +89,15 @@ export const SelectRace = () => {
     return <p>Loading...</p>;
   }
 
+  const setting = {
+    infinite: false,
+    lazyLoad: true,
+    speed: 300,
+    slideToShow: 3,
+    centerMode: true,
+    centerPadding: 0,
+  };
+
   const NextArrow = ({ onClick }) => {
     return (
       <div className="arrow next" onClick={onClick}>
@@ -104,13 +120,13 @@ export const SelectRace = () => {
         <PrevArrow onClick={getPrevSlide} />
         <NextArrow onClick={getNextSlide} />
         <div className="slider">
-          {slides.map((slide) => (
-            <div
-              key={slide.id}
-              className={slide === slides[1] ? "selected" : "card"}
-              style={{ backgroundImage: `url(${slide.src})` }}
-            ></div>
-          ))}
+          <Slider>
+            {images.map((img, idx) => (
+              <div>
+                <img src={img} alt={img} />
+              </div>
+            ))}
+          </Slider>
         </div>
       </div>
       ;

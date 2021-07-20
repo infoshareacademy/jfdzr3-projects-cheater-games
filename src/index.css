@@ -1,3 +1,5 @@
+@import "~slick-carousel/slick/slick.css";
+@import "~slick-carousel/slick/slick-theme.css";
 .arrow {
   background-color: inherit;
   font-size: 45px;
@@ -7,11 +9,13 @@
 }
 
 .arrow svg {
-  transition: color 800ms;
+  transition: 0.8s;
 }
 
 .arrow svg:hover {
   color: red;
+  transform: scale(1.5);
+  transition: 0.5s;
 }
 
 .next {
