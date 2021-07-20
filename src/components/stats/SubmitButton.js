@@ -1,6 +1,6 @@
 export function SubmitButton() {
   return (
-    <button className="btn" type="submit">
+    <button className="btn btn-green" type="submit">
       Zatwierdź
     </button>
   );

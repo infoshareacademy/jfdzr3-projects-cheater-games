@@ -1,10 +1,9 @@
 import "./auth.css";
 import React from "react";
-import {
-  Link, useHistory,
-} from "react-router-dom";
+import { Link, useHistory } from "react-router-dom";
 import { useState } from "react";
 import { auth } from "../firebaseConfig";
+
 
 const resetFormOnSubmit = (e) => {
   e.target.reset();
@@ -42,9 +41,8 @@ export const Login = () => {
       .signInWithEmailAndPassword(email, password)
       .then((token) => {
         // createCharacter(token.user.uid, token.user.displayName);
-        resetFormOnSubmit(e);  
-        history.push("/")
-   
+        resetFormOnSubmit(e);
+        history.push("/");
       })
       .catch((error) => {
         console.log("error", error);
@@ -88,14 +86,13 @@ export const Login = () => {
               onChange={handleChange}
             />
           </label>
-          <button type="submit" className="myButton">
+          <button type="submit" className="btn btn-green">
             Wejdź do gry!
           </button>
         </form>
 
-        <div>
-        Nie masz konta? <Link to="/register">Zarejestruj się</Link>
-      
+        <div className="user-action">
+          Nie masz konta? <Link to="/register">Zarejestruj się</Link>
         </div>
               <div className="error"> 
               {error && <p>{translatedFirebaseErrors[error.code] || error.message}</p>}      

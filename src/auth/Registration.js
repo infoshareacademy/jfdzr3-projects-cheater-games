@@ -135,11 +135,11 @@ export const Registration = () => {
               onChange={handleChange}
             />
           </label>
-          <button type="submit" className="myButton">
+          <button type="submit" className="btn btn-green">
             Utwórz postać!
           </button>
         </form>
-        <div>
+        <div className="user-action">
           Masz konto? <Link to="/login">Zaloguj się</Link>
         </div>
         <div className="error">
