@@ -60,6 +60,12 @@ export const Registration = () => {
     e.target.reset();
   };
 
+  const translatedFirebaseErrors = {
+    'auth/weak-password' : "Hasło powinno mieć co najmniej 6 znaków.",
+    'auth/email-already-in-use' : "Adres email jest już używany.",
+    'auth/network-request-failed' : "Brak połączenia z serwerem."
+  };
+
   const handleOnSubmit = async (e) => {
     e.preventDefault();
     auth
@@ -77,7 +83,7 @@ export const Registration = () => {
         console.log("error", error);
         setUser({
           ...user,
-          error: error.message,
+          error,
         });
       });
   };
@@ -137,7 +143,7 @@ export const Registration = () => {
           Masz konto? <Link to="/login">Zaloguj się</Link>
         </div>
         <div className="error">
-          <p>{error}</p>
+        {error && <p>{translatedFirebaseErrors[error.code] || error.message}</p>}   
         </div>
       </div>
     </>
