@@ -61,13 +61,12 @@ export const Registration = () => {
   };
 
   const translatedFirebaseErrors = {
-    'auth/weak-password' : "Hasło powinno mieć co najmniej 6 znaków.",
-    'auth/email-already-in-use' : "Adres email jest już używany.",
-    'auth/network-request-failed' : "Brak połączenia z serwerem."
+    "auth/weak-password": "Hasło powinno mieć co najmniej 6 znaków.",
+    "auth/email-already-in-use": "Adres email jest już używany.",
+    "auth/network-request-failed": "Brak połączenia z serwerem.",
   };
 
-  const handleOnSubmit = async (e) => {
-    e.preventDefault();
+  const createUser = (e) => {
     auth
       .createUserWithEmailAndPassword(email, password)
       .then((token) => {
@@ -86,6 +85,29 @@ export const Registration = () => {
           error,
         });
       });
+  };
+
+  const checkUsernameInDb = (username) => {
+    return db.collection("users").where("name", "==", username).get();
+  };
+
+  const handleOnSubmit = (e) => {
+    e.preventDefault();
+    checkUsernameInDb(user.nickname)
+      .then((data) => {
+        if (!data.empty) {
+          setUser({
+            ...user,
+            error: {
+              message:
+                "Użytkownik o podanym nicku już istnieje! Wybierz inny nick.",
+            },
+          });
+          return;
+        }
+        createUser(e);
+      })
+      .catch((error) => console.error(error));
   };
 
   return (
@@ -116,7 +138,7 @@ export const Registration = () => {
               type="email"
               className="form__input"
               name="email"
-              autoComplete="username email" 
+              autoComplete="username email"
               id="signUp-email"
               required
               onChange={handleChange}
@@ -143,7 +165,9 @@ export const Registration = () => {
           Masz konto? <Link to="/login">Zaloguj się</Link>
         </div>
         <div className="error">
-        {error && <p>{translatedFirebaseErrors[error.code] || error.message}</p>}   
+          {error && (
+            <p>{translatedFirebaseErrors[error.code] || error.message}</p>
+          )}
         </div>
       </div>
     </>
