@@ -104,7 +104,6 @@ export const StorePage = () => {
     0
   );
 
-  console.log(totalPrice);
   const addToCart = (key) => {
     setCart((cart) => {
       const existingItem = cart.find((cartItem) => cartItem.key === key);
@@ -137,6 +136,10 @@ export const StorePage = () => {
       }
     });
   };
+
+  const resetCart = () => {
+    setCart([]);
+  }
 
   if (isOpen === false) {
     return (
@@ -202,7 +205,7 @@ export const StorePage = () => {
           )}
           <BuyButtonSection>
             <TextBlock>Razem: {totalPrice}</TextBlock>
-            <BuyButton />
+            <BuyButton resetCart={resetCart}/>
           </BuyButtonSection>
         </ModalWrapper>
       </>

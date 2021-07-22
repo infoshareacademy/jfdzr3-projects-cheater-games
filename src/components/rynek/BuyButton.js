@@ -1,7 +1,7 @@
 import { db } from "../../firebaseConfig";
 import { useUser } from "../../hooks/useUser";
 
-export function BuyButton() {
+export function BuyButton({resetCart}) {
   const user = useUser();
 
   const updateUserArmory = () => {
@@ -13,7 +13,10 @@ export function BuyButton() {
   };
   return (
     <div>
-      <button className="btn btn-green" onClick={updateUserArmory}>
+      <button className="btn btn-green" onClick={() => {
+        //   updateUserArmory()
+          resetCart()
+      }}>
         Kup
       </button>
     </div>
