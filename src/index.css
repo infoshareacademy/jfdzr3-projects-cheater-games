@@ -65,10 +65,10 @@ body {
 }
 
 .wrapper {
-  width: 40vw;
   display: flex;
-  margin: 0 auto;
-  position: relative;
+  perspective: 500px;
+  height: 400px;
+  justify-content: center;
 }
 .wrapper-choosing-race {
   width: 100%;
@@ -175,10 +175,9 @@ li:hover {
 }
 
 .slider {
+  transform-style: preserve-3d;
   display: flex;
-  align-items: center;
-  margin: 0 auto;
-  width: 30vw;
+  justify-content: center;
 }
 
 .change__race {
@@ -320,7 +319,7 @@ a:hover {
 }
 
 button {
-  all: unset;
+  /* all: unset; */
   cursor: pointer;
 }
 

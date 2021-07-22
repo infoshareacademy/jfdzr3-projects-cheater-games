@@ -3,12 +3,7 @@ import { Logout } from "../auth/Logout";
 import { Link } from "react-router-dom";
 import { useUser } from "../hooks/useUser";
 import { db } from "../firebaseConfig";
-import { BsChevronLeft, BsChevronRight } from "react-icons/bs";
-import { Slider } from "react-slick";
-// import orc from `${process.env.PUBLIC_URL}/img/races/Orc.jpg`;
-// import human from `${process.env.PUBLIC_URL}/img/races/Człowiek.jpg`;
-// import elf from `${process.env.PUBLIC_URL}/img/races/Elf.jpg`;
-// import dwarf from `${process.env.PUBLIC_URL}/img/races/Krasnolud.jpg`;
+import s from "styled-components";
 
 export const SelectRace = () => {
   const getRaceFromDB = () => {
@@ -41,7 +36,100 @@ export const SelectRace = () => {
       });
   };
 
-  const images = [orc, human, elf, dwarf];
+  const Slide = s.div`
+  background: black;
+  top: 25%;
+  position: absolute;
+  transition: all 0.5s;
+  transform-style: preserve-3d;
+  transition: all 0.5s ease-in-out;
+
+  :hover {
+    box-shadow: 0 0 1px rgba(255, 255, 255, 1);
+    ${(props) =>
+      props.highlight === 1 ? `transform: translateY(-10px) !important;` : ``}
+  }
+
+  :before {
+    content: '';
+    display: block;
+    position: absolute;
+    top: -1px;
+    right: -1px;
+    bottom: 0;
+    left: -1px;
+    background: rgb(255,255,255);
+    background: 
+      linear-gradient(
+        rgba(255,255,255,1) 0%, 
+        rgba(0,0,0,0) 100%
+      );
+    background-position: 0 0;
+    background-size: cover;
+    transform: translateZ(-5px);
+    opacity: ${(props) => props.highlight};
+    transition: all 0.5s;
+  }
+`;
+
+  const Button = s.button`
+  // display: flex;
+  padding: 20px;
+  background: blue;
+  `;
+
+  const Image = s.img`
+  transition: all 0.5s;
+  display: block;
+  max-height: 350px;
+`;
+
+  const Title = s.h2`
+  position: absolute;
+  color: white;
+  font-size: 30px;
+  text-shadow: 1px 1px 2px black;
+  transform: translateY(-100px) translateX(-20px);
+  transition: all 0.3s ease-in-out 0.5s;
+
+  ${(props) =>
+    props.show
+      ? `
+      opacity: 1;
+      ::after {
+        content: '';
+        border-bottom: 2px solid white;
+        width: 150px;
+        display: block;
+        margin-top: -5px;
+        position: absolute;
+        transition: width 1.5s;
+        z-index: -1;
+      }
+      `
+      : `
+      opacity: 0; 
+      transition: all 0.5s ease-in-out 0s; 
+      transform: translateY(-100px) translateX(-20px);
+
+      ::after {
+        content: '';
+        border-bottom: 2px solid white;
+        width: 0;
+        transition: width 2.5s;
+        z-index: -1;
+        display: block;
+        margin-top: -5px;
+        position: absolute;
+      }
+      `}
+`;
+
+  const positions = [
+    { deg: 20, depth: -200, shading: 0.3, x: -100, highlight: 0 },
+    { deg: 0, depth: 0, shading: 1, x: 0, highlight: 1 },
+    { deg: -20, depth: -200, shading: 0.3, x: 100, highlight: 0 },
+  ];
 
   const [races, setRaces] = useState([]);
 
@@ -53,15 +141,18 @@ export const SelectRace = () => {
 
   const [currentSlide, setCurrentSlide] = useState(0);
 
-  const getNextSlide = () => setCurrentSlide((old) => (old + 1) % races.length);
-
+  const getNextSlide = () => setCurrentSlide((x) => (x + 1) % races.length);
   const getPrevSlide = () =>
-    setCurrentSlide((old) => (old - 1 + races.length) % races.length);
+    setCurrentSlide((x) => (x - 1 + races.length) % races.length);
 
   const slides = [...races, ...races, ...races].slice(
     currentSlide + races.length - 1,
     currentSlide + races.length + 2
   );
+
+  const getSlides = slides.map((slide) => ({
+    ...slide,
+  }));
 
   const user = useUser();
 
@@ -89,53 +180,44 @@ export const SelectRace = () => {
     return <p>Loading...</p>;
   }
 
-  const setting = {
-    infinite: false,
-    lazyLoad: true,
-    speed: 300,
-    slideToShow: 3,
-    centerMode: true,
-    centerPadding: 0,
-  };
-
-  const NextArrow = ({ onClick }) => {
-    return (
-      <div className="arrow next" onClick={onClick}>
-        <BsChevronRight />
-      </div>
-    );
-  };
-
-  const PrevArrow = ({ onClick }) => {
-    return (
-      <div className="arrow prev" onClick={onClick}>
-        <BsChevronLeft />
-      </div>
-    );
-  };
-
   return (
     <section className="select-race">
       <div className="wrapper">
-        <PrevArrow onClick={getPrevSlide} />
-        <NextArrow onClick={getNextSlide} />
         <div className="slider">
-          <Slider>
-            {images.map((img, idx) => (
-              <div>
-                <img src={img} alt={img} />
-              </div>
-            ))}
-          </Slider>
+          {getSlides.map((slide, i) => {
+            const d =
+              (((currentSlide + i) % positions.length) + positions.length) %
+              positions.length;
+            const { deg, depth, shading, x, highlight } = positions[d];
+            return (
+              <Slide
+                highlight={highlight}
+                style={{
+                  order: d,
+                  transform: `rotateY(${deg}deg) translateZ(${depth}px) translateX(${x}%)`,
+                }}
+              >
+                <Image
+                  src={slide.src}
+                  key={slide.id}
+                  alt={slide.name}
+                  style={{ opacity: `${shading}` }}
+                />
+                <Title show={highlight === 1}>{slide.name}</Title>
+              </Slide>
+            );
+          })}
         </div>
       </div>
-      ;
+      <Button onClick={getPrevSlide}>Poprzedni</Button>
+      <Button onClick={getNextSlide}>Następny</Button>
+
       <div className="wrapper__desc">
-        <h2 className="description race__name">{slides[1].name}</h2>
-        <div className="description">{slides[1].description}</div>
+        <h2 className="description race__name">{getSlides[1].name}</h2>
+        <div className="description">{getSlides[1].description}</div>
         <div className="bonus bonus__title">Bonus rasowy:</div>
         <div className="bonus">
-          {slides[1].bonus
+          {getSlides[1].bonus
             .filter((bonus) => bonus.change !== 0)
             .map((bonus) => (
               <div key={bonus.name}>
