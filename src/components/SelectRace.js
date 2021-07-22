@@ -129,6 +129,7 @@ export const SelectRace = () => {
     { deg: 20, depth: -200, shading: 0.3, x: -100, highlight: 0 },
     { deg: 0, depth: 0, shading: 1, x: 0, highlight: 1 },
     { deg: -20, depth: -200, shading: 0.3, x: 100, highlight: 0 },
+    { deg: 0, depth: -20, shading: 1, x: 0, highlight: 1 },
   ];
 
   const [races, setRaces] = useState([]);
@@ -145,10 +146,11 @@ export const SelectRace = () => {
   const getPrevSlide = () =>
     setCurrentSlide((x) => (x - 1 + races.length) % races.length);
 
-  const slides = [...races, ...races, ...races].slice(
-    currentSlide + races.length - 1,
-    currentSlide + races.length + 2
-  );
+  // const slides = [...races, ...races, ...races].slice(
+  //   currentSlide + races.length - 1,
+  //   currentSlide + races.length + 2
+  // );
+  const slides = races;
 
   const getSlides = slides.map((slide) => ({
     ...slide,
