@@ -28,7 +28,20 @@ const ModalWrapper = styled.section`
 `;
 const List = styled.ul`
   list-style: none;
-`;
+  margin: 0 25px;
+  `;
+  const ItemCartStyle = styled.section`
+  display: flex;
+  height: max-content;
+  width: "100%";
+  justify-content: left;
+  box-shadow: 0 3px 7px rgba(0, 0, 0, 0.5);
+  padding: 0 5px;
+  min-width: 95px;
+  min-height: 110px;
+  align-items: start;
+  
+  `;
 
 export const StorePage = () => {
   const user = useUser();
@@ -153,14 +166,17 @@ export const StorePage = () => {
             <List>
               {itemsToDisplayInCart.map((item, index) => {
                 return (
-                  <ItemStyle style={{ marginTop: "30px" }} >
+                  <ItemCartStyle style={{ marginTop: "30px" }} >
                   <CartItem
                     key={index}
                     name={item.key}
                     orderCount={item.orderCount}
                     value={item.val.value}
+                    icon={item.val.icon}
+                    onAddButton={() => addToCart(item.key)}
+                    onMinusButton={() => subtractFromCart(item.key)}
                   />
-                   </ItemStyle>
+                   </ItemCartStyle>
                 );
               })}
             </List>
