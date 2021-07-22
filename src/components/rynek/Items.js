@@ -8,7 +8,7 @@ export const ItemStyle = styled.div`
   box-shadow: 0 3px 7px rgba(0, 0, 0, 0.5);
   padding: 0 5px;
   min-width: 95px;
-  min-height: 110px;
+  min-height: 150px;
 `;
 export const Items = ({ items, onBuyClick }) => {
   console.log(items);

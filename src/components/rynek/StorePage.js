@@ -10,8 +10,8 @@ import { TextBlock } from "./TextBlock";
 import { GlobalChat } from "../../global-chat/global-chat";
 import { useState } from "react";
 import styled from "styled-components";
-import { ItemStyle } from "./Items";
 import { CartItem } from "./CartItem";
+import CloseIcon from '@material-ui/icons/Close';
 
 const CartInfoWrapper = styled.div`
   display: flex;
@@ -38,10 +38,17 @@ const List = styled.ul`
   box-shadow: 0 3px 7px rgba(0, 0, 0, 0.5);
   padding: 0 5px;
   min-width: 95px;
-  min-height: 110px;
-  align-items: start;
-  
+  min-height: 120px;
+  align-items: center;
   `;
+  const CloseIconStyle = styled(CloseIcon)`
+  font-size: large;
+  width: 25px;
+  height: 25px; 
+  float: right;   
+  box-shadow: 0 3px 7px rgba(0, 0, 0, 0.5); 
+  margin: 12px 25px;
+  `
 
 export const StorePage = () => {
   const user = useUser();
@@ -161,7 +168,10 @@ export const StorePage = () => {
             <TextBlock>Nie masz przedmiotów w koszyku</TextBlock>
           </ModalWrapper>
         ) : (
-          <ModalWrapper onClick={() => closeModal()}>
+          <ModalWrapper >
+            <CloseIconStyle 
+            onClick={() => closeModal()}
+            />
             <TextBlock>Koszyk</TextBlock>
             <List>
               {itemsToDisplayInCart.map((item, index) => {
