@@ -12,6 +12,7 @@ import { useState } from "react";
 import styled from "styled-components";
 import { CartItem } from "./CartItem";
 import CloseIcon from "@material-ui/icons/Close";
+import { BuyButton } from "./BuyButton";
 
 const CartInfoWrapper = styled.div`
   display: flex;
@@ -48,6 +49,12 @@ const CloseIconStyle = styled(CloseIcon)`
   float: right;
   box-shadow: 0 3px 7px rgba(0, 0, 0, 0.5);
   margin: 12px 25px;
+`;
+const BuyButtonSection = styled.section`
+  display: grid;
+  justify-items: right;
+  float: right;
+  margin-right: 50px;
 `;
 
 export const StorePage = () => {
@@ -91,11 +98,13 @@ export const StorePage = () => {
     0
   );
 
-  // const totalPrice = cart.reduce((sum, cartItem) =>sum + cartItem.orderCount * joinItemWithCart(cartItem.key).val.value ,0)
-  //   const totalCount = cart.reduce(
-  //     (sum, cartItem) => sum + cartItem.orderCount,
-  //     0
-  //   );
+  const totalPrice = cart.reduce(
+    (sum, cartItem) =>
+      sum + cartItem.orderCount * joinItemWithCart(cartItem.key).val.value,
+    0
+  );
+
+  console.log(totalPrice);
   const addToCart = (key) => {
     setCart((cart) => {
       const existingItem = cart.find((cartItem) => cartItem.key === key);
@@ -191,6 +200,10 @@ export const StorePage = () => {
               </List>
             </>
           )}
+          <BuyButtonSection>
+            <TextBlock>Razem: {totalPrice}</TextBlock>
+            <BuyButton />
+          </BuyButtonSection>
         </ModalWrapper>
       </>
     );
