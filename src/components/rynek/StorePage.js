@@ -11,7 +11,7 @@ import { GlobalChat } from "../../global-chat/global-chat";
 import { useState } from "react";
 import styled from "styled-components";
 import { CartItem } from "./CartItem";
-import CloseIcon from '@material-ui/icons/Close';
+import CloseIcon from "@material-ui/icons/Close";
 
 const CartInfoWrapper = styled.div`
   display: flex;
@@ -29,8 +29,8 @@ const ModalWrapper = styled.section`
 const List = styled.ul`
   list-style: none;
   margin: 0 25px;
-  `;
-  const ItemCartStyle = styled.section`
+`;
+const ItemCartStyle = styled.section`
   display: flex;
   height: max-content;
   width: "100%";
@@ -40,15 +40,15 @@ const List = styled.ul`
   min-width: 95px;
   min-height: 120px;
   align-items: center;
-  `;
-  const CloseIconStyle = styled(CloseIcon)`
+`;
+const CloseIconStyle = styled(CloseIcon)`
   font-size: large;
   width: 25px;
-  height: 25px; 
-  float: right;   
-  box-shadow: 0 3px 7px rgba(0, 0, 0, 0.5); 
+  height: 25px;
+  float: right;
+  box-shadow: 0 3px 7px rgba(0, 0, 0, 0.5);
   margin: 12px 25px;
-  `
+`;
 
 export const StorePage = () => {
   const user = useUser();
@@ -163,35 +163,35 @@ export const StorePage = () => {
   } else {
     return (
       <>
-        {itemsToDisplayInCart.length === 0 ? (
-          <ModalWrapper onClick={() => closeModal()}>
-            <TextBlock>Nie masz przedmiotów w koszyku</TextBlock>
-          </ModalWrapper>
-        ) : (
-          <ModalWrapper >
-            <CloseIconStyle 
-            onClick={() => closeModal()}
-            />
-            <TextBlock>Koszyk</TextBlock>
-            <List>
-              {itemsToDisplayInCart.map((item, index) => {
-                return (
-                  <ItemCartStyle style={{ marginTop: "30px" }} >
-                  <CartItem
-                    key={index}
-                    name={item.key}
-                    orderCount={item.orderCount}
-                    value={item.val.value}
-                    icon={item.val.icon}
-                    onAddButton={() => addToCart(item.key)}
-                    onMinusButton={() => subtractFromCart(item.key)}
-                  />
-                   </ItemCartStyle>
-                );
-              })}
-            </List>
-          </ModalWrapper>
-        )}
+        <ModalWrapper>
+          <CloseIconStyle onClick={() => closeModal()} />
+          {itemsToDisplayInCart.length === 0 ? (
+            <>
+              <TextBlock>Nie masz przedmiotów w koszyku</TextBlock>
+            </>
+          ) : (
+            <>
+              <TextBlock>Koszyk</TextBlock>
+              <List>
+                {itemsToDisplayInCart.map((item, index) => {
+                  return (
+                    <ItemCartStyle style={{ marginTop: "30px" }}>
+                      <CartItem
+                        key={index}
+                        name={item.key}
+                        orderCount={item.orderCount}
+                        value={item.val.value}
+                        icon={item.val.icon}
+                        onAddButton={() => addToCart(item.key)}
+                        onMinusButton={() => subtractFromCart(item.key)}
+                      />
+                    </ItemCartStyle>
+                  );
+                })}
+              </List>
+            </>
+          )}
+        </ModalWrapper>
       </>
     );
   }
