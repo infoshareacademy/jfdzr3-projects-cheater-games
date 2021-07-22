@@ -21,14 +21,27 @@ export const Items = ({ items, onBuyClick }) => {
         {items &&
           items.map((item, index) => (
             <ItemStyle key={index}>
-              <Item 
-              name={item.key} 
-              value={item.val.value}
-              onBuyClick={() => {
-                if (item.type === "test" || item.type === "handWeapon" || item.type === "handWeapon" || item.type === "armor" || item.type === "armorPrefix" || item.type === "armorSuffix" || item.type === "handWeaponPrefix" || item.type === "handWeaponSuffix" || item.type === "helmet" || item.type === "helmetPrefix" || item.type === "helmetSuffix") {
-                  onBuyClick(item.key)
-                }
-              }}
+              <Item
+                icon={item.val.icon}
+                name={item.key}
+                value={item.val.value}
+                onBuyClick={() => {
+                  if (
+                    item.type === "test" ||
+                    item.type === "handWeapon" ||
+                    item.type === "handWeapon" ||
+                    item.type === "armor" ||
+                    item.type === "armorPrefix" ||
+                    item.type === "armorSuffix" ||
+                    item.type === "handWeaponPrefix" ||
+                    item.type === "handWeaponSuffix" ||
+                    item.type === "helmet" ||
+                    item.type === "helmetPrefix" ||
+                    item.type === "helmetSuffix"
+                  ) {
+                    onBuyClick(item.key);
+                  }
+                }}
               />
             </ItemStyle>
           ))}

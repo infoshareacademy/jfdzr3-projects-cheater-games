@@ -1,11 +1,13 @@
 import React from "react";
 import Chip from "@material-ui/core/Chip";
 import ShoppingCartRoundedIcon from "@material-ui/icons/ShoppingCartRounded";
+import { GiBroadsword } from "react-icons/gi";
 
-export const Item = ({ name, value, onBuyClick }) => {
+export const Item = ({ icon, name, value, onBuyClick }) => {
   return (
     <>
       <h5>{name}</h5>
+      <GiBroadsword style={{width: "80px"}}/>
       <h6 style={{ marginTop: "5px" }}>gold: {value}</h6>
       <Chip
         label={value}

@@ -11,6 +11,7 @@ import { GlobalChat } from "../../global-chat/global-chat";
 import { useState } from "react";
 import styled from "styled-components";
 import { ItemStyle } from "./Items";
+import { CartItem } from "./CartItem";
 
 const CartInfoWrapper = styled.div`
   display: flex;
@@ -24,6 +25,9 @@ const ModalWrapper = styled.section`
   min-height: 800px;
   // display: grid;
   // grid-template-row: auto;
+`;
+const List = styled.ul`
+  list-style: none;
 `;
 
 export const StorePage = () => {
@@ -52,19 +56,31 @@ export const StorePage = () => {
   };
 
   const itemsToDisplayInCart = cart.map((cartItem) => {
+    console.log(cartItem);
     return joinItemWithCart(cartItem.key);
   });
 
   console.log(itemsToDisplayInCart);
-
-  const orderCount = cart.reduce(
+  // const totalPrice = cart.reduce(
+  //   (sum, cartItem) =>
+  //     sum + cartItem.orderCount * joinItemWithCart(cartItem.key).val.value,
+  //   0
+  // );
+  const totalCount = cart.reduce(
     (sum, cartItem) => sum + cartItem.orderCount,
     0
   );
 
+  // const totalPrice = cart.reduce((sum, cartItem) =>sum + cartItem.orderCount * joinItemWithCart(cartItem.key).val.value ,0)
+  //   const totalCount = cart.reduce(
+  //     (sum, cartItem) => sum + cartItem.orderCount,
+  //     0
+  //   );
   const addToCart = (key) => {
     setCart((cart) => {
       const existingItem = cart.find((cartItem) => cartItem.key === key);
+
+      console.log(existingItem);
       if (!existingItem) {
         return [...cart, { key, orderCount: 1 }];
       } else {
@@ -73,6 +89,22 @@ export const StorePage = () => {
             ? { ...cartItem, orderCount: cartItem.orderCount + 1 }
             : cartItem
         );
+      }
+    });
+  };
+
+  const subtractFromCart = (key) => {
+    setCart((cart) => {
+      const existingItem = cart.find((cartItem) => cartItem.key === key);
+      console.log(existingItem);
+      if (existingItem.orderCount > 1) {
+        return cart.map((cartItem) =>
+          cartItem === existingItem
+            ? { ...cartItem, orderCount: cartItem.orderCount - 1 }
+            : cartItem
+        );
+      } else {
+        return cart.filter((cartItem) => cartItem !== existingItem);
       }
     });
   };
@@ -86,7 +118,7 @@ export const StorePage = () => {
             <CartInfoWrapper>
               <TextBlock>Twoje złoto: {user?.resources.gold}</TextBlock>
               <CartInformation
-                orderCount={orderCount}
+                orderCount={totalCount}
                 openModal={() => {
                   openModal(true);
                 }}
@@ -118,15 +150,20 @@ export const StorePage = () => {
         ) : (
           <ModalWrapper onClick={() => closeModal()}>
             <TextBlock>Koszyk</TextBlock>
-            <>
+            <List>
               {itemsToDisplayInCart.map((item, index) => {
                 return (
-                  <ItemStyle key={index} style={{ marginTop: "30px" }}>
-                    <h2>{item.key}</h2>
-                  </ItemStyle>
+                  <ItemStyle style={{ marginTop: "30px" }} >
+                  <CartItem
+                    key={index}
+                    name={item.key}
+                    orderCount={item.orderCount}
+                    value={item.val.value}
+                  />
+                   </ItemStyle>
                 );
               })}
-            </>
+            </List>
           </ModalWrapper>
         )}
       </>
