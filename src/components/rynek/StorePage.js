@@ -139,7 +139,7 @@ export const StorePage = () => {
 
   const resetCart = () => {
     setCart([]);
-  }
+  };
 
   if (isOpen === false) {
     return (
@@ -204,8 +204,14 @@ export const StorePage = () => {
             </>
           )}
           <BuyButtonSection>
-            <TextBlock>Razem: {totalPrice}</TextBlock>
-            <BuyButton resetCart={resetCart}/>
+            {totalPrice === 0 ? (
+              <></>
+              ) : (
+                <>
+              <TextBlock>Razem: {totalPrice}</TextBlock>
+              <BuyButton resetCart={resetCart} />
+              </>
+            )}
           </BuyButtonSection>
         </ModalWrapper>
       </>
