@@ -86,6 +86,7 @@ export const StorePage = () => {
     console.log(cartItem);
     return joinItemWithCart(cartItem.key);
   });
+  console.log(user);
 
   console.log(itemsToDisplayInCart);
   // const totalPrice = cart.reduce(
@@ -107,8 +108,6 @@ export const StorePage = () => {
   const addToCart = (key) => {
     setCart((cart) => {
       const existingItem = cart.find((cartItem) => cartItem.key === key);
-
-      console.log(existingItem);
       if (!existingItem) {
         return [...cart, { key, orderCount: 1 }];
       } else {
@@ -209,7 +208,7 @@ export const StorePage = () => {
               ) : (
                 <>
               <TextBlock>Razem: {totalPrice}</TextBlock>
-              <BuyButton resetCart={resetCart} />
+              <BuyButton resetCart={resetCart} updatedUserItems={itemsToDisplayInCart} totalPrice={totalPrice}/>
               </>
             )}
           </BuyButtonSection>
