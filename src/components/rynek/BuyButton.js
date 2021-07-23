@@ -3,14 +3,18 @@ import { useUser } from "../../hooks/useUser";
 
 export function BuyButton({ resetCart, updatedUserItems, totalPrice }) {
   const user = useUser();
-console.log(updatedUserItems);
-const [key] = updatedUserItems.map((el) => el.key);
-const [val] = updatedUserItems.map((el) => el.val);
-const [type] = updatedUserItems.map((el) => el.type);
 
+  // const dataArray = [];
+  // const getItemsFromCart = updatedUserItems.map((el) => {
+  //         const key = el.key;
+  //         const val = el.val;
+  //         const type = el.type;
+  //         const itemObject = {[`${key}`]: {...val, type, id: Date.now()}}
 
-const userUpdate = {};
-userUpdate[`${key}.val`] = true;
+  //         dataArray.push(itemObject)
+  //     })
+
+  //     const convertDataArrayToObject = {...dataArray}
 
   const updateUserArmory = async () => {
     const docRef = db
@@ -20,37 +24,33 @@ userUpdate[`${key}.val`] = true;
       .doc("getFromStore");
     const doc = await docRef.get();
     if (doc.exists) {
-        console.log("dokument istniej");
-        // docRef.update({
-        //    [key]: {
-        //         gold: 1000
-        //     }
-        // })
+      console.log("dokument istniej");
+      // docRef.update({
+      //    [key]: {
+      //         gold: 1000
+      //     }
+      // })
+      const getItemsFromCart = updatedUserItems.map((el) => {
+        const key = el.key;
+        const val = el.val;
+        const type = el.type;
+        const itemObject = { [`${key}`]: { ...val, type, id: Date.now() } };
 
-        docRef.update({
-            [key]: {...val, type}
-         })
-
-   
+        docRef.update(itemObject);
+      });
     } else {
-        console.log("dokument nie istnieje");
-        // docRef.set({key: updatedUserItems.key, val: updatedUserItems.val});
-        // docRef.set(
-            
-        //     {key:  {
-        //         val: {}}}
-        // );
-        // docRef.set( { key: key, val: val }) 
-        // docRef.set(userUpdate)
-
+      console.log("dokument nie istnieje");
     }
   };
 
   const updateUserGold = () => {
-      db.collection("users").doc(user?.uid).update({
-          resources: {
-               gold: user?.resources.gold - totalPrice}
-      })
+    db.collection("users")
+      .doc(user?.uid)
+      .update({
+        resources: {
+          gold: user?.resources.gold - totalPrice,
+        },
+      });
   };
 
   return (

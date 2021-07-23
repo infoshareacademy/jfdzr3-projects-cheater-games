@@ -83,17 +83,9 @@ export const StorePage = () => {
   };
 
   const itemsToDisplayInCart = cart.map((cartItem) => {
-    console.log(cartItem);
     return joinItemWithCart(cartItem.key);
   });
-  console.log(user);
 
-  console.log(itemsToDisplayInCart);
-  // const totalPrice = cart.reduce(
-  //   (sum, cartItem) =>
-  //     sum + cartItem.orderCount * joinItemWithCart(cartItem.key).val.value,
-  //   0
-  // );
   const totalCount = cart.reduce(
     (sum, cartItem) => sum + cartItem.orderCount,
     0
