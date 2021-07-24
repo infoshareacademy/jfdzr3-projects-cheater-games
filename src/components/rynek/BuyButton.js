@@ -1,7 +1,7 @@
 import { db } from "../../firebaseConfig";
 import { useUser } from "../../hooks/useUser";
 
-export function BuyButton({ resetCart, updatedUserItems, totalPrice }) {
+export function BuyButton({ resetCart, updatedUserItems, totalPrice, userArmoryBeforeBuy }) {
   const user = useUser();
 
   // const dataArray = [];
@@ -38,6 +38,9 @@ export function BuyButton({ resetCart, updatedUserItems, totalPrice }) {
 
         docRef.update(itemObject);
       });
+
+      // docRef.update(...userArmoryBeforeBuy);
+
     } else {
       console.log("dokument nie istnieje");
     }

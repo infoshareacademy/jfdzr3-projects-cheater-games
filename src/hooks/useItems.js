@@ -1,12 +1,9 @@
 import { useEffect, useState } from "react";
-import { useUser } from "./useUser";
 
 export const useItems = (collectionPath) => {
   const [items, setItems] = useState([]);
-  const user = useUser();
 
   useEffect(() => {
-    if (user?.uid) {
       collectionPath.onSnapshot((snapshot) => {
         const newItems = [];
         snapshot.docs.map((doc) => {
@@ -23,7 +20,7 @@ export const useItems = (collectionPath) => {
         });
         setItems(newItems);
       });
-    }
-  }, [user?.uid]);
+    
+  }, [collectionPath]);
   return items;
 };

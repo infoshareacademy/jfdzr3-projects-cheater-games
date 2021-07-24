@@ -8,7 +8,7 @@ import { db } from "../../firebaseConfig";
 import { CartInformation } from "./CartInformation";
 import { TextBlock } from "./TextBlock";
 import { GlobalChat } from "../../global-chat/global-chat";
-import { useState } from "react";
+import { useMemo, useState } from "react";
 import styled from "styled-components";
 import { CartItem } from "./CartItem";
 import CloseIcon from "@material-ui/icons/Close";
@@ -60,11 +60,11 @@ const BuyButtonSection = styled.section`
 export const StorePage = () => {
   const user = useUser();
 
-  const itemsCollectionPath = db.collection("items");
-  const userItemsCollectionPath = db
-    .collection("users")
-    .doc(user?.uid)
-    .collection("armory");
+  const itemsCollectionPath = useMemo(() => db.collection("items"), []);
+  const userItemsCollectionPath = useMemo(
+    () => db.collection("users").doc(user.uid).collection("armory"),
+    [user.uid]
+  );
   const itemsRef = useItems(itemsCollectionPath);
   // const userItemsRef = useUserItems(userItemsCollectionPath);
   const userItemsRef = useItems(userItemsCollectionPath);
@@ -197,10 +197,15 @@ export const StorePage = () => {
           <BuyButtonSection>
             {totalPrice === 0 ? (
               <></>
-              ) : (
-                <>
-              <TextBlock>Razem: {totalPrice}</TextBlock>
-              <BuyButton resetCart={resetCart} updatedUserItems={itemsToDisplayInCart} totalPrice={totalPrice}/>
+            ) : (
+              <>
+                <TextBlock>Razem: {totalPrice}</TextBlock>
+                <BuyButton
+                  resetCart={resetCart}
+                  updatedUserItems={itemsToDisplayInCart}
+                  totalPrice={totalPrice}
+                  userArmoryBeforeBuy={userItemsRef}
+                />
               </>
             )}
           </BuyButtonSection>
