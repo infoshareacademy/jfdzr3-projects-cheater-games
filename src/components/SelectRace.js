@@ -28,7 +28,6 @@ const Slide = s.div`
     background: 
       linear-gradient(
         rgba(255,255,255,1) 0%, 
-        rgba(0,0,0,0) 100%
       );
     background-position: 0 0;
     background-size: cover;
@@ -116,10 +115,10 @@ export const SelectRace = () => {
       });
   };
   const positions = [
-    { deg: 20, depth: -200, shading: 0.3, x: -100, highlight: 0 },
     { deg: 0, depth: 0, shading: 1, x: 0, highlight: 1 },
     { deg: -20, depth: -200, shading: 0.3, x: 100, highlight: 0 },
     { deg: 0, depth: -200, shading: 1, x: 0, highlight: 1 },
+    { deg: 20, depth: -200, shading: 0.3, x: -100, highlight: 0 },
   ];
   const [races, setRaces] = useState([]);
   useEffect(() => {
@@ -131,10 +130,7 @@ export const SelectRace = () => {
   const getNextSlide = () => setCurrentSlide((x) => (x + 1) % races.length);
   const getPrevSlide = () =>
     setCurrentSlide((x) => (x - 1 + races.length) % races.length);
-  // const slides = [...races, ...races, ...races].slice(
-  //   currentSlide + races.length - 1,
-  //   currentSlide + races.length + 2
-  // );
+
   const user = useUser();
   const unitsMap = {
     str: { label: "Siła" },
@@ -152,10 +148,7 @@ export const SelectRace = () => {
   if (races.length === 0) {
     return <p>Loading...</p>;
   }
-  const dataIndex =
-    (((currentSlide + 1) % races.length) + races.length) % races.length;
-  console.log(dataIndex);
-  console.log(races[dataIndex].name);
+  const dataIndex = (currentSlide + races.length) % races.length;
   const { bonus, name, description } = races[dataIndex];
   const updateRace = (name) => {
     db.collection("users").doc(user.uid).update({
@@ -168,7 +161,7 @@ export const SelectRace = () => {
         <div className="slider">
           {races.map((slide, i) => {
             const d =
-              (((currentSlide + i) % positions.length) + positions.length) %
+              (((currentSlide - i) % positions.length) + positions.length) %
               positions.length;
             const { deg, depth, shading, x, highlight } = positions[d];
             return (
