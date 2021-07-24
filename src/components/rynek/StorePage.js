@@ -62,8 +62,8 @@ export const StorePage = () => {
 
   const itemsCollectionPath = useMemo(() => db.collection("items"), []);
   const userItemsCollectionPath = useMemo(
-    () => db.collection("users").doc(user.uid).collection("armory"),
-    [user.uid]
+    () => db.collection("users").doc(user?.uid).collection("armory"),
+    [user?.uid]
   );
   const itemsRef = useItems(itemsCollectionPath);
   // const userItemsRef = useUserItems(userItemsCollectionPath);
