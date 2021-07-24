@@ -1,12 +1,14 @@
 .message_view {
   margin: 5px;
-  padding: 0 10px 0;
+  padding: 0 5px 0;
   border-color: black;
-  border-radius: 10px;
-  border-style: dotted;
+  border-radius: 5px;
+  border-style: none;
   width: fit-content;
   word-break: break-word;
   font-size: 15px;
   line-height: 25px;
   text-align: left;
+  box-shadow: rgba(50, 50, 93, 0.25) 0px 6px 12px -2px,
+    rgba(0, 0, 0, 0.3) 0px 3px 7px -3px;
 }

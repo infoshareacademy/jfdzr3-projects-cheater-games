@@ -37,7 +37,6 @@ body {
 .wrapper {
   display: flex;
   justify-content: center;
-  position: relative;
 }
 
 .header {
@@ -92,12 +91,13 @@ li:hover {
   grid-template-rows: auto 1fr;
   align-items: center;
   justify-content: center;
-  padding: 40px 0 0 0;
+  padding: 30px 0;
 }
 
 .welcome {
   text-align: center;
   font-family: var(--font-metamorphous);
+  margin-bottom: 35px;
 }
 
 .card {
@@ -127,13 +127,14 @@ li:hover {
 }
 
 .selected:hover {
-  box-shadow: 0px 0px 20px 15px rgba(255, 253, 131, 0.5);
+  box-shadow: 0px 0px 20px 15px rgba(249, 198, 16, 0.4);
 }
 
 .slider {
   display: flex;
   align-items: center;
   width: 50vw;
+  position: relative;
 }
 
 .change__race {
@@ -146,13 +147,12 @@ li:hover {
 
 .change__race:first-of-type {
   transform: scalex(-1);
-  top: 35%;
-  left: 0;
+  left: -5%;
 }
 
 .change__race:last-of-type {
   top: 50%;
-  right: -3.3%;
+  right: -8%;
 }
 
 .change__race:hover {
