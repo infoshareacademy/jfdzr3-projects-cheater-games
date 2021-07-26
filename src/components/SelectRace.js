@@ -4,6 +4,8 @@ import { Link } from "react-router-dom";
 import { useUser } from "../hooks/useUser";
 import { db } from "../firebaseConfig";
 import s from "styled-components";
+import { BsChevronLeft, BsChevronRight } from "react-icons/bs";
+
 const Slide = s.div`
   background: black;
   top: 25%;
@@ -36,11 +38,6 @@ const Slide = s.div`
     transition: all 0.5s;
   }
 `;
-const Button = s.button`
-  // display: flex;
-  padding: 20px;
-  background: blue;
-  `;
 const Image = s.img`
   transition: all 0.5s;
   display: block;
@@ -159,6 +156,8 @@ export const SelectRace = () => {
     <section className="select-race">
       <div className="wrapper">
         <div className="slider">
+          <BsChevronLeft className="arrow prev" onClick={getPrevSlide} />
+          <BsChevronRight className="arrow next" onClick={getNextSlide} />
           {races.map((slide, i) => {
             const d =
               (((currentSlide - i) % positions.length) + positions.length) %
@@ -184,10 +183,9 @@ export const SelectRace = () => {
           })}
         </div>
       </div>
-      <Button onClick={getPrevSlide}>Poprzedni</Button>
-      <Button onClick={getNextSlide}>Następny</Button>
+
       <div className="wrapper__desc">
-        <h2 className="description race__name">{name}</h2>
+        {/* <h2 className="description race__name">{name}</h2> */}
         <div className="description">{description}</div>
         <div className="bonus bonus__title">Bonus rasowy:</div>
         <div className="bonus">
