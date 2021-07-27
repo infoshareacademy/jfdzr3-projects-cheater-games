@@ -43,44 +43,44 @@ const Image = s.img`
   display: block;
   max-height: 350px;
 `;
-const Title = s.h2`
-  position: absolute;
-  color: white;
-  font-size: 30px;
-  text-shadow: 1px 1px 2px black;
-  transform: translateY(-100px) translateX(-20px);
-  transition: all 0.3s ease-in-out 0.5s;
-  ${(props) =>
-    props.show
-      ? `
-      opacity: 1;
-      ::after {
-        content: '';
-        border-bottom: 2px solid white;
-        width: 150px;
-        display: block;
-        margin-top: -5px;
-        position: absolute;
-        transition: width 1.5s;
-        z-index: -1;
-      }
-      `
-      : `
-      opacity: 0; 
-      transition: all 0.5s ease-in-out 0s; 
-      transform: translateY(-100px) translateX(-20px);
-      ::after {
-        content: '';
-        border-bottom: 2px solid white;
-        width: 0;
-        transition: width 2.5s;
-        z-index: -1;
-        display: block;
-        margin-top: -5px;
-        position: absolute;
-      }
-      `}
-`;
+// const Title = s.h2`
+//   position: absolute;
+//   color: white;
+//   font-size: 30px;
+//   text-shadow: 1px 1px 2px black;
+//   transform: translateY(-100px) translateX(-20px);
+//   transition: all 0.3s ease-in-out 0.5s;
+//   ${(props) =>
+//     props.show
+//       ? `
+//       opacity: 1;
+//       ::after {
+//         content: '';
+//         border-bottom: 2px solid white;
+//         width: 150px;
+//         display: block;
+//         margin-top: -5px;
+//         position: absolute;
+//         transition: width 1.5s;
+//         z-index: -1;
+//       }
+//       `
+//       : `
+//       opacity: 0;
+//       transition: all 0.5s ease-in-out 0s;
+//       transform: translateY(-100px) translateX(-20px);
+//       ::after {
+//         content: '';
+//         border-bottom: 2px solid white;
+//         width: 0;
+//         transition: width 2.5s;
+//         z-index: -1;
+//         display: block;
+//         margin-top: -5px;
+//         position: absolute;
+//       }
+//       `}
+// `;
 export const SelectRace = () => {
   const getRaceFromDB = () => {
     return db
@@ -177,7 +177,7 @@ export const SelectRace = () => {
                   alt={slide.name}
                   style={{ opacity: `${shading}` }}
                 />
-                <Title show={highlight === 1}>{slide.name}</Title>
+                {/* <Title show={highlight === 1}>{slide.name}</Title> */}
               </Slide>
             );
           })}
@@ -185,7 +185,7 @@ export const SelectRace = () => {
       </div>
 
       <div className="wrapper__desc">
-        {/* <h2 className="description race__name">{name}</h2> */}
+        <h2 className="description race__name">{name}</h2>
         <div className="description">{description}</div>
         <div className="bonus bonus__title">Bonus rasowy:</div>
         <div className="bonus">
