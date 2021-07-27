@@ -51,7 +51,7 @@ export const CartPage = () => {
         quantity: itemsByKey[key].length,
       };
     })
-    .sort((a, b) => (a.key > b.key ? -1 : 1));
+    .sort((a, b) => (a.key > b.key ? 1 : -1));
 
   const totalPrice = getTotalPrice();
 

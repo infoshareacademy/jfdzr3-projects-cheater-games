@@ -9,7 +9,7 @@ const useItems = (type) => {
       .collection("items")
       .doc(type)
       .onSnapshot((doc) => {
-        const data = doc.data()
+        const data = doc.data();
         const itemIds = Object.keys(data);
 
         const itemsOfType = itemIds.map((id) => {
@@ -20,9 +20,10 @@ const useItems = (type) => {
           };
         });
 
-        setItems(itemsOfType);
+        console.table(itemsOfType)
+        setItems(itemsOfType.sort((a, b) => a.key > b.key ? 1 : -1));
       });
-  }, []);
+  }, [type]);
 
   return items;
 };

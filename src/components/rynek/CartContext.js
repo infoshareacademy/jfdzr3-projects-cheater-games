@@ -1,4 +1,10 @@
-import { createContext, useCallback, useContext, useState, useMemo } from "react";
+import {
+  createContext,
+  useCallback,
+  useContext,
+  useState,
+  useMemo,
+} from "react";
 
 const noop = () => {};
 
@@ -36,30 +42,29 @@ export const CartProvider = ({ children }) => {
     setCart([]);
   }, []);
 
-  const value = useMemo(() => {
-    const getCartItems = () => cart;
-    const getCartItemsGroupedByKey = () => {
-      return cart.reduce((result, item) => {
-        if (result[item.key] === undefined) {
-          result[item.key] = [];
-        }
-        
-        result[item.key].push(item);
+  const getCartItems = () => cart;
+  const getCartItemsGroupedByKey = () => {
+    return cart.reduce((result, item) => {
+      if (result[item.key] === undefined) {
+        result[item.key] = [];
+      }
 
-        return result;
-      }, {});
-    }
-    const getTotalPrice = () => cart.map(item => item.val.value).reduce((a, b) => a + b, 0);
+      result[item.key].push(item);
 
-    return {
-      getCartItems,
-      getCartItemsGroupedByKey,
-      getTotalPrice,
-      addToCart,
-      subtractFromCart,
-      resetCart,
-    };
-  }, [cart]);
+      return result;
+    }, {});
+  };
+  const getTotalPrice = () =>
+    cart.map((item) => item.val.value).reduce((a, b) => a + b, 0);
+
+  const value = {
+    getCartItems,
+    getCartItemsGroupedByKey,
+    getTotalPrice,
+    addToCart,
+    subtractFromCart,
+    resetCart,
+  };
 
   return <Context.Provider value={value}>{children}</Context.Provider>;
 };
