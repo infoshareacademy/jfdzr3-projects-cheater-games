@@ -43,15 +43,15 @@ export const CartPage = () => {
 
   const itemsByKey = getCartItemsGroupedByKey();
 
-  const cartRows = Object.entries(itemsByKey).map(
-    ([key, [firstItem]]) => {
+  const cartRows = Object.entries(itemsByKey)
+    .map(([key, [firstItem]]) => {
       return {
         key,
         item: firstItem,
         quantity: itemsByKey[key].length,
       };
-    }
-  ).sort((a, b) => a.key > b.key ? -1 : 1);
+    })
+    .sort((a, b) => (a.key > b.key ? -1 : 1));
 
   const totalPrice = getTotalPrice();
 
@@ -67,9 +67,8 @@ export const CartPage = () => {
           <List>
             {cartRows.map(({ key, item, quantity }) => {
               return (
-                <ItemCartStyle style={{ marginTop: "30px" }}>
+                <ItemCartStyle style={{ marginTop: "30px" }} key={key}>
                   <CartItem
-                    key={key}
                     name={key}
                     orderCount={quantity}
                     value={item.val.value}

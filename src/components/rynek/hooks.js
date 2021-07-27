@@ -20,8 +20,6 @@ const useItems = (type) => {
           };
         });
 
-        console.log(itemsOfType);
-
         setItems(itemsOfType);
       });
   }, []);
