@@ -1,35 +1,11 @@
 import { db } from "../../firebaseConfig";
 import { useUser } from "../../hooks/useUser";
+import { useCart } from "./CartContext";
+import firebase from "firebase";
 
-export function BuyButton({
-  resetCart,
-  updatedUserItems,
-  totalPrice,
-  userArmoryBeforeBuy,
-}) {
+export const BuyButton = () => {
   const user = useUser();
-
-  // const dataArray = [];
-  // const getItemsFromCart = updatedUserItems.map((el) => {
-  //         const key = el.key;
-  //         const val = el.val;
-  //         const type = el.type;
-  //         const itemObject = {[`${key}`]: {...val, type, id: Date.now()}}
-
-  //         dataArray.push(itemObject)
-  //     })
-
-  //     const convertDataArrayToObject = {...dataArray}
-
-  const getItemsFromCart = () =>
-    updatedUserItems.flatMap((el) => {
-      const key = el.key;
-      const val = el.val;
-      const type = el.type;
-      const itemObject = { key, val, type };
-
-      return Array.from({ length: el.orderCount }).fill(itemObject);
-    });
+  const { getCartItems, resetCart, getTotalPrice } = useCart();
 
   const updateUserArmory = async () => {
     const collectionRef = db
@@ -37,9 +13,16 @@ export function BuyButton({
       .doc(user.uid)
       .collection("armory");
 
-    getItemsFromCart().forEach((item) => {
+    getCartItems().forEach((item) => {
       console.log(item);
-      collectionRef.add(item);
+      collectionRef.add({
+        obtainedAt: firebase.firestore.FieldValue.serverTimestamp(),
+        prefix: "",
+        suffix: "",
+        name: item.key,
+        type: item.type,
+        quality: 1,
+      });
     });
   };
 
@@ -48,7 +31,7 @@ export function BuyButton({
       .doc(user?.uid)
       .update({
         resources: {
-          gold: user?.resources.gold - totalPrice,
+          gold: user?.resources.gold - getTotalPrice(),
         },
       });
   };
@@ -67,4 +50,4 @@ export function BuyButton({
       </button>
     </div>
   );
-}
+};
