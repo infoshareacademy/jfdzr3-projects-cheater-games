@@ -40,7 +40,7 @@ export const HuntingScreen = () => {
         </p>
       );
     } else {
-      return <p> {currentLevel.descript}</p>;
+      return <p> {currentLevel.descr}</p>;
     }
   };
   return (
