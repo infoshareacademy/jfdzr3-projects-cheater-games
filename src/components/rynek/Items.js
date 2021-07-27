@@ -10,61 +10,33 @@ export const ItemStyle = styled.div`
   min-width: 95px;
   min-height: 150px;
 `;
+
+export const Wrapper = styled.div`
+  display: grid;
+  width: 100%;
+  grid-template-columns: repeat(auto-fill, minmax(90px, 1fr));
+  grid-auto-rows: 150px;
+  grid-gap: 10px;
+`;
+
 export const Items = ({ items, onBuyClick }) => {
-  console.log(items);
-
-// const getFromItems = () => {
-
-//   items.map((item) => {
-//    if (item.type === "handWeapon") {
-//     console.log( item.key )
-//     const name = item.key
-//     return name
-//    }
-//    if (item.type === "handWeaponSuffix") {
-//     console.log( item.key )
-//     const suffix = item.key
-//     return suffix
-//    }
-
-//   });
-// }
-// const allUserItems = getFromItems()
-// console.log(allUserItems);
-
   if (items.length === 0) {
-    return <p>Nie posiadasz jeszcze przedmiotów</p>;
-  } else {
-    return (
-      <>
-        {items &&
-          items.map((item, index) => (
-            <ItemStyle key={index}>
-              <Item
-                icon={item.val.icon}
-                name={item.key}
-                value={item.val.value}
-                onBuyClick={() => {
-                  if (
-                    item.type === "test" ||
-                    item.type === "handWeapon" ||
-                    item.type === "handWeapon" ||
-                    item.type === "armor" ||
-                    item.type === "armorPrefix" ||
-                    item.type === "armorSuffix" ||
-                    item.type === "handWeaponPrefix" ||
-                    item.type === "handWeaponSuffix" ||
-                    item.type === "helmet" ||
-                    item.type === "helmetPrefix" ||
-                    item.type === "helmetSuffix"
-                  ) {
-                    onBuyClick(item.key);
-                  }
-                }}
-              />
-            </ItemStyle>
-          ))}
-      </>
-    );
+    return <p>Brak przedmiotów</p>;
   }
+
+  return (
+    <Wrapper>
+      {items &&
+        items.map((item, index) => (
+          <ItemStyle key={index}>
+            <Item
+              icon={item.val.icon}
+              name={item.key}
+              value={item.val.value}
+              onBuyClick={() => onBuyClick(item)}
+            />
+          </ItemStyle>
+        ))}
+    </Wrapper>
+  );
 };

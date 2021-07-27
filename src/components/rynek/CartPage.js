@@ -1,12 +1,10 @@
-import React from 'react';
-import {TextBlock} from "./TextBlock"
+import React from "react";
+import { TextBlock } from "./TextBlock";
 
 import styled from "styled-components";
 import { CartItem } from "./CartItem";
 import { BuyButton } from "./BuyButton";
-import { Item } from "./Item";
-
-
+import { useCart } from "./CartContext";
 
 const List = styled.ul`
   list-style: none;
@@ -31,52 +29,70 @@ const BuyButtonSection = styled.section`
   margin-right: 50px;
 `;
 
-export const CartPage = ({itemsToDisplayInCart, subtractFromCart, addToCart, totalPrice, resetCart, userItemsRef}) => {
-   
-        return (
-          <>
-          {itemsToDisplayInCart.length === 0 ? (
-            <>
-              <TextBlock>Nie masz przedmiotów w koszyku</TextBlock>
-            </>
-          ) : (
-            <>
-              <TextBlock>Koszyk</TextBlock>
-              <List>
-                {itemsToDisplayInCart.map((item, index) => {
-                  return (
-                    <ItemCartStyle style={{ marginTop: "30px" }}>
-                      <CartItem
-                        key={index}
-                        name={item.key}
-                        orderCount={item.orderCount}
-                        value={item.val.value}
-                        icon={item.val.icon}
-                        onAddButton={() => addToCart(item.key)}
-                        onMinusButton={() => subtractFromCart(item.key)}
-                      />
-                    </ItemCartStyle>
-                  );
-                })}
-              </List>
-            </>
-          )}
-          <BuyButtonSection>
-            {totalPrice === 0 ? (
-              <></>
-            ) : (
-              <>
-                <TextBlock>Razem: {totalPrice}</TextBlock>
-                <BuyButton
-                  resetCart={resetCart}
-                  updatedUserItems={itemsToDisplayInCart}
-                  totalPrice={totalPrice}
-                  userArmoryBeforeBuy={userItemsRef}
-                />
-              </>
-            )}
-          </BuyButtonSection>
-          </>
-        );
-}
+export const CartPage = () => {
+  const {
+    getCartItems,
+    getCartItemsGroupedByKey,
+    getTotalPrice,
+    addToCart,
+    resetCart,
+    subtractFromCart,
+  } = useCart();
 
+  const cartItems = getCartItems;
+
+  const itemsByKey = getCartItemsGroupedByKey();
+
+  const cartRows = Object.entries(itemsByKey).map(
+    ([key, [firstItem]]) => {
+      return {
+        key,
+        item: firstItem,
+        quantity: itemsByKey[key].length,
+      };
+    }
+  );
+
+  const totalPrice = getTotalPrice();
+
+  return (
+    <>
+      {cartItems.length === 0 ? (
+        <>
+          <TextBlock>Nie masz przedmiotów w koszyku</TextBlock>
+        </>
+      ) : (
+        <>
+          <TextBlock>Koszyk</TextBlock>
+          <List>
+            {cartRows.map(({ key, item, quantity }) => {
+              return (
+                <ItemCartStyle style={{ marginTop: "30px" }}>
+                  <CartItem
+                    key={key}
+                    name={key}
+                    orderCount={quantity}
+                    value={item.val.value}
+                    icon={item.val.icon}
+                    onAddButton={() => addToCart(item)}
+                    onMinusButton={() => subtractFromCart(key)}
+                  />
+                </ItemCartStyle>
+              );
+            })}
+          </List>
+        </>
+      )}
+      <BuyButtonSection>
+        {totalPrice === 0 ? (
+          <></>
+        ) : (
+          <>
+            <TextBlock>Razem: {totalPrice}</TextBlock>
+            <BuyButton />
+          </>
+        )}
+      </BuyButtonSection>
+    </>
+  );
+};

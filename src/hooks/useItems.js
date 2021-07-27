@@ -4,27 +4,28 @@ import { useUser } from "./useUser";
 export const useItems = (collectionPath) => {
   const [items, setItems] = useState([]);
   const user = useUser();
+  const uid = user?.uid
 
   useEffect(() => {
-    if (user?.uid){
-      collectionPath.onSnapshot((snapshot) => {
+    if (uid) {
+      return collectionPath.onSnapshot((snapshot) => {
         const newItems = [];
         snapshot.docs.map((doc) => {
           if (doc.exists) {
-          for (const property in doc.data()) {
-            newItems.push({
-              type: doc.id,
-              key: property,
-              val: doc.data()[property],
-            });
+            for (const property in doc.data()) {
+              newItems.push({
+                type: doc.id,
+                key: property,
+                val: doc.data()[property],
+              });
+            }
           }
-        }
           return newItems;
         });
         setItems(newItems);
       });
     }
-  }, [collectionPath, user?.uid]);
+  }, [collectionPath, uid]);
   return items;
 };
 
@@ -35,4 +36,3 @@ export const useItems = (collectionPath) => {
 // })
 
 // const item = db.collection("items").doc(type) + db.collection('items').doc(`${type}Suffix`)
-
