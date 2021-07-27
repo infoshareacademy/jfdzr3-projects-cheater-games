@@ -4,14 +4,14 @@ import HoverImage from "react-hover-image";
 
 const description = [
   {
-    name: "Skraj lasu",
+    name: "Łatwy - Skraj lasu",
     descr: `Przyjemnie wyglądająca, wręcz zachęcająca ścieżka prowadzi wokół lasu.
     Idąc nią możesz się rozkoszować południowym słońcem, a kiedy żar będzie zbyt duży, możesz się schronić pod koronami drzew.
     Sielankowość tego widoku sprawia, że prędzej będziesz się spodziewać jakichś dwóch czy trzech rozbójników, niż faktycznie przerażających potworów.
     Jakkolwiek nie stanowiłoby to dla ciebie żadnego wyzwania, to jednak chyba nie spodziewasz się przy nich znaleźć nic wartościowego.`,
   },
   {
-    name: "Leśne odstępy",
+    name: "Średni - Leśne odstępy",
     descr: `Kiedy już udaje ci się nie myśleć o wymierzonych w ciebie łukach zdziczałych band Elfów czy
     Orków czających się w głębi puszczy, postanawiasz wziąć głęboki oddech i ruszyć w głąb lasu.
     Twój niepokój łagodzi nieco śpiew ptaków, gdzieś w koronach drzew a twoje bystre oczy dostrzegają od czasu do czasu rudą kitę wiewiórki czy mignięcie poroża jelenia.
@@ -19,7 +19,7 @@ const description = [
     Choć niebezpieczeństwo zdaje się rosnąć z każdym krokiem, pewnym pocieszeniem jest świadomość wielkiej nagrody, która będzie czekać na ciebie na końcu.`,
   },
   {
-    name: "Najgłębszy matecznik",
+    name: "Trudny - Najgłębszy matecznik",
     descr: `Ścieżka wiodąca wgłąb lasu już od samego początku wygląda ponuro. Właściwie nie jest to nawet ścieżka, co po prostu wydeptany przez zwierzynę wąski szlak.
     A prowadzi w samo jądro puszczy, w najciemniejszy mrok, w najgłębsze przepaście prastarego boru.
     Legendy głoszą, że można tam spotkać wszystko. Włącznie z mitycznym Leśnym Smokiem, pradawnym władcą pradawnych kniei.
