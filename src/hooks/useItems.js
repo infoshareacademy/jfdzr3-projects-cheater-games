@@ -27,3 +27,12 @@ export const useItems = (collectionPath) => {
   }, [collectionPath, user?.uid]);
   return items;
 };
+
+// useItems(type)
+
+// const type = db.collection("users").doc(user?.uid).collection("armory").doc("jakiś co nas interesuje").get((snapshott) => {
+//   snapshot.data().type
+// })
+
+// const item = db.collection("items").doc(type) + db.collection('items').doc(`${type}Suffix`)
+

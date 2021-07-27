@@ -13,6 +13,25 @@ export const ItemStyle = styled.div`
 export const Items = ({ items, onBuyClick }) => {
   console.log(items);
 
+const getFromItems = () => {
+
+  items.map((item) => {
+   if (item.type === "handWeapon") {
+    console.log( item.key )
+    const name = item.key
+    return name
+   }
+   if (item.type === "handWeaponSuffix") {
+    console.log( item.key )
+    const suffix = item.key
+    return suffix
+   }
+
+  });
+}
+const allUserItems = getFromItems()
+console.log(allUserItems);
+
   if (items.length === 0) {
     return <p>Nie posiadasz jeszcze przedmiotów</p>;
   } else {
