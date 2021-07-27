@@ -8,7 +8,7 @@ import { db } from "../../firebaseConfig";
 import { CartInformation } from "./CartInformation";
 import { TextBlock } from "./TextBlock";
 import { GlobalChat } from "../../global-chat/global-chat";
-import { useMemo, useState } from "react";
+import { useEffect, useMemo, useState } from "react";
 import styled from "styled-components";
 import CloseIcon from "@material-ui/icons/Close";
 import { CartPage } from "./CartPage";
@@ -37,20 +37,60 @@ const CloseIconStyle = styled(CloseIcon)`
 
 export const StorePage = () => {
   const user = useUser();
-
   const itemsCollectionPath = useMemo(() => db.collection("items"), []);
   const userItemsCollectionPath = useMemo(
     () => db.collection("users").doc(user?.uid).collection("armory"),
     [user?.uid]
-  );
+    );
   const itemsRef = useItems(itemsCollectionPath);
   // const userItemsRef = useUserItems(userItemsCollectionPath);
   const userItemsRef = useItems(userItemsCollectionPath);
 
-
   const [cart, setCart] = useState([]);
   const [isOpen, setIsOpen] = useState(false);
 
+  const [userArmory, setUserArmory] = useState({});
+  useEffect(() => {
+    if (user !== null) {
+      userItemsRef &&
+        userItemsRef.map((userItem) => {
+          if (userItem.type === "210701182001200") {
+            const key = userItem.key;
+            const { Prefix, Suffix, quality } = userItem.val;
+            
+            const getArmoryValue = () => {
+              const armoryValue = itemsRef.find((item) => item.key === key);
+            return {...armoryValue.val}
+            };
+            const armoryValue = getArmoryValue();
+            setUserArmory({
+              name: userItem.key,
+              prefix: Prefix,
+              suffix: Suffix,
+              quality: quality,
+              val: armoryValue
+            });
+          }
+        });
+    }
+  }, []);
+
+
+  const qualityDisplay = () => {
+    if (userArmory.quality === 1) {
+      return;
+    } else if (userArmory.quality === 1.5) {
+      return "Dobry";
+    } else if (userArmory.quality === 2.5) {
+      return "Doskonały";
+    }
+  };
+  const displayingQuality = qualityDisplay();
+
+
+  if (user !== null) {
+    console.log(userArmory);
+  }
   const openModal = () => setIsOpen(true);
   const closeModal = () => setIsOpen(false);
 
@@ -135,7 +175,7 @@ export const StorePage = () => {
               <Items items={itemsRef} onBuyClick={(key) => addToCart(key)} />
             </ItemsGrid>
           </div>
-          <section >
+          <section>
             <GlobalChat />
           </section>
         </section>
@@ -146,6 +186,11 @@ export const StorePage = () => {
       <>
         <ModalWrapper>
           <CloseIconStyle onClick={() => closeModal()} />
+
+          <div>Masz mój miecz:</div>
+          <div>Nazwa: <span>{displayingQuality} {userArmory.prefix} {userArmory.name} {userArmory.suffix}</span></div>
+          {/* <div>Wartość przedmiotu: {userArmory.quality * (itemStats?.value + itemSuffix?.value + itemPrefix?.value)} golda</div> */}
+
           <CartPage
             itemsToDisplayInCart={itemsToDisplayInCart}
             subtractFromCart={subtractFromCart}
