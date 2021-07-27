@@ -29,6 +29,12 @@ export const Login = () => {
     return user;
   };
 
+  const translatedFirebaseErrors = {
+    'auth/user-not-found': "Próbowano się zalogować do nieistniejącego konta. Przyczyn może być wiele: takiego konta nigdy nie było lub istniało, ale zostało skasowane.",
+    'auth/too-many-requests': "Dostęp do konta został tymczasowo ograniczony z powodu wielokrotnych nieudanych prób zalogowania. Możesz odzyskać dostęp poprzez zresetowanie hasła albo spróbuj zalogować się później.",
+    'auth/wrong-password': "Podane hasło jest błędne."
+  };
+
   const handleOnSubmit = (e) => {
     e.preventDefault();
     auth
@@ -42,7 +48,7 @@ export const Login = () => {
         console.log("error", error);
         setUser({
           ...user,
-          error: error.message,
+          error,
         });
       });
   };
@@ -88,10 +94,10 @@ export const Login = () => {
         <div className="user-action">
           Nie masz konta? <Link to="/register">Zarejestruj się</Link>
         </div>
-        <div className="error">
-          <p>{error}</p>
+              <div className="error"> 
+              {error && <p>{translatedFirebaseErrors[error.code] || error.message}</p>}      
+              </div>
         </div>
-      </div>
     </>
   );
 };

@@ -58,20 +58,19 @@ export const HuntingScreen = () => {
       <div className="hunting__screen-main">
         <h3>Poziom trudności: </h3>
         <div className="hunting__screen--choose_level">
-          {description.map((desc) => (
-            <label>
+          {description.map((desc, index) => (
+            <label key={index}>
               {desc.name}
               <input
                 type="radio"
                 name="level"
-                key={desc.name}
                 onClick={() => setCurrentLevel(desc.name)}
               ></input>
             </label>
           ))}
         </div>
         <div className="hunting__screen--level_description">
-          <p>{ifEmpty()}</p>
+          <div>{ifEmpty()}</div>
         </div>
         <div>
           <h3>Wybierz ścieżkę polowania</h3>
