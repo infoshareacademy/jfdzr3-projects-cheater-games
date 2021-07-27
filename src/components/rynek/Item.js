@@ -12,7 +12,7 @@ export const Item = ({ icon, name, value, onBuyClick }) => {
       {/* <GiBroadsword style={{width: "80px"}}/> */}
       <img src={src} style={{ height: "70px" }}></img>
       {/* <h6 style={{ marginTop: "5px" }}>gold: {value}</h6> */}
-      <Chip
+      {onBuyClick && <Chip
         label={value}
         icon={<ShoppingCartRoundedIcon style={{ color: "green" }} />}
         variant="outlined"
@@ -24,7 +24,7 @@ export const Item = ({ icon, name, value, onBuyClick }) => {
           alignSelf: "flex-end",
         }}
         onClick={() => onBuyClick()}
-      />
+      />}
     </>
   );
 };

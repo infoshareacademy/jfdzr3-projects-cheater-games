@@ -33,7 +33,7 @@ export const Items = ({ items, onBuyClick }) => {
               icon={item.val.icon}
               name={item.key}
               value={item.val.value}
-              onBuyClick={() => onBuyClick(item)}
+              onBuyClick={onBuyClick && (() => onBuyClick(item))}
             />
           </ItemStyle>
         ))}
