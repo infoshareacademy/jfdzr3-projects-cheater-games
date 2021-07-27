@@ -62,13 +62,34 @@ export const StorePage = () => {
               const armoryValue = itemsRef.find((item) => item.key === key);
             return {...armoryValue.val}
             };
+console.log(itemsRef);
+
+            const getHandWeaponSuffix = () => { 
+
+             const handWeaponSuffix = itemsRef.filter((item)=> item.type === "handWeaponSuffix")
+console.log(handWeaponSuffix);
+             const suffix = handWeaponSuffix.find((el) => el.key === Suffix
+
+
+              //  const suffixValue = item.suffix === Suffix
+              // return {...suffixValue.value}
+            );
+            console.log(suffix);
+            return {...suffix.val}
+            }
+            
+            
+            const handWeaponSuffixValue = getHandWeaponSuffix().value
+            console.log(handWeaponSuffixValue);
             const armoryValue = getArmoryValue();
             setUserArmory({
               name: userItem.key,
               prefix: Prefix,
               suffix: Suffix,
               quality: quality,
-              val: armoryValue
+              val: armoryValue,
+              handWeaponSuffixValue: handWeaponSuffixValue
+
             });
           }
         });
