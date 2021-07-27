@@ -35,7 +35,6 @@ export const CartPage = () => {
     getCartItemsGroupedByKey,
     getTotalPrice,
     addToCart,
-    resetCart,
     subtractFromCart,
   } = useCart();
 

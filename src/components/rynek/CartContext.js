@@ -3,7 +3,6 @@ import {
   useCallback,
   useContext,
   useState,
-  useMemo,
 } from "react";
 
 const noop = () => {};

@@ -1,10 +1,6 @@
 import { Avatar } from "./Avatar";
-import { Items } from "./Items";
-import { ItemsGrid } from "./ItemsGrid";
-import { useUser } from "../../hooks/useUser";
 
 import { CartInformation } from "./CartInformation";
-import { TextBlock } from "./TextBlock";
 import { GlobalChat } from "../../global-chat/global-chat";
 
 import styled from "styled-components";
