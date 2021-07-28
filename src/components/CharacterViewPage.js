@@ -34,20 +34,16 @@ background: green;
 `;
 
 export const CharacterViewPage = () => {
-  const user = useUser();
-
-  const checkRace = (race) => {
-    const data = db
-      .collection("users")
-      .doc(user.uid)
-      .get(race.name)
+  const checkRace = (uid) => {
+    db.collection("users")
+      .doc(uid)
+      .get()
       .then((race) => {
-        return {
-          name: race.race,
-        };
+        console.log(race.name);
       });
-    console.log(data);
   };
+
+  checkRace();
 
   return (
     <>
@@ -55,7 +51,7 @@ export const CharacterViewPage = () => {
         <HeaderText>Widok postaci</HeaderText>
         <CharacterMainBax>
           <CharacterInformationBox />
-          <CharacterAvatarBox>{checkRace}</CharacterAvatarBox>
+          <CharacterAvatarBox></CharacterAvatarBox>
         </CharacterMainBax>
       </Wrapper>
       <GlobalChat />
