@@ -1,6 +1,5 @@
 import s from "styled-components";
 import { GlobalChat } from "../global-chat/global-chat";
-import { db } from "../firebaseConfig";
 import { useUser } from "../hooks/useUser";
 
 const Wrapper = s.div`
@@ -28,22 +27,54 @@ height: 100%;
 background: yellow;
 `;
 const CharacterAvatarBox = s.div`
+display: flex;
+justify-content: center;
+padding-top: 50px;
 width: 50%;
 height: 100%;
 background: green;
 `;
+const Image = s.img`
+// width: 70%;
+height: 70%`;
+const MakeItBold = s.span`
+font-weight: bold`;
 
 export const CharacterViewPage = () => {
-  const checkRace = (uid) => {
-    db.collection("users")
-      .doc(uid)
-      .get()
-      .then((race) => {
-        console.log(race.name);
-      });
+  const user = useUser();
+  const checkRaceToSetAvatar = () => {
+    if (user?.race === "Krasnolud") {
+      return (
+        <div>
+          <p>
+            Rasa: <MakeItBold>{user?.race}</MakeItBold>
+          </p>
+          <Image
+            src={`${process.env.PUBLIC_URL}/img/races/Krasnolud.jpg`}
+            alt="Krasnolud"
+          />
+        </div>
+      );
+    }
+    if (user?.race === "Elf") {
+      return (
+        <Image src={`${process.env.PUBLIC_URL}/img/races/Elf.jpg`} alt="Elf" />
+      );
+    }
+    if (user?.race === "Człowiek") {
+      return (
+        <Image
+          src={`${process.env.PUBLIC_URL}/img/races/Człowiek.jpg`}
+          alt="Człowiek"
+        />
+      );
+    }
+    if (user?.race === "Ork") {
+      return (
+        <Image src={`${process.env.PUBLIC_URL}/img/races/Ork.jpg`} alt="Ork" />
+      );
+    }
   };
-
-  checkRace();
 
   return (
     <>
@@ -51,7 +82,7 @@ export const CharacterViewPage = () => {
         <HeaderText>Widok postaci</HeaderText>
         <CharacterMainBax>
           <CharacterInformationBox />
-          <CharacterAvatarBox></CharacterAvatarBox>
+          <CharacterAvatarBox>{checkRaceToSetAvatar()}</CharacterAvatarBox>
         </CharacterMainBax>
       </Wrapper>
       <GlobalChat />
