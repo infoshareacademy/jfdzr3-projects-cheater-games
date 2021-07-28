@@ -59,13 +59,6 @@ ul {
   cursor: pointer;
 }
 
-
-.main__section {
-  width: 60vw;
-  height: 80vh;
-  background-size: cover;
-  background-size: auto 100%;
-}
 .registration__form {
   display: flex;
   height: 40%;
@@ -75,14 +68,6 @@ ul {
 .form__input:nth-child(2n) {
   flex-grow: 1;
 }
-
-.advertising {
-  width: 20vw;
-  height: 80vh;
-  background-color: #181619;
-  border-left: 1px solid #e31f2b;
-}
-
 
 /*  MODAL  */
 
