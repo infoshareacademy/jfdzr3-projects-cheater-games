@@ -27,33 +27,44 @@ height: 100%;
 background: yellow;
 `;
 const CharacterAvatarBox = s.div`
-display: flex;
-justify-content: center;
-padding-top: 50px;
 width: 50%;
 height: 100%;
 background: green;
 `;
+const AvatarBoxContainer = s.div`
+display: flex;
+flex-flow: column;
+justify-content: center;
+align-items: center;
+width: 100%;
+height: 100%;
+`;
 const Image = s.img`
-// width: 70%;
-height: 70%`;
+height: 70%;
+width: 70%`;
+
 const MakeItBold = s.span`
 font-weight: bold`;
+const RaceInformationText = s.p`
+font-size: 1.2rem`;
 
 export const CharacterViewPage = () => {
   const user = useUser();
   const checkRaceToSetAvatar = () => {
     if (user?.race === "Krasnolud") {
       return (
-        <div>
-          <p>
+        <AvatarBoxContainer>
+          <RaceInformationText>
+            Gracz: <MakeItBold>{user?.name}</MakeItBold>
+          </RaceInformationText>
+          <RaceInformationText>
             Rasa: <MakeItBold>{user?.race}</MakeItBold>
-          </p>
+          </RaceInformationText>
           <Image
             src={`${process.env.PUBLIC_URL}/img/races/Krasnolud.jpg`}
             alt="Krasnolud"
           />
-        </div>
+        </AvatarBoxContainer>
       );
     }
     if (user?.race === "Elf") {
