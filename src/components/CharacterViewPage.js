@@ -19,17 +19,17 @@ display: flex;
 flex-flow: row;
 width: 100%;
 height: 95%;
-background: tomato;
+// background: tomato;
 `;
 const CharacterInformationBox = s.div`
 width: 50%;
 height: 100%;
-background: yellow;
+// background: yellow;
 `;
 const CharacterAvatarBox = s.div`
 width: 50%;
 height: 100%;
-background: green;
+// background: green;
 `;
 const AvatarBoxContainer = s.div`
 display: flex;
@@ -40,13 +40,18 @@ width: 100%;
 height: 100%;
 `;
 const Image = s.img`
-height: 70%;
-width: 70%`;
+margin-top: 20px;
+height: 45%;
+width: 45%;
+border-radius: 50% 50% 50% 50%;
+`;
 
 const MakeItBold = s.span`
 font-weight: bold`;
 const RaceInformationText = s.p`
-font-size: 1.2rem`;
+font-size: 1.2rem;
+margin: 5px;
+`;
 
 export const CharacterViewPage = () => {
   const user = useUser();
