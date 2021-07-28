@@ -23,14 +23,12 @@ export const Links = () => {
   const adminLinks = [<AdminLink />, ...userLinks];
 
   if (user?.role === "admin") {
-    return adminLinks.map((el, i) => {
-      return <li key={i}>{el}</li>;
-    });
-  } else if (user?.role === "player" && user?.race !== undefined) {
-    return userLinks.map((el, i) => {
-      return <li key={i}>{el}</li>;
-    });
-  } else if (user?.role === "player" && user?.race === undefined) {
+    return adminLinks.map((el, i) => <li key={i}>{el}</li>);
+  }
+  if (user?.role === "player" && user?.race !== undefined) {
+    return userLinks.map((el, i) => <li key={i}>{el}</li>);
+  }
+  if (user?.role === "player" && user?.race === undefined) {
     return (
       <li>
         <Logout />
