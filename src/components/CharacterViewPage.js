@@ -24,7 +24,8 @@ height: 95%;
 const CharacterInformationBox = s.div`
 width: 50%;
 height: 100%;
-// background: yellow;
+display:flex;
+justify-content: center;
 `;
 const CharacterAvatarBox = s.div`
 width: 50%;
@@ -46,11 +47,24 @@ width: 45%;
 border-radius: 50% 50% 50% 50%;
 `;
 
-const MakeItBold = s.span`
-font-weight: bold`;
 const RaceInformationText = s.p`
 font-size: 1.2rem;
 margin: 5px;
+`;
+
+const SecondWrapper = s.div`
+height: 100%;
+width: 50%;
+// background: yellow;
+justify-content: center;
+display: flex;
+flex-flow: column;`;
+
+const Stats = s.div`
+padding: 10px
+`;
+const StatsNameBolder = s.p`
+font-weight: bold
 `;
 
 export const CharacterViewPage = () => {
@@ -59,16 +73,16 @@ export const CharacterViewPage = () => {
     if (user?.race === "Krasnolud") {
       return (
         <AvatarBoxContainer>
-          <RaceInformationText>
-            Gracz: <MakeItBold>{user?.name}</MakeItBold>
-          </RaceInformationText>
-          <RaceInformationText>
-            Rasa: <MakeItBold>{user?.race}</MakeItBold>
-          </RaceInformationText>
           <Image
             src={`${process.env.PUBLIC_URL}/img/races/Krasnolud.jpg`}
             alt="Krasnolud"
           />
+          <RaceInformationText>
+            <h3>{user?.name}</h3>
+          </RaceInformationText>
+          <RaceInformationText>
+            <p>{user?.race}</p>
+          </RaceInformationText>
         </AvatarBoxContainer>
       );
     }
@@ -97,7 +111,60 @@ export const CharacterViewPage = () => {
       <Wrapper>
         <HeaderText>Widok postaci</HeaderText>
         <CharacterMainBax>
-          <CharacterInformationBox />
+          <CharacterInformationBox>
+            <SecondWrapper>
+              <Stats>
+                <StatsNameBolder>
+                  Poziom: <span>{user?.level}</span>
+                </StatsNameBolder>
+
+                <StatsNameBolder>
+                  Zdobyte doświadczenie: <span>{user?.exp}</span>
+                </StatsNameBolder>
+              </Stats>
+
+              <Stats>
+                <p>Materiały:</p>
+                <StatsNameBolder>
+                  Złoto: <span>{user?.resources.gold}</span>
+                </StatsNameBolder>
+                <StatsNameBolder>
+                  Drewno: <span>{user?.resources.wood}</span>
+                </StatsNameBolder>
+                <StatsNameBolder>
+                  Materiały: <span>{user?.resources.material}</span>
+                </StatsNameBolder>
+              </Stats>
+
+              <Stats>
+                <p>Statystyki</p>
+                <StatsNameBolder>
+                  Zręczność: <span>{user?.stats.agi}</span>
+                </StatsNameBolder>
+                <StatsNameBolder>
+                  Inteligencja: <span>{user?.stats.int}</span>
+                </StatsNameBolder>
+                <StatsNameBolder>
+                  Spostrzegawczość: <span>{user?.stats.perc}</span>
+                </StatsNameBolder>
+                <StatsNameBolder>
+                  Szybkość: <span>{user?.stats.speed}</span>
+                </StatsNameBolder>
+                <StatsNameBolder>
+                  Siła: <span>{user?.stats.str}</span>
+                </StatsNameBolder>
+                <StatsNameBolder>
+                  Wytrzymałość: <span>{user?.stats.tough}</span>
+                </StatsNameBolder>
+                <StatsNameBolder>
+                  Żywotność: <span>{user?.stats.vit}</span>
+                </StatsNameBolder>
+                <StatsNameBolder>
+                  Pozotało do rozdzielenia: <span>{user?.stats.left}</span>
+                </StatsNameBolder>
+              </Stats>
+            </SecondWrapper>
+          </CharacterInformationBox>
           <CharacterAvatarBox>{checkRaceToSetAvatar()}</CharacterAvatarBox>
         </CharacterMainBax>
       </Wrapper>
