@@ -42,8 +42,8 @@ height: 100%;
 `;
 const Image = s.img`
 margin-top: 20px;
-height: 45%;
-width: 45%;
+height: 70%;
+// object-fit: contain;
 border-radius: 50% 50% 50% 50%;
 `;
 
@@ -81,7 +81,7 @@ export const CharacterViewPage = () => {
             <h3>{user?.name}</h3>
           </RaceInformationText>
           <RaceInformationText>
-            <p>{user?.race}</p>
+            <h3>{user?.race}</h3>
           </RaceInformationText>
         </AvatarBoxContainer>
       );
@@ -124,7 +124,7 @@ export const CharacterViewPage = () => {
               </Stats>
 
               <Stats>
-                <p>Materiały:</p>
+                <h3>Materiały:</h3>
                 <StatsNameBolder>
                   Złoto: <span>{user?.resources.gold}</span>
                 </StatsNameBolder>
@@ -137,7 +137,7 @@ export const CharacterViewPage = () => {
               </Stats>
 
               <Stats>
-                <p>Statystyki</p>
+                <h3>Statystyki</h3>
                 <StatsNameBolder>
                   Zręczność: <span>{user?.stats.agi}</span>
                 </StatsNameBolder>
