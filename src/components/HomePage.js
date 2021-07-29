@@ -2,8 +2,8 @@ import "../auth/auth.css";
 import React from "react";
 import { useUser } from "../hooks/useUser";
 import { SelectRace } from "./SelectRace";
-import { GlobalChat } from "../global-chat/global-chat";
-import {Login} from "../auth/Login"
+import { GlobalChat } from "../components/global-chat/global-chat";
+import { Login } from "../auth/Login";
 
 export const HomePage = () => {
   const user = useUser();
@@ -17,7 +17,7 @@ export const HomePage = () => {
         </>
       ) : (
         <>
-        <Login />
+          <Login />
         </>
       )}
     </>

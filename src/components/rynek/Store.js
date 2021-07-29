@@ -1,7 +1,7 @@
 import { Avatar } from "./Avatar";
 
 import { CartInformation } from "./CartInformation";
-import { GlobalChat } from "../../global-chat/global-chat";
+import { GlobalChat } from "../../components/global-chat/global-chat";
 
 import styled from "styled-components";
 import CloseIcon from "@material-ui/icons/Close";
