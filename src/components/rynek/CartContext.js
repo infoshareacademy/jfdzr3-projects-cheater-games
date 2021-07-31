@@ -35,11 +35,13 @@ export const CartProvider = ({ children }) => {
 
   const addToSellCart = useCallback((item) => {
     setSellCard((sellCart) => {
-      return [...sellCart, item]
-    })
-  }, [])
+      const getUniqueSellItems = [...new Set(sellCart)];
 
-const getUniqueSellItems = [...new Set(sellCart)]
+      return [...getUniqueSellItems, item];
+    });
+  }, []);
+
+  const getUniqueSellItems = [...new Set(sellCart)];
 
   const subtractFromCart = useCallback((key) => {
     setCart((cart) => {
@@ -53,6 +55,13 @@ const getUniqueSellItems = [...new Set(sellCart)]
     });
   }, []);
 
+  const deleteFromSellPage = (id) => {
+    const newSellItems = getUniqueSellItems.filter(
+      (cartItem) => cartItem.id !== id
+    );
+    return setSellCard(newSellItems);
+  };
+
   const resetCart = useCallback(() => {
     setCart([]);
   }, []);
@@ -63,9 +72,7 @@ const getUniqueSellItems = [...new Set(sellCart)]
       if (result[item.key] === undefined) {
         result[item.key] = [];
       }
-
       result[item.key].push(item);
-
       return result;
     }, {});
   };
@@ -95,6 +102,7 @@ const getUniqueSellItems = [...new Set(sellCart)]
     addToCart,
     addToSellCart,
     subtractFromCart,
+    deleteFromSellPage,
     resetCart,
   };
 

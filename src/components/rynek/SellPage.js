@@ -1,8 +1,7 @@
 import React from "react";
 import { TextBlock } from "./TextBlock";
-
 import styled from "styled-components";
-import { CartItem } from "./CartItem";
+import { SellItem } from "./SellItem";
 import { BuyButton } from "./BuyButton";
 import { useCart } from "./CartContext";
 
@@ -33,51 +32,38 @@ export const SellPage = () => {
   const {
     getCartItems,
     getSellCartItems,
+    getUniqueSellItems,
     getCartItemsGroupedByKey,
     getSellCartItemsGroupedByKey,
     getTotalPrice,
     addToCart,
     subtractFromCart,
+    deleteFromSellPage
   } = useCart();
 
-  const cartItems = getCartItems();
+  const sellItems = getUniqueSellItems;
+  console.log(sellItems);
+  console.log(sellItems.map((item)=> {return item.id}));
 
-  const itemsByKey = getCartItemsGroupedByKey();
-
-  const cartRows = Object.entries(itemsByKey)
-    .map(([key, [firstItem]]) => {
-      return {
-        key,
-        item: firstItem,
-        quantity: itemsByKey[key].length,
-      };
-    })
-    .sort((a, b) => (a.key > b.key ? 1 : -1));
 
   const totalPrice = getTotalPrice();
 
   return (
     <>
-      {cartItems.length === 0 ? (
-        <>
-          {/* <TextBlock>Nie masz przedmiotów w koszyku</TextBlock> */}
+      {sellItems.length === 0 ? (
           <TextBlock>Nie wybrałeś jeszcze przedmiotów</TextBlock>
-
-        </>
       ) : (
         <>
-          <TextBlock>Koszyk</TextBlock>
+          <TextBlock>Twój ekwipunek na sprzedaż</TextBlock>
           <List>
-            {cartRows.map(({ key, item, quantity }) => {
+            {sellItems.map((item) => {
               return (
-                <ItemCartStyle style={{ marginTop: "30px" }} key={key}>
-                  <CartItem
-                    name={key}
-                    orderCount={quantity}
+                <ItemCartStyle style={{ marginTop: "30px" }} key={item.id}>
+                  <SellItem
+                    name={item.key}
                     value={item.val.value}
                     icon={item.val.icon}
-                    onAddButton={() => addToCart(item)}
-                    onMinusButton={() => subtractFromCart(key)}
+                    deleteButton={() => deleteFromSellPage(item.id)}
                   />
                 </ItemCartStyle>
               );
