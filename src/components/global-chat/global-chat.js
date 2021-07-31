@@ -43,5 +43,19 @@ export function GlobalChat({ size }) {
     });
     setInput("");
   };
-  size === "sm" ? <GlobalChatSm /> : <GlobalChatBig />;
+  if (size === "sm") {
+    return (
+      <GlobalChatSm
+        messagesEndRef={messagesEndRef}
+        input={input}
+        setInput={setInput}
+        sendMessage={sendMessage}
+        messages={messages}
+        user={user}
+      />
+    );
+  } else {
+    return null;
+    // <GlobalChatBig />
+  }
 }
