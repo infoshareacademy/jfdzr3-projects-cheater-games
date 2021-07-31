@@ -8,7 +8,7 @@ export const AboutUsPage = () => {
         {
           name: 'Anna Sawicka-Ziółkowska',
           title: 'Junior Frontend Developer',
-          description: '',
+          description: 'Tu będą informacje o wykonanych zadaniach',
           email: 'aniasawicka@gmail.com',
           image: 'img/about/ania.jpeg',
           github: 'https://github.com/AnnaSawickaZiolkowska',
@@ -71,7 +71,7 @@ export const AboutUsPage = () => {
               <img src={person.image} className="img" alt="team-member-img" onClick={() => setShowDescription(!showDescription)}/>
               <p className="team-member-data"><strong>{person.name}</strong></p>
               <p className="team-member-data">{person.title}</p>
-              <p className="team-member-data">{person.description}</p>
+              {/* <p className="team-member-data">{person.description}</p> */}
               <p className="team-member-data">{person.email}</p>
               <ul className="team-member-data">
                 <a href={person.github} className="icon">
