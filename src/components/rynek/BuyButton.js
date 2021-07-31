@@ -22,6 +22,7 @@ export const BuyButton = () => {
         name: item.key,
         type: item.type,
         quality: 1,
+        value: item.val.value,
       });
     });
   };

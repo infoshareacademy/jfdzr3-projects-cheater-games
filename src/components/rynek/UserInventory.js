@@ -1,6 +1,7 @@
 import { useEffect, useState } from "react";
 import { db } from "../../firebaseConfig";
 import { useUser } from "../../hooks/useUser";
+import { useCart } from "./CartContext";
 import { Items } from "./Items";
 import { ItemsGrid } from "./ItemsGrid";
 
@@ -32,10 +33,11 @@ const useInventory = () => {
 
 export const UserInventory = () => {
   const items = useInventory();
+  const { addToCart } = useCart();
 
   return (
     <ItemsGrid text="Sprzedaj">
-      <Items items={items} />
+      <Items items={items} onSellClick={addToCart}/>
     </ItemsGrid>
   );
 };

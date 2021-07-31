@@ -49,7 +49,7 @@ export const CartInformation = ({ openModal }) => {
             <ShoppingCartIcon />
           </StyledBadge>
         </IconButton>
-        <div>{totalPrice}</div>
+        {/* <div>{totalPrice}</div> */}
       </div>
     </CartInfoWrapper>
   );

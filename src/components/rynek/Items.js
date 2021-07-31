@@ -1,14 +1,24 @@
 import styled from "styled-components";
 import { Item } from "./Item";
+import { UserItem } from "./UserItem";
 
 export const ItemStyle = styled.div`
+display: grid;
+align-content: space-around;
+// grid-auto-rows: auto 70px 15px;
+grid-auto-rows: 25% 55% 20%;
   height: max-content;
   width: "100%";
+  justify-items: center;
+  align-items: center;
   justify-content: space-around;
   box-shadow: 0 3px 7px rgba(0, 0, 0, 0.5);
   padding: 0 5px;
+  width: 100%;
+  height: 100%;
   min-width: 95px;
   min-height: 150px;
+  // align-content: space-around;
 `;
 
 export const Wrapper = styled.div`
@@ -19,14 +29,15 @@ export const Wrapper = styled.div`
   grid-gap: 10px;
 `;
 
-export const Items = ({ items, onBuyClick }) => {
+export const Items = ({ items, onBuyClick, onSellClick }) => {
   if (items.length === 0) {
-    return <p>Brak przedmiotów</p>;
+    return <></>
+    // <p>Brak przedmiotów</p>;
   }
 
   return (
     <Wrapper>
-      {items &&
+     {items &&
         items.map((item, index) => (
           <ItemStyle key={index}>
             <Item
@@ -34,6 +45,7 @@ export const Items = ({ items, onBuyClick }) => {
               name={item.key}
               value={item.val.value}
               onBuyClick={onBuyClick && (() => onBuyClick(item))}
+              onSellClick={onSellClick && (() => onSellClick(item))}
             />
           </ItemStyle>
         ))}
