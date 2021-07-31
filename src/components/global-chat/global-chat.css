@@ -17,19 +17,25 @@
   font-size: 26px;
   line-height: 35px;
   display: flex;
-  flex-direction: column;
-  justify-content: center;
   background-color: #f5f4f6;
   width: 80vw;
+}
+
+.chat--small {
+  flex-direction: column;
+  justify-content: center;
 }
 
 .chat__messages {
   word-break: break-word;
   overflow-y: scroll;
-  height: 150px;
   background: url(./img/chat-background.jpg);
   background-position: center;
   background-size: 25%;
+}
+
+.chat__messages--small {
+  height: 150px;
 }
 
 .chat__messages::-webkit-scrollbar-track {
