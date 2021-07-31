@@ -12,21 +12,25 @@
   padding: 20px;
 }
 
-.team-gallery {
+.team-member-gallery {
   display: flex;
   overflow: auto;
 }
 
-.team-card {
+.team-member-card {
   text-align: center;
 }
 
+.team-member-data {
+  padding: 5px;
+}
+
 .icon {
-  color: black;
+  margin: 10px;
 }
 
 .img {
-  padding: 25px;
+  padding: 20px;
   object-fit: cover;
   width: 300px;
   height: 300px;

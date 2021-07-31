@@ -10,7 +10,7 @@ export const AboutUsPage = () => {
           title: 'Junior Frontend Developer',
           description: '',
           email: 'aniasawicka@gmail.com',
-          image: 'img/about/77212945.jpeg',
+          image: 'img/about/ania.jpeg',
           github: 'https://github.com/AnnaSawickaZiolkowska',
           linkedin: 'https://www.linkedin.com/in/annasawickaziolkowska?lipi=urn%3Ali%3Apage%3Ad_flagship3_profile_view_base_contact_details%3BAeeoAG%2FmRbaLFI6YeUl78A%3D%3D',
         },
@@ -19,8 +19,7 @@ export const AboutUsPage = () => {
           title: 'Junior Frontend Developer',
           description: '',
           email: 'agnieszka.agata.skorupa@gmail.com',
-          image:
-            'https://images.unsplash.com/photo-1494790108377-be9c29b29330?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=facearea&facepad=4&w=256&h=256&q=60',
+          image: 'img/about/aga.jpeg',
           github: 'https://github.com/agaskorupa',
           linkedin: 'https://www.linkedin.com/in/agnieszka-agata-skorupa',
           },
@@ -29,8 +28,7 @@ export const AboutUsPage = () => {
           title: 'Junior Frontend Developer',
           description: '',
           email: 'przewelenc@gmail.com',
-          image:
-            'https://images.unsplash.com/photo-1494790108377-be9c29b29330?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=facearea&facepad=4&w=256&h=256&q=60',
+          image: 'img/about/przemek.jpeg',
           github: 'https://github.com/Przemo246',
           linkedin: 'https://www.linkedin.com/in/przemyslaw-welenc?lipi=urn%3Ali%3Apage%3Ad_flagship3_profile_view_base_contact_details%3BuErsH6LuRpuWudHZW26DeQ%3D%3D',
         },
@@ -39,18 +37,16 @@ export const AboutUsPage = () => {
             title: 'Junior Fronted Developer',
             description: '',
             email: 'marc.tomk@gmail.com',
-            image:
-              'https://images.unsplash.com/photo-1494790108377-be9c29b29330?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=facearea&facepad=4&w=256&h=256&q=60',
-              github: 'https://github.com/MarcinTomkiewicz',
-              linkedin: 'https://www.linkedin.com/in/marcintomkiewicz?lipi=urn%3Ali%3Apage%3Ad_flagship3_profile_view_base_contact_details%3BfMi60cHwTpWmt3Z1qiQJmQ%3D%3D',
+            image: 'img/about/marcin.jpeg',
+            github: 'https://github.com/MarcinTomkiewicz',
+            linkedin: 'https://www.linkedin.com/in/marcintomkiewicz?lipi=urn%3Ali%3Apage%3Ad_flagship3_profile_view_base_contact_details%3BfMi60cHwTpWmt3Z1qiQJmQ%3D%3D',
           },
           {
             name: 'Dawid Ossowski',
             title: 'Junior Frontend Developer',
             description: '',
             email: 'ossowski.dawid@gmail.com',
-            image:
-              'https://images.unsplash.com/photo-1494790108377-be9c29b29330?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=facearea&facepad=4&w=256&h=256&q=60',
+            image: 'img/about/dawid.jpeg',
             github: 'https://github.com/ossowskid',
             linkedin: 'https://www.linkedin.com/in/dawid-ossowski?lipi=urn%3Ali%3Apage%3Ad_flagship3_profile_view_base_contact_details%3BjpqcNpQ2T9uGfnXGlTC%2Fxw%3D%3D'
           },
@@ -62,24 +58,24 @@ export const AboutUsPage = () => {
     <div className="wrapper">
         <div className="team-header">
           <h2>Nasz zespół</h2>
-          <p className="">Cześć! Jesteśmy uczestnikami kursu Junior Fronted Developer w infoShare Academy. Nie spotkaliśmy się nigdy osobiście, ale pomimo odległości dzielących nas i różnic charakterów, udało nam się efektywnie współtworzyć naszą aplikację. Poznaj nasz zespół:
+          <p className="">Cześć! Jesteśmy uczestnikami kursu Junior Fronted Developer w infoShare Academy. Nie spotkaliśmy się nigdy osobiście, ale pomimo dzielących nas odległości, trudności komunikacyjnych i różnic charakterów, udało nam się efektywnie współtworzyć Monster Hunt. Poznaj nasz zespół:
           </p>
         </div>
-        <div  className="team-gallery">
+        <div  className="team-member-gallery">
             {team.map(person=> (
 
-            <div className="team-card">
-              <img src={process.env.PUBLIC_URL/person.image} className="img" alt="team-member-img"/>
-              <p className=""><strong>{person.name}</strong></p>
-              <p className="">{person.title}</p>
-              <p className="">{person.description}</p>
-              <p className="">{person.email}</p>
-              <ul className="">
+            <div className="team-member-card">
+              <img src={person.image} className="img" alt="team-member-img"/>
+              <p className="team-member-data"><strong>{person.name}</strong></p>
+              <p className="team-member-data">{person.title}</p>
+              <p className="team-member-data">{person.description}</p>
+              <p className="team-member-data">{person.email}</p>
+              <ul className="team-member-data">
                 <a href={person.github} className="icon">
-                  <FaGithub/> 
+                  <FaGithub color="#315e3c" size="20px"/> 
                 </a>
                 <a href={person.linkedin} className="icon">
-                  <FaLinkedin/>
+                  <FaLinkedin color="#315e3c" size="20px" margin="20px" />
                 </a>
               </ul>
             
