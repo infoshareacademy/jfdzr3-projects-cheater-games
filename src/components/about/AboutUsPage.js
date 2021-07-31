@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useState } from "react";
 import { FaGithub, FaLinkedin } from 'react-icons/fa';
 import "./AboutUsPage.css";
 
@@ -51,21 +51,24 @@ export const AboutUsPage = () => {
             linkedin: 'https://www.linkedin.com/in/dawid-ossowski?lipi=urn%3Ali%3Apage%3Ad_flagship3_profile_view_base_contact_details%3BjpqcNpQ2T9uGfnXGlTC%2Fxw%3D%3D'
           },
     ]
+
+  const [showDescription, setShowDescription] = useState(false);  
+  
+  
       
   return (
     <>
     
     <div className="wrapper">
         <div className="team-header">
-          <h2>Nasz zespół</h2>
-          <p className="">Cześć! Jesteśmy uczestnikami kursu Junior Fronted Developer w infoShare Academy. Nie spotkaliśmy się nigdy osobiście, ale pomimo dzielących nas odległości, trudności komunikacyjnych i różnic charakterów, udało nam się efektywnie współtworzyć Monster Hunt. Poznaj nasz zespół:
+          <h2>Zespół Monster Hunt</h2>
+          <p className="team-welcome">Cześć! Jesteśmy uczestnikami kursu Junior Fronted Developer w infoShare Academy. Nie spotkaliśmy się nigdy osobiście, ale pomimo dzielących nas odległości, trudności komunikacyjnych i różnic charakterów, udało nam się efektywnie współtworzyć Monster Hunt. Poznaj nasz zespół!
           </p>
         </div>
         <div  className="team-member-gallery">
             {team.map(person=> (
-
-            <div className="team-member-card">
-              <img src={person.image} className="img" alt="team-member-img"/>
+            <div className="team-member-card" key={person.email}>
+              <img src={person.image} className="img" alt="team-member-img" onClick={() => setShowDescription(!showDescription)}/>
               <p className="team-member-data"><strong>{person.name}</strong></p>
               <p className="team-member-data">{person.title}</p>
               <p className="team-member-data">{person.description}</p>
@@ -77,12 +80,12 @@ export const AboutUsPage = () => {
                 <a href={person.linkedin} className="icon">
                   <FaLinkedin color="#315e3c" size="20px" margin="20px" />
                 </a>
-              </ul>
-            
+              </ul>            
             </div>
             ))}
         </div>
-        </div>
+        {showDescription && <div>Pokaż tekst</div>}
+    </div>
    </>
   );
 }
