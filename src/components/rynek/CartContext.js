@@ -61,13 +61,25 @@ export const CartProvider = ({ children }) => {
     }, {});
   };
 
-
+const getSellCartItems = () => sellCart;
+const getSellCartItemsGroupedByKey = () => {
+  return sellCart.reduce((result, item) => {
+    if (result[item.key] === undefined) {
+      result[item.key] = [];
+    }
+    result[item.key].push(item);
+    return result;
+  }, {});
+}
+console.log(getSellCartItems());
+console.log(getSellCartItemsGroupedByKey());
 
   const getTotalPrice = () =>
     cart.map((item) => item.val.value).reduce((a, b) => a + b, 0);
 
   const value = {
     getCartItems,
+    getSellCartItems,
     getCartItemsGroupedByKey,
     getTotalPrice,
     addToCart,

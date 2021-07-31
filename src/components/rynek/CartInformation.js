@@ -36,9 +36,11 @@ display: flex;
 
 export const CartInformation = ({ openModal }) => {
   const user = useUser();
-  const { getCartItems, getTotalPrice } = useCart();
+  const { getCartItems, getSellCartItems, getTotalPrice } = useCart();
 
   const numberOfItemsInCart = getCartItems().length;
+  const numberOfItemsInSellCart = getSellCartItems().length;
+
   const totalPrice = getTotalPrice();
 
   if (!user) {
@@ -54,7 +56,7 @@ export const CartInformation = ({ openModal }) => {
       <SellInfoWrapper>
       <div onClick={openModal}>
         <IconButton aria-label="cart">
-          <StyledBadge badgeContent={numberOfItemsInCart} color="secondary">
+          <StyledBadge badgeContent={numberOfItemsInSellCart} color="secondary">
             <GiSwapBag />
           </StyledBadge>
         </IconButton>
