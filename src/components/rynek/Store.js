@@ -10,6 +10,7 @@ import { CartPage } from "./CartPage";
 import { useModal } from "./hooks";
 import { UserInventory } from "./UserInventory";
 import { MerchantOffer } from "./MerchantOffer";
+import { SellPage } from "./SellPage";
 
 const ModalWrapper = styled.section`
   min-width: 1100px;
@@ -27,7 +28,7 @@ const CloseIconStyle = styled(CloseIcon)`
 `;
 
 export const Store = () => {
-  const { isOpen, openModal, closeModal } = useModal();
+  const { isOpen, isSellPageOpen, openModal, closeModal, openSellPageModal, closeSellPageModal } = useModal();
 
   if (isOpen) {
     return (
@@ -37,12 +38,23 @@ export const Store = () => {
       </ModalWrapper>
     );
   }
+  if (isSellPageOpen) {
+    return (
+      <ModalWrapper>
+        <CloseIconStyle onClick={closeSellPageModal} />
+        <SellPage />
+      </ModalWrapper>
+    );
+  }
 
   return (
     <section className="store__screen">
       <div>
         <h2>Mirek Handlarz</h2>
-        <CartInformation openModal={openModal} />
+        <CartInformation
+          openModal={openModal}
+          openSellPageModal={openSellPageModal}
+        />
       </div>
       <div className="store-wrapper">
         <UserInventory />

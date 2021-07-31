@@ -34,7 +34,7 @@ display: flex;
   justify-content: space-between;
 `;
 
-export const CartInformation = ({ openModal }) => {
+export const CartInformation = ({ openModal, openSellPageModal }) => {
   const user = useUser();
   const { getCartItems, getUniqueSellItems, getTotalPrice } = useCart();
 
@@ -54,7 +54,7 @@ export const CartInformation = ({ openModal }) => {
   return (
     <div> 
       <SellInfoWrapper>
-      <div onClick={openModal}>
+      <div onClick={openSellPageModal}>
         <IconButton aria-label="cart">
           <StyledBadge badgeContent={numberOfItemsInSellCart} color="secondary">
             <GiSwapBag />

@@ -89,6 +89,7 @@ const getUniqueSellItems = [...new Set(sellCart)]
     getCartItems,
     getUniqueSellItems,
     getCartItemsGroupedByKey,
+    getSellCartItems,
     getSellCartItemsGroupedByKey,
     getTotalPrice,
     addToCart,
