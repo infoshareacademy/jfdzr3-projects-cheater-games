@@ -23,7 +23,7 @@ export const Item = ({ name, value, onBuyClick, onSellClick }) => {
             color: "#0e79b2",
             border: "transparent",
           }}
-          onClick={() => onBuyClick()}
+          onClick={() => onSellClick()}
         />
       )}
       {onBuyClick && (

@@ -33,11 +33,11 @@ const useInventory = () => {
 
 export const UserInventory = () => {
   const items = useInventory();
-  const { addToCart } = useCart();
+  const { addToSellCart } = useCart();
 
   return (
     <ItemsGrid text="Sprzedaj">
-      <Items items={items} onSellClick={addToCart}/>
+            <Items items={items} onSellClick={addToSellCart}/>
     </ItemsGrid>
   );
 };

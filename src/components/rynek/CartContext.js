@@ -18,12 +18,19 @@ const Context = createContext({
 
 export const CartProvider = ({ children }) => {
   const [cart, setCart] = useState([]);
+  const [sellCart, setSellCard] = useState([]);
 
   const addToCart = useCallback((item) => {
     setCart((cart) => {
       return [...cart, item];
     });
   }, []);
+
+  const addToSellCart = useCallback((item) => {
+    setSellCard((sellCart) => {
+      return [...sellCart, item]
+    })
+  })
 
   const subtractFromCart = useCallback((key) => {
     setCart((cart) => {
@@ -53,6 +60,9 @@ export const CartProvider = ({ children }) => {
       return result;
     }, {});
   };
+
+
+
   const getTotalPrice = () =>
     cart.map((item) => item.val.value).reduce((a, b) => a + b, 0);
 
@@ -61,6 +71,7 @@ export const CartProvider = ({ children }) => {
     getCartItemsGroupedByKey,
     getTotalPrice,
     addToCart,
+    addToSellCart,
     subtractFromCart,
     resetCart,
   };

@@ -7,6 +7,8 @@ import s from "styled-components";
 import { useUser } from "../../hooks/useUser";
 import { TextBlock } from "./TextBlock";
 import { useCart } from "./CartContext";
+import { GiSwapBag } from "react-icons/gi";
+
 
 const StyledBadge = styled(Badge)(({ theme }) => ({
   "& .MuiBadge-badge": {
@@ -21,6 +23,13 @@ const CartInfoWrapper = s.div`
   display: flex;
   width: 40%;
   float: right;
+  transform: scale3d(0.95, 0.95, 1);
+  justify-content: space-between;
+`;
+const SellInfoWrapper = s.div`
+display: flex;
+  width: 40%;
+  float: left;
   transform: scale3d(0.95, 0.95, 1);
   justify-content: space-between;
 `;
@@ -41,6 +50,19 @@ export const CartInformation = ({ openModal }) => {
   }
 
   return (
+    <div> 
+      <SellInfoWrapper>
+      <div onClick={openModal}>
+        <IconButton aria-label="cart">
+          <StyledBadge badgeContent={numberOfItemsInCart} color="secondary">
+            <GiSwapBag />
+          </StyledBadge>
+        </IconButton>
+        {/* <div>{totalPrice}</div> */}
+      </div>
+      {/* <TextBlock>Twoje złoto: {user?.resources.gold}</TextBlock> */}
+    </SellInfoWrapper>
+      
     <CartInfoWrapper>
       <TextBlock>Twoje złoto: {user?.resources.gold}</TextBlock>
       <div onClick={openModal}>
@@ -52,5 +74,6 @@ export const CartInformation = ({ openModal }) => {
         {/* <div>{totalPrice}</div> */}
       </div>
     </CartInfoWrapper>
+    </div>
   );
 };
