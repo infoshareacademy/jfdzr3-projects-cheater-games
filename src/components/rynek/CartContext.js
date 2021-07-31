@@ -1,9 +1,4 @@
-import {
-  createContext,
-  useCallback,
-  useContext,
-  useState,
-} from "react";
+import { createContext, useCallback, useContext, useState } from "react";
 
 const noop = () => {};
 
@@ -26,11 +21,25 @@ export const CartProvider = ({ children }) => {
     });
   }, []);
 
+  // const addToSellCart = useCallback((item) => {
+  //   setSellCard((sellCart) => {
+  //     const existingItem = sellCart.filter((sellItem) => sellItem.id === item.id);
+  //     if(!existingItem) {
+  //       return [...sellCart, item]
+  //       }else {
+  //           return sellCart.filter((sellItem) => sellItem !== existingItem)
+  //         }
+  //       })
+  //       return [...sellCart, item]
+  //   }, [])
+
   const addToSellCart = useCallback((item) => {
     setSellCard((sellCart) => {
       return [...sellCart, item]
     })
-  })
+  }, [])
+
+const getUniqueSellItems = [...new Set(sellCart)]
 
   const subtractFromCart = useCallback((key) => {
     setCart((cart) => {
@@ -61,26 +70,26 @@ export const CartProvider = ({ children }) => {
     }, {});
   };
 
-const getSellCartItems = () => sellCart;
-const getSellCartItemsGroupedByKey = () => {
-  return sellCart.reduce((result, item) => {
-    if (result[item.key] === undefined) {
-      result[item.key] = [];
-    }
-    result[item.key].push(item);
-    return result;
-  }, {});
-}
-console.log(getSellCartItems());
-console.log(getSellCartItemsGroupedByKey());
+  const getSellCartItems = () => sellCart;
+  const getSellCartItemsGroupedByKey = () => {
+    return sellCart.reduce((result, item) => {
+      if (result[item.key] === undefined) {
+        result[item.key] = [];
+      } else if (!item.id) {
+      }
+      result[item.key].push(item);
+      return result;
+    }, {});
+  };
 
   const getTotalPrice = () =>
     cart.map((item) => item.val.value).reduce((a, b) => a + b, 0);
 
   const value = {
     getCartItems,
-    getSellCartItems,
+    getUniqueSellItems,
     getCartItemsGroupedByKey,
+    getSellCartItemsGroupedByKey,
     getTotalPrice,
     addToCart,
     addToSellCart,

@@ -32,7 +32,9 @@ const BuyButtonSection = styled.section`
 export const CartPage = () => {
   const {
     getCartItems,
+    getSellCartItems,
     getCartItemsGroupedByKey,
+    getSellCartItemsGroupedByKey,
     getTotalPrice,
     addToCart,
     subtractFromCart,
