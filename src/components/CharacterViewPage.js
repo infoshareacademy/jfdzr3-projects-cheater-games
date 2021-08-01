@@ -161,7 +161,7 @@ export const CharacterViewPage = () => {
               <h2>{user?.name}</h2>
             </p>
             <p>
-              <h2>{user?.race}</h2>
+              <h4>{user?.race}</h4>
             </p>
             <div>
               <p>Poziom: {user?.level}</p>
