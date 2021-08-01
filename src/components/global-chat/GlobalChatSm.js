@@ -9,8 +9,8 @@ export const GlobalChatSm = ({
   user,
 }) => {
   return (
-    <div className="chat">
-      <div className="chat__messages">
+    <div className="chat chat--small">
+      <div className="chat__messages chat__messages--small">
         {messages.map((message) => {
           return (
             <Message
