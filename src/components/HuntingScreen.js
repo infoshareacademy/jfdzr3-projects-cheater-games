@@ -11,7 +11,7 @@ const description = [
     Jakkolwiek nie stanowiłoby to dla ciebie żadnego wyzwania, to jednak chyba nie spodziewasz się przy nich znaleźć nic wartościowego.`,
   },
   {
-    name: "Średni - Leśne odstępy",
+    name: "Średni - Leśne ostępy",
     descr: `Kiedy już udaje ci się nie myśleć o wymierzonych w ciebie łukach zdziczałych band Elfów czy
     Orków czających się w głębi puszczy, postanawiasz wziąć głęboki oddech i ruszyć w głąb lasu.
     Twój niepokój łagodzi nieco śpiew ptaków, gdzieś w koronach drzew a twoje bystre oczy dostrzegają od czasu do czasu rudą kitę wiewiórki czy mignięcie poroża jelenia.
