@@ -6,16 +6,19 @@ import { useEffect, useState } from "react";
 import { db } from "../../firebaseConfig";
 
 export const ChatBig = ({ input, sendMessage, setInput, messages }) => {
-  const [usernames, setUsernames] = useState([]);
+  const [users, setUsers] = useState([]);
   const [chatType, setChatType] = useState("global");
   useEffect(() => {
     const getUsers = async () => {
       const response = await db.collection("users").get();
-      const usernameList = [];
+      const usersList = [];
       response.forEach((user) => {
-        usernameList.push(user.data().name);
+        usersList.push({
+          username: user.data().name,
+          isOnline: user.data().isOnline,
+        });
       });
-      setUsernames(usernameList);
+      setUsers(usersList);
     };
     getUsers();
   }, []);
@@ -35,12 +38,14 @@ export const ChatBig = ({ input, sendMessage, setInput, messages }) => {
             <span></span>
           </div>
           <ul className="usernames-list">
-            {usernames.map((username, i) => (
+            {users.map((user, i) => (
               <li className="usernames-list__item" key={i}>
-                {username}
+                {user.username}
                 <div
-                  className="user-status user-status--online"
-                  title="online"
+                  className={`user-status user-status--${
+                    user.isOnline ? "online" : "offline"
+                  }`}
+                  title={user.isOnline ? "online" : "offline"}
                 ></div>
               </li>
             ))}
