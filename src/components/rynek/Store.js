@@ -36,8 +36,7 @@ export const Store = () => {
         <CartPage />
       </ModalWrapper>
     );
-  }
-  if (isSellPageOpen) {
+  }else if (isSellPageOpen) {
     return (
       <ModalWrapper>
         <CloseIconStyle onClick={closeSellPageModal} />

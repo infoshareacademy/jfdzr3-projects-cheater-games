@@ -60,9 +60,7 @@ export const CartPage = () => {
     <>
       {cartItems.length === 0 ? (
         <>
-          {/* <TextBlock>Nie masz przedmiotów w koszyku</TextBlock> */}
-          <TextBlock>Nie wybrałeś jeszcze przedmiotów</TextBlock>
-
+          <TextBlock>Nie masz przedmiotów w koszyku</TextBlock>
         </>
       ) : (
         <>

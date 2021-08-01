@@ -2,7 +2,7 @@ import React from "react";
 import { TextBlock } from "./TextBlock";
 import styled from "styled-components";
 import { SellItem } from "./SellItem";
-import { BuyButton } from "./BuyButton";
+import { SellButton } from "./SellButton";
 import { useCart } from "./CartContext";
 
 const List = styled.ul`
@@ -71,7 +71,7 @@ const sellItems = getSellCartItems()
         ) : (
           <>
             <TextBlock>Razem: {totalPrice}</TextBlock>
-            <BuyButton />
+            <SellButton />
           </>
         )}
       </BuyButtonSection>

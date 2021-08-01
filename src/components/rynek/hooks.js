@@ -42,9 +42,9 @@ export const useShopItems = () => {
 
 export const useModal = () => {
   const [isOpen, setIsOpen] = useState(false);
+  const [isSellPageOpen, setIsSellPageOpen] = useState([false])
   const openModal = () => setIsOpen(true);
   const closeModal = () => setIsOpen(false);
-  const [isSellPageOpen, setIsSellPageOpen] = useState([false])
   const openSellPageModal = () => setIsSellPageOpen(true);
   const closeSellPageModal = () => setIsSellPageOpen(false);
 
