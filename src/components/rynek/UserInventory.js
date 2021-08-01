@@ -36,7 +36,7 @@ export const UserInventory = () => {
   const { addToSellCart } = useCart();
   return (
     <ItemsGrid text="Sprzedaj">
-            <Items items={items} onSellClick={addToSellCart}/>
+      <Items items={items} onSellClick={addToSellCart} />
     </ItemsGrid>
   );
 };

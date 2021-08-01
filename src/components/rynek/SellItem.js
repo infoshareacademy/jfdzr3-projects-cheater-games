@@ -22,8 +22,8 @@ export const SellItem = ({
   return (
     <>
       <div>
-        {/* <IconStyle src={icon} alt=""></IconStyle> */}
-        <IconStyle src={src} alt=""></IconStyle>
+        <IconStyle src={icon} alt=""></IconStyle>
+        {/* <IconStyle src={src} alt=""></IconStyle> */}
       </div>
       <div style={{ width: "100%" }}>
         <div

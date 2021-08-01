@@ -2,11 +2,13 @@ import { db } from "../../firebaseConfig";
 import { useUser } from "../../hooks/useUser";
 import { useCart } from "./CartContext";
 import firebase from "firebase";
+import { TextBlock } from "./TextBlock";
 
 export const SellButton = () => {
   const user = useUser();
   const { getSellCartItems, resetSellCart, getTotalSellPrice } = useCart();
 
+  const totalSellPrice = getTotalSellPrice()
   const updateUserArmory = async () => {
     const collectionRef = db
       .collection("users")
@@ -16,7 +18,10 @@ export const SellButton = () => {
     getSellCartItems().forEach((item) => {
       console.log(item.id);
       const id = item.id;
-      collectionRef.doc(id).delete();
+      collectionRef.doc(id).delete().then(() => {
+          return <TextBlock>Przybyło ci złota: {totalSellPrice} </TextBlock>
+          
+      })
     });
   };
 
