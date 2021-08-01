@@ -21,7 +21,6 @@ display: flex;
 flex-flow: row;
 justify-contenet: center;
 align-items: center;
-
 height: 95%;
 `;
 const CharacterNameAndStatsBox = s.div`
@@ -54,8 +53,7 @@ height: 100%;
 const Image = s.img`
 margin: auto;
 height: 70%;
-border-radius: 25% 25% 25% 25%;
-`;
+box-shadow: 10px -10px 10px #a8a8a8;`;
 
 export const CharacterViewPage = () => {
   const user = useUser();
@@ -136,8 +134,8 @@ export const CharacterViewPage = () => {
         <h2 className="character-overview-text">Widok postaci</h2>
         <CharacterMainBax>
           <CharacterInformationBox>
-            <div>
-              <h2>Materiały:</h2>
+            <div className="materials-information">
+              <h2>Surowce:</h2>
               <p>Złoto: {user?.resources.gold}</p>
               <p>Drewno: {user?.resources.wood}</p>
               <p>Materiały: {user?.resources.material}</p>
@@ -152,20 +150,23 @@ export const CharacterViewPage = () => {
               <p>Siła: {user?.stats.str}</p>
               <p>Wytrzymałość: {user?.stats.tough}</p>
               <p>Żywotność: {user?.stats.vit}</p>
-              <p>Pozotało do rozdzielenia: {user?.stats.left}</p>
             </div>
           </CharacterInformationBox>
           <CharacterAvatarBox>{checkRaceToSetAvatar()}</CharacterAvatarBox>
           <CharacterNameAndStatsBox>
-            <p>
-              <h2>{user?.name}</h2>
-            </p>
-            <p>
-              <h4>{user?.race}</h4>
-            </p>
+            <div className="player-information">
+              <p>
+                <h2>{user?.name}</h2>
+              </p>
+              <p>
+                <h4>{user?.race}</h4>
+              </p>
+            </div>
             <div>
-              <p>Poziom: {user?.level}</p>
-
+              <p>
+                <span style={{ fontWeight: "bold" }}>Poziom: </span>
+                <span style={{ fontSize: "1.3rem" }}>{user?.level}</span>
+              </p>
               <CirculatStatistic />
             </div>
           </CharacterNameAndStatsBox>

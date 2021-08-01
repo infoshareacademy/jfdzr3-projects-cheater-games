@@ -340,3 +340,10 @@ h5 {
 h1 {
   font-size: 32px;
 }
+
+.materials-information {
+  padding-bottom: 25px;
+}
+.player-information {
+  padding-bottom: 25px;
+}
