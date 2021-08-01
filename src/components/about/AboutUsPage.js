@@ -8,7 +8,7 @@ export const AboutUsPage = () => {
         {
           name: 'Anna Sawicka-Ziółkowska',
           title: 'Junior Frontend Developer',
-          description: 'Tu będą informacje o wykonanych zadaniach',
+          description: 'W projekcie Monster Hunt Ania odpowiedzialna była za logowanie i rejestrację użytkowników oraz zakładkę "Rynek", gdzie użytkownicy mogą kupować ekwipunek oraz sprzedawać zdobytą w walkach broń.',
           email: 'aniasawicka@gmail.com',
           image: 'img/about/ania.jpeg',
           github: 'https://github.com/AnnaSawickaZiolkowska',
@@ -17,7 +17,7 @@ export const AboutUsPage = () => {
         {
           name: 'Agnieszka Skorupa',
           title: 'Junior Frontend Developer',
-          description: 'Tu też będdzie opis',
+          description: 'W projekcie Monster Hunt Agnieszka odpowiedzialna była za stworzenie globalnego czatu zalogowanych u użytkowników oraz zakładki "O nas" prezentującej członków zespołu.',
           email: 'agnieszka.agata.skorupa@gmail.com',
           image: 'img/about/aga.jpeg',
           github: 'https://github.com/agaskorupa',
@@ -26,7 +26,7 @@ export const AboutUsPage = () => {
         {
           name: 'Przemysław Welenc',
           title: 'Junior Frontend Developer',
-          description: '',
+          description: 'W projekcie Monster Hunt Przemysław odpowiedzialny był za czat pomiędzy użytkowniami, zakładkę "Statystyki" oraz ujednolicenie stylistyki aplikacji.',
           email: 'przewelenc@gmail.com',
           image: 'img/about/przemek.jpeg',
           github: 'https://github.com/Przemo246',
@@ -35,7 +35,7 @@ export const AboutUsPage = () => {
         {
             name: 'Marcin Tomkiewicz',
             title: 'Junior Fronted Developer',
-            description: '',
+            description: 'W projekcie Monster Hunt Marcin odpowiedzialny był za ogólną wizję gry, stworzenie panelu administracyjnego i strony wyboru ras oraz za opracowanie walk użytkownika z przeciwnikami.',
             email: 'marc.tomk@gmail.com',
             image: 'img/about/marcin.jpeg',
             github: 'https://github.com/MarcinTomkiewicz',
@@ -44,7 +44,7 @@ export const AboutUsPage = () => {
           {
             name: 'Dawid Ossowski',
             title: 'Junior Frontend Developer',
-            description: '',
+            description: 'W projekcie Monster Hunt Dawid odpowiedzialny był za stworzenie animowanej karuzeli ras, zakładkę "Widok postaci" oraz zakładkę "Idź na polowanie, gdzie użytkownik wybiera poziom trudności walk.',
             email: 'ossowski.dawid@gmail.com',
             image: 'img/about/dawid.jpeg',
             github: 'https://github.com/ossowskid',
@@ -61,7 +61,7 @@ export const AboutUsPage = () => {
     <div className="wrapper">
         <div className="team-header">
           <h2>Zespół Monster Hunt</h2>
-          <p className="team-welcome">Cześć! Jesteśmy uczestnikami kursu Junior Fronted Developer w infoShare Academy. Nie spotkaliśmy się nigdy osobiście, ale pomimo dzielących nas odległości, trudności komunikacyjnych i różnic charakterów, udało nam się efektywnie współtworzyć Monster Hunt. Poznaj nasz zespół!
+          <p className="team-welcome">Cześć! Jesteśmy uczestnikami zdalnego kursu Junior Fronted Developer w infoShare Academy. Nie spotkaliśmy się nigdy osobiście, ale pomimo dzielących nas odległości, trudności komunikacyjnych i różnic charakterów, udało nam się efektywnie współtworzyć Monster Hunt. Poznaj nasz zespół!
           </p>
         </div>
         <div  className="team-member-gallery">
@@ -70,7 +70,6 @@ export const AboutUsPage = () => {
               <img src={person.image} className="img" alt="team-member-img" onClick={() => setSelectedPersonIndex(index)}/>
               <p className="team-member-data"><strong>{person.name}</strong></p>
               <p className="team-member-data">{person.title}</p>
-              {/* <p className="team-member-data">{person.description}</p> */}
               <p className="team-member-data">{person.email}</p>
               <ul className="team-member-data">
                 <a href={person.github} className="icon">
@@ -80,7 +79,7 @@ export const AboutUsPage = () => {
                   <FaLinkedin color="#315e3c" size="20px" margin="20px" />
                 </a>
               </ul>            
-              {selectedPersonIndex === index && <div>{person.description}</div>}
+              {selectedPersonIndex === index && <div className="team-member-description">{person.description}</div>}
             </div>
             ))}
         </div>
