@@ -29,19 +29,24 @@ const CloseIconStyle = styled(CloseIcon)`
 export const Store = () => {
   const { isOpen, isSellPageOpen, openModal, closeModal, openSellPageModal, closeSellPageModal } = useModal();
 
-  if (isOpen) {
+  if (isOpen === true) {
     return (
       <ModalWrapper>
         <CloseIconStyle onClick={closeModal} />
         <CartPage />
       </ModalWrapper>
     );
-  }else if (isSellPageOpen) {
+  }
+  else if (isSellPageOpen === true) {
     return (
-      <ModalWrapper>
+      <>
+      {isSellPageOpen && (
+        <ModalWrapper>
         <CloseIconStyle onClick={closeSellPageModal} />
         <SellPage />
-      </ModalWrapper>
+        </ModalWrapper>
+          )} 
+        </>
     );
   }
 
