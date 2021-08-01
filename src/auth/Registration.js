@@ -12,6 +12,7 @@ const createCharacter = (uid, nickname) => {
       exp: 0,
       level: 1,
       nextLevel: 100,
+      isOnline: true,
       name: nickname,
       role: "player",
       stats: {
@@ -34,6 +35,10 @@ const createCharacter = (uid, nickname) => {
 
 const createPlayerArmory = (uid) => {
   return db.collection("users").doc(uid).collection("armory").add({});
+};
+
+const createPrivateMessages = (uid) => {
+  return db.collection("users").doc(uid).collection("privateMessages").add({});
 };
 
 export const Registration = () => {
@@ -76,6 +81,7 @@ export const Registration = () => {
         history.push("/");
         createCharacter(token.user.uid, user.nickname);
         createPlayerArmory(token.user.uid);
+        createPrivateMessages(token.user.uid);
         resetFormOnSubmit(e);
       })
       .catch((error) => {
