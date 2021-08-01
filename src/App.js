@@ -11,7 +11,7 @@ import { StorePage } from "./components/rynek/StorePage";
 import { Stats } from "./components/stats/Stats";
 import { CharacterViewPage } from "./components/CharacterViewPage";
 import { useUser } from "./hooks/useUser";
-import { GlobalChatBig } from "./components/global-chat/GlobalChatBig";
+import { GlobalChat } from "./components/global-chat/global-chat";
 
 function App() {
   const user = useUser();
@@ -42,7 +42,7 @@ function App() {
                 <Stats />
               </Route>
               <Route path="/chat">
-                <GlobalChatBig />
+                <GlobalChat />
               </Route>
               <Route exact path="/">
                 <HomePage />
