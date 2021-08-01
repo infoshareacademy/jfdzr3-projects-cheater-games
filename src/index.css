@@ -261,6 +261,9 @@ li:hover {
   height: 15vh;
   padding: 20px 0;
 }
+.character-overview-text {
+  margin: 0 auto;
+}
 
 a {
   color: var(--color-red);
