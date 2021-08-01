@@ -55,7 +55,6 @@ export function Chat({ size }) {
   } else {
     return (
       <ChatBig
-        messagesEndRef={messagesEndRef}
         input={input}
         setInput={setInput}
         sendMessage={sendMessage}

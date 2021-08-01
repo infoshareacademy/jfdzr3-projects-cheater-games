@@ -5,13 +5,7 @@ import { Message } from "./Message";
 import { useEffect, useState } from "react";
 import { db } from "../../firebaseConfig";
 
-export const ChatBig = ({
-  messagesEndRef,
-  input,
-  sendMessage,
-  setInput,
-  messages,
-}) => {
+export const ChatBig = ({ input, sendMessage, setInput, messages }) => {
   const [usernames, setUsernames] = useState([]);
   const [chatType, setChatType] = useState("global");
   useEffect(() => {
@@ -67,9 +61,15 @@ export const ChatBig = ({
           <input
             className="chat__input"
             placeholder="Wpisz wiadomość...."
-            value=""
+            value={input}
+            onChange={(event) => setInput(event.target.value)}
           />
-          <button className="btn btn-small btn-green" disabled="" type="submit">
+          <button
+            className="btn btn-small btn-green"
+            disabled={!input}
+            onClick={sendMessage}
+            type="submit"
+          >
             Wyślij
           </button>
         </form>
