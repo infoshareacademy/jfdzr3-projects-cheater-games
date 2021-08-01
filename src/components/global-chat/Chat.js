@@ -1,12 +1,11 @@
-import "./global-chat.css";
 import firebase from "firebase/app";
 import { db } from "../../firebaseConfig";
 import { useState, useEffect, useRef } from "react";
 import { useUser } from "../../hooks/useUser";
-import { GlobalChatSm } from "./GlobalChatSm";
-import { GlobalChatBig } from "./GlobalChatBig";
+import { ChatSm } from "./ChatSm";
+import { ChatBig } from "./ChatBig";
 
-export function GlobalChat({ size }) {
+export function Chat({ size }) {
   const [input, setInput] = useState("");
   const [messages, setMessages] = useState([]);
   const user = useUser();
@@ -45,17 +44,23 @@ export function GlobalChat({ size }) {
   };
   if (size === "sm") {
     return (
-      <GlobalChatSm
+      <ChatSm
         messagesEndRef={messagesEndRef}
         input={input}
         setInput={setInput}
         sendMessage={sendMessage}
         messages={messages}
-        user={user}
       />
     );
   } else {
-    return null;
-    // <GlobalChatBig />
+    return (
+      <ChatBig
+        messagesEndRef={messagesEndRef}
+        input={input}
+        setInput={setInput}
+        sendMessage={sendMessage}
+        messages={messages}
+      />
+    );
   }
 }

@@ -1,25 +1,19 @@
 import { Message } from "./Message";
+import "./ChatSm.css";
 
-export const GlobalChatSm = ({
+export const ChatSm = ({
   messagesEndRef,
   input,
   sendMessage,
   setInput,
   messages,
-  user,
 }) => {
   return (
     <div className="chat chat--small">
       <div className="chat__messages chat__messages--small">
-        {messages.map((message) => {
-          return (
-            <Message
-              key={message.time}
-              username={user?.name}
-              message={message}
-            />
-          );
-        })}
+        {messages.map((message) => (
+          <Message key={message.time} message={message} />
+        ))}
         <div ref={messagesEndRef}></div>
       </div>
 
