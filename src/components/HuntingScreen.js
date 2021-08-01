@@ -1,6 +1,8 @@
 import React, { useState } from "react";
 import { Link } from "react-router-dom";
 import HoverImage from "react-hover-image";
+import { FormControlLabel } from "@material-ui/core";
+import { Radio } from "@material-ui/core";
 
 const description = [
   {
@@ -31,6 +33,10 @@ const description = [
 export const HuntingScreen = () => {
   const [currentLevelId, setCurrentLevel] = useState("");
   const currentLevel = description.find((desc) => desc.name === currentLevelId);
+
+  const handleChange = (event) => {
+    setCurrentLevel(event.target.value);
+  };
 
   const ifEmpty = () => {
     if (currentLevel === undefined) {
@@ -68,10 +74,12 @@ export const HuntingScreen = () => {
             <label key={index}>
               {desc.name}
               <input
+                // checked={setCurrentLevel}
+                // onChange={handleChange}
                 type="radio"
                 name="level"
                 onClick={() => setCurrentLevel(desc.name)}
-              ></input>
+              />
             </label>
           ))}
         </div>
