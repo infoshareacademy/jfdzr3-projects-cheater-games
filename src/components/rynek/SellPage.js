@@ -30,13 +30,9 @@ const BuyButtonSection = styled.section`
 
 export const SellPage = () => {
   const {
-    getCartItems,
     getSellCartItems,
-    getCartItemsGroupedByKey,
     getSellCartItemsGroupedByKey,
-    getTotalPrice,
-    addToCart,
-    subtractFromCart,
+    getTotalSellPrice,
     deleteFromSellPage
   } = useCart();
 
@@ -44,7 +40,7 @@ const sellItems = getSellCartItems()
   console.log(sellItems);
 
 
-  const totalPrice = getTotalPrice();
+  const totalPrice = getTotalSellPrice();
 
   return (
     <>

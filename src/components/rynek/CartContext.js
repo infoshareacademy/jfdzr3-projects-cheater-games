@@ -87,12 +87,16 @@ console.log(sellCart);
   const getTotalPrice = () =>
     cart.map((item) => item.val.value).reduce((a, b) => a + b, 0);
 
+    const getTotalSellPrice = () =>
+    sellCart.map((item) => item.val.value).reduce((a, b) => a + b, 0);
+    
   const value = {
     getCartItems,
     getCartItemsGroupedByKey,
     getSellCartItems,
     getSellCartItemsGroupedByKey,
     getTotalPrice,
+    getTotalSellPrice,
     addToCart,
     addToSellCart,
     subtractFromCart,
