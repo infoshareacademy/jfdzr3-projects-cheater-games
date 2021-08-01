@@ -36,10 +36,10 @@ display: flex;
 
 export const CartInformation = ({ openModal, openSellPageModal }) => {
   const user = useUser();
-  const { getCartItems, getUniqueSellItems, getTotalPrice } = useCart();
+  const { getCartItems ,getSellCartItems, getTotalPrice } = useCart();
 
   const numberOfItemsInCart = getCartItems().length;
-  const numberOfItemsInSellCart = getUniqueSellItems.length;
+  const numberOfItemsInSellCart = getSellCartItems().length;
 
   const totalPrice = getTotalPrice();
 

@@ -13,7 +13,7 @@ const Context = createContext({
 
 export const CartProvider = ({ children }) => {
   const [cart, setCart] = useState([]);
-  const [sellCart, setSellCard] = useState([]);
+  const [sellCart, setSellCart] = useState([]);
 
   const addToCart = useCallback((item) => {
     setCart((cart) => {
@@ -21,27 +21,20 @@ export const CartProvider = ({ children }) => {
     });
   }, []);
 
-  // const addToSellCart = useCallback((item) => {
-  //   setSellCard((sellCart) => {
-  //     const existingItem = sellCart.filter((sellItem) => sellItem.id === item.id);
-  //     if(!existingItem) {
-  //       return [...sellCart, item]
-  //       }else {
-  //           return sellCart.filter((sellItem) => sellItem !== existingItem)
-  //         }
-  //       })
-  //       return [...sellCart, item]
-  //   }, [])
-
   const addToSellCart = useCallback((item) => {
-    setSellCard((sellCart) => {
-      const getUniqueSellItems = [...new Set(sellCart)];
-
-      return [...getUniqueSellItems, item];
+    setSellCart((sellCart) => {
+      const existingItem = sellCart.find((cartItem) => cartItem.id === item.id);
+      if (!existingItem) {
+        return [...sellCart, item];
+      } else {
+        return sellCart.map((cartItem) =>
+          cartItem === existingItem
+            ? { ...cartItem}
+            : cartItem
+        );
+      }
     });
   }, []);
-
-  const getUniqueSellItems = [...new Set(sellCart)];
 
   const subtractFromCart = useCallback((key) => {
     setCart((cart) => {
@@ -56,10 +49,10 @@ export const CartProvider = ({ children }) => {
   }, []);
 
   const deleteFromSellPage = (id) => {
-    const newSellItems = getUniqueSellItems.filter(
+    const newSellItems = sellCart.filter(
       (cartItem) => cartItem.id !== id
     );
-    return setSellCard(newSellItems);
+    return setSellCart(newSellItems);
   };
 
   const resetCart = useCallback(() => {
@@ -76,7 +69,9 @@ export const CartProvider = ({ children }) => {
       return result;
     }, {});
   };
+console.log(sellCart);
 
+// }
   const getSellCartItems = () => sellCart;
   const getSellCartItemsGroupedByKey = () => {
     return sellCart.reduce((result, item) => {
@@ -94,7 +89,6 @@ export const CartProvider = ({ children }) => {
 
   const value = {
     getCartItems,
-    getUniqueSellItems,
     getCartItemsGroupedByKey,
     getSellCartItems,
     getSellCartItemsGroupedByKey,

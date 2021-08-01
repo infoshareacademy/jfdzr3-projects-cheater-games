@@ -2,7 +2,6 @@ import React from "react";
 import { TextBlock } from "./TextBlock";
 
 import RemoveIcon from "@material-ui/icons/Remove";
-import AddIcon from "@material-ui/icons/Add";
 import styled from "styled-components";
 
 const IconStyle = styled.img`

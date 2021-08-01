@@ -6,7 +6,6 @@ import { GlobalChat } from "../../global-chat/global-chat";
 import styled from "styled-components";
 import CloseIcon from "@material-ui/icons/Close";
 import { CartPage } from "./CartPage";
-
 import { useModal } from "./hooks";
 import { UserInventory } from "./UserInventory";
 import { MerchantOffer } from "./MerchantOffer";

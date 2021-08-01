@@ -32,7 +32,6 @@ export const SellPage = () => {
   const {
     getCartItems,
     getSellCartItems,
-    getUniqueSellItems,
     getCartItemsGroupedByKey,
     getSellCartItemsGroupedByKey,
     getTotalPrice,
@@ -41,9 +40,8 @@ export const SellPage = () => {
     deleteFromSellPage
   } = useCart();
 
-  const sellItems = getUniqueSellItems;
+const sellItems = getSellCartItems()
   console.log(sellItems);
-  console.log(sellItems.map((item)=> {return item.id}));
 
 
   const totalPrice = getTotalPrice();
