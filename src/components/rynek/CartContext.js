@@ -58,6 +58,9 @@ export const CartProvider = ({ children }) => {
   const resetCart = useCallback(() => {
     setCart([]);
   }, []);
+  const resetSellCart = useCallback(() => {
+    setSellCart([]);
+  }, []);
 
   const getCartItems = () => cart;
   const getCartItemsGroupedByKey = () => {
@@ -89,7 +92,7 @@ console.log(sellCart);
 
     const getTotalSellPrice = () =>
     sellCart.map((item) => item.val.value).reduce((a, b) => a + b, 0);
-    
+
   const value = {
     getCartItems,
     getCartItemsGroupedByKey,
@@ -102,6 +105,7 @@ console.log(sellCart);
     subtractFromCart,
     deleteFromSellPage,
     resetCart,
+    resetSellCart,
   };
 
   return <Context.Provider value={value}>{children}</Context.Provider>;
