@@ -17,7 +17,7 @@ export const AboutUsPage = () => {
         {
           name: 'Agnieszka Skorupa',
           title: 'Junior Frontend Developer',
-          description: '',
+          description: 'Tu też będdzie opis',
           email: 'agnieszka.agata.skorupa@gmail.com',
           image: 'img/about/aga.jpeg',
           github: 'https://github.com/agaskorupa',
@@ -52,10 +52,9 @@ export const AboutUsPage = () => {
           },
     ]
 
-  const [showDescription, setShowDescription] = useState(false);  
-  
-  
-      
+  const [selectedPersonIndex, setSelectedPersonIndex] = useState(null);  
+
+    
   return (
     <>
     
@@ -66,9 +65,9 @@ export const AboutUsPage = () => {
           </p>
         </div>
         <div  className="team-member-gallery">
-            {team.map(person=> (
-            <div className="team-member-card" key={person.email}>
-              <img src={person.image} className="img" alt="team-member-img" onClick={() => setShowDescription(!showDescription)}/>
+            {team.map((person, index) => (
+            <div className="team-member-card" key={index}>
+              <img src={person.image} className="img" alt="team-member-img" onClick={() => setSelectedPersonIndex(index)}/>
               <p className="team-member-data"><strong>{person.name}</strong></p>
               <p className="team-member-data">{person.title}</p>
               {/* <p className="team-member-data">{person.description}</p> */}
@@ -81,10 +80,10 @@ export const AboutUsPage = () => {
                   <FaLinkedin color="#315e3c" size="20px" margin="20px" />
                 </a>
               </ul>            
+              {selectedPersonIndex === index && <div>{person.description}</div>}
             </div>
             ))}
         </div>
-        {showDescription && <div>Pokaż tekst</div>}
     </div>
    </>
   );
