@@ -274,7 +274,7 @@ li:hover {
 }
 
 .hunting__screen-description {
-  padding: 20px 0;
+  padding: 5px 0;
 }
 
 .hunting__screen--level_description p {
@@ -286,7 +286,7 @@ li:hover {
   flex-flow: row;
 }
 .hunting__screen--choose_level label {
-  padding: 10px 20px;
+  padding: 5px 20px;
 }
 
 .hunting__screen--choose_ways {
