@@ -8,34 +8,17 @@ import { Login } from "../auth/Login";
 import { auth, db } from "../firebaseConfig";
 import { ShowItem } from "./items/ShowItem";
 import { useUserItems } from "../hooks/useUserItems";
+import { GenerateItem } from "./items/GenerateItem";
 
 export const HomePage = () => {
   const user = useUser();
   
- const userItemCollection = useUserItems();
-
-const result = [];
-const map = new Map();
-for (const item of userItemCollection) {
-    if(!map.has(item.id)){
-        map.set(item.id, true);    // set any value to Map
-        result.push(
-            item.id,
-        );
-    }
-}
-
   return (
     <>
       {user !== null ? (
         <>
           <h1 className="welcome">Witaj w grze {user.name}</h1>
-          <div>
-          {result.map(itemID => {
-            console.log(35, itemID);
-          return <ShowItem itemID={itemID} />
-          })}
-          </div>
+
           {user.race === undefined ? <SelectRace /> : <GlobalChat />}
         </>
       ) : (

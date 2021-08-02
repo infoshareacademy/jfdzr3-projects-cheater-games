@@ -118,7 +118,7 @@ export const ShowItem = ({ itemID }) => {
   const mergeItemStats = new Map();
   for (const stat of fullItemArray) {
     if (!mergeItemStats.has(stat?.name)) {
-      mergeItemStats.set(stat?.name, true); // set any value to Map
+      mergeItemStats.set(stat?.name, true);
       let itemValue;
       let prefixValue;
       let suffixValue;
