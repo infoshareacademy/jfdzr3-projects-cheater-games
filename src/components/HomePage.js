@@ -41,7 +41,6 @@ export const HomePage = () => {
     if (!itemData) {
       return;
     }
-    console.log(itemData);
     return db
       .collection("items")
       .doc(itemData.type)
@@ -104,26 +103,62 @@ export const HomePage = () => {
       return ["Loading"];
     }
     return Object.keys(itemProperty).map((key) => ({
-      stats: key,
-      name: itemProperty[key],
+      name: key,
+      value: itemProperty[key],
     }));
   };
 
-  // console.log(109, convertToArray(itemStats));
-  // console.log(110, convertToArray(itemPrefix));
-  // console.log(111, convertToArray(itemSuffix));
-
   const itemStatsArray = convertToArray(itemStats);
+  const itemPrefixArray = convertToArray(itemPrefix);
+  const itemSuffixArray = convertToArray(itemSuffix);
 
-  console.log(convertToArray(null))
-  console.log(itemStatsArray);
+  const fullItemArray = [
+    ...itemStatsArray,
+    ...itemPrefixArray,
+    ...itemSuffixArray,
+  ];
 
-  // console.log(127, itemStatsArrayWithValues());
-  // const handleHover = (e) => {
-  //   <div style={{position: "absolute", left: "50%", top: "50%", width: "400px", height: "200px"}}>{itemData?.suffix}</div>
-  // }
-  // onMouseOver={handleHover}
+  const fullItemStatsArray = [];
+  const mergeItemStats = new Map();
+  for (const stat of fullItemArray) {
+    if (!mergeItemStats.has(stat?.name)) {
+      mergeItemStats.set(stat?.name, true); // set any value to Map
+      let itemValue;
+      let prefixValue;
+      let suffixValue;
+      itemStatsArray.map((itemStat) => {
+        if (stat?.name === itemStat?.name) {
+          return (itemValue = itemStat?.value);
+        }
+      });
+      itemPrefixArray.map((itemPrefix) => {
+        if (stat?.name === itemPrefix?.name) {
+          return (prefixValue = itemPrefix?.value);
+        }
+      });
+      itemSuffixArray.map((itemSuffix) => {
+        if (stat?.name === itemSuffix?.name) {
+          return (suffixValue = itemSuffix?.value);
+        }
+      });
+      if (itemValue === undefined) {
+        itemValue = 0;
+      }
+      if (prefixValue === undefined) {
+        prefixValue = 0;
+      }
+      if (suffixValue === undefined) {
+        suffixValue = 0;
+      }
+      fullItemStatsArray.push({
+        name: stat.name,
+        value: itemValue + prefixValue + suffixValue,
+      });
+    }
+  }
+
   const displayingQuality = qualityDisplay();
+
   return (
     <>
       {user !== null ? (
@@ -150,17 +185,45 @@ export const HomePage = () => {
               <div>
                 Obrażenia: {itemStats?.dmgLow} {"-"} {itemStats?.dmgUpp}
               </div>
-              <div>Cechy: {" "} {itemStatsArray === ["Loading"] ? itemStatsArray : itemStatsArray.sort().map(el => {
-                if (el?.stats === "icon" || el?.stats === "value"){
-                  return;
-                }
-                else {
-                if (el?.name === 0) {
-                  return;
-                }
-                else {
-                  return <span>{el?.stats}: {el?.name}, </span>
-              }}})}</div>
+              <div>
+                Cechy:{" "}
+                {fullItemStatsArray === ["Loading"]
+                  ? fullItemStatsArray
+                  : fullItemStatsArray
+                      .sort(fullItemStatsArray?.name)
+                      .map((el) => {
+                        if (el?.name === "icon") {
+                          return;
+                          // (
+                          //   <div
+                          //     style={{
+                          //       width: "200px",
+                          //       height: "300px",
+                          //       border: "1px solid black",
+                          //     }}
+                          //   >
+                          //     <img
+                          //       src={el?.value}
+                          //       style={{ width: "200px", height: "300px" }}
+                          //     />
+                          //   </div>
+                          // );
+                        }
+                        if (el?.name === "value") {
+                          return;
+                        } else {
+                          if (el?.value === 0) {
+                            return;
+                          } else {
+                            return (
+                              <span key={el.name}>
+                                {el?.name}: {el?.value},{" "}
+                              </span>
+                            );
+                          }
+                        }
+                      })}
+              </div>
             </div>
           ) : null}
           {user.race === undefined ? <SelectRace /> : <GlobalChat />}
