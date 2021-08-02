@@ -73,9 +73,9 @@ export const HuntingScreen = () => {
           {description.map((desc, index) => (
             <label key={index}>
               {desc.name}
-              <input
-                // checked={setCurrentLevel}
-                // onChange={handleChange}
+              <Radio
+                checked={currentLevel}
+                onChange={handleChange}
                 type="radio"
                 name="level"
                 onClick={() => setCurrentLevel(desc.name)}
