@@ -183,7 +183,7 @@ export const HomePage = () => {
                 golda
               </div>
               <div>
-                Obrażenia: {itemStats?.dmgLow} {"-"} {itemStats?.dmgUpp}
+                Obrażenia: {parseInt(itemData?.quality * itemStats?.dmgLow)} {"-"} {parseInt(itemData?.quality * itemStats?.dmgUpp)}
               </div>
               <div>
                 Cechy:{" "}
@@ -217,7 +217,7 @@ export const HomePage = () => {
                           } else {
                             return (
                               <span key={el.name}>
-                                {el?.name}: {el?.value},{" "}
+                                {el?.name}: {parseInt(itemData?.quality * el?.value)},{" "}
                               </span>
                             );
                           }
