@@ -24,7 +24,7 @@ const useInventory = () => {
         snapshot.forEach((doc) => {
           userItems.push({ id: doc.id, key: doc.data().name, val: doc.data() });
         });
-        setItems(userItems);
+        setItems(userItems.filter((item) => item.key !== undefined));
       });
   }, [uid]);
 
@@ -34,9 +34,18 @@ const useInventory = () => {
 export const UserInventory = () => {
   const items = useInventory();
   const { addToSellCart } = useCart();
+  console.log(items);
+
   return (
     <ItemsGrid text="Sprzedaj">
-      <Items items={items} onSellClick={addToSellCart} />
+      {items.length !== 0 ? (
+        <Items items={items} onSellClick={addToSellCart} />
+      ) : (
+        <span>
+          Nie masz żadnych rekwizytów. <br />
+          Zdobądź je na polowaniu, bądź kup od Mirka Handlarza
+        </span>
+      )}
     </ItemsGrid>
   );
 };

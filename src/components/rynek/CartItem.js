@@ -1,6 +1,5 @@
 import React from "react";
 import { TextBlock } from "./TextBlock";
-
 import RemoveIcon from "@material-ui/icons/Remove";
 import AddIcon from "@material-ui/icons/Add";
 import styled from "styled-components";
@@ -11,8 +10,6 @@ const IconStyle = styled.img`
   box-shadow: 0 3px 7px rgba(0, 0, 0, 0.5);
   margin: 0px 10px;
 `;
-const src =
-  "https://firebasestorage.googleapis.com/v0/b/monster-hunt-v1.appspot.com/o/test-avatar%2Fmiecz.png?alt=media&token=35f91573-72ea-4732-86c9-f954c8541b46";
 
 export const CartItem = ({
   name,
@@ -26,7 +23,6 @@ export const CartItem = ({
     <>
       <div>
         <IconStyle src={icon} alt=""></IconStyle>
-        {/* <IconStyle src={src} alt=""></IconStyle> */}
       </div>
       <div style={{ width: "100%" }}>
         <div

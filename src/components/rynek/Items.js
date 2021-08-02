@@ -5,8 +5,7 @@ import { useCart } from "./CartContext";
 export const ItemStyle = styled.div`
   display: grid;
   align-content: space-around;
-  // grid-auto-rows: auto 70px 15px;
-  grid-auto-rows: 25% 55% 20%;
+  grid-auto-rows: 35% 45% 20%;
   height: max-content;
   width: "100%";
   justify-items: center;
@@ -17,22 +16,21 @@ export const ItemStyle = styled.div`
   width: 100%;
   height: 100%;
   min-width: 10px;
-  min-height: 160px;
-  // align-content: space-around;
+  min-height: 165px;
 `;
 
 export const Wrapper = styled.div`
   display: grid;
   width: 100%;
-  grid-template-columns: repeat(auto-fill, minmax(100px, 1fr));
-  grid-auto-rows: 160px;
+  grid-template-columns: repeat(auto-fill, minmax(103px, 1fr));
+  grid-auto-rows: 165px;
   grid-gap: 10px;
 `;
 
 export const Items = ({ items, onBuyClick, onSellClick }) => {
-const {getCartItems, getSellCartItems} = useCart();
-const sellItems = getSellCartItems();
-const buyItems = getCartItems()
+  const { getCartItems, getSellCartItems } = useCart();
+  const sellItems = getSellCartItems();
+  const buyItems = getCartItems();
 
   if (items.length === 0) {
     return <></>;
@@ -41,7 +39,18 @@ const buyItems = getCartItems()
     <Wrapper>
       {items &&
         items.map((item, index) => (
-          <ItemStyle key={index} style={{backgroundColor: (sellItems.find((sellItem) => sellItem.id === item.id) || buyItems.find((buyItem) => buyItem.key === item.key && item.type === "handWeapon")) ? "rgba(49, 94, 60, 0.20)" : "inherit"}}> 
+          <ItemStyle
+            key={index}
+            style={{
+              backgroundColor:
+                sellItems.find((sellItem) => sellItem.id === item.id) ||
+                buyItems.find((buyItem) =>
+                    buyItem.key === item.key && item.type === "handWeapon"
+                )
+                  ? "rgba(49, 94, 60, 0.20)"
+                  : "inherit"
+            }}
+          >
             <Item
               icon={item.val.icon}
               name={item.key}

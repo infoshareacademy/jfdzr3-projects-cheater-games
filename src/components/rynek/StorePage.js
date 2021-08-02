@@ -1,5 +1,3 @@
-import "./store.css";
-
 import { CartProvider } from "./CartContext";
 import { Store } from "./Store";
 
