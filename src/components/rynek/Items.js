@@ -30,29 +30,18 @@ export const Wrapper = styled.div`
 `;
 
 export const Items = ({ items, onBuyClick, onSellClick }) => {
-const {getSellCartItems} = useCart();
+const {getCartItems, getSellCartItems} = useCart();
 const sellItems = getSellCartItems();
-console.log(sellItems.map((el) => el.id));
-
-const changeBackground = (e) => {
-  // e.currentTarget.style.background = "lightgrey"
-
-}
+const buyItems = getCartItems()
 
   if (items.length === 0) {
     return <></>;
-    // <p>Brak przedmiotów</p>;
   }
-console.log(items);
   return (
     <Wrapper>
       {items &&
         items.map((item, index) => (
-          <ItemStyle key={index} onClick={changeBackground}  style={{backgroundColor: (sellItems.find((sellItem) => sellItem.id === item.id) ? "lightgrey" : "inherit")}} > 
-          
-        
-          {/* style={{ backgroundColor: (background.item === item.title && background.isSelected) ? 'blue' : 'red' }} */}
-
+          <ItemStyle key={index} style={{backgroundColor: (sellItems.find((sellItem) => sellItem.id === item.id) || buyItems.find((buyItem) => buyItem.key === item.key && item.type === "handWeapon")) ? "rgba(49, 94, 60, 0.20)" : "inherit"}}> 
             <Item
               icon={item.val.icon}
               name={item.key}

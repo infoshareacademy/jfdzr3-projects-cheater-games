@@ -70,7 +70,7 @@ const sellItems = getSellCartItems()
           <></>
         ) : (
           <>
-            <TextBlock>Razem: {totalPrice}</TextBlock>
+            <TextBlock>Wartość w złocie: {totalPrice}</TextBlock>
             <SellButton />
           </>
         )}

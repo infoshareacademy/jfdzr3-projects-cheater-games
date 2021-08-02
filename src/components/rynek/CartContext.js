@@ -72,9 +72,7 @@ export const CartProvider = ({ children }) => {
       return result;
     }, {});
   };
-console.log(sellCart);
 
-// }
   const getSellCartItems = () => sellCart;
   const getSellCartItemsGroupedByKey = () => {
     return sellCart.reduce((result, item) => {
