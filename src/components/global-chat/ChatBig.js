@@ -4,8 +4,10 @@ import { RiMessageFill } from "react-icons/ri";
 import { Message } from "./Message";
 import { useEffect, useState } from "react";
 import { db } from "../../firebaseConfig";
+import { useUser } from "../../hooks/useUser";
 
 export const ChatBig = ({ input, sendMessage, setInput, messages }) => {
+  const user = useUser();
   const [users, setUsers] = useState([]);
   const [chatType, setChatType] = useState("global");
   const [privateMessgaUser, setPrivateMessageUser] = useState("");
@@ -18,6 +20,18 @@ export const ChatBig = ({ input, sendMessage, setInput, messages }) => {
   const handleGlobalChat = () => {
     setChatType("global");
     setPrivateMessageUser("");
+  };
+
+  const handleSendMessage = () => {
+    if (chatType === "global") {
+      sendMessage();
+    } else {
+      db.collection("users").doc(user?.uid).collection("privateMessages").add({
+        text: input,
+        time: db.FieldValue.serverTimestamp(),
+        chatWith: privateMessgaUser,
+      });
+    }
   };
 
   useEffect(() => {
@@ -93,7 +107,7 @@ export const ChatBig = ({ input, sendMessage, setInput, messages }) => {
           <button
             className="btn btn-small btn-green"
             disabled={!input}
-            onClick={sendMessage}
+            onClick={handleSendMessage}
             type="submit"
           >
             Wyślij
