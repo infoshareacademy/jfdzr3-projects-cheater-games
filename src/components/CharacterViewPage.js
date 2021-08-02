@@ -6,14 +6,26 @@ import { CircularProgress } from "@material-ui/core";
 import { Typography } from "@material-ui/core";
 import { Box } from "@material-ui/core";
 import { useState, useEffect } from "react";
+import {
+  GiTwoCoins,
+  GiWoodBeam,
+  GiClayBrick,
+  GiFist,
+  GiBrain,
+  GiLifeBar,
+} from "react-icons/gi";
 
 const Wrapper = s.div`
+color: #fffef8;
 padding: 20px;
+margin-bottom: 25px;
 display: flex;
 flex-flow: column;
 width: 100%;
 height: 500px;
-// border: 1px solid black;
+background: #333333;
+box-shadow: 10px -10px 10px #21201e;
+
 `;
 
 const CharacterMainBax = s.div`
@@ -53,7 +65,7 @@ height: 100%;
 const Image = s.img`
 margin: auto;
 height: 70%;
-box-shadow: 10px -10px 10px #a8a8a8;`;
+box-shadow: 10px -10px 10px #21201e;`;
 
 export const CharacterViewPage = () => {
   const user = useUser();
@@ -136,20 +148,38 @@ export const CharacterViewPage = () => {
           <CharacterInformationBox>
             <div className="materials-information">
               <h2>Surowce:</h2>
-              <p>Złoto: {user?.resources.gold}</p>
-              <p>Drewno: {user?.resources.wood}</p>
-              <p>Materiały: {user?.resources.material}</p>
+              <p>
+                <GiTwoCoins color={"#DAA520"} size={"20px"} />
+                Złoto: {user?.resources.gold}
+              </p>
+              <p>
+                <GiWoodBeam color={"brown"} size={"20px"} />
+                Drewno: {user?.resources.wood}
+              </p>
+              <p>
+                <GiClayBrick color={"gray"} size={"20px"} /> Materiały:{" "}
+                {user?.resources.material}
+              </p>
             </div>
 
             <div>
               <h2>Statystyki</h2>
               <p>Zręczność: {user?.stats.agi}</p>
-              <p>Inteligencja: {user?.stats.int}</p>
+              <p>
+                <GiBrain color={"#ffb6c1"} size={"20px"} />
+                Inteligencja: {user?.stats.int}
+              </p>
               <p>Spostrzegawczość: {user?.stats.perc}</p>
               <p>Szybkość: {user?.stats.speed}</p>
-              <p>Siła: {user?.stats.str}</p>
+              <p>
+                <GiFist color={"#ffb6c1"} size={"20px"} />
+                Siła: {user?.stats.str}
+              </p>
               <p>Wytrzymałość: {user?.stats.tough}</p>
-              <p>Żywotność: {user?.stats.vit}</p>
+              <p>
+                <GiLifeBar color={"red"} size={"20px"} />
+                Żywotność: {user?.stats.vit}
+              </p>
             </div>
           </CharacterInformationBox>
           <CharacterAvatarBox>{checkRaceToSetAvatar()}</CharacterAvatarBox>
