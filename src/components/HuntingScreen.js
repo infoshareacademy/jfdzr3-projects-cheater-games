@@ -4,26 +4,27 @@ import HoverImage from "react-hover-image";
 
 const description = [
   {
-    name: "Łatwy",
-    descript: `Praesent ac odio ut nulla semper faucibus. Nam vel molestie lorem.
-    Curabitur vulputate viverra pretium. Suspendisse velit ipsum, dapibus vitae
-    blandit et, porta eget libero.Pellentesque eros mi, tincidunt ac suscipit eget, congue ut libero.`,
+    name: "Łatwy - Skraj lasu",
+    descr: `Przyjemnie wyglądająca, wręcz zachęcająca ścieżka prowadzi wokół lasu.
+    Idąc nią możesz się rozkoszować południowym słońcem, a kiedy żar będzie zbyt duży, możesz się schronić pod koronami drzew.
+    Sielankowość tego widoku sprawia, że prędzej będziesz się spodziewać jakichś dwóch czy trzech rozbójników, niż faktycznie przerażających potworów.
+    Jakkolwiek nie stanowiłoby to dla ciebie żadnego wyzwania, to jednak chyba nie spodziewasz się przy nich znaleźć nic wartościowego.`,
   },
   {
-    name: "Średni",
-    descript: `Ut lobortis eleifend arcu, sed ornare mi molestie varius. Sed vel facilisis mi,
-    non hendrerit arcu. Ut scelerisque, diam ut gravida convallis,
-    ligula arcu laoreet dui, laoreet malesuada ex turpis quis sem.Mauris vitae massa eu tortor
-    olutpat cursus ut auctor quam.
-    Proin nisl tellus, venenatis non magna in, eleifend dapibus ipsum.Nullam eget elementum turpis.`,
+    name: "Średni - Leśne ostępy",
+    descr: `Kiedy już udaje ci się nie myśleć o wymierzonych w ciebie łukach zdziczałych band Elfów czy
+    Orków czających się w głębi puszczy, postanawiasz wziąć głęboki oddech i ruszyć w głąb lasu.
+    Twój niepokój łagodzi nieco śpiew ptaków, gdzieś w koronach drzew a twoje bystre oczy dostrzegają od czasu do czasu rudą kitę wiewiórki czy mignięcie poroża jelenia.
+    Zagłębiając się jednak w las, towarzyszy ci coraz mniej uspokajających odgłosów a coraz więcej złowieszczej ciszy.
+    Choć niebezpieczeństwo zdaje się rosnąć z każdym krokiem, pewnym pocieszeniem jest świadomość wielkiej nagrody, która będzie czekać na ciebie na końcu.`,
   },
   {
-    name: "Trudny",
-    descript: `unc imperdiet auctor dapibus. Suspendisse dolor metus, efficitur ac diam eget, porttitor 
-    pellentesque justo.Donec in posuere turpis.Ut non ligula nunc.Mauris mollis ipsum ornare dolor pulvinar vulputate.V
-    estibulum ante ipsum primis in faucibus orci luctus et ultrices posuere cubilia curae;
-    Nullam lorem nisi, pretium sit amet sem et,
-    sodales sodales mauris.`,
+    name: "Trudny - Najgłębszy matecznik",
+    descr: `Ścieżka wiodąca wgłąb lasu już od samego początku wygląda ponuro. Właściwie nie jest to nawet ścieżka, co po prostu wydeptany przez zwierzynę wąski szlak.
+    A prowadzi w samo jądro puszczy, w najciemniejszy mrok, w najgłębsze przepaście prastarego boru.
+    Legendy głoszą, że można tam spotkać wszystko. Włącznie z mitycznym Leśnym Smokiem, pradawnym władcą pradawnych kniei.
+    Śmiałkowie, którzy zapuszczają się tak daleko od swoich siedzib, czynią to na własną odpowiedzialność. I rzadko wracają.
+    Ci, którzy jednak przeżyli przynoszą do obozowiska skarby, o których nikomu się nie śniło, a ich opowieści głoszą bezmiar łupu, który jeszcze oczekuje na swojego odkrywcę.`,
   },
 ];
 
@@ -39,7 +40,7 @@ export const HuntingScreen = () => {
         </p>
       );
     } else {
-      return <p> {currentLevel.descript}</p>;
+      return <p> {currentLevel.descr}</p>;
     }
   };
   return (
@@ -49,10 +50,15 @@ export const HuntingScreen = () => {
       </div>
       <div className="hunting__screen-description">
         <p>
-          Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do
-          eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad
-          minim veniam, quis nostrud exercitation ullamco laboris nisi ut
-          aliquip ex ea commodo consequat.
+          Do twojego obozowiska znów dotarły złowieszcze plotki. W głębi lasu
+          czają się okrutne monstra, których żądza krwi przekracza pojmowanie
+          większości przedstawicieli rozumnych ras. Nie dotyczy to jednak
+          ciebie. To twoje życie i twoje powołanie. Teraz, stojąc na samej
+          krawędzi przepastnej puszczy, musisz wybrać ścieżkę, którą podążysz.
+          Czy pójdziesz skrajem lasu, czy zagłębisz się w najczarniejszy
+          matecznik, na twojej drodze stanie wyzwanie, niewątpliwie
+          przekraczające zdolności zwykłego śmiertelnika. Wybierz swoją drogę,
+          więc, i ruszaj!
         </p>
       </div>
       <div className="hunting__screen-main">

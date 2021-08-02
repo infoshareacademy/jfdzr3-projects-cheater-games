@@ -4,18 +4,20 @@ import { db } from "../firebaseConfig";
 export const usePlayerStats = (user) => {
   const [stats, setStats] = useState(null);
 
+  const uid = user?.uid;
+
   useEffect(() => {
-    if (user === null) {
+    if (!uid) {
       setStats(null);
       return;
     }
     return db
       .collection("stats")
-      .doc(user)
+      .doc(uid)
       .onSnapshot((doc) => {
         console.log(doc.data());
       });
-  }, [stats]);
+  }, [uid]);
 
   return stats;
 };

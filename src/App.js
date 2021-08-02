@@ -7,8 +7,8 @@ import { HomePage } from "./components/HomePage";
 import { MainMenu } from "./components/MainMenu";
 import { AgilityTrial } from "./components/AgilityTrial";
 import { AdminPanel } from "./components/AdminPanel";
+import { StorePage } from "./components/rynek/StorePage";
 import { Stats } from "./components/stats/Stats";
-import { StorePage } from "./components/store/StorePage";
 import { CharacterViewPage } from "./components/CharacterViewPage";
 import { useUser } from "./hooks/useUser";
 
@@ -46,7 +46,6 @@ function App() {
             </Switch>
           ) : (
             <Switch>
-              
               <Route exact path="/">
                 <HomePage />
               </Route>
