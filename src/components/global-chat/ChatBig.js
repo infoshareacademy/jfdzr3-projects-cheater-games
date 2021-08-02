@@ -73,7 +73,10 @@ export const ChatBig = ({ input, sendMessage, setInput, messages }) => {
       </div>
       <div className="chat__view">
         <div className="chat__header">
-          Czat {chatType === "global" ? "globalny" : "z użytkownikiem"}
+          Czat{" "}
+          {chatType === "global"
+            ? "globalny"
+            : `z użytkownikiem ${privateMessgaUser}`}
         </div>
         <div className="chat__messages chat__messages--big">
           {messages.map((message) => (
