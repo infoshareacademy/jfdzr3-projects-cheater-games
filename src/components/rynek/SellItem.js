@@ -1,6 +1,5 @@
 import React from "react";
 import { TextBlock } from "./TextBlock";
-
 import RemoveIcon from "@material-ui/icons/Remove";
 import styled from "styled-components";
 
@@ -11,12 +10,7 @@ const IconStyle = styled.img`
   margin: 0px 10px;
 `;
 
-export const SellItem = ({
-  name,
-  value,
-  icon,
-  deleteButton,
-}) => {
+export const SellItem = ({ name, value, icon, deleteButton }) => {
   return (
     <>
       <div>
@@ -40,10 +34,14 @@ export const SellItem = ({
             />
           </button>
         </div>
-        <div style={{ display: "flex", justifyContent:"flex-end", padding: "0 20px" }}>
-          <TextBlock style={{ fontSize: "20px" }}>
-            złoto: {value}
-          </TextBlock>
+        <div
+          style={{
+            display: "flex",
+            justifyContent: "flex-end",
+            padding: "0 20px",
+          }}
+        >
+          <TextBlock style={{ fontSize: "20px" }}>złoto: {value}</TextBlock>
         </div>
       </div>
     </>

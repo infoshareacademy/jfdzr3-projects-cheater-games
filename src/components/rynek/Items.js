@@ -18,7 +18,6 @@ export const ItemStyle = styled.div`
   min-width: 10px;
   min-height: 165px;
 `;
-
 export const Wrapper = styled.div`
   display: grid;
   width: 100%;
@@ -44,11 +43,12 @@ export const Items = ({ items, onBuyClick, onSellClick }) => {
             style={{
               backgroundColor:
                 sellItems.find((sellItem) => sellItem.id === item.id) ||
-                buyItems.find((buyItem) =>
+                buyItems.find(
+                  (buyItem) =>
                     buyItem.key === item.key && item.type === "handWeapon"
                 )
                   ? "rgba(49, 94, 60, 0.20)"
-                  : "inherit"
+                  : "inherit",
             }}
           >
             <Item

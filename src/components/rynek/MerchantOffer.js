@@ -4,7 +4,6 @@ import { Items } from "./Items";
 import { ItemsGrid } from "./ItemsGrid";
 // import { TextBlock } from "./TextBlock";
 
-
 export const MerchantOffer = () => {
   const { armorItems, handWeaponItems, helmetItems } = useShopItems();
   const { addToCart } = useCart();

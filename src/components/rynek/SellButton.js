@@ -7,7 +7,7 @@ export const SellButton = () => {
   const user = useUser();
   const { getSellCartItems, resetSellCart, getTotalSellPrice } = useCart();
 
-  const totalSellPrice = getTotalSellPrice()
+  const totalSellPrice = getTotalSellPrice();
   const updateUserArmory = async () => {
     const collectionRef = db
       .collection("users")
@@ -17,10 +17,12 @@ export const SellButton = () => {
     getSellCartItems().forEach((item) => {
       console.log(item.id);
       const id = item.id;
-      collectionRef.doc(id).delete().then(() => {
-          return <TextBlock>Przybyło ci złota: {totalSellPrice} </TextBlock>
-          
-      })
+      collectionRef
+        .doc(id)
+        .delete()
+        .then(() => {
+          return <TextBlock>Przybyło ci złota: {totalSellPrice} </TextBlock>;
+        });
     });
   };
 

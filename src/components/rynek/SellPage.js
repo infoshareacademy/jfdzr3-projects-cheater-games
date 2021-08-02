@@ -20,7 +20,6 @@ const ItemCartStyle = styled.section`
   min-height: 120px;
   align-items: center;
 `;
-
 const BuyButtonSection = styled.section`
   display: grid;
   justify-items: right;
@@ -29,22 +28,15 @@ const BuyButtonSection = styled.section`
 `;
 
 export const SellPage = () => {
-  const {
-    getSellCartItems,
-    getTotalSellPrice,
-    deleteFromSellPage
-  } = useCart();
+  const { getSellCartItems, getTotalSellPrice, deleteFromSellPage } = useCart();
 
-const sellItems = getSellCartItems()
- 
-
-
+  const sellItems = getSellCartItems();
   const totalPrice = getTotalSellPrice();
 
   return (
     <>
       {sellItems.length === 0 ? (
-          <TextBlock>Nie masz przedmiotów na sprzedaż</TextBlock>
+        <TextBlock>Nie masz przedmiotów na sprzedaż</TextBlock>
       ) : (
         <>
           <TextBlock>Twój ekwipunek na sprzedaż</TextBlock>

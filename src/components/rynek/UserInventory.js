@@ -27,14 +27,12 @@ const useInventory = () => {
         setItems(userItems.filter((item) => item.key !== undefined));
       });
   }, [uid]);
-
   return items;
 };
 
 export const UserInventory = () => {
   const items = useInventory();
   const { addToSellCart } = useCart();
-  console.log(items);
 
   return (
     <ItemsGrid text="Sprzedaj">

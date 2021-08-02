@@ -22,7 +22,7 @@ export const BuyButton = () => {
         type: item.type,
         quality: 1,
         value: item.val.value,
-        icon: item.val.icon
+        icon: item.val.icon,
       });
     });
   };
