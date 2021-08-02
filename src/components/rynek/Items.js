@@ -48,7 +48,11 @@ console.log(items);
     <Wrapper>
       {items &&
         items.map((item, index) => (
-          <ItemStyle key={index} onClick={changeBackground}> 
+          <ItemStyle key={index} onClick={changeBackground}  style={{backgroundColor: (sellItems.find((sellItem) => sellItem.id === item.id) ? "lightgrey" : "inherit")}} > 
+          
+        
+          {/* style={{ backgroundColor: (background.item === item.title && background.isSelected) ? 'blue' : 'red' }} */}
+
             <Item
               icon={item.val.icon}
               name={item.key}
