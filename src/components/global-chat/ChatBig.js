@@ -8,6 +8,18 @@ import { db } from "../../firebaseConfig";
 export const ChatBig = ({ input, sendMessage, setInput, messages }) => {
   const [users, setUsers] = useState([]);
   const [chatType, setChatType] = useState("global");
+  const [privateMessgaUser, setPrivateMessageUser] = useState("");
+
+  const handlePrivateChat = (e) => {
+    setChatType("private");
+    setPrivateMessageUser(e.target.textContent);
+  };
+
+  const handleGlobalChat = () => {
+    setChatType("global");
+    setPrivateMessageUser("");
+  };
+
   useEffect(() => {
     const getUsers = async () => {
       const response = await db.collection("users").get();
@@ -30,7 +42,9 @@ export const ChatBig = ({ input, sendMessage, setInput, messages }) => {
             <RiMessageFill className="chat__icon" />
             <span>Kanał czatu:</span>
           </div>
-          <button className="btn btn-small btn-blue">Czat globalny</button>
+          <button className="btn btn-small btn-blue" onClick={handleGlobalChat}>
+            Czat globalny
+          </button>
         </div>
         <div className="chat__usernames">
           <div className="chat__label">
@@ -39,7 +53,11 @@ export const ChatBig = ({ input, sendMessage, setInput, messages }) => {
           </div>
           <ul className="usernames-list">
             {users.map((user, i) => (
-              <li className="usernames-list__item" key={i}>
+              <li
+                className="usernames-list__item"
+                key={i}
+                onClick={handlePrivateChat}
+              >
                 <div
                   className={`user-status user-status--${
                     user.isOnline ? "online" : "offline"
