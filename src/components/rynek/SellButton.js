@@ -1,7 +1,6 @@
 import { db } from "../../firebaseConfig";
 import { useUser } from "../../hooks/useUser";
 import { useCart } from "./CartContext";
-import firebase from "firebase";
 import { TextBlock } from "./TextBlock";
 
 export const SellButton = () => {

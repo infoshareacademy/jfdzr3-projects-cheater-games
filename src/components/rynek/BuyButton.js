@@ -1,7 +1,6 @@
-import { db } from "../../firebaseConfig";
+import { db, firebaseServerTimestamp } from "../../firebaseConfig";
 import { useUser } from "../../hooks/useUser";
 import { useCart } from "./CartContext";
-import firebase from "firebase";
 
 export const BuyButton = () => {
   const user = useUser();
@@ -16,7 +15,7 @@ export const BuyButton = () => {
     getCartItems().forEach((item) => {
       console.log(item);
       collectionRef.add({
-        obtainedAt: firebase.firestore.FieldValue.serverTimestamp(),
+        obtainedAt: firebaseServerTimestamp,
         prefix: "",
         suffix: "",
         name: item.key,

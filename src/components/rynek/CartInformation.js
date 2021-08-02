@@ -36,12 +36,12 @@ display: flex;
 
 export const CartInformation = ({ openModal, openSellPageModal }) => {
   const user = useUser();
-  const { getCartItems ,getSellCartItems, getTotalPrice } = useCart();
+  const { getCartItems ,getSellCartItems } = useCart();
 
   const numberOfItemsInCart = getCartItems().length;
   const numberOfItemsInSellCart = getSellCartItems().length;
 
-  const totalPrice = getTotalPrice();
+  // const totalPrice = getTotalPrice();
 
   if (!user) {
     return (

@@ -1,6 +1,5 @@
 import React from "react";
 import { TextBlock } from "./TextBlock";
-
 import styled from "styled-components";
 import { CartItem } from "./CartItem";
 import { BuyButton } from "./BuyButton";
@@ -21,7 +20,6 @@ const ItemCartStyle = styled.section`
   min-height: 120px;
   align-items: center;
 `;
-
 const BuyButtonSection = styled.section`
   display: grid;
   justify-items: right;
@@ -32,9 +30,7 @@ const BuyButtonSection = styled.section`
 export const CartPage = () => {
   const {
     getCartItems,
-    getSellCartItems,
     getCartItemsGroupedByKey,
-    getSellCartItemsGroupedByKey,
     getTotalPrice,
     addToCart,
     subtractFromCart,

@@ -31,13 +31,12 @@ const BuyButtonSection = styled.section`
 export const SellPage = () => {
   const {
     getSellCartItems,
-    getSellCartItemsGroupedByKey,
     getTotalSellPrice,
     deleteFromSellPage
   } = useCart();
 
 const sellItems = getSellCartItems()
-  console.log(sellItems);
+ 
 
 
   const totalPrice = getTotalSellPrice();
@@ -45,7 +44,7 @@ const sellItems = getSellCartItems()
   return (
     <>
       {sellItems.length === 0 ? (
-          <TextBlock>Nie wybrałeś jeszcze przedmiotów</TextBlock>
+          <TextBlock>Nie masz przedmiotów na sprzedaż</TextBlock>
       ) : (
         <>
           <TextBlock>Twój ekwipunek na sprzedaż</TextBlock>

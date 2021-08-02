@@ -12,14 +12,13 @@ const Context = createContext({
 });
 
 export const CartProvider = ({ children }) => {
- 
   const [cart, setCart] = useState([]);
   const [sellCart, setSellCart] = useState([]);
-  
+
   const addToCart = useCallback((item) => {
-  setCart((cart) => {
-    return [...cart, item];
-  });
+    setCart((cart) => {
+      return [...cart, item];
+    });
   }, []);
 
   const addToSellCart = useCallback((item) => {
@@ -29,9 +28,7 @@ export const CartProvider = ({ children }) => {
         return [...sellCart, item];
       } else {
         return sellCart.map((cartItem) =>
-          cartItem === existingItem
-            ? { ...cartItem}
-            : cartItem
+          cartItem === existingItem ? { ...cartItem } : cartItem
         );
       }
     });
@@ -50,9 +47,7 @@ export const CartProvider = ({ children }) => {
   }, []);
 
   const deleteFromSellPage = (id) => {
-    const newSellItems = sellCart.filter(
-      (cartItem) => cartItem.id !== id
-    );
+    const newSellItems = sellCart.filter((cartItem) => cartItem.id !== id);
     return setSellCart(newSellItems);
   };
 
@@ -89,9 +84,7 @@ export const CartProvider = ({ children }) => {
   const getTotalPrice = () =>
     cart.map((item) => item.val.value).reduce((a, b) => a + b, 0);
 
-    const totalPrice = getTotalPrice()
-
-    const getTotalSellPrice = () =>
+  const getTotalSellPrice = () =>
     sellCart.map((item) => item.val.value).reduce((a, b) => a + b, 0);
 
   const value = {
