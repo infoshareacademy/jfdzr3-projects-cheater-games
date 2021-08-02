@@ -75,7 +75,7 @@
   width: 10px;
   height: 10px;
   border-radius: 100%;
-  margin-left: 8px;
+  margin-right: 8px;
 }
 
 .user-status--online {
@@ -88,11 +88,13 @@
 
 .usernames-list {
   list-style: none;
+  display: grid;
+  justify-content: center;
 }
+
 .usernames-list__item {
   display: flex;
   align-items: center;
-  justify-content: center;
   cursor: pointer;
   transition: all 0.2s;
 }

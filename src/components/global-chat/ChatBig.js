@@ -40,13 +40,13 @@ export const ChatBig = ({ input, sendMessage, setInput, messages }) => {
           <ul className="usernames-list">
             {users.map((user, i) => (
               <li className="usernames-list__item" key={i}>
-                {user.username}
                 <div
                   className={`user-status user-status--${
                     user.isOnline ? "online" : "offline"
                   }`}
                   title={user.isOnline ? "online" : "offline"}
                 ></div>
+                {user.username}
               </li>
             ))}
             <ul></ul>
