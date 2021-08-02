@@ -248,7 +248,6 @@ li:hover {
   padding-top: 50px;
 }
 .hunting__screen--choose_ways a {
-  width: 30%;
   text-decoration: none;
   color: inherit;
 }
@@ -269,8 +268,16 @@ a {
   transition: all 2s;
 }
 
-a:hover {
-  color: var(--color-dark-red);
+.chose__way__arrow {
+  font-size: 70px;
+}
+.chose__way__arrow:hover {
+  transition: 0.6s;
+  color: #315e3c;
+}
+
+.choose__ways__arrows-links {
+  padding: 0;
 }
 
 button {

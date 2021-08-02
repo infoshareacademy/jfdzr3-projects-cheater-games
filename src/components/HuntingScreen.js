@@ -1,8 +1,10 @@
 import React, { useState } from "react";
 import { Link } from "react-router-dom";
-import HoverImage from "react-hover-image";
-import { FormControlLabel } from "@material-ui/core";
-import { Radio } from "@material-ui/core";
+import {
+  IoMdArrowRoundBack,
+  IoMdArrowRoundForward,
+  IoMdArrowRoundUp,
+} from "react-icons/io";
 
 const description = [
   {
@@ -30,13 +32,19 @@ const description = [
   },
 ];
 
+const LeftArrow = () => {
+  return <IoMdArrowRoundBack className="chose__way__arrow" />;
+};
+const RightArrow = () => {
+  return <IoMdArrowRoundForward className="chose__way__arrow" />;
+};
+const UpArrow = () => {
+  return <IoMdArrowRoundUp className="chose__way__arrow" />;
+};
+
 export const HuntingScreen = () => {
   const [currentLevelId, setCurrentLevel] = useState("");
   const currentLevel = description.find((desc) => desc.name === currentLevelId);
-
-  const handleChange = (event) => {
-    setCurrentLevel(event.target.value);
-  };
 
   const ifEmpty = () => {
     if (currentLevel === undefined) {
@@ -49,6 +57,7 @@ export const HuntingScreen = () => {
       return <p> {currentLevel.descr}</p>;
     }
   };
+
   return (
     <section className="hunting-screen">
       <div className="hunting__screen-title">
@@ -73,9 +82,7 @@ export const HuntingScreen = () => {
           {description.map((desc, index) => (
             <label key={index}>
               {desc.name}
-              <Radio
-                checked={currentLevel}
-                onChange={handleChange}
+              <input
                 type="radio"
                 name="level"
                 onClick={() => setCurrentLevel(desc.name)}
@@ -89,26 +96,14 @@ export const HuntingScreen = () => {
         <div>
           <h3>Wybierz ścieżkę polowania</h3>
           <div className="hunting__screen--choose_ways">
-            <Link to="/">
-              <HoverImage
-                src={`${process.env.PUBLIC_URL}/img/arrows/left-arrow.png`}
-                hoverSrc={`${process.env.PUBLIC_URL}/img/arrows/left-arrow-hover.png`}
-                style={{ height: "70px", width: "70px" }}
-              />
+            <Link to="/hunt" className="choose__ways__arrows-links">
+              <LeftArrow />
             </Link>
-            <Link to="/">
-              <HoverImage
-                src={`${process.env.PUBLIC_URL}img/arrows/up-arrow.png`}
-                hoverSrc={`${process.env.PUBLIC_URL}/img/arrows/up-arrow-hover.png`}
-                style={{ height: "70px", width: "70px" }}
-              />
+            <Link to="/hunt" className="choose__ways__arrows-links">
+              <UpArrow />
             </Link>
-            <Link to="/">
-              <HoverImage
-                src={`${process.env.PUBLIC_URL}/img/arrows/right-arrow.png`}
-                hoverSrc={`${process.env.PUBLIC_URL}/img/arrows/right-arrow-hover.png`}
-                style={{ height: "70px", width: "70px" }}
-              />
+            <Link to="/hunt" className="choose__ways__arrows-links">
+              <RightArrow />
             </Link>
           </div>
         </div>
