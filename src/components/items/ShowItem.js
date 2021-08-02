@@ -2,17 +2,14 @@ import React, { useEffect, useState } from "react";
 import { db } from "../../firebaseConfig";
 import { useUser } from "../../hooks/useUser";
 
-export const ShowItem = ({ props }) => {
+export const ShowItem = ({ itemID }) => {
   const user = useUser();
-  // const uid = "1GfobW6nhnS3Txl13MBxO4F30pm2";
 
-  const [userWeapons, setUserWeapons] = useState(null);
   const [itemData, setItemData] = useState(null);
   const [itemStats, setItemStats] = useState(null);
   const [itemSuffix, setItemSuffix] = useState(null);
   const [itemPrefix, setItemPrefix] = useState(null);
 
-  //   const itemsDocs =
   useEffect(() => {
     if (!user?.uid) {
       return;
@@ -21,28 +18,7 @@ export const ShowItem = ({ props }) => {
       .collection("users")
       .doc(user?.uid)
       .collection("armory")
-      .onSnapshot((doc) => {
-        setUserWeapons(
-          doc?.docs.map((document) => {
-            return document.id;
-          })
-        );
-      });
-  }, [user]);
-
-  console.log(
-    28,
-    userWeapons);
-
-  useEffect(() => {
-    if (!user?.uid) {
-      return;
-    }
-    return db
-      .collection("users")
-      .doc(user?.uid)
-      .collection("armory")
-      .doc("210701182001200")
+      .doc(itemID)
       .onSnapshot((item) => {
         setItemData({
           name: item.data()?.name,
@@ -53,15 +29,19 @@ export const ShowItem = ({ props }) => {
         });
       });
   }, [user?.uid]);
+
   useEffect(() => {
     if (!itemData) {
       return;
     }
     return db
       .collection("items")
-      .doc(itemData.type)
+      .doc(itemData?.type)
       .onSnapshot((stats) => {
-        setItemStats(stats.data()[itemData.name]);
+        if (stats.data() === undefined) {
+          return;
+        }
+        setItemStats(stats.data()[itemData?.name]);
       });
   }, [itemData]);
   useEffect(() => {
@@ -200,7 +180,6 @@ export const ShowItem = ({ props }) => {
 
   fullItemStatsArray.map((el) => {
     if (el?.name === "icon") {
-      console.log(187, el?.value);
       return (weaponIcon = el?.value);
     }
   });
@@ -210,9 +189,30 @@ export const ShowItem = ({ props }) => {
   return (
     <>
       {itemData ? (
-        <div style={{ display: "flex", flexFlow: "row", alignItems: "center" }}>
-          <div>
-            <img src={weaponIcon} />
+        <div
+          style={{
+            display: "flex",
+            flexFlow: "row",
+            alignItems: "center",
+            justifyContent: "space-evenly",
+            width: "80%",
+            margin: "0 auto"
+          }}
+        >
+          <div
+            style={{
+              width: "200px",
+              height: "300px",
+              border: "1px solid black",
+            }}
+          >
+            <img
+              src={weaponIcon}
+              style={{
+                width: "200px",
+                height: "300px",
+              }}
+            />
           </div>
           <div>
             <div>Masz mój miecz:</div>
@@ -240,10 +240,12 @@ export const ShowItem = ({ props }) => {
                 : fullItemStatsArray
                     .sort(fullItemStatsArray?.name)
                     .map((el) => {
-                      if (el?.name === "icon") {
-                        return;
-                      }
-                      if (el?.name === "value") {
+                      if (
+                        el?.name === "icon" ||
+                        el?.name === "value" ||
+                        el?.name === "dmgLow" ||
+                        el?.name === "dmgUpp"
+                      ) {
                         return;
                       } else {
                         if (el?.value === 0) {
