@@ -101,7 +101,7 @@ export const HomePage = () => {
 
   const convertToArray = (itemProperty) => {
     if (itemProperty === null) {
-      return "Loading";
+      return ["Loading"];
     }
     return Object.keys(itemProperty).map((key) => ({
       stats: key,
@@ -109,14 +109,14 @@ export const HomePage = () => {
     }));
   };
 
-  console.log(109, convertToArray(itemStats));
-  console.log(110, convertToArray(itemPrefix));
-  console.log(111, convertToArray(itemSuffix));
+  // console.log(109, convertToArray(itemStats));
+  // console.log(110, convertToArray(itemPrefix));
+  // console.log(111, convertToArray(itemSuffix));
 
   const itemStatsArray = convertToArray(itemStats);
 
+  console.log(convertToArray(null))
   console.log(itemStatsArray);
-
 
   // console.log(127, itemStatsArrayWithValues());
   // const handleHover = (e) => {
@@ -150,7 +150,7 @@ export const HomePage = () => {
               <div>
                 Obrażenia: {itemStats?.dmgLow} {"-"} {itemStats?.dmgUpp}
               </div>
-              <div>Cechy: {" "} {itemStatsArray.map(el => {
+              <div>Cechy: {" "} {itemStatsArray === ["Loading"] ? itemStatsArray : itemStatsArray.sort().map(el => {
                 if (el?.stats === "icon" || el?.stats === "value"){
                   return;
                 }
