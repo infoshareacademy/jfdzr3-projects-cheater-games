@@ -222,16 +222,17 @@ li:hover {
 }
 
 .hunting__screen-main {
-  width: 100%;
+  width: 67vw;
   text-align: center;
 }
 
 .hunting__screen-description {
+  width: 80%;
   padding: 5px 0;
 }
 
 .hunting__screen--level_description p {
-  text-align: left;
+  text-align: justify;
 }
 
 .hunting__screen--choose_level {
