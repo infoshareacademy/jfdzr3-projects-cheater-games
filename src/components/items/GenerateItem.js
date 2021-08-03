@@ -69,14 +69,6 @@ export const GenerateItem = () => {
         const randomItemFactor = Math.floor(
           Math.random() * (filteredItems.length - 1)
         );
-        console.log(
-          "Filter",
-          filteredItems,
-          "Random",
-          randomItemFactor,
-          "Exact item",
-          filteredItems[randomItemFactor]
-        );
         setItemName(filteredItems[randomItemFactor]);
       });
   }, [db]);
@@ -124,14 +116,6 @@ export const GenerateItem = () => {
           const filteredItems = itemsNamesAndValues.filter(getFilteredValues);
           const randomPrefixFactor = Math.floor(
             Math.random() * filteredItems.length
-          );
-          console.log(
-            "Filter",
-            filteredItems,
-            "Random",
-            randomPrefixFactor,
-            "Exact item",
-            filteredItems[randomPrefixFactor]
           );
           setItemPrefix(filteredItems[randomPrefixFactor]);
         });
@@ -182,14 +166,6 @@ export const GenerateItem = () => {
         const randomSuffixFactor = Math.floor(
           Math.random() * (filteredItems.length - 1)
         );
-        console.log(
-          "Filter",
-          filteredItems,
-          "Random",
-          randomSuffixFactor,
-          "Exact item",
-          filteredItems[randomSuffixFactor]
-        );
         setItemSuffix(filteredItems[randomSuffixFactor]);
       });
   }, [db]);
@@ -202,19 +178,19 @@ export const GenerateItem = () => {
     quality: itemQuality,
   }
 
-  const addItem = (e) => {
-    e.preventDefault();
-    if (!user?.uid) {
-      return;
-    }
-    else {
-      console.log(204, user?.uid);
-  return db.collection("users")
-    .doc(user?.uid)
-    .collection("armory")
-    .doc(itemID)
-    .set(fullItem);}
-  }
+  // const addItem = (e) => {
+  //   e.preventDefault();
+  //   if (!user?.uid) {
+  //     return;
+  //   }
+  //   else {
+  //     console.log(204, user?.uid);
+  // return db.collection("users")
+  //   .doc(user?.uid)
+  //   .collection("armory")
+  //   .doc(itemID)
+  //   .set(fullItem);}
+  // }
 
   // addItem();
 
@@ -230,12 +206,10 @@ export const GenerateItem = () => {
 
   const displayingQuality = qualityDisplay();
 
-
-console.log("item", fullItem);
-
   return (
     <>
-      <div>Wylosowano item: {displayingQuality} {" "} {itemPrefix?.name} {" "} {itemName?.name} {" "} {itemSuffix?.name} {" "} <button onClick={addItem}>Dodaj do bazy danych</button></div>
+      <div>Wylosowano item: {displayingQuality} {" "} {fullItem?.Prefix} {" "} {fullItem?.name} {" "} {fullItem?.Suffix} {" "} <button className="btn btn-small btn-green">Dodaj do bazy danych</button></div>
+      {/* onClick={addItem}  */}
       {/* <div key={itemID}>{itemID}</div>
       <div key={itemQuality}>{itemQuality}</div>
       <div key={itemPrefix?.name}>
