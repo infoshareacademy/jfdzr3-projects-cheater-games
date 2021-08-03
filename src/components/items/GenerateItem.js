@@ -19,13 +19,13 @@ export const GenerateItem = () => {
 
   useEffect(() => {
     const random = Math.floor(Math.random() * 100);
-    if (random < 75) {
+    if (random < 55) {
       setItemQuality(1);
     }
-    if (random >= 75 && random < 90) {
+    if (random >= 55 && random < 80) {
       setItemQuality(1.5);
     }
-    if (random >= 90) {
+    if (random >= 80) {
       setItemQuality(2.5);
     }
   });
@@ -75,7 +75,7 @@ export const GenerateItem = () => {
 
   useEffect(() => {
     const random = Math.floor(Math.random() * 100);
-    if (random > 45) {
+    if (random > 55) {
       setItemPrefix({ name: "", value: 0 });
       return;
     } else {
@@ -124,7 +124,7 @@ export const GenerateItem = () => {
 
   useEffect(() => {
     const random = Math.floor(Math.random() * 100);
-    if (random > 55) {
+    if (random > 65) {
       setItemSuffix({ name: "", value: 0 });
       return;
     }
@@ -178,19 +178,17 @@ export const GenerateItem = () => {
     quality: itemQuality,
   }
 
-  // const addItem = (e) => {
-  //   e.preventDefault();
-  //   if (!user?.uid) {
-  //     return;
-  //   }
-  //   else {
-  //     console.log(204, user?.uid);
-  // return db.collection("users")
-  //   .doc(user?.uid)
-  //   .collection("armory")
-  //   .doc(itemID)
-  //   .set(fullItem);}
-  // }
+  const addItem = (e) => {
+    e.preventDefault();
+    if (!user?.uid) {
+      return;
+    }
+    else {
+  db.collection("users")
+    .doc(user?.uid).collection("armory")
+    .doc(String(itemID))
+    .set(fullItem)}
+  }
 
   // addItem();
 
@@ -208,7 +206,7 @@ export const GenerateItem = () => {
 
   return (
     <>
-      <div>Wylosowano item: {displayingQuality} {" "} {fullItem?.Prefix} {" "} {fullItem?.name} {" "} {fullItem?.Suffix} {" "} <button className="btn btn-small btn-green">Dodaj do bazy danych</button></div>
+      <div>Wylosowano item: {displayingQuality} {" "} {fullItem?.Prefix} {" "} {fullItem?.name} {" "} {fullItem?.Suffix} {" "} <button onClick={addItem} className="btn btn-small btn-green">Dodaj do bazy danych</button></div>
       {/* onClick={addItem}  */}
       {/* <div key={itemID}>{itemID}</div>
       <div key={itemQuality}>{itemQuality}</div>

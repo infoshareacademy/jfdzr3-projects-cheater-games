@@ -215,7 +215,7 @@ export const ShowItem = ({ itemID }) => {
             />
           </div>
           <div>
-            <div>Masz mój miecz:</div>
+            <div>Przedmiot</div>
             <div>
               Nazwa:{" "}
               <span>
