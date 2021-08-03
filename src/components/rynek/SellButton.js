@@ -1,30 +1,28 @@
 import { db } from "../../firebaseConfig";
 import { useUser } from "../../hooks/useUser";
 import { useCart } from "./CartContext";
-import firebase from "firebase/app";
+import { TextBlock } from "./TextBlock";
 
-export const BuyButton = () => {
+export const SellButton = () => {
   const user = useUser();
-  const { getCartItems, resetCart, getTotalPrice } = useCart();
+  const { getSellCartItems, resetSellCart, getTotalSellPrice } = useCart();
 
+  const totalSellPrice = getTotalSellPrice();
   const updateUserArmory = async () => {
     const collectionRef = db
       .collection("users")
       .doc(user.uid)
       .collection("armory");
 
-    getCartItems().forEach((item) => {
-      console.log(item);
-      collectionRef.add({
-        obtainedAt: firebase.firestore.FieldValue.serverTimestamp(),
-        prefix: "",
-        suffix: "",
-        name: item.key,
-        type: item.type,
-        quality: 1,
-        value: item.val.value,
-        icon: item.val.icon,
-      });
+    getSellCartItems().forEach((item) => {
+      console.log(item.id);
+      const id = item.id;
+      collectionRef
+        .doc(id)
+        .delete()
+        .then(() => {
+          return <TextBlock>Przybyło ci złota: {totalSellPrice} </TextBlock>;
+        });
     });
   };
 
@@ -33,7 +31,7 @@ export const BuyButton = () => {
       .doc(user?.uid)
       .update({
         resources: {
-          gold: user?.resources.gold - getTotalPrice(),
+          gold: user?.resources.gold + getTotalSellPrice(),
         },
       });
   };
@@ -44,11 +42,11 @@ export const BuyButton = () => {
         className="btn btn-green"
         onClick={() => {
           updateUserArmory();
-          resetCart();
+          resetSellCart();
           updateUserGold();
         }}
       >
-        Kup
+        Sprzedaj
       </button>
     </div>
   );
