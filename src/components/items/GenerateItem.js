@@ -15,28 +15,45 @@ export const GenerateItem = () => {
         if (!itemList) {
           return;
         }
-          let itemsNamesArray = Object.keys(itemList?.data());
-          let itemsValuesArray = [];
-          itemsNamesArray.map((el, i) => {
-            itemsValuesArray[i] = itemList.data()[itemsNamesArray[i]]?.value;
+        let itemsNamesArray = Object.keys(itemList?.data());
+        let itemsValuesArray = [];
+        itemsNamesArray.map((el, i) => {
+          itemsValuesArray[i] = itemList.data()[itemsNamesArray[i]]?.value;
+        });
+        let itemsNamesAndValues = [];
+        itemsNamesArray.map((names, i) => {
+          return (itemsNamesAndValues[i] = {
+            name: names,
+            value: itemsValuesArray[i],
           });
-          let itemsNamesAndValues = [];
-          itemsNamesArray.map((names, i) => {
-            return itemsNamesAndValues[i] = {
-              name: names,
-              value: itemsValuesArray[i],
-            };
-          });
-          setItemType(itemsNamesAndValues);
+        });
+        const getFilteredValues = (itemArray) => {
+          const random = Math.floor(Math.random() * 100)
+          if (random < 75) {
+            return itemArray?.value < 1000;
+          }
+          if (random < 85) {
+            return itemArray?.value < 10000;
+          }
+          if (random < 95) {
+            return itemArray?.value < 15000;
+          }
+          if (random <= 100) {
+            return itemArray;
+          }
+        };
+        const filteredItems = itemsNamesAndValues.filter(getFilteredValues);
+        const randomItemFactor = Math.floor(Math.random() * (filteredItems.length - 1))
+        console.log("Filter", filteredItems, "Random", randomItemFactor, "Exact item", filteredItems[randomItemFactor]);
+        setItemType(filteredItems[randomItemFactor]);
       });
   }, [db]);
 
-  console.log(29, itemType[0]?.name);
-
   return (
-      <>
-      {itemType.map((item, i) => {
-        <div>{item}</div>
-      })}
-      </>
-  )};
+    <>
+          <div key={itemType?.name}>
+            {itemType?.name}: {itemType?.value}
+          </div>
+    </>
+  );
+};

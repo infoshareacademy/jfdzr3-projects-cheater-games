@@ -6,7 +6,13 @@ export const CharacterViewPage = () => {
 
   const userItemCollection = useUserItems();
 
+  console.log(useUserItems())
+
   const result = [];
+
+  if (userItemCollection === undefined) {
+    return
+  } else {
   const map = new Map();
   for (const item of userItemCollection) {
       if(!map.has(item.id)){
@@ -16,6 +22,9 @@ export const CharacterViewPage = () => {
           );
       }
   }
+}
+
+
 
     return (
       <>

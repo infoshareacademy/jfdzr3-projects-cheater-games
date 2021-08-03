@@ -252,7 +252,7 @@ export const ShowItem = ({ itemID }) => {
                           return;
                         } else {
                           return (
-                            <span key={el.name}>
+                            <span key={el?.name}>
                               {el?.name}:{" "}
                               {parseInt(itemData?.quality * el?.value)},{" "}
                             </span>
