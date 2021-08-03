@@ -15,18 +15,22 @@ export const GenerateItem = () => {
 
   useEffect(() => {
     setItemID(Date.now());
+    return;
   }, []);
 
   useEffect(() => {
     const random = Math.floor(Math.random() * 100);
     if (random < 55) {
       setItemQuality(1);
+      return;
     }
     if (random >= 55 && random < 80) {
       setItemQuality(1.5);
+      return;
     }
     if (random >= 80) {
       setItemQuality(2.5);
+      return;
     }
   });
 
@@ -70,6 +74,7 @@ export const GenerateItem = () => {
           Math.random() * (filteredItems.length - 1)
         );
         setItemName(filteredItems[randomItemFactor]);
+        return;
       });
   }, [db]);
 
@@ -118,6 +123,7 @@ export const GenerateItem = () => {
             Math.random() * filteredItems.length
           );
           setItemPrefix(filteredItems[randomPrefixFactor]);
+          return;
         });
     }
   }, [db]);
@@ -167,6 +173,7 @@ export const GenerateItem = () => {
           Math.random() * (filteredItems.length - 1)
         );
         setItemSuffix(filteredItems[randomSuffixFactor]);
+        return;
       });
   }, [db]);
 
@@ -178,17 +185,28 @@ export const GenerateItem = () => {
     quality: itemQuality,
   }
 
-  const addItem = (e) => {
-    e.preventDefault();
-    if (!user?.uid) {
-      return;
-    }
-    else {
-  db.collection("users")
-    .doc(user?.uid).collection("armory")
-    .doc(String(itemID))
-    .set(fullItem)}
-  }
+// console.log(181, itemName);
+
+  // const addItem = () => {
+  //   if (!user?.uid) {
+  //     return;
+  //   }
+  //   if (itemName?.name === undefined || itemSuffix?.name === undefined || itemPrefix?.name === undefined){
+  //     return;
+  //   }
+  //   else {
+  // db.collection("users")
+  //   .doc(user?.uid).collection("armory")
+  //   .doc(String(itemID))
+  //   .set({
+  //     name: itemName?.name,
+  //     Prefix: itemPrefix?.name,
+  //     Suffix: itemSuffix?.name,
+  //     type: itemType,
+  //     quality: itemQuality,
+  //   })}
+  //   return;
+  // }
 
   // addItem();
 
@@ -206,19 +224,7 @@ export const GenerateItem = () => {
 
   return (
     <>
-      <div>Wylosowano item: {displayingQuality} {" "} {fullItem?.Prefix} {" "} {fullItem?.name} {" "} {fullItem?.Suffix} {" "} <button onClick={addItem} className="btn btn-small btn-green">Dodaj do bazy danych</button></div>
-      {/* onClick={addItem}  */}
-      {/* <div key={itemID}>{itemID}</div>
-      <div key={itemQuality}>{itemQuality}</div>
-      <div key={itemPrefix?.name}>
-        {itemPrefix?.name}: {itemPrefix?.value}
-      </div>
-      <div key={itemName?.name}>
-        {itemName?.name}: {itemName?.value}
-      </div>
-      <div key={itemSuffix?.name}>
-        {itemSuffix?.name}: {itemSuffix?.value}
-      </div> */}
+      <div>Wylosowano item: {displayingQuality} {" "} {fullItem?.Prefix} {" "} {fullItem?.name} {" "} {fullItem?.Suffix} {" "} </div>
     </>
   );
 };

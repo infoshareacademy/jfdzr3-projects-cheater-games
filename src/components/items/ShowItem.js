@@ -184,6 +184,17 @@ export const ShowItem = ({ itemID }) => {
     }
   });
 
+  const unitsMap = {
+    str: { label: "Siła" },
+    agi: { label: "Zręczność" },
+    tough: { label: "Wytrzymałość" },
+    vit: { label: "Żywotność" },
+    perc: { label: "Spostrzegawczość" },
+    int: { label: "Inteligencja" },
+    speed: { label: "Szybkość" },
+    def: { label: "Obrona" },
+  };
+
   const displayingQuality = qualityDisplay();
 
   return (
@@ -253,7 +264,7 @@ export const ShowItem = ({ itemID }) => {
                         } else {
                           return (
                             <span key={el?.name}>
-                              {el?.name}:{" "}
+                              {unitsMap[el?.name]?.label || el?.name}:{" +"}
                               {parseInt(itemData?.quality * el?.value)},{" "}
                             </span>
                           );
