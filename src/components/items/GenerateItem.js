@@ -84,7 +84,7 @@ export const GenerateItem = () => {
   useEffect(() => {
     const random = Math.floor(Math.random() * 100);
     if (random > 45) {
-      setItemPrefix({ name: "none", value: 0 });
+      setItemPrefix({ name: "", value: 0 });
       return;
     } else {
       return db
@@ -141,7 +141,7 @@ export const GenerateItem = () => {
   useEffect(() => {
     const random = Math.floor(Math.random() * 100);
     if (random > 55) {
-      setItemSuffix({ name: "none", value: 0 });
+      setItemSuffix({ name: "", value: 0 });
       return;
     }
     return db
@@ -194,31 +194,48 @@ export const GenerateItem = () => {
       });
   }, [db]);
 
-  console.log(197, user);
+  const fullItem = {
+    name: itemName?.name,
+    Prefix: itemPrefix?.name,
+    Suffix: itemSuffix?.name,
+    type: itemType,
+    quality: itemQuality,
+  }
 
-  const addItem = () => {
+  const addItem = (e) => {
+    e.preventDefault();
     if (!user?.uid) {
       return;
     }
     else {
       console.log(204, user?.uid);
-  db.collection("users")
+  return db.collection("users")
     .doc(user?.uid)
     .collection("armory")
     .doc(itemID)
-    .set({
-      name: itemName,
-      Prefix: itemPrefix,
-      Suffix: itemSuffix,
-      type: itemType,
-      quality: itemQuality,
-    });}
+    .set(fullItem);}
   }
 
-  addItem();
+  // addItem();
+
+  const qualityDisplay = () => {
+    if (itemQuality === 1) {
+      return;
+    } else if (itemQuality === 1.5) {
+      return "Dobry";
+    } else if (itemQuality === 2.5) {
+      return "Doskonały";
+    }
+  };
+
+  const displayingQuality = qualityDisplay();
+
+
+console.log("item", fullItem);
 
   return (
     <>
+      <div>Wylosowano item: {displayingQuality} {" "} {itemPrefix?.name} {" "} {itemName?.name} {" "} {itemSuffix?.name} {" "} <button onClick={addItem}>Dodaj do bazy danych</button></div>
       {/* <div key={itemID}>{itemID}</div>
       <div key={itemQuality}>{itemQuality}</div>
       <div key={itemPrefix?.name}>
