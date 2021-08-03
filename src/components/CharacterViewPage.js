@@ -9,15 +9,19 @@ import { useState, useEffect } from "react";
 import {
   GiTwoCoins,
   GiWoodBeam,
-  GiClayBrick,
   GiFist,
   GiBrain,
+  GiCheckedShield,
   GiLifeBar,
+  GiWool,
+  GiRapidshareArrow,
+  Gi3DGlasses,
 } from "react-icons/gi";
+import { GrVulnerability } from "react-icons/gr";
 
 const Wrapper = s.div`
 color: #fffef8;
-padding: 20px;
+padding: 17px;
 margin-bottom: 25px;
 display: flex;
 flex-flow: column;
@@ -143,48 +147,60 @@ export const CharacterViewPage = () => {
   return (
     <>
       <Wrapper>
-        <h2 className="character-overview-text">Widok postaci</h2>
+        <h2 className="character__overview__text">Widok postaci</h2>
         <CharacterMainBax>
           <CharacterInformationBox>
-            <div className="materials-information">
+            <div className="materials__information">
               <h2>Surowce:</h2>
               <p>
-                <GiTwoCoins color={"#DAA520"} size={"20px"} />
+                <GiTwoCoins color={"#DAA520"} size={"17px"} />
                 Złoto: {user?.resources.gold}
               </p>
               <p>
-                <GiWoodBeam color={"brown"} size={"20px"} />
+                <GiWoodBeam color={"brown"} size={"17px"} />
                 Drewno: {user?.resources.wood}
               </p>
               <p>
-                <GiClayBrick color={"gray"} size={"20px"} /> Materiały:{" "}
+                <GiWool color={"yellow"} size={"17px"} /> Materiały:{" "}
                 {user?.resources.material}
               </p>
             </div>
 
-            <div>
+            <div className="character__overview__stats">
               <h2>Statystyki</h2>
-              <p>Zręczność: {user?.stats.agi}</p>
               <p>
-                <GiBrain color={"#ffb6c1"} size={"20px"} />
+                <GrVulnerability color="#" />
+                Zręczność: {user?.stats.agi}
+              </p>
+              <p>
+                <GiBrain color={"#ffb6c1"} size={"17px"} />
                 Inteligencja: {user?.stats.int}
               </p>
-              <p>Spostrzegawczość: {user?.stats.perc}</p>
-              <p>Szybkość: {user?.stats.speed}</p>
               <p>
-                <GiFist color={"#ffb6c1"} size={"20px"} />
+                <Gi3DGlasses size={"17px"} />
+                Spostrzegawczość: {user?.stats.perc}
+              </p>
+              <p>
+                <GiRapidshareArrow color={"violet"} size={"17px"} />
+                Szybkość: {user?.stats.speed}
+              </p>
+              <p>
+                <GiFist color={"#ffb6c1"} size={"17px"} />
                 Siła: {user?.stats.str}
               </p>
-              <p>Wytrzymałość: {user?.stats.tough}</p>
               <p>
-                <GiLifeBar color={"red"} size={"20px"} />
+                <GiCheckedShield size={"17px"} />
+                Wytrzymałość: {user?.stats.tough}
+              </p>
+              <p>
+                <GiLifeBar color={"red"} size={"17px"} />
                 Żywotność: {user?.stats.vit}
               </p>
             </div>
           </CharacterInformationBox>
           <CharacterAvatarBox>{checkRaceToSetAvatar()}</CharacterAvatarBox>
           <CharacterNameAndStatsBox>
-            <div className="player-information">
+            <div className="player__information">
               <p>
                 <h2>{user?.name}</h2>
               </p>

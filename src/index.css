@@ -261,7 +261,7 @@ li:hover {
   height: 15vh;
   padding: 20px 0;
 }
-.character-overview-text {
+.character__overview__text {
   margin: 0 auto;
 }
 
@@ -341,9 +341,18 @@ h1 {
   font-size: 32px;
 }
 
-.materials-information {
+.materials__information {
   padding-bottom: 25px;
 }
-.player-information {
+.player__information {
   padding-bottom: 25px;
+}
+.character__overview__stats {
+  /* padding: 5px; */
+}
+
+.character__overview__stats p {
+  font-size: 17px;
+  padding: 3px;
+  word-spacing: px;
 }
