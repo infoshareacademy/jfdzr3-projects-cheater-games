@@ -6,6 +6,7 @@ import { AdminLink } from "../links/AdminLink"
 import { StatsLink } from "../links/StatsLink";
 import { CharacterViewLink } from "../links/CharacterViewLink";
 import { StoreLink } from "../links/StoreLink";
+import { AboutUsLink } from "../links/AboutUsLink";
 
 export const Links = () => {
   const user = useUser();
@@ -17,6 +18,7 @@ export const Links = () => {
     <HuntLink />,
     <StoreLink />,
     <Logout />,
+    <AboutUsLink/>,
   ];
 
   const userLinks = [
@@ -25,6 +27,7 @@ export const Links = () => {
     <HuntLink />,
     <StoreLink />,
     <Logout />,
+    <AboutUsLink/>,
   ];
 
   if (user?.role === "admin") {
