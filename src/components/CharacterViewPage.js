@@ -16,8 +16,8 @@ import {
   GiWool,
   GiRapidshareArrow,
   Gi3DGlasses,
+  GiFoxHead,
 } from "react-icons/gi";
-import { GrVulnerability } from "react-icons/gr";
 
 const Wrapper = s.div`
 color: #fffef8;
@@ -169,7 +169,7 @@ export const CharacterViewPage = () => {
             <div className="character__overview__stats">
               <h2>Statystyki</h2>
               <p>
-                <GrVulnerability color="#" />
+                <GiFoxHead color="#e59400" size={"17px"} />
                 Zręczność: {user?.stats.agi}
               </p>
               <p>
