@@ -1,4 +1,5 @@
 import "./ChatBig.css";
+import firebase from "firebase/app";
 import { ImUsers } from "react-icons/im";
 import { RiMessageFill } from "react-icons/ri";
 import { Message } from "./Message";
@@ -11,6 +12,7 @@ export const ChatBig = ({ input, sendMessage, setInput, messages }) => {
   const [users, setUsers] = useState([]);
   const [chatType, setChatType] = useState("global");
   const [privateMessgaUser, setPrivateMessageUser] = useState("");
+  const [privateMessages, setPrivateMessages] = useState([]);
 
   const handlePrivateChat = (e) => {
     setChatType("private");
@@ -22,17 +24,29 @@ export const ChatBig = ({ input, sendMessage, setInput, messages }) => {
     setPrivateMessageUser("");
   };
 
-  const handleSendMessage = () => {
+  const handleSendMessage = (e) => {
+    e.preventDefault();
     if (chatType === "global") {
       sendMessage();
     } else {
       db.collection("users").doc(user?.uid).collection("privateMessages").add({
         text: input,
-        time: db.FieldValue.serverTimestamp(),
-        chatWith: privateMessgaUser,
+        time: firebase.firestore.FieldValue.serverTimestamp(),
+        username: user?.uid,
+        toUsername: privateMessages,
       });
     }
   };
+
+  useEffect(() => {
+    db.collection("users")
+      .doc(user?.uid)
+      .collection("privateMessages")
+      .orderBy("time")
+      .onSnapshot((messages) => {
+        setPrivateMessages(messages.docs.map((doc) => doc.data()));
+      });
+  }, [user?.uid]);
 
   useEffect(() => {
     const getUsers = async () => {
@@ -93,9 +107,18 @@ export const ChatBig = ({ input, sendMessage, setInput, messages }) => {
             : `z użytkownikiem ${privateMessgaUser}`}
         </div>
         <div className="chat__messages chat__messages--big">
-          {messages.map((message) => (
-            <Message key={message.time} message={message} />
-          ))}
+          {chatType === "global"
+            ? messages.map((message) => (
+                <Message key={message.time} message={message} />
+              ))
+            : privateMessages
+                .filter(
+                  (privateMessage) =>
+                    privateMessage.toUsername === privateMessgaUser
+                )
+                .map((privateMessage) => (
+                  <Message key={privateMessage.time} message={privateMessage} />
+                ))}
         </div>
         <form className="chat__form">
           <input
