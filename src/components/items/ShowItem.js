@@ -1,3 +1,4 @@
+import { WrapText } from "@material-ui/icons";
 import React, { useEffect, useState } from "react";
 import { db } from "../../firebaseConfig";
 import { useUser } from "../../hooks/useUser";
@@ -206,6 +207,7 @@ export const ShowItem = ({ itemID }) => {
             flexFlow: "row",
             alignItems: "center",
             justifyContent: "space-evenly",
+            flexWrap: "wrap",
             width: "80%",
             margin: "0 auto"
           }}

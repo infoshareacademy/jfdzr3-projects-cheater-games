@@ -187,26 +187,26 @@ export const GenerateItem = () => {
 
 // console.log(181, itemName);
 
-  // const addItem = () => {
-  //   if (!user?.uid) {
-  //     return;
-  //   }
-  //   if (itemName?.name === undefined || itemSuffix?.name === undefined || itemPrefix?.name === undefined){
-  //     return;
-  //   }
-  //   else {
-  // db.collection("users")
-  //   .doc(user?.uid).collection("armory")
-  //   .doc(String(itemID))
-  //   .set({
-  //     name: itemName?.name,
-  //     Prefix: itemPrefix?.name,
-  //     Suffix: itemSuffix?.name,
-  //     type: itemType,
-  //     quality: itemQuality,
-  //   })}
-  //   return;
-  // }
+  const addItem = () => {
+    if (!user?.uid) {
+      return;
+    }
+    if (itemName?.name === undefined || itemSuffix?.name === undefined || itemPrefix?.name === undefined){
+      return;
+    }
+    else {
+  db.collection("users")
+    .doc(user?.uid).collection("armory")
+    .doc(String(itemID))
+    .set({
+      name: itemName?.name,
+      Prefix: itemPrefix?.name,
+      Suffix: itemSuffix?.name,
+      type: itemType,
+      quality: itemQuality,
+    })}
+    return;
+  }
 
   // addItem();
 
@@ -224,7 +224,7 @@ export const GenerateItem = () => {
 
   return (
     <>
-      <div>Wylosowano item: {displayingQuality} {" "} {fullItem?.Prefix} {" "} {fullItem?.name} {" "} {fullItem?.Suffix} {" "} </div>
+      <div>Wylosowano item: {displayingQuality} {" "} {fullItem?.Prefix} {" "} {fullItem?.name} {" "} {fullItem?.Suffix} {" "} <button className="btn btn-green btn-small" onClick={addItem}>Zachowaj przedmiot</button></div>
     </>
   );
 };

@@ -5,10 +5,6 @@ import { useUser } from "../hooks/useUser";
 import { SelectRace } from "./SelectRace";
 import { GlobalChat } from "../global-chat/global-chat";
 import { Login } from "../auth/Login";
-import { auth, db } from "../firebaseConfig";
-import { ShowItem } from "./items/ShowItem";
-import { useUserItems } from "../hooks/useUserItems";
-import { GenerateItem } from "./items/GenerateItem";
 
 export const HomePage = () => {
   const user = useUser();
