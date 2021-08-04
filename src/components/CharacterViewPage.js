@@ -18,6 +18,7 @@ import {
   Gi3DGlasses,
   GiFoxHead,
 } from "react-icons/gi";
+import { db } from "../firebaseConfig";
 
 const Wrapper = s.div`
 color: #fffef8;
@@ -73,6 +74,35 @@ box-shadow: 10px -10px 10px #21201e;`;
 
 export const CharacterViewPage = () => {
   const user = useUser();
+
+  const getRaceStartStat = () => {
+    db.collection("races")
+      .get()
+      .then((stats) => {
+        // const arr = [];
+        const statistics = stats.docs.map((doc) => {
+          return {
+            bonus: [
+              { name: "str", change: doc.data().str },
+              { name: "agi", change: doc.data().agi },
+              { name: "tough", change: doc.data().tough },
+              { name: "vit", change: doc.data().vit },
+              { name: "perc", change: doc.data().perc },
+              { name: "int", change: doc.data().int },
+              { name: "speed", change: doc.data().speed },
+              { name: "def", change: doc.data().def },
+              { name: "gold", change: doc.data().gold },
+              { name: "wood", change: doc.data().wood },
+              { name: "mat", change: doc.data().mat },
+            ],
+          };
+        });
+        return statistics;
+      });
+  };
+
+  console.log(getRaceStartStat());
+
   const checkRaceToSetAvatar = () => {
     if (user?.race === "Krasnolud") {
       return (
