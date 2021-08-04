@@ -5,8 +5,6 @@ import { ShowItem } from "./ShowItem";
 import Popover from "@material-ui/core/Popover";
 import Typography from "@material-ui/core/Typography";
 import { makeStyles } from "@material-ui/core/styles";
-import { useUserItems } from "../../hooks/useUserItems";
-import { useShowItems } from "../../hooks/useShowItems";
 
 export const GenerateItem = () => {
   const user = useUser();
@@ -18,7 +16,6 @@ export const GenerateItem = () => {
   const [itemSuffix, setItemSuffix] = useState([]);
   const [itemQuality, setItemQuality] = useState(0);
   const [itemID, setItemID] = useState(0);
-  const [item, setItem] = useState({})
 
   useEffect(() => {
     setItemID(Date.now());
@@ -188,15 +185,27 @@ export const GenerateItem = () => {
       });
   }, [db]);
 
-  const fullItem = {
+  let fullItem = {
     name: itemName?.name,
     Prefix: itemPrefix?.name,
     Suffix: itemSuffix?.name,
     type: itemType,
     quality: itemQuality,
   };
+  
+  const qualityDisplay = () => {
+    if (itemQuality === 1) {
+      return;
+    } else if (itemQuality === 1.5) {
+      return "Dobry";
+    } else if (itemQuality === 2.5) {
+      return "Doskonały";
+    }
+  };
 
-  const addItem = () => {
+  let displayingQuality = qualityDisplay();
+
+  const addItem = (e) => {
     if (!user?.uid) {
       return;
     }
@@ -218,6 +227,9 @@ export const GenerateItem = () => {
           type: itemType,
           quality: itemQuality,
         });
+      fullItem = null;
+      displayingQuality = "Dodano przedmiot do zbrojowni";
+      e.target.disabled = "true";
     }
     return;
   };
@@ -244,25 +256,16 @@ export const GenerateItem = () => {
 
   const open = Boolean(anchorEl);
 
-  const sellItem = () => {
+  const sellItem = (e) => {
+    e.preventDefault();
     console.log(217, "Sold");
   };
 
-  const qualityDisplay = () => {
-    if (itemQuality === 1) {
-      return;
-    } else if (itemQuality === 1.5) {
-      return "Dobry";
-    } else if (itemQuality === 2.5) {
-      return "Doskonały";
-    }
-  };
-
-  const displayingQuality = qualityDisplay();
 
   return (
     <div>
-      <div>Zdobyto przedmiot:{" "}
+      <span>
+        Zdobyto przedmiot:{" "}
         <Typography
           aria-owns={open ? "mouse-over-popover" : undefined}
           aria-haspopup="true"
@@ -271,28 +274,31 @@ export const GenerateItem = () => {
         >
           {displayingQuality} {fullItem?.Prefix} {fullItem?.name}{" "}
           {fullItem?.Suffix}
-        </Typography></div>
-        <Popover
-          id="mouse-over-popover"
-          className={classes.popover}
-          classes={{
-            paper: classes.paper,
-          }}
-          open={open}
-          anchorEl={anchorEl}
-          anchorOrigin={{
-            vertical: "bottom",
-            horizontal: "left",
-          }}
-          transformOrigin={{
-            vertical: "top",
-            horizontal: "left",
-          }}
-          onClose={handlePopoverClose}
-          disableRestoreFocus
-        >
-          <Typography><ShowItem itemID={fullItem} /></Typography>
-        </Popover>
+        </Typography>
+        </span>
+      <Popover
+        id="mouse-over-popover"
+        className={classes.popover}
+        classes={{
+          paper: classes.paper,
+        }}
+        open={open}
+        anchorEl={anchorEl}
+        anchorOrigin={{
+          vertical: "bottom",
+          horizontal: "left",
+        }}
+        transformOrigin={{
+          vertical: "top",
+          horizontal: "left",
+        }}
+        onClose={handlePopoverClose}
+        disableRestoreFocus
+      >
+        <Typography>
+          <ShowItem itemID={fullItem} />
+        </Typography>
+      </Popover>
       {/* </div> */}
       <div>
         <button className="btn btn-green btn-small" onClick={addItem}>

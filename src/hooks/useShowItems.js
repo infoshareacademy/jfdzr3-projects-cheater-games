@@ -10,41 +10,38 @@ export const useShowItems = (itemID) => {
   const [itemSuffix, setItemSuffix] = useState(null);
   const [itemPrefix, setItemPrefix] = useState(null);
 
-    console.log(13, itemID);
-
   useEffect(() => {
-      if (typeof(itemID) === "string") {
-    if (!user?.uid) {
-      return;
-    }
-    return db
-      .collection("users")
-      .doc(user?.uid)
-      .collection("armory")
-      .doc(itemID)
-      .onSnapshot((item) => {
-        setItemData({
-          name: item.data()?.name,
-          prefix: item.data()?.Prefix,
-          suffix: item.data()?.Suffix,
-          quality: item.data()?.quality,
-          type: item.data()?.type,
+    if (typeof itemID === "string") {
+      if (!user?.uid) {
+        return;
+      }
+      return db
+        .collection("users")
+        .doc(user?.uid)
+        .collection("armory")
+        .doc(itemID)
+        .onSnapshot((item) => {
+          setItemData({
+            name: item.data()?.name,
+            prefix: item.data()?.Prefix,
+            suffix: item.data()?.Suffix,
+            quality: item.data()?.quality,
+            type: item.data()?.type,
+          });
         });
+    } else {
+      if (itemID.name === undefined) {
+        return;
+      }
+      setItemData({
+        name: itemID?.name,
+        prefix: itemID?.Prefix,
+        suffix: itemID?.Suffix,
+        quality: itemID?.quality,
+        type: itemID?.type,
       });
-   }
-   else {
-       if (itemID.name === undefined) {
-           return;
-       }
-       setItemData({
-           name: itemID?.name,
-           prefix: itemID?.Prefix,
-           suffix: itemID?.Suffix,
-           quality: itemID?.quality,
-           type: itemID?.type
-       })
-   }
- }, [user?.uid]);
+    }
+  }, [user?.uid]);
 
   useEffect(() => {
     if (!itemData) {
@@ -87,7 +84,6 @@ export const useShowItems = (itemID) => {
       .doc(`${itemData.type}Prefix`)
       .onSnapshot((stats) => {
         if (stats.data() === undefined) {
-          console.log("Loading");
           return;
         }
         setItemPrefix(
@@ -169,6 +165,9 @@ export const useShowItems = (itemID) => {
     }
   }
 
+  let magicDmgLow = itemPrefix?.dmgLow + itemSuffix?.dmgLow;
+  let magicDmgUpp = itemPrefix?.dmgUpp + itemSuffix?.dmgUpp;
+
   let weaponDmgLow;
   let weaponDmgUpp;
   let weaponTotalDmg;
@@ -200,6 +199,17 @@ export const useShowItems = (itemID) => {
     }
   });
 
+  fullItemStatsArray.push(
+    {
+      name: "magicDmgUpp",
+      value: magicDmgUpp,
+    },
+    {
+      name: "magicDmgLow",
+      value: magicDmgLow,
+    }
+  );
+
   const unitsMap = {
     str: { label: "Siła" },
     agi: { label: "Zręczność" },
@@ -209,21 +219,24 @@ export const useShowItems = (itemID) => {
     int: { label: "Inteligencja" },
     speed: { label: "Szybkość" },
     def: { label: "Obrona" },
+    totalDmg: { label: "Obrażenia" },
+    magicDmgLow: { label: "Obrażenia minimalne" },
+    magicDmgUpp: { label: "Obrażenia maksymalne" },
   };
 
   const displayingQuality = qualityDisplay();
 
   return {
-      fullItemStatsArray,
-      itemData,
-      itemStats,
-      itemPrefix,
-      itemSuffix,
-      weaponDmgLow,
-      weaponDmgUpp,
-      weaponIcon,
-      weaponTotalDmg,
-      displayingQuality,
-      unitsMap
-    }
-  }
+    fullItemStatsArray,
+    itemData,
+    itemStats,
+    itemPrefix,
+    itemSuffix,
+    weaponDmgLow,
+    weaponDmgUpp,
+    weaponIcon,
+    weaponTotalDmg,
+    displayingQuality,
+    unitsMap,
+  };
+};
