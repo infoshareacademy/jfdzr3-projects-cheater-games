@@ -1,10 +1,10 @@
-import "../auth/auth.css";
+import "../../auth/auth.css";
 import React from "react";
-import { useUser } from "../hooks/useUser";
-import { useUserItems } from "../hooks/useUserItems";
-import { ShowItem } from "./items/ShowItem";
+import { useUser } from "../../hooks/useUser";
+import { useUserItems } from "../../hooks/useUserItems";
+import { ShowItem } from "./ShowItem";
 
-export const HomePage = () => {
+export const Armory = () => {
   const user = useUser();
   
   const userItemCollection = useUserItems();
