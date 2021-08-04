@@ -11,6 +11,7 @@ import { StorePage } from "./components/rynek/StorePage";
 import { Stats } from "./components/stats/Stats";
 import { CharacterViewPage } from "./components/CharacterViewPage";
 import { useUser } from "./hooks/useUser";
+import { AboutUsPage} from "./components/about/AboutUsPage";
 
 function App() {
   const user = useUser();
@@ -42,6 +43,9 @@ function App() {
               </Route>
               <Route exact path="/">
                 <HomePage />
+              </Route>
+              <Route path="/about">
+                <AboutUsPage />
               </Route>
             </Switch>
           ) : (
