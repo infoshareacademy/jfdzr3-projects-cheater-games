@@ -3,6 +3,7 @@ import React from "react";
 import { useUser } from "../../hooks/useUser";
 import { useUserItems } from "../../hooks/useUserItems";
 import { ShowItem } from "./ShowItem";
+import { GenerateItem } from "./GenerateItem";
 
 export const Armory = () => {
   const user = useUser();
@@ -25,6 +26,8 @@ export const Armory = () => {
 
   return (
     <>
+      <h1>Zbrojownia</h1>
+      <GenerateItem />
       <div>
         {result.map((itemID) => {
           return <ShowItem itemID={itemID} key={itemID} />;

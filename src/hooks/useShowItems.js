@@ -186,7 +186,7 @@ export const useShowItems = (itemID) => {
     if (el?.name === "dmgUpp") {
       return (weaponDmgUpp = el?.value + weaponTotalDmg);
     }
-    if (weaponDmgUpp < weaponDmgLow) {
+    if (weaponDmgUpp <= weaponDmgLow) {
       return (weaponDmgUpp = weaponDmgLow);
     } else {
       return;

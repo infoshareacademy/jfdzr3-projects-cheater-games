@@ -16,6 +16,7 @@ export const GenerateItem = () => {
   const [itemSuffix, setItemSuffix] = useState([]);
   const [itemQuality, setItemQuality] = useState(0);
   const [itemID, setItemID] = useState(0);
+  const [userGold, setUserGold] = useState(0);
 
   useEffect(() => {
     setItemID(Date.now());
@@ -192,10 +193,13 @@ export const GenerateItem = () => {
     type: itemType,
     quality: itemQuality,
   };
-  
+
+  let itemTotalValue =
+    itemQuality * (itemName?.value + itemPrefix?.value + itemSuffix?.value);
+
   const qualityDisplay = () => {
     if (itemQuality === 1) {
-      return;
+      return "";
     } else if (itemQuality === 1.5) {
       return "Dobry";
     } else if (itemQuality === 2.5) {
@@ -203,36 +207,30 @@ export const GenerateItem = () => {
     }
   };
 
-  let displayingQuality = qualityDisplay();
-
-  const addItem = (e) => {
+  useEffect(() => {
     if (!user?.uid) {
       return;
-    }
-    if (
-      itemName?.name === undefined ||
-      itemSuffix?.name === undefined ||
-      itemPrefix?.name === undefined
-    ) {
-      return;
     } else {
-      db.collection("users")
+      return db
+        .collection("users")
         .doc(user?.uid)
-        .collection("armory")
-        .doc(String(itemID))
-        .set({
-          name: itemName?.name,
-          Prefix: itemPrefix?.name,
-          Suffix: itemSuffix?.name,
-          type: itemType,
-          quality: itemQuality,
+        .onSnapshot((resources) => {
+          if (!resources) {
+            return;
+          } else {
+            if (itemTotalValue === NaN) {
+              return;
+            }
+            else {
+            let gold = resources.data().resources?.gold;
+            setUserGold(gold+itemTotalValue);
+            }
+          }
         });
-      fullItem = null;
-      displayingQuality = "Dodano przedmiot do zbrojowni";
-      e.target.disabled = "true";
     }
-    return;
-  };
+  }, [user, itemTotalValue]);
+
+  let displayingQuality = qualityDisplay();
 
   const useStyles = makeStyles((theme) => ({
     popover: {
@@ -256,11 +254,63 @@ export const GenerateItem = () => {
 
   const open = Boolean(anchorEl);
 
-  const sellItem = (e) => {
-    e.preventDefault();
-    console.log(217, "Sold");
+  const addItem = (e) => {
+    if (!user?.uid) {
+      return;
+    }
+    if (
+      itemName?.name === undefined ||
+      itemSuffix?.name === undefined ||
+      itemPrefix?.name === undefined
+    ) {
+      return;
+    } else {
+      db.collection("users")
+        .doc(user?.uid)
+        .collection("armory")
+        .doc(String(itemID))
+        .set({
+          name: itemName?.name,
+          Prefix: itemPrefix?.name,
+          Suffix: itemSuffix?.name,
+          type: itemType,
+          quality: itemQuality,
+        })
+        .then(() => {
+          alert("Dodano przedmiot do zbrojowni");
+          window.location = "/hunt";
+        });
+    }
+    return;
   };
 
+  const sellItem = (e) => {
+    if (!user?.uid) {
+      return;
+    }
+    if (
+      itemName?.name === undefined ||
+      itemSuffix?.name === undefined ||
+      itemPrefix?.name === undefined
+    ) {
+      return;
+    } else {
+      if (userGold !== undefined && itemTotalValue !== undefined) {
+        db.collection("users")
+          .doc(user?.uid)
+          .update({
+            "resources.gold": userGold,
+          })
+          .then(() => {
+            e.preventDefault();
+            alert("Sprzedano przedmiot");
+            window.location = "/hunt";
+          });
+      } else {
+        return;
+      }
+    }
+  };
 
   return (
     <div>
@@ -275,7 +325,7 @@ export const GenerateItem = () => {
           {displayingQuality} {fullItem?.Prefix} {fullItem?.name}{" "}
           {fullItem?.Suffix}
         </Typography>
-        </span>
+      </span>
       <Popover
         id="mouse-over-popover"
         className={classes.popover}
@@ -299,7 +349,6 @@ export const GenerateItem = () => {
           <ShowItem itemID={fullItem} />
         </Typography>
       </Popover>
-      {/* </div> */}
       <div>
         <button className="btn btn-green btn-small" onClick={addItem}>
           Zachowaj przedmiot
