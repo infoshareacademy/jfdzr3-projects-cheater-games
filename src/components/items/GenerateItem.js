@@ -1,6 +1,12 @@
 import React, { useEffect, useState } from "react";
 import { db } from "../../firebaseConfig";
 import { useUser } from "../../hooks/useUser";
+import { ShowItem } from "./ShowItem";
+import Popover from "@material-ui/core/Popover";
+import Typography from "@material-ui/core/Typography";
+import { makeStyles } from "@material-ui/core/styles";
+import { useUserItems } from "../../hooks/useUserItems";
+import { useShowItems } from "../../hooks/useShowItems";
 
 export const GenerateItem = () => {
   const user = useUser();
@@ -10,8 +16,9 @@ export const GenerateItem = () => {
   const [itemName, setItemName] = useState([]);
   const [itemPrefix, setItemPrefix] = useState([]);
   const [itemSuffix, setItemSuffix] = useState([]);
-  const [itemQuality, setItemQuality] = useState(1);
+  const [itemQuality, setItemQuality] = useState(0);
   const [itemID, setItemID] = useState(0);
+  const [item, setItem] = useState({})
 
   useEffect(() => {
     setItemID(Date.now());
@@ -19,17 +26,21 @@ export const GenerateItem = () => {
   }, []);
 
   useEffect(() => {
-    const random = Math.floor(Math.random() * 100);
-    if (random < 55) {
-      setItemQuality(1);
-      return;
-    }
-    if (random >= 55 && random < 80) {
-      setItemQuality(1.5);
-      return;
-    }
-    if (random >= 80) {
-      setItemQuality(2.5);
+    if (itemQuality === 0) {
+      const random = Math.floor(Math.random() * 100);
+      if (random < 55) {
+        setItemQuality(1);
+        return;
+      }
+      if (random >= 55 && random < 80) {
+        setItemQuality(1.5);
+        return;
+      }
+      if (random >= 80) {
+        setItemQuality(2.5);
+        return;
+      }
+    } else {
       return;
     }
   });
@@ -183,32 +194,59 @@ export const GenerateItem = () => {
     Suffix: itemSuffix?.name,
     type: itemType,
     quality: itemQuality,
-  }
-
-// console.log(181, itemName);
+  };
 
   const addItem = () => {
     if (!user?.uid) {
       return;
     }
-    if (itemName?.name === undefined || itemSuffix?.name === undefined || itemPrefix?.name === undefined){
+    if (
+      itemName?.name === undefined ||
+      itemSuffix?.name === undefined ||
+      itemPrefix?.name === undefined
+    ) {
       return;
+    } else {
+      db.collection("users")
+        .doc(user?.uid)
+        .collection("armory")
+        .doc(String(itemID))
+        .set({
+          name: itemName?.name,
+          Prefix: itemPrefix?.name,
+          Suffix: itemSuffix?.name,
+          type: itemType,
+          quality: itemQuality,
+        });
     }
-    else {
-  db.collection("users")
-    .doc(user?.uid).collection("armory")
-    .doc(String(itemID))
-    .set({
-      name: itemName?.name,
-      Prefix: itemPrefix?.name,
-      Suffix: itemSuffix?.name,
-      type: itemType,
-      quality: itemQuality,
-    })}
     return;
-  }
+  };
 
-  // addItem();
+  const useStyles = makeStyles((theme) => ({
+    popover: {
+      pointerEvents: "none",
+    },
+    paper: {
+      padding: theme.spacing(1),
+    },
+  }));
+
+  const classes = useStyles();
+  const [anchorEl, setAnchorEl] = React.useState(null);
+
+  const handlePopoverOpen = (event) => {
+    setAnchorEl(event.currentTarget);
+  };
+
+  const handlePopoverClose = () => {
+    setAnchorEl(null);
+  };
+
+  const open = Boolean(anchorEl);
+
+  const sellItem = () => {
+    console.log(217, "Sold");
+  };
 
   const qualityDisplay = () => {
     if (itemQuality === 1) {
@@ -223,8 +261,47 @@ export const GenerateItem = () => {
   const displayingQuality = qualityDisplay();
 
   return (
-    <>
-      <div>Wylosowano item: {displayingQuality} {" "} {fullItem?.Prefix} {" "} {fullItem?.name} {" "} {fullItem?.Suffix} {" "} <button className="btn btn-green btn-small" onClick={addItem}>Zachowaj przedmiot</button></div>
-    </>
+    <div>
+      <div>Zdobyto przedmiot:{" "}
+        <Typography
+          aria-owns={open ? "mouse-over-popover" : undefined}
+          aria-haspopup="true"
+          onMouseEnter={handlePopoverOpen}
+          onMouseLeave={handlePopoverClose}
+        >
+          {displayingQuality} {fullItem?.Prefix} {fullItem?.name}{" "}
+          {fullItem?.Suffix}
+        </Typography></div>
+        <Popover
+          id="mouse-over-popover"
+          className={classes.popover}
+          classes={{
+            paper: classes.paper,
+          }}
+          open={open}
+          anchorEl={anchorEl}
+          anchorOrigin={{
+            vertical: "bottom",
+            horizontal: "left",
+          }}
+          transformOrigin={{
+            vertical: "top",
+            horizontal: "left",
+          }}
+          onClose={handlePopoverClose}
+          disableRestoreFocus
+        >
+          <Typography><ShowItem itemID={fullItem} /></Typography>
+        </Popover>
+      {/* </div> */}
+      <div>
+        <button className="btn btn-green btn-small" onClick={addItem}>
+          Zachowaj przedmiot
+        </button>{" "}
+        <button className="btn btn-red btn-small" onClick={sellItem}>
+          Sprzedaj przedmiot
+        </button>
+      </div>
+    </div>
   );
 };
