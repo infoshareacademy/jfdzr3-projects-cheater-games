@@ -227,12 +227,15 @@ li:hover {
 }
 
 .hunting__screen-description {
-  width: 80%;
-  padding: 5px 0;
+  width: 67vw;
+  height: 10vh;
+  padding: 0px 0;
 }
 
 .hunting__screen--level_description p {
   text-align: justify;
+  min-height: 25vh;
+  width: 67vw;
 }
 
 .hunting__screen--choose_level {
@@ -240,13 +243,13 @@ li:hover {
   flex-flow: row;
 }
 .hunting__screen--choose_level label {
-  padding: 5px 20px;
+  padding: 0px 20px;
 }
 
 .hunting__screen--choose_ways {
   display: flex;
   justify-content: space-around;
-  padding-top: 50px;
+  padding-top: 40px;
 }
 .hunting__screen--choose_ways a {
   text-decoration: none;
@@ -259,7 +262,10 @@ li:hover {
   align-items: center;
 
   height: 15vh;
-  padding: 20px 0;
+  padding: 10px 0;
+}
+.hunting__screen--level-arrows h3 {
+  padding-top: 25px;
 }
 
 a {

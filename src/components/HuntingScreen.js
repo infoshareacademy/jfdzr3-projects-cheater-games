@@ -93,7 +93,7 @@ export const HuntingScreen = () => {
         <div className="hunting__screen--level_description">
           <div>{ifEmpty()}</div>
         </div>
-        <div>
+        <div className="hunting__screen--level-arrows">
           <h3>Wybierz ścieżkę polowania</h3>
           <div className="hunting__screen--choose_ways">
             <Link to="/hunt" className="choose__ways__arrows-links">
