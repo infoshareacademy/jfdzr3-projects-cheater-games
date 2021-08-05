@@ -31,17 +31,16 @@ export function Chat({ size }) {
     return <p>loading</p>;
   }
 
-  const sendMessage = (event) => {
-    event.preventDefault();
-
+  const sendMessage = (e) => {
+    e.preventDefault();
     db.collection("messages").add({
       text: input,
       time: firebase.firestore.FieldValue.serverTimestamp(),
       username: user?.name,
-      uid: user?.uid,
     });
     setInput("");
   };
+
   if (size === "sm") {
     return (
       <ChatSm
