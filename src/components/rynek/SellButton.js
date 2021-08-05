@@ -36,6 +36,11 @@ export const SellButton = ({handleClick}) => {
       });
   };
 
+  const checkItemsValue = getSellCartItems().map((item)=> {
+    return item.val.value
+  })
+console.log(checkItemsValue);
+  
   return (
     <div>
       <button
@@ -46,6 +51,7 @@ export const SellButton = ({handleClick}) => {
           resetSellCart();
           updateUserGold();
         }}
+        disabled={!checkItemsValue !== "number"}
       >
         Sprzedaj
       </button>
