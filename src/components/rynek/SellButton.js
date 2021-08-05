@@ -3,7 +3,7 @@ import { useUser } from "../../hooks/useUser";
 import { useCart } from "./CartContext";
 import { TextBlock } from "./TextBlock";
 
-export const SellButton = () => {
+export const SellButton = ({handleClick}) => {
   const user = useUser();
   const { getSellCartItems, resetSellCart, getTotalSellPrice } = useCart();
 
@@ -41,6 +41,7 @@ export const SellButton = () => {
       <button
         className="btn btn-green"
         onClick={() => {
+          handleClick();
           updateUserArmory();
           resetSellCart();
           updateUserGold();

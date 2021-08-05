@@ -1,13 +1,13 @@
-import React, { useState } from "react";
-import Chip from "@material-ui/core/Chip";
-import ShoppingCartRoundedIcon from "@material-ui/icons/ShoppingCartRounded";
-import { GiSwapBag } from "react-icons/gi";
-import { useCart } from "./CartContext";
-import { useUser } from "../../hooks/useUser";
-import Snackbar from "@material-ui/core/Snackbar";
 import Button from "@material-ui/core/Button";
+import Chip from "@material-ui/core/Chip";
 import IconButton from "@material-ui/core/IconButton";
+import Snackbar from "@material-ui/core/Snackbar";
 import CloseIcon from "@material-ui/icons/Close";
+import ShoppingCartRoundedIcon from "@material-ui/icons/ShoppingCartRounded";
+import React, { useState } from "react";
+import { GiSwapBag } from "react-icons/gi";
+import { useUser } from "../../hooks/useUser";
+import { useCart } from "./CartContext";
 
 export const Item = ({ name, value, icon, onBuyClick, onSellClick }) => {
   const [open, setOpen] = useState(false);
@@ -76,7 +76,7 @@ export const Item = ({ name, value, icon, onBuyClick, onSellClick }) => {
             action={
               <>
                 <Button color="secondary" size="small" onClick={handleClose}>
-                  UNDO
+                  IDŹ WALCZYĆ
                 </Button>
                 <IconButton
                   size="small"

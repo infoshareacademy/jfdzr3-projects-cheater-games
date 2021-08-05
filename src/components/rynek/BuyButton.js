@@ -3,7 +3,7 @@ import { useUser } from "../../hooks/useUser";
 import { useCart } from "./CartContext";
 import firebase from "firebase/app";
 
-export const BuyButton = () => {
+export const BuyButton = ({handleClick}) => {
   const user = useUser();
   const { getCartItems, resetCart, getTotalPrice } = useCart();
 
@@ -14,7 +14,6 @@ export const BuyButton = () => {
       .collection("armory");
 
     getCartItems().forEach((item) => {
-      console.log(item);
       collectionRef.add({
         obtainedAt: firebase.firestore.FieldValue.serverTimestamp(),
         prefix: "",
@@ -43,6 +42,7 @@ export const BuyButton = () => {
       <button
         className="btn btn-green"
         onClick={() => {
+          handleClick();
           updateUserArmory();
           resetCart();
           updateUserGold();
@@ -50,6 +50,7 @@ export const BuyButton = () => {
       >
         Kup
       </button>
+      
     </div>
   );
 };

@@ -37,7 +37,7 @@ export const UserInventory = () => {
   return (
     <ItemsGrid text="Sprzedaj">
       {items.length !== 0 ? (
-        <Items items={items} onSellClick={addToSellCart} />
+        <Items items={items} onSellClick={addToSellCart} /> 
       ) : (
         <span>
           Nie masz żadnych rekwizytów. <br />

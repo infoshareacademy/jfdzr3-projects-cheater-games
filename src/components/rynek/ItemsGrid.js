@@ -11,6 +11,8 @@ const ItemsWrapper = styled.div`
   transform: scale3d(95%, 95%, 100%);
   overflow: scroll;
   min-height: 400px;
+  max-height: 600px;
+  background-color: #f2f2f2;
 `;
 
 export const ItemsGrid = ({ text, children }) => (
