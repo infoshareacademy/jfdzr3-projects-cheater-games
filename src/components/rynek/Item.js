@@ -8,6 +8,8 @@ import React, { useState } from "react";
 import { GiSwapBag } from "react-icons/gi";
 import { useUser } from "../../hooks/useUser";
 import { useCart } from "./CartContext";
+import { Link } from "react-router-dom";
+
 
 export const Item = ({ name, value, icon, onBuyClick, onSellClick }) => {
   const [open, setOpen] = useState(false);
@@ -75,9 +77,9 @@ export const Item = ({ name, value, icon, onBuyClick, onSellClick }) => {
             message="Nie masz wystarczającej ilości złota"
             action={
               <>
-                <Button color="secondary" size="small" onClick={handleClose}>
-                  IDŹ WALCZYĆ
-                </Button>
+                  <Link to="/hunt"><Button color="secondary" size="small" onClick={handleClose}>
+                  IDŹ NA POLOWANIE
+                </Button></Link>
                 <IconButton
                   size="small"
                   aria-label="close"
