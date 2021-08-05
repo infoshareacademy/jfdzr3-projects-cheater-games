@@ -34,7 +34,7 @@ export const Item = ({ name, value, icon, onBuyClick, onSellClick }) => {
       <h5>{name}</h5>
       <img src={icon} style={{ height: "70px" }} alt="" />
       {onSellClick && (
-        <button onClick={() => onSellClick()} disabled={value !== "number"}>
+        <button onClick={() => onSellClick()}>
           <Chip
             label={value}
             icon={<GiSwapBag style={{ color: "#0e79b2" }} />}
