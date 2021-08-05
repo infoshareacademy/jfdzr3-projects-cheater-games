@@ -11,12 +11,15 @@ export const ChatBig = ({ input, sendMessage, setInput, messages }) => {
   const user = useUser();
   const [users, setUsers] = useState([]);
   const [chatType, setChatType] = useState("global");
-  const [privateMessgaUser, setPrivateMessageUser] = useState("");
+  const [privateMessageUser, setPrivateMessageUser] = useState("");
   const [privateMessages, setPrivateMessages] = useState([]);
 
   const handlePrivateChat = (e) => {
     setChatType("private");
-    setPrivateMessageUser(e.target.textContent);
+    const { name, uid } = users.find(
+      (user) => user.name === e.target.textContent
+    );
+    setPrivateMessageUser({ name, uid });
   };
 
   const handleGlobalChat = () => {
@@ -27,26 +30,10 @@ export const ChatBig = ({ input, sendMessage, setInput, messages }) => {
   const handleSendMessage = (e) => {
     e.preventDefault();
     if (chatType === "global") {
-      sendMessage();
+      sendMessage(e);
     } else {
-      db.collection("users").doc(user?.uid).collection("privateMessages").add({
-        text: input,
-        time: firebase.firestore.FieldValue.serverTimestamp(),
-        username: user?.uid,
-        toUsername: privateMessages,
-      });
     }
   };
-
-  useEffect(() => {
-    db.collection("users")
-      .doc(user?.uid)
-      .collection("privateMessages")
-      .orderBy("time")
-      .onSnapshot((messages) => {
-        setPrivateMessages(messages.docs.map((doc) => doc.data()));
-      });
-  }, [user?.uid]);
 
   useEffect(() => {
     const getUsers = async () => {
@@ -54,8 +41,9 @@ export const ChatBig = ({ input, sendMessage, setInput, messages }) => {
       const usersList = [];
       response.forEach((user) => {
         usersList.push({
-          username: user.data().name,
+          name: user.data().name,
           isOnline: user.data().isOnline,
+          uid: user.data().uid,
         });
       });
       setUsers(usersList);
@@ -92,7 +80,7 @@ export const ChatBig = ({ input, sendMessage, setInput, messages }) => {
                   }`}
                   title={user.isOnline ? "online" : "offline"}
                 ></div>
-                {user.username}
+                {user.name}
               </li>
             ))}
             <ul></ul>
@@ -104,10 +92,10 @@ export const ChatBig = ({ input, sendMessage, setInput, messages }) => {
           Czat{" "}
           {chatType === "global"
             ? "globalny"
-            : `z użytkownikiem ${privateMessgaUser}`}
+            : `z użytkownikiem ${privateMessageUser}`}
         </div>
         <div className="chat__messages chat__messages--big">
-          {chatType === "global"
+          {/* {chatType === "global"
             ? messages.map((message) => (
                 <Message key={message.time} message={message} />
               ))
@@ -118,7 +106,7 @@ export const ChatBig = ({ input, sendMessage, setInput, messages }) => {
                 )
                 .map((privateMessage) => (
                   <Message key={privateMessage.time} message={privateMessage} />
-                ))}
+                ))} */}
         </div>
         <form className="chat__form">
           <input
