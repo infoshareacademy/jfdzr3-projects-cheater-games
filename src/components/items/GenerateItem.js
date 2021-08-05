@@ -5,9 +5,11 @@ import { ShowItem } from "./ShowItem";
 import Popover from "@material-ui/core/Popover";
 import Typography from "@material-ui/core/Typography";
 import { makeStyles } from "@material-ui/core/styles";
+import { useHistory } from "react-router-dom";
 
 export const GenerateItem = () => {
   const user = useUser();
+  const history = useHistory();
 
   const itemType = "handWeapon";
 
@@ -278,7 +280,8 @@ export const GenerateItem = () => {
         })
         .then(() => {
           alert("Dodano przedmiot do zbrojowni");
-          window.location = "/hunt";
+          history.push("/hunt")
+          // history.push("/hunt");
         });
     }
     return;
@@ -304,7 +307,8 @@ export const GenerateItem = () => {
           .then(() => {
             e.preventDefault();
             alert("Sprzedano przedmiot");
-            window.location = "/hunt";
+            history.push("/hunt")
+            // window.location = "/hunt";
           });
       } else {
         return;
