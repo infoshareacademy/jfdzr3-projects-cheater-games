@@ -18,7 +18,7 @@ import {
   Gi3DGlasses,
   GiFoxHead,
 } from "react-icons/gi";
-import { db } from "../firebaseConfig";
+import { useStatsFromDb } from "../hooks/useStatsFromDb";
 
 const Wrapper = s.div`
 color: #fffef8;
@@ -74,41 +74,7 @@ box-shadow: 10px -10px 10px #21201e;`;
 
 export const CharacterViewPage = () => {
   const user = useUser();
-
-  const [raceStats, setRaceStats] = useState({});
-
-  useEffect(() => {
-    if (!user?.uid) {
-      return;
-    } else {
-      return db
-        .collection("races")
-        .doc(user?.race)
-        .onSnapshot((stats) => {
-          setRaceStats({
-            agi: stats.data()?.agi,
-            str: stats.data()?.str,
-            tough: stats.data()?.tough,
-            vit: stats.data()?.vit,
-            int: stats.data()?.int,
-            perc: stats.data()?.perc,
-            speed: stats.data()?.speed,
-            def: stats.data()?.def,
-          });
-        });
-    }
-  }, [user]);
-
-  // const convertToArray = (itemProperty) => {
-  //   if (itemProperty === null) {
-  //     return ["Loading"];
-  //   }
-  //   return Object.keys(itemProperty).map((key) => ({
-  //     [key]: itemProperty[key],
-  //   }));
-  // };
-
-  // const raceStatsArray = convertToArray(raceStats);
+  const bonusStats = useStatsFromDb();
 
   const checkRaceToSetAvatar = () => {
     if (user?.race === "Krasnolud") {
@@ -207,31 +173,31 @@ export const CharacterViewPage = () => {
               <h2>Statystyki</h2>
               <p>
                 <GiFoxHead color="#e59400" size={"17px"} />
-                Zręczność: {user?.stats.agi + raceStats.agi}
+                Zręczność: {user?.stats.agi + bonusStats.agi}
               </p>
               <p>
                 <GiBrain color={"#ffb6c1"} size={"17px"} />
-                Inteligencja: {user?.stats.int + raceStats.int}
+                Inteligencja: {user?.stats.int + bonusStats.int}
               </p>
               <p>
                 <Gi3DGlasses size={"17px"} />
-                Spostrzegawczość: {user?.stats.perc + raceStats.perc}
+                Spostrzegawczość: {user?.stats.perc + bonusStats.perc}
               </p>
               <p>
                 <GiRapidshareArrow color={"violet"} size={"17px"} />
-                Szybkość: {user?.stats.speed + raceStats.speed}
+                Szybkość: {user?.stats.speed + bonusStats.speed}
               </p>
               <p>
                 <GiFist color={"#ffb6c1"} size={"17px"} />
-                Siła: {user?.stats.str + raceStats.str}
+                Siła: {user?.stats.str + bonusStats.str}
               </p>
               <p>
                 <GiCheckedShield size={"17px"} />
-                Wytrzymałość: {user?.stats.tough + raceStats.tough}
+                Wytrzymałość: {user?.stats.tough + bonusStats.tough}
               </p>
               <p>
                 <GiLifeBar color={"red"} size={"17px"} />
-                Żywotność: {user?.stats.vit + raceStats.vit}
+                Żywotność: {user?.stats.vit + bonusStats.vit}
               </p>
             </div>
           </CharacterInformationBox>
