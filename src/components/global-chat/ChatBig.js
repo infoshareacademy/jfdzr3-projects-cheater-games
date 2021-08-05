@@ -50,15 +50,18 @@ export const ChatBig = ({ input, sendMessage, setInput, messages }) => {
       sendMessage(e);
     } else if (chatType === "private") {
       findPrivateChat(user?.uid, privateMessageUser.uid)
-        .then((doc) => {
+        .then((querySnapshot) => {
+          let docID;
+          querySnapshot.forEach((doc) => (docID = doc.id));
           db.collection("privateMessages")
-            .doc(doc.id)
+            .doc(docID)
             .collection("messages")
             .add({
               text: input,
               time: firebase.firestore.FieldValue.serverTimestamp(),
               username: user?.name,
             });
+          setInput("");
         })
         .catch((error) => {
           console.log(error);
@@ -81,6 +84,7 @@ export const ChatBig = ({ input, sendMessage, setInput, messages }) => {
     };
     getUsers();
   }, []);
+
   return (
     <div className="chat chat--big">
       <div className="chat__navigation">
