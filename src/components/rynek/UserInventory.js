@@ -24,9 +24,12 @@ const useInventory = () => {
         snapshot.forEach((doc) => {
           userItems.push({ id: doc.id, key: doc.data().name, val: doc.data() });
         });
-        setItems(userItems.filter((item) => item.key !== undefined));
+        setItems(userItems.filter((item) => {
+          return item.key !== undefined && typeof item.val.value === "number"}));
+
       });
   }, [uid]);
+  console.log(items);
   return items;
 };
 
