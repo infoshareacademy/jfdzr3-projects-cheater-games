@@ -7,11 +7,28 @@ import { useEffect, useState } from "react";
 import { db } from "../../firebaseConfig";
 import { useUser } from "../../hooks/useUser";
 
+const findPrivateChat = (user1, user2) => {
+  let HAUID;
+  let LAUID;
+  if (user1 > user2) {
+    HAUID = user1;
+    LAUID = user2;
+  } else {
+    HAUID = user2;
+    LAUID = user1;
+  }
+  return db
+    .collection("privateMessages")
+    .where("HAUID", "==", HAUID)
+    .where("LAUID", "==", LAUID)
+    .get();
+};
+
 export const ChatBig = ({ input, sendMessage, setInput, messages }) => {
   const user = useUser();
   const [users, setUsers] = useState([]);
   const [chatType, setChatType] = useState("global");
-  const [privateMessageUser, setPrivateMessageUser] = useState("");
+  const [privateMessageUser, setPrivateMessageUser] = useState(null);
   const [privateMessages, setPrivateMessages] = useState([]);
 
   const handlePrivateChat = (e) => {
@@ -24,14 +41,28 @@ export const ChatBig = ({ input, sendMessage, setInput, messages }) => {
 
   const handleGlobalChat = () => {
     setChatType("global");
-    setPrivateMessageUser("");
+    setPrivateMessageUser(null);
   };
 
   const handleSendMessage = (e) => {
     e.preventDefault();
     if (chatType === "global") {
       sendMessage(e);
-    } else {
+    } else if (chatType === "private") {
+      findPrivateChat(user?.uid, privateMessageUser.uid)
+        .then((doc) => {
+          db.collection("privateMessages")
+            .doc(doc.id)
+            .collection("messages")
+            .add({
+              text: input,
+              time: firebase.firestore.FieldValue.serverTimestamp(),
+              username: user?.name,
+            });
+        })
+        .catch((error) => {
+          console.log(error);
+        });
     }
   };
 
@@ -92,7 +123,7 @@ export const ChatBig = ({ input, sendMessage, setInput, messages }) => {
           Czat{" "}
           {chatType === "global"
             ? "globalny"
-            : `z użytkownikiem ${privateMessageUser}`}
+            : `z użytkownikiem ${privateMessageUser.name}`}
         </div>
         <div className="chat__messages chat__messages--big">
           {/* {chatType === "global"
