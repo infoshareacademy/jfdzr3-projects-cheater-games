@@ -75,33 +75,40 @@ box-shadow: 10px -10px 10px #21201e;`;
 export const CharacterViewPage = () => {
   const user = useUser();
 
-  const getRaceStartStat = () => {
-    db.collection("races")
-      .get()
-      .then((stats) => {
-        // const arr = [];
-        const statistics = stats.docs.map((doc) => {
-          return {
-            bonus: [
-              { name: "str", change: doc.data().str },
-              { name: "agi", change: doc.data().agi },
-              { name: "tough", change: doc.data().tough },
-              { name: "vit", change: doc.data().vit },
-              { name: "perc", change: doc.data().perc },
-              { name: "int", change: doc.data().int },
-              { name: "speed", change: doc.data().speed },
-              { name: "def", change: doc.data().def },
-              { name: "gold", change: doc.data().gold },
-              { name: "wood", change: doc.data().wood },
-              { name: "mat", change: doc.data().mat },
-            ],
-          };
-        });
-        return statistics;
-      });
-  };
+  const [raceStats, setRaceStats] = useState({});
 
-  console.log(getRaceStartStat());
+  useEffect(() => {
+    if (!user?.uid) {
+      return;
+    } else {
+      return db
+        .collection("races")
+        .doc(user?.race)
+        .onSnapshot((stats) => {
+          setRaceStats({
+            agi: stats.data()?.agi,
+            str: stats.data()?.str,
+            tough: stats.data()?.tough,
+            vit: stats.data()?.vit,
+            int: stats.data()?.int,
+            perc: stats.data()?.perc,
+            speed: stats.data()?.speed,
+            def: stats.data()?.def,
+          });
+        });
+    }
+  }, [user]);
+
+  // const convertToArray = (itemProperty) => {
+  //   if (itemProperty === null) {
+  //     return ["Loading"];
+  //   }
+  //   return Object.keys(itemProperty).map((key) => ({
+  //     [key]: itemProperty[key],
+  //   }));
+  // };
+
+  // const raceStatsArray = convertToArray(raceStats);
 
   const checkRaceToSetAvatar = () => {
     if (user?.race === "Krasnolud") {
@@ -200,31 +207,31 @@ export const CharacterViewPage = () => {
               <h2>Statystyki</h2>
               <p>
                 <GiFoxHead color="#e59400" size={"17px"} />
-                Zręczność: {user?.stats.agi}
+                Zręczność: {user?.stats.agi + raceStats.agi}
               </p>
               <p>
                 <GiBrain color={"#ffb6c1"} size={"17px"} />
-                Inteligencja: {user?.stats.int}
+                Inteligencja: {user?.stats.int + raceStats.int}
               </p>
               <p>
                 <Gi3DGlasses size={"17px"} />
-                Spostrzegawczość: {user?.stats.perc}
+                Spostrzegawczość: {user?.stats.perc + raceStats.perc}
               </p>
               <p>
                 <GiRapidshareArrow color={"violet"} size={"17px"} />
-                Szybkość: {user?.stats.speed}
+                Szybkość: {user?.stats.speed + raceStats.speed}
               </p>
               <p>
                 <GiFist color={"#ffb6c1"} size={"17px"} />
-                Siła: {user?.stats.str}
+                Siła: {user?.stats.str + raceStats.str}
               </p>
               <p>
                 <GiCheckedShield size={"17px"} />
-                Wytrzymałość: {user?.stats.tough}
+                Wytrzymałość: {user?.stats.tough + raceStats.tough}
               </p>
               <p>
                 <GiLifeBar color={"red"} size={"17px"} />
-                Żywotność: {user?.stats.vit}
+                Żywotność: {user?.stats.vit + raceStats.vit}
               </p>
             </div>
           </CharacterInformationBox>
