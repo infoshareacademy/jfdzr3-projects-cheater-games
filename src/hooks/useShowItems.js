@@ -23,8 +23,8 @@ export const useShowItems = (itemID) => {
         .onSnapshot((item) => {
           setItemData({
             name: item.data()?.name,
-            prefix: item.data()?.Prefix,
-            suffix: item.data()?.Suffix,
+            prefix: item.data()?.prefix,
+            suffix: item.data()?.suffix,
             quality: item.data()?.quality,
             type: item.data()?.type,
           });
@@ -35,8 +35,8 @@ export const useShowItems = (itemID) => {
       }
       setItemData({
         name: itemID?.name,
-        prefix: itemID?.Prefix,
-        suffix: itemID?.Suffix,
+        prefix: itemID?.prefix,
+        suffix: itemID?.suffix,
         quality: itemID?.quality,
         type: itemID?.type,
       });

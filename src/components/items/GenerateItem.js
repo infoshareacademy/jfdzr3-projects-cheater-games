@@ -1,5 +1,6 @@
 import React, { useEffect, useState } from "react";
 import { db } from "../../firebaseConfig";
+import firebase from "firebase/app";
 import { useUser } from "../../hooks/useUser";
 import { ShowItem } from "./ShowItem";
 import Popover from "@material-ui/core/Popover";
@@ -58,11 +59,16 @@ export const GenerateItem = () => {
         itemsNamesArray.map((el, i) => {
           itemsValuesArray[i] = itemList.data()[itemsNamesArray[i]]?.value;
         });
+        let itemsIconsArray = [];
+        itemsNamesArray.map((el, i) => {
+          itemsIconsArray[i] = itemList.data()[itemsNamesArray[i]]?.icon;
+        });
         let itemsNamesAndValues = [];
         itemsNamesArray.map((names, i) => {
           return (itemsNamesAndValues[i] = {
             name: names,
             value: itemsValuesArray[i],
+            icon: itemsIconsArray[i]
           });
         });
         const getFilteredValues = (itemArray) => {
@@ -190,8 +196,9 @@ export const GenerateItem = () => {
 
   let fullItem = {
     name: itemName?.name,
-    Prefix: itemPrefix?.name,
-    Suffix: itemSuffix?.name,
+    prefix: itemPrefix?.name,
+    suffix: itemSuffix?.name,
+    icon: itemName?.icon,
     type: itemType,
     quality: itemQuality,
   };
@@ -220,7 +227,7 @@ export const GenerateItem = () => {
           if (!resources) {
             return;
           } else {
-            if (itemTotalValue === NaN) {
+            if (isNaN(itemTotalValue)) {
               return;
             }
             else {
@@ -270,13 +277,15 @@ export const GenerateItem = () => {
       db.collection("users")
         .doc(user?.uid)
         .collection("armory")
-        .doc(String(itemID))
-        .set({
+        .add({
+          icon: itemName?.icon,
           name: itemName?.name,
-          Prefix: itemPrefix?.name,
-          Suffix: itemSuffix?.name,
+          prefix: itemPrefix?.name,
+          suffix: itemSuffix?.name,
+          obtainedAt: firebase.firestore.FieldValue.serverTimestamp(),
           type: itemType,
           quality: itemQuality,
+          value: itemTotalValue,
         })
         .then(() => {
           alert("Dodano przedmiot do zbrojowni");
@@ -326,8 +335,8 @@ export const GenerateItem = () => {
           onMouseEnter={handlePopoverOpen}
           onMouseLeave={handlePopoverClose}
         >
-          {displayingQuality} {fullItem?.Prefix} {fullItem?.name}{" "}
-          {fullItem?.Suffix}
+          {displayingQuality} {fullItem?.prefix} {fullItem?.name}{" "}
+          {fullItem?.suffix}
         </Typography>
       </span>
       <Popover
