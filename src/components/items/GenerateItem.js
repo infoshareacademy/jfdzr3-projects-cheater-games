@@ -3,9 +3,9 @@ import { db } from "../../firebaseConfig";
 import firebase from "firebase/app";
 import { useUser } from "../../hooks/useUser";
 import { ShowItem } from "./ShowItem";
-import Popover from "@material-ui/core/Popover";
+import Paper from "@material-ui/core/Paper";
 import Typography from "@material-ui/core/Typography";
-import { makeStyles } from "@material-ui/core/styles";
+
 import { useHistory } from "react-router-dom";
 
 export const GenerateItem = () => {
@@ -18,7 +18,7 @@ export const GenerateItem = () => {
   const [itemPrefix, setItemPrefix] = useState([]);
   const [itemSuffix, setItemSuffix] = useState([]);
   const [itemQuality, setItemQuality] = useState(0);
-  const [itemID, setItemID] = useState(0);
+  const [, setItemID] = useState(0);
   const [userGold, setUserGold] = useState(0);
 
   useEffect(() => {
@@ -44,7 +44,7 @@ export const GenerateItem = () => {
     } else {
       return;
     }
-  });
+  }, [itemQuality]);
 
   useEffect(() => {
     return db
@@ -56,15 +56,15 @@ export const GenerateItem = () => {
         }
         let itemsNamesArray = Object.keys(itemList?.data());
         let itemsValuesArray = [];
-        itemsNamesArray.map((el, i) => {
+        itemsNamesArray.forEach((el, i) => {
           itemsValuesArray[i] = itemList.data()[itemsNamesArray[i]]?.value;
         });
         let itemsIconsArray = [];
-        itemsNamesArray.map((el, i) => {
+        itemsNamesArray.forEach((el, i) => {
           itemsIconsArray[i] = itemList.data()[itemsNamesArray[i]]?.icon;
         });
         let itemsNamesAndValues = [];
-        itemsNamesArray.map((names, i) => {
+        itemsNamesArray.forEach((names, i) => {
           return (itemsNamesAndValues[i] = {
             name: names,
             value: itemsValuesArray[i],
@@ -93,7 +93,7 @@ export const GenerateItem = () => {
         setItemName(filteredItems[randomItemFactor]);
         return;
       });
-  }, [db]);
+  }, []);
 
   useEffect(() => {
     const random = Math.floor(Math.random() * 100);
@@ -110,11 +110,11 @@ export const GenerateItem = () => {
           }
           let itemsNamesArray = Object.keys(itemList?.data());
           let itemsValuesArray = [];
-          itemsNamesArray.map((el, i) => {
+          itemsNamesArray.forEach((el, i) => {
             itemsValuesArray[i] = itemList.data()[itemsNamesArray[i]]?.value;
           });
           let itemsNamesAndValues = [];
-          itemsNamesArray.map((names, i) => {
+          itemsNamesArray.forEach((names, i) => {
             return (itemsNamesAndValues[i] = {
               name: names,
               value: itemsValuesArray[i],
@@ -143,7 +143,7 @@ export const GenerateItem = () => {
           return;
         });
     }
-  }, [db]);
+  }, []);
 
   useEffect(() => {
     const random = Math.floor(Math.random() * 100);
@@ -160,7 +160,7 @@ export const GenerateItem = () => {
         }
         let itemsNamesArray = Object.keys(itemList?.data());
         let itemsValuesArray = [];
-        itemsNamesArray.map((el, i) => {
+        itemsNamesArray.forEach((el, i) => {
           itemsValuesArray[i] = itemList.data()[itemsNamesArray[i]]?.value;
         });
         let itemsNamesAndValues = [];
@@ -192,7 +192,7 @@ export const GenerateItem = () => {
         setItemSuffix(filteredItems[randomSuffixFactor]);
         return;
       });
-  }, [db]);
+  }, []);
 
   let fullItem = {
     name: itemName?.name,
@@ -240,28 +240,6 @@ export const GenerateItem = () => {
   }, [user, itemTotalValue]);
 
   let displayingQuality = qualityDisplay();
-
-  const useStyles = makeStyles((theme) => ({
-    popover: {
-      pointerEvents: "none",
-    },
-    paper: {
-      padding: theme.spacing(1),
-    },
-  }));
-
-  const classes = useStyles();
-  const [anchorEl, setAnchorEl] = React.useState(null);
-
-  const handlePopoverOpen = (event) => {
-    setAnchorEl(event.currentTarget);
-  };
-
-  const handlePopoverClose = () => {
-    setAnchorEl(null);
-  };
-
-  const open = Boolean(anchorEl);
 
   const addItem = (e) => {
     if (!user?.uid) {
@@ -329,39 +307,17 @@ export const GenerateItem = () => {
     <div>
       <span>
         Zdobyto przedmiot:{" "}
-        <Typography
-          aria-owns={open ? "mouse-over-popover" : undefined}
-          aria-haspopup="true"
-          onMouseEnter={handlePopoverOpen}
-          onMouseLeave={handlePopoverClose}
-        >
-          {displayingQuality} {fullItem?.prefix} {fullItem?.name}{" "}
-          {fullItem?.suffix}
-        </Typography>
+        <Paper>
+          <Typography>
+            {displayingQuality} {fullItem?.prefix} {fullItem?.name}{" "}
+            {fullItem?.suffix}
+          </Typography>
+          <Typography component="div">
+            <ShowItem itemID={fullItem} />
+          </Typography>
+        </Paper>
       </span>
-      <Popover
-        id="mouse-over-popover"
-        className={classes.popover}
-        classes={{
-          paper: classes.paper,
-        }}
-        open={open}
-        anchorEl={anchorEl}
-        anchorOrigin={{
-          vertical: "bottom",
-          horizontal: "left",
-        }}
-        transformOrigin={{
-          vertical: "top",
-          horizontal: "left",
-        }}
-        onClose={handlePopoverClose}
-        disableRestoreFocus
-      >
-        <Typography>
-          <ShowItem itemID={fullItem} />
-        </Typography>
-      </Popover>
+      
       <div>
         <button className="btn btn-green btn-small" onClick={addItem}>
           Zachowaj przedmiot

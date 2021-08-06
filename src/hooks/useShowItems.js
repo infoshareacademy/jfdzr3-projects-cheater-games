@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from "react";
+import { useEffect, useState } from "react";
 import { db } from "../firebaseConfig";
 import { useUser } from "../hooks/useUser";
 
@@ -41,7 +41,7 @@ export const useShowItems = (itemID) => {
         type: itemID?.type,
       });
     }
-  }, [user?.uid]);
+  }, [user?.uid, itemID]);
 
   useEffect(() => {
     if (!itemData) {
@@ -80,7 +80,7 @@ export const useShowItems = (itemID) => {
     if (itemData === null) {
       return;
     }
-    db.collection("items")
+    return db.collection("items")
       .doc(`${itemData.type}Prefix`)
       .onSnapshot((stats) => {
         if (stats.data() === undefined) {
@@ -107,7 +107,7 @@ export const useShowItems = (itemID) => {
   };
 
   const convertToArray = (itemProperty) => {
-    if (itemProperty === null) {
+    if (itemProperty === null || itemProperty === undefined) {
       return ["Loading"];
     }
     return Object.keys(itemProperty).map((key) => ({
@@ -134,17 +134,17 @@ export const useShowItems = (itemID) => {
       let itemValue;
       let prefixValue;
       let suffixValue;
-      itemStatsArray.map((itemStat) => {
+      itemStatsArray.forEach((itemStat) => {
         if (stat?.name === itemStat?.name) {
           return (itemValue = itemStat?.value);
         }
       });
-      itemPrefixArray.map((itemPrefix) => {
+      itemPrefixArray.forEach((itemPrefix) => {
         if (stat?.name === itemPrefix?.name) {
           return (prefixValue = itemPrefix?.value);
         }
       });
-      itemSuffixArray.map((itemSuffix) => {
+      itemSuffixArray.forEach((itemSuffix) => {
         if (stat?.name === itemSuffix?.name) {
           return (suffixValue = itemSuffix?.value);
         }
@@ -173,13 +173,13 @@ export const useShowItems = (itemID) => {
   let weaponTotalDmg;
   let weaponIcon;
 
-  fullItemStatsArray.map((el) => {
+  fullItemStatsArray.forEach((el) => {
     if (el?.name === "totalDmg") {
       return (weaponTotalDmg = el?.value);
     }
   });
 
-  fullItemStatsArray.map((el) => {
+  fullItemStatsArray.forEach((el) => {
     if (el?.name === "dmgLow") {
       return (weaponDmgLow = el?.value + weaponTotalDmg);
     }
@@ -193,7 +193,7 @@ export const useShowItems = (itemID) => {
     }
   });
 
-  fullItemStatsArray.map((el) => {
+  fullItemStatsArray.forEach((el) => {
     if (el?.name === "icon") {
       return (weaponIcon = el?.value);
     }

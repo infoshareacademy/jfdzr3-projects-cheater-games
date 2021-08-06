@@ -1,11 +1,7 @@
-import { WrapText } from "@material-ui/icons";
-import React, { useEffect, useState } from "react";
-import { db } from "../../firebaseConfig";
+import React from "react";
 import { useShowItems } from "../../hooks/useShowItems";
-import { useUser } from "../../hooks/useUser";
 
 export const ShowItem = ({ itemID }) => {
-  const user = useUser();
   const item = useShowItems(itemID);
 
   return (
@@ -17,7 +13,6 @@ export const ShowItem = ({ itemID }) => {
             flexFlow: "row",
             alignItems: "center",
             justifyContent: "space-around",
-            // width: "500px",
             margin: "0 auto",
           }}
         >
@@ -29,6 +24,7 @@ export const ShowItem = ({ itemID }) => {
                 height: "150px",
                 border: "1px solid black",
               }}
+              alt=""
             />
             </div>
           <div style={{width: "500px"}}>
@@ -55,26 +51,28 @@ export const ShowItem = ({ itemID }) => {
                 ? item.fullItemStatsArray
                 : item.fullItemStatsArray
                     .sort(item.fullItemStatsArray?.name)
-                    .map((el) => {
+                    .filter(el => {
                       if (
                         el?.name === "icon" ||
                         el?.name === "value" ||
                         el?.name === "dmgLow" ||
                         el?.name === "dmgUpp"
                       ) {
-                        return;
+                        return false;
                       } else {
                         if (el?.value === 0) {
-                          return;
-                        } else {
-                          return (
-                            <span key={el?.name}>
-                              {item.unitsMap[el?.name]?.label || el?.name}:{" +"}
-                              {parseInt(item.itemData?.quality * el?.value)},{" "}
-                            </span>
-                          );
+                          return false;
                         }
                       }
+                      return true;
+                    })
+                    .map((el, index) => {
+                      return (
+                        <span key={index}>
+                          {item.unitsMap[el?.name]?.label || el?.name}:{" +"}
+                          {parseInt(item.itemData?.quality * el?.value)},{" "}
+                        </span>
+                      );
                     })}
             </div>
           </div>
