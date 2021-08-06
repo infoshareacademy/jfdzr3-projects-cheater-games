@@ -29,19 +29,18 @@ const findPrivateChat = (user1, user2) => {
     .get();
 };
 
-const createPrivateChat = (user1, user2) => {
+const createPrivateChat = async (user1, user2) => {
   const [HAUID, LAUID] = compareStrings(user1, user2);
-  return db
-    .collection("privateMessages")
-    .add({ HAUID, LAUID })
-    .then((docRef) => {
-      db.collection("privateMessages")
-        .doc(docRef.id)
-        .collection("messages")
-        .add({});
-      return docRef.id;
-    })
-    .catch((error) => console.error(error));
+  try {
+    const docRef = await db.collection("privateMessages").add({ HAUID, LAUID });
+    db.collection("privateMessages")
+      .doc(docRef.id)
+      .collection("messages")
+      .add({});
+    return docRef.id;
+  } catch (error) {
+    console.error(error);
+  }
 };
 
 export const ChatBig = ({ input, sendMessage, setInput, messages }) => {
