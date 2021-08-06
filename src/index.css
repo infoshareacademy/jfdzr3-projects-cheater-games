@@ -269,16 +269,20 @@ body {
 }
 
 .hunting__screen-main {
-  width: 100%;
+  width: 67vw;
   text-align: center;
 }
 
 .hunting__screen-description {
-  padding: 5px 0;
+  width: 67vw;
+  height: 10vh;
+  padding: 0px 0;
 }
 
 .hunting__screen--level_description p {
-  text-align: left;
+  text-align: justify;
+  min-height: 25vh;
+  width: 67vw;
 }
 
 .hunting__screen--choose_level {
@@ -286,16 +290,15 @@ body {
   flex-flow: row;
 }
 .hunting__screen--choose_level label {
-  padding: 5px 20px;
+  padding: 0px 20px;
 }
 
 .hunting__screen--choose_ways {
   display: flex;
   justify-content: space-around;
-  padding-top: 50px;
+  padding-top: 40px;
 }
 .hunting__screen--choose_ways a {
-  width: 30%;
   text-decoration: none;
   color: inherit;
 }
@@ -306,7 +309,13 @@ body {
   align-items: center;
 
   height: 15vh;
-  padding: 20px 0;
+  padding: 10px 0;
+}
+.hunting__screen--level-arrows h3 {
+  padding-top: 25px;
+}
+.character__overview__text {
+  margin: 0 auto;
 }
 
 a {
@@ -316,8 +325,16 @@ a {
   transition: all 2s;
 }
 
-a:hover {
-  color: var(--color-dark-red);
+.chose__way__arrow {
+  font-size: 70px;
+}
+.chose__way__arrow:hover {
+  transition: 0.6s;
+  color: #315e3c;
+}
+
+.choose__ways__arrows-links {
+  padding: 0;
 }
 
 button {
@@ -383,4 +400,20 @@ h5 {
 
 h1 {
   font-size: 32px;
+}
+
+.materials__information {
+  padding-bottom: 25px;
+}
+.player__information {
+  padding-bottom: 25px;
+}
+.character__overview__stats {
+  /* padding: 5px; */
+}
+
+.character__overview__stats p {
+  font-size: 17px;
+  padding: 3px;
+  word-spacing: px;
 }
