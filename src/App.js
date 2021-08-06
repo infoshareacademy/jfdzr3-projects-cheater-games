@@ -5,7 +5,6 @@ import { RegistrationPage } from "./components/RegistrationPage";
 import { HuntingScreen } from "./components/HuntingScreen";
 import { HomePage } from "./components/HomePage";
 import { MainMenu } from "./components/MainMenu";
-import { AgilityTrial } from "./components/AgilityTrial";
 import { AdminPanel } from "./components/AdminPanel";
 import { Stats } from "./components/stats/Stats";
 import { StorePage } from "./components/store/StorePage";
@@ -33,9 +32,6 @@ function App() {
               </Route>
               <Route path="/hunt">
                 <HuntingScreen />
-              </Route>
-              <Route path="/agi">
-                <AgilityTrial />
               </Route>
               <Route path="/stats">
                 <Stats />
