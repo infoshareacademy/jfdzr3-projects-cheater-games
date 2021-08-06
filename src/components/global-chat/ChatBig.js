@@ -7,21 +7,47 @@ import { useEffect, useState } from "react";
 import { db } from "../../firebaseConfig";
 import { useUser } from "../../hooks/useUser";
 
-const findPrivateChat = (user1, user2) => {
+const compareStrings = (str1, str2) => {
   let HAUID;
   let LAUID;
-  if (user1 > user2) {
-    HAUID = user1;
-    LAUID = user2;
+  if (str1 > str2) {
+    HAUID = str1;
+    LAUID = str2;
   } else {
-    HAUID = user2;
-    LAUID = user1;
+    HAUID = str2;
+    LAUID = str1;
   }
+  return [HAUID, LAUID];
+};
+
+const findPrivateChat = (user1, user2) => {
+  const [HAUID, LAUID] = compareStrings(user1, user2);
   return db
     .collection("privateMessages")
     .where("HAUID", "==", HAUID)
     .where("LAUID", "==", LAUID)
     .get();
+};
+
+const createPrivateChat = (user1, user2) => {
+  const [HAUID, LAUID] = compareStrings(user1, user2);
+  console.log(HAUID, LAUID);
+  db.collection("privateMessages")
+    .doc()
+    .set({ HAUID, LAUID })
+    .then((docRef) => {
+      db.collection("privateMessages")
+        .doc(docRef)
+        .collection("messages")
+        .add({})
+        .then(() => {
+          return docRef;
+        })
+        .catch((error) => {
+          console.error(error);
+        });
+    })
+    .catch((error) => console.error(error));
 };
 
 export const ChatBig = ({ input, sendMessage, setInput, messages }) => {
@@ -30,6 +56,7 @@ export const ChatBig = ({ input, sendMessage, setInput, messages }) => {
   const [chatType, setChatType] = useState("global");
   const [privateMessageUser, setPrivateMessageUser] = useState(null);
   const [privateMessages, setPrivateMessages] = useState([]);
+  const [currentUserUID, setCurrentUserUID] = useState(null);
 
   const handlePrivateChat = (e) => {
     setChatType("private");
@@ -37,6 +64,15 @@ export const ChatBig = ({ input, sendMessage, setInput, messages }) => {
       (user) => user.name === e.target.textContent
     );
     setPrivateMessageUser({ name, uid });
+    findPrivateChat(currentUserUID, uid).then((querySnapshot) => {
+      let chatID;
+      if (querySnapshot.empty) {
+        chatID = createPrivateChat(currentUserUID, uid);
+      } else {
+        querySnapshot.forEach((doc) => (chatID = doc.id));
+      }
+      setPrivateMessageUser((old) => ({ ...old, chatID }));
+    });
   };
 
   const handleGlobalChat = () => {
@@ -49,25 +85,21 @@ export const ChatBig = ({ input, sendMessage, setInput, messages }) => {
     if (chatType === "global") {
       sendMessage(e);
     } else if (chatType === "private") {
-      findPrivateChat(user?.uid, privateMessageUser.uid)
-        .then((querySnapshot) => {
-          let docID;
-          querySnapshot.forEach((doc) => (docID = doc.id));
-          db.collection("privateMessages")
-            .doc(docID)
-            .collection("messages")
-            .add({
-              text: input,
-              time: firebase.firestore.FieldValue.serverTimestamp(),
-              username: user?.name,
-            });
-          setInput("");
-        })
-        .catch((error) => {
-          console.log(error);
+      db.collection("privateMessages")
+        .doc(privateMessageUser.chatID)
+        .collection("messages")
+        .add({
+          text: input,
+          time: firebase.firestore.FieldValue.serverTimestamp(),
+          username: user?.name,
         });
+      setInput("");
     }
   };
+
+  useEffect(() => {
+    setCurrentUserUID(user?.uid);
+  }, [user?.uid]);
 
   useEffect(() => {
     const getUsers = async () => {
@@ -84,6 +116,31 @@ export const ChatBig = ({ input, sendMessage, setInput, messages }) => {
     };
     getUsers();
   }, []);
+
+  // useEffect(() => {
+  //   const getPrivateMessages = async () => {
+  //     try {
+  //       const privateChatDoc = await findPrivateChat(
+  //         user?.uid,
+  //         privateMessageUser.uid
+  //       );
+  //       if (privateChatDoc.empty) {
+  //         const [HAUID, LAUID] = compareStrings(
+  //           user?.uid,
+  //           privateMessageUser.uid
+  //         );
+  //         const id = await db
+  //           .collection("privateMessages")
+  //           .doc()
+  //           .set({ HAUID, LAUID });
+  //         console.log(id);
+  //       }
+  //     } catch (error) {
+  //       console.log(error);
+  //     }
+  //   };
+  //   getPrivateMessages();
+  // }, [privateMessageUser, user]);
 
   return (
     <div className="chat chat--big">
