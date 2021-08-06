@@ -4,7 +4,7 @@ export const TextBlock = ({ children }) => {
     fontFamily: "Metamorphous",
     fontWeight: "bold",
     margin: "15px 0",
-    textAlign: "center"
+    textAlign: "center",
   };
   return <div style={style}>{children}</div>;
 };

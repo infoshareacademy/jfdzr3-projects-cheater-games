@@ -7,6 +7,8 @@ import { StatsLink } from "../links/StatsLink";
 import { CharacterViewLink } from "../links/CharacterViewLink";
 import { StoreLink } from "../links/StoreLink";
 import { ChatLink } from "../links/ChatLink";
+import { AboutUsLink } from "../links/AboutUsLink";
+import { ArmoryLink } from "../links/ArmoryLink";
 
 export const Links = () => {
   const user = useUser();
@@ -15,9 +17,11 @@ export const Links = () => {
     <CharacterViewLink />,
     <StatsLink />,
     <HuntLink />,
+    <ArmoryLink />,
     <StoreLink />,
     <ChatLink />,
     <Logout />,
+    <AboutUsLink />,
   ];
 
   const adminLinks = [<AdminLink />, ...userLinks];

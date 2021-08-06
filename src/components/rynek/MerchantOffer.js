@@ -2,17 +2,18 @@ import { useCart } from "./CartContext";
 import { useShopItems } from "./hooks";
 import { Items } from "./Items";
 import { ItemsGrid } from "./ItemsGrid";
+// import { TextBlock } from "./TextBlock";
 
 export const MerchantOffer = () => {
   const { armorItems, handWeaponItems, helmetItems } = useShopItems();
   const { addToCart } = useCart();
   return (
     <ItemsGrid text="Kup">
-      <h2>Zbroja</h2>
+      {/* <TextBlock>Zbroja</TextBlock> */}
       <Items items={armorItems} onBuyClick={addToCart} />
-      <h2>Broń</h2>
+      {/* <TextBlock>Broń</TextBlock> */}
       <Items items={handWeaponItems} onBuyClick={addToCart} />
-      <h2>Hełmy</h2>
+      {/* <TextBlock>Hełmy</TextBlock> */}
       <Items items={helmetItems} onBuyClick={addToCart} />
     </ItemsGrid>
   );

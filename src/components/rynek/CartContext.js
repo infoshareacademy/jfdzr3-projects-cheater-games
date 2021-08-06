@@ -1,9 +1,4 @@
-import {
-  createContext,
-  useCallback,
-  useContext,
-  useState,
-} from "react";
+import { createContext, useCallback, useContext, useState } from "react";
 
 const noop = () => {};
 
@@ -18,10 +13,24 @@ const Context = createContext({
 
 export const CartProvider = ({ children }) => {
   const [cart, setCart] = useState([]);
+  const [sellCart, setSellCart] = useState([]);
 
   const addToCart = useCallback((item) => {
     setCart((cart) => {
       return [...cart, item];
+    });
+  }, []);
+
+  const addToSellCart = useCallback((item) => {
+    setSellCart((sellCart) => {
+      const existingItem = sellCart.find((cartItem) => cartItem.id === item.id);
+      if (!existingItem) {
+        return [...sellCart, item];
+      } else {
+        return sellCart.map((cartItem) =>
+          cartItem === existingItem ? { ...cartItem } : cartItem
+        );
+      }
     });
   }, []);
 
@@ -37,8 +46,16 @@ export const CartProvider = ({ children }) => {
     });
   }, []);
 
+  const deleteFromSellPage = (id) => {
+    const newSellItems = sellCart.filter((cartItem) => cartItem.id !== id);
+    return setSellCart(newSellItems);
+  };
+
   const resetCart = useCallback(() => {
     setCart([]);
+  }, []);
+  const resetSellCart = useCallback(() => {
+    setSellCart([]);
   }, []);
 
   const getCartItems = () => cart;
@@ -47,22 +64,42 @@ export const CartProvider = ({ children }) => {
       if (result[item.key] === undefined) {
         result[item.key] = [];
       }
-
       result[item.key].push(item);
-
       return result;
     }, {});
   };
+
+  const getSellCartItems = () => sellCart;
+  const getSellCartItemsGroupedByKey = () => {
+    return sellCart.reduce((result, item) => {
+      if (result[item.key] === undefined) {
+        result[item.key] = [];
+      } else if (!item.id) {
+      }
+      result[item.key].push(item);
+      return result;
+    }, {});
+  };
+
   const getTotalPrice = () =>
     cart.map((item) => item.val.value).reduce((a, b) => a + b, 0);
+
+  const getTotalSellPrice = () =>
+    sellCart.map((item) => item.val.value).reduce((a, b) => a + b, 0);
 
   const value = {
     getCartItems,
     getCartItemsGroupedByKey,
+    getSellCartItems,
+    getSellCartItemsGroupedByKey,
     getTotalPrice,
+    getTotalSellPrice,
     addToCart,
+    addToSellCart,
     subtractFromCart,
+    deleteFromSellPage,
     resetCart,
+    resetSellCart,
   };
 
   return <Context.Provider value={value}>{children}</Context.Provider>;

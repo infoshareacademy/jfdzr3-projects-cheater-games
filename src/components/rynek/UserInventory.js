@@ -1,6 +1,7 @@
 import { useEffect, useState } from "react";
 import { db } from "../../firebaseConfig";
 import { useUser } from "../../hooks/useUser";
+import { useCart } from "./CartContext";
 import { Items } from "./Items";
 import { ItemsGrid } from "./ItemsGrid";
 
@@ -23,19 +24,26 @@ const useInventory = () => {
         snapshot.forEach((doc) => {
           userItems.push({ id: doc.id, key: doc.data().name, val: doc.data() });
         });
-        setItems(userItems);
+        setItems(userItems.filter((item) => item.key !== undefined));
       });
   }, [uid]);
-
   return items;
 };
 
 export const UserInventory = () => {
   const items = useInventory();
+  const { addToSellCart } = useCart();
 
   return (
     <ItemsGrid text="Sprzedaj">
-      <Items items={items} />
+      {items.length !== 0 ? (
+        <Items items={items} onSellClick={addToSellCart} />
+      ) : (
+        <span>
+          Nie masz żadnych rekwizytów. <br />
+          Zdobądź je na polowaniu, bądź kup od Mirka Handlarza
+        </span>
+      )}
     </ItemsGrid>
   );
 };

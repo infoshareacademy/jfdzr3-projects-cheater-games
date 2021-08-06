@@ -19,9 +19,7 @@ const useItems = (type) => {
             val: { ...data[id] },
           };
         });
-
-        console.table(itemsOfType)
-        setItems(itemsOfType.sort((a, b) => a.key > b.key ? 1 : -1));
+        setItems(itemsOfType.sort((a, b) => (a.key > b.key ? 1 : -1)));
       });
   }, [type]);
 
@@ -42,8 +40,18 @@ export const useShopItems = () => {
 
 export const useModal = () => {
   const [isOpen, setIsOpen] = useState(false);
+  const [isSellPageOpen, setIsSellPageOpen] = useState([false]);
   const openModal = () => setIsOpen(true);
   const closeModal = () => setIsOpen(false);
+  const openSellPageModal = () => setIsSellPageOpen(true);
+  const closeSellPageModal = () => setIsSellPageOpen(false);
 
-  return { isOpen, openModal, closeModal };
+  return {
+    isOpen,
+    openModal,
+    closeModal,
+    openSellPageModal,
+    closeSellPageModal,
+    isSellPageOpen,
+  };
 };
