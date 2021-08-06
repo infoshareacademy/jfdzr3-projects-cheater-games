@@ -94,6 +94,16 @@ export const ChatBig = ({ input, sendMessage, setInput, messages }) => {
   };
 
   useEffect(() => {
+    db.collection("privateMessages")
+      .doc(privateMessageUser?.chatID)
+      .collection("messages")
+      .orderBy("time")
+      .onSnapshot((messages) => {
+        setPrivateMessages(messages.docs.map((doc) => doc.data()));
+      });
+  }, [privateMessageUser?.chatID]);
+
+  useEffect(() => {
     setCurrentUserUID(user?.uid);
   }, [user?.uid]);
 
@@ -158,18 +168,13 @@ export const ChatBig = ({ input, sendMessage, setInput, messages }) => {
             : `z użytkownikiem ${privateMessageUser.name}`}
         </div>
         <div className="chat__messages chat__messages--big">
-          {/* {chatType === "global"
+          {chatType === "global"
             ? messages.map((message) => (
                 <Message key={message.time} message={message} />
               ))
-            : privateMessages
-                .filter(
-                  (privateMessage) =>
-                    privateMessage.toUsername === privateMessgaUser
-                )
-                .map((privateMessage) => (
-                  <Message key={privateMessage.time} message={privateMessage} />
-                ))} */}
+            : privateMessages.map((privateMessage) => (
+                <Message key={privateMessage.time} message={privateMessage} />
+              ))}
         </div>
         <form className="chat__form">
           <input
