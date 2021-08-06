@@ -5,11 +5,13 @@ import { RegistrationPage } from "./components/RegistrationPage";
 import { HuntingScreen } from "./components/HuntingScreen";
 import { HomePage } from "./components/HomePage";
 import { MainMenu } from "./components/MainMenu";
+import { Armory } from "./components/items/Armory";
 import { AdminPanel } from "./components/AdminPanel";
+import { StorePage } from "./components/rynek/StorePage";
 import { Stats } from "./components/stats/Stats";
-import { StorePage } from "./components/store/StorePage";
 import { CharacterViewPage } from "./components/CharacterViewPage";
 import { useUser } from "./hooks/useUser";
+import { AboutUsPage} from "./components/about/AboutUsPage";
 
 function App() {
   const user = useUser();
@@ -33,16 +35,21 @@ function App() {
               <Route path="/hunt">
                 <HuntingScreen />
               </Route>
+              <Route path="/armory">
+                <Armory />
+              </Route>
               <Route path="/stats">
                 <Stats />
               </Route>
               <Route exact path="/">
                 <HomePage />
               </Route>
+              <Route path="/about">
+                <AboutUsPage />
+              </Route>
             </Switch>
           ) : (
             <Switch>
-              
               <Route exact path="/">
                 <HomePage />
               </Route>

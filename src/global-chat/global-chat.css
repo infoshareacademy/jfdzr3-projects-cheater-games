@@ -5,7 +5,7 @@
 }
 
 .chat input {
-  width: 50%;
+  width: 100%;
   box-shadow: rgba(50, 50, 93, 0.25) 0px 6px 12px -2px,
     rgba(0, 0, 0, 0.3) 0px 3px 7px -3px;
   padding: 10px 5px;
@@ -20,6 +20,8 @@
 }
 
 .chat {
+  box-shadow: rgba(50, 50, 93, 0.25) 0px 6px 12px -2px,
+    rgba(0, 0, 0, 0.3) 0px 3px 7px -3px;
   font-size: 26px;
   line-height: 35px;
   box-sizing: border-box;
@@ -28,6 +30,7 @@
   justify-content: center;
   background-color: #f5f4f6;
   width: 100%;
+  min-width: 80vw;
   grid-row: 3/4;
 }
 
@@ -37,6 +40,9 @@
 }
 
 .chat_messages {
-  height: 300px;
-  overflow: scroll;
+  height: 150px;
+  word-break: break-word;
+  overflow-y: scroll;
+  box-shadow: rgba(50, 50, 93, 0.25) 0px 6px 12px -2px,
+    rgba(0, 0, 0, 0.3) 0px 3px 7px -3px;
 }
