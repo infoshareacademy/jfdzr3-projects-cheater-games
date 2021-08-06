@@ -119,4 +119,14 @@ Przemysław was responsible for the chat between users, the "Statistics" Page an
 [GitHub ](https://github.com/Przemo246)
 [LinkedIn ](https://www.linkedin.com/in/przemyslaw-welenc)
 
-Coded during course for Junior Front-End Developer orginized by [infoShare Academy](https://github.com/infoshareacademy). 
+
+### Feedback
+
+If you have any comments on this project feel free to leave them in issues or contact us via GitHub.
+
+### Thanks
+
+Coded during Bootcamp Junior Front-End Developer orginized by [infoShare Academy](https://github.com/infoshareacademy). 
+We wanted to thank our trainers for all the help and support they gave us during this project.
+
+
