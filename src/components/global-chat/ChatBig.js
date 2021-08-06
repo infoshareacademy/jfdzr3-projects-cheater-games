@@ -31,21 +31,15 @@ const findPrivateChat = (user1, user2) => {
 
 const createPrivateChat = (user1, user2) => {
   const [HAUID, LAUID] = compareStrings(user1, user2);
-  console.log(HAUID, LAUID);
-  db.collection("privateMessages")
-    .doc()
-    .set({ HAUID, LAUID })
+  return db
+    .collection("privateMessages")
+    .add({ HAUID, LAUID })
     .then((docRef) => {
       db.collection("privateMessages")
-        .doc(docRef)
+        .doc(docRef.id)
         .collection("messages")
-        .add({})
-        .then(() => {
-          return docRef;
-        })
-        .catch((error) => {
-          console.error(error);
-        });
+        .add({});
+      return docRef.id;
     })
     .catch((error) => console.error(error));
 };
@@ -65,13 +59,15 @@ export const ChatBig = ({ input, sendMessage, setInput, messages }) => {
     );
     setPrivateMessageUser({ name, uid });
     findPrivateChat(currentUserUID, uid).then((querySnapshot) => {
-      let chatID;
       if (querySnapshot.empty) {
-        chatID = createPrivateChat(currentUserUID, uid);
+        createPrivateChat(currentUserUID, uid).then((chatID) => {
+          setPrivateMessageUser((old) => ({ ...old, chatID }));
+        });
       } else {
-        querySnapshot.forEach((doc) => (chatID = doc.id));
+        querySnapshot.forEach((doc) => {
+          setPrivateMessageUser((old) => ({ ...old, chatID: doc.id }));
+        });
       }
-      setPrivateMessageUser((old) => ({ ...old, chatID }));
     });
   };
 
@@ -116,31 +112,6 @@ export const ChatBig = ({ input, sendMessage, setInput, messages }) => {
     };
     getUsers();
   }, []);
-
-  // useEffect(() => {
-  //   const getPrivateMessages = async () => {
-  //     try {
-  //       const privateChatDoc = await findPrivateChat(
-  //         user?.uid,
-  //         privateMessageUser.uid
-  //       );
-  //       if (privateChatDoc.empty) {
-  //         const [HAUID, LAUID] = compareStrings(
-  //           user?.uid,
-  //           privateMessageUser.uid
-  //         );
-  //         const id = await db
-  //           .collection("privateMessages")
-  //           .doc()
-  //           .set({ HAUID, LAUID });
-  //         console.log(id);
-  //       }
-  //     } catch (error) {
-  //       console.log(error);
-  //     }
-  //   };
-  //   getPrivateMessages();
-  // }, [privateMessageUser, user]);
 
   return (
     <div className="chat chat--big">
