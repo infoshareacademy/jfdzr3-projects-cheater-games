@@ -314,6 +314,9 @@ li:hover {
 .hunting__screen--level-arrows h3 {
   padding-top: 25px;
 }
+.character__overview__text {
+  margin: 0 auto;
+}
 
 a {
   color: var(--color-red);
@@ -397,4 +400,20 @@ h5 {
 
 h1 {
   font-size: 32px;
+}
+
+.materials__information {
+  padding-bottom: 25px;
+}
+.player__information {
+  padding-bottom: 25px;
+}
+.character__overview__stats {
+  /* padding: 5px; */
+}
+
+.character__overview__stats p {
+  font-size: 17px;
+  padding: 3px;
+  word-spacing: px;
 }
