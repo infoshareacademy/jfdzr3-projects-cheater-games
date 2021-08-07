@@ -22,21 +22,30 @@ Monster Hunt - exciting Web App game created in ReactJS
 - [Features](#features)
 - [Live Demo & Setup](#live-demo-&-setup)
 - [Our Team](#our-scrum-developement-team)
+- [Feedback](#feedback)
+- [Thanks](#thanks)
 
 <br>
 
 ## Intro
 
 <br>
+
 Monster Hunt is a challenging Web App game where user takes on a role of hunter and quest for monsters to slay. The more beasts fallen down, the better arms gained by the player to beat bigger and badder foes!
 
+<br>
+
 Monster Hunt project was developed in ReactJS and accelerated with backend infrastructure set in Cloud Firestore by Firebase. Moreover Firebase Authentication was used to build secure authentication system for the application.
+
+<br>
 
 Our team of five developers created Monster Hunt game during Junior Frontend Developer Bootcamp organised by [infoShare Academy](https://github.com/infoshareacademy).
 
 <br>
 
 ## Process
+
+<br>
 
 In the process of developing Monster Hunt we used JIRA for project management and follow SCRUM principles.
 
@@ -46,7 +55,11 @@ During several design meetings we managed to create an initial visualization of 
 
 <img src="https://firebasestorage.googleapis.com/v0/b/monster-hunt-v1.appspot.com/o/excalidraw.png?alt=media&token=58545bcf-db48-4161-97ec-8af8f38fffcf" alt="Visualization on Excalidraw">
 
+<br>
+
 ## Tech Stack
+
+<br>
 
 - React
 - React Router
@@ -65,6 +78,8 @@ For styling our application <a href="https://styled-components.com/" target="_bl
 <br>
 
 ## Features
+
+<br>
 
 1. Creating user profile
 
@@ -92,6 +107,8 @@ For styling our application <a href="https://styled-components.com/" target="_bl
 <br>
 
 ## Live Demo & Setup
+
+<br>
 
 Monster Hunt has been deployed via (Github Pages/ Firebase Hosting ???), create your profile, hunt, communicate with others and visit merchant Mirek: Link to page: ....
 or
@@ -147,11 +164,19 @@ Przemysław was responsible for the chat between users, the "Statistics" Page an
 [GitHub ](https://github.com/Przemo246)
 [LinkedIn ](https://www.linkedin.com/in/przemyslaw-welenc)
 
+<br>
+
 ### Feedback
+
+<br>
 
 If you have any comments on this project feel free to leave them in issues or contact us via GitHub.
 
+<br>
+
 ### Thanks
+
+<br>
 
 Monster Hunt project was supervised by [infoShare Academy](https://github.com/infoshareacademy).
 We would like to express gratitude to all trainers during course and special thanks to <a href="https://github.com/cytrowski">@cytrowski</a> for support, motivating and constructive crticism.
