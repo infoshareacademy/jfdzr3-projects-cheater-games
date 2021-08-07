@@ -20,7 +20,7 @@ function App() {
     <Router>
       <div className="content">
         <header className="header">
-          <img src="./logo-monster-hunt.png" alt="" className="logo" />
+          
         </header>
         <MainMenu />
         <main className="main__section">
