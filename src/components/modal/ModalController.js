@@ -1,5 +1,6 @@
 import { Modal } from "./Modal";
 import reactDom from "react-dom";
+import "./Modal.css";
 
 export const ModalController = ({ open, onClose }) => {
   if (!open) return null;
