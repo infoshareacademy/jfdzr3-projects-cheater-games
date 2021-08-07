@@ -1,11 +1,13 @@
-import React, { useState } from "react";
+import { useState } from "react";
 import { Link } from "react-router-dom";
+import { ModalController } from "./modal/ModalController";
 import {
   IoMdArrowRoundBack,
   IoMdArrowRoundForward,
   IoMdArrowRoundUp,
 } from "react-icons/io";
 import { GenerateItem } from "./items/GenerateItem";
+import { useModal } from "../hooks/useModal";
 
 const description = [
   {
@@ -35,13 +37,9 @@ const description = [
 
 export const HuntingScreen = () => {
   const [currentLevelId, setCurrentLevel] = useState("");
+  const [isOpen, toggleIsOpen] = useModal();
+
   const currentLevel = description.find((desc) => desc.name === currentLevelId);
-
-  const [isOpen, setIsOpen] = useState(false);
-
-  const openFightBox = () => {
-    setIsOpen((old) => !old);
-  };
 
   const ifEmpty = () => {
     if (currentLevel === undefined) {
@@ -54,85 +52,81 @@ export const HuntingScreen = () => {
       return <p> {currentLevel.descr}</p>;
     }
   };
-  const LeftArrow = ({ openFightBox }) => {
+  const LeftArrow = ({ toggleIsOpen }) => {
     return (
       <IoMdArrowRoundBack
-        onClick={openFightBox}
+        onClick={toggleIsOpen}
         className="chose__way__arrow"
       />
     );
   };
-  const RightArrow = ({ openFightBox }) => {
+  const RightArrow = ({ toggleIsOpen }) => {
     return (
       <IoMdArrowRoundForward
-        onClick={openFightBox}
+        onClick={toggleIsOpen}
         className="chose__way__arrow"
       />
     );
   };
-  const UpArrow = ({ openFightBox }) => {
+  const UpArrow = ({ toggleIsOpen }) => {
     return (
-      <IoMdArrowRoundUp onClick={openFightBox} className="chose__way__arrow" />
+      <IoMdArrowRoundUp onClick={toggleIsOpen} className="chose__way__arrow" />
     );
   };
 
   return (
-    <section className="hunting-screen">
-      <div className="hunting__screen-title">
-        <h1>Polowanie</h1>
-      </div>
-      <div className="hunting__screen-description">
-        <p>
-          Do twojego obozowiska znów dotarły złowieszcze plotki. W głębi lasu
-          czają się okrutne monstra, których żądza krwi przekracza pojmowanie
-          większości przedstawicieli rozumnych ras. Nie dotyczy to jednak
-          ciebie. To twoje życie i twoje powołanie. Teraz, stojąc na samej
-          krawędzi przepastnej puszczy, musisz wybrać ścieżkę, którą podążysz.
-          Czy pójdziesz skrajem lasu, czy zagłębisz się w najczarniejszy
-          matecznik, na twojej drodze stanie wyzwanie, niewątpliwie
-          przekraczające zdolności zwykłego śmiertelnika. Wybierz swoją drogę,
-          więc, i ruszaj!
-        </p>
-      </div>
-      <div className="hunting__screen-main">
-        <h3>Poziom trudności: </h3>
-        <div className="hunting__screen--choose_level">
-          {description.map((desc, index) => (
-            <label key={index}>
-              {desc.name}
-              <input
-                type="radio"
-                name="level"
-                onClick={() => setCurrentLevel(desc.name)}
-              />
-            </label>
-          ))}
+    <>
+      <section className="hunting-screen">
+        <div className="hunting__screen-title">
+          <h1>Polowanie</h1>
         </div>
-        <div className="hunting__screen--level_description">
-          <div>{ifEmpty()}</div>
+        <div className="hunting__screen-description">
+          <p>
+            Do twojego obozowiska znów dotarły złowieszcze plotki. W głębi lasu
+            czają się okrutne monstra, których żądza krwi przekracza pojmowanie
+            większości przedstawicieli rozumnych ras. Nie dotyczy to jednak
+            ciebie. To twoje życie i twoje powołanie. Teraz, stojąc na samej
+            krawędzi przepastnej puszczy, musisz wybrać ścieżkę, którą podążysz.
+            Czy pójdziesz skrajem lasu, czy zagłębisz się w najczarniejszy
+            matecznik, na twojej drodze stanie wyzwanie, niewątpliwie
+            przekraczające zdolności zwykłego śmiertelnika. Wybierz swoją drogę,
+            więc, i ruszaj!
+          </p>
         </div>
-
-        {!isOpen ? (
-          <>
-            <div className="hunting__screen--level-arrows">
-              <h3>Wybierz ścieżkę polowania</h3>
-              <div className="hunting__screen--choose_ways">
-                <Link to="/hunt" className="choose__ways__arrows-links">
-                  <LeftArrow openFightBox={openFightBox} />
-                </Link>
-                <Link to="/hunt" className="choose__ways__arrows-links">
-                  <UpArrow openFightBox={openFightBox} />
-                </Link>
-                <Link to="/hunt" className="choose__ways__arrows-links">
-                  <RightArrow openFightBox={openFightBox} />
-                </Link>
-              </div>
+        <div className="hunting__screen-main">
+          <h3>Poziom trudności: </h3>
+          <div className="hunting__screen--choose_level">
+            {description.map((desc, index) => (
+              <label key={index}>
+                {desc.name}
+                <input
+                  type="radio"
+                  name="level"
+                  onClick={() => setCurrentLevel(desc.name)}
+                />
+              </label>
+            ))}
+          </div>
+          <div className="hunting__screen--level_description">
+            <div>{ifEmpty()}</div>
+          </div>
+          <div className="hunting__screen--level-arrows">
+            <h3>Wybierz ścieżkę polowania</h3>
+            <div className="hunting__screen--choose_ways">
+              <Link to="/hunt" className="choose__ways__arrows-links">
+                <LeftArrow toggleIsOpen={toggleIsOpen} />
+              </Link>
+              <Link to="/hunt" className="choose__ways__arrows-links">
+                <UpArrow toggleIsOpen={toggleIsOpen} />
+              </Link>
+              <Link to="/hunt" className="choose__ways__arrows-links">
+                <RightArrow toggleIsOpen={toggleIsOpen} />
+              </Link>
             </div>
-          </>
-        ) : (
-          <GenerateItem openFightBox={openFightBox} />
-        )}
-      </div>
-    </section>
+          </div>
+        </div>
+      </section>
+      <ModalController open={isOpen} onClose={toggleIsOpen} />
+    </>
   );
 };
