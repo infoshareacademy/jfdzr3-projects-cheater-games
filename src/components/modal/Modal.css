@@ -9,7 +9,7 @@
   z-index: 9998;
 }
 
-.modal {
+.fight-modal {
   display: grid;
   place-items: center;
   position: fixed;
@@ -24,12 +24,16 @@
   padding: 2rem;
 }
 
-.modal__heading {
+.fight-modal__content {
+  text-align: center;
+}
+
+.fight-modal__heading {
   text-align: center;
   margin-bottom: 15px;
 }
 
-.modal__heading span {
+.fight-modal__heading span {
   margin-top: 15px;
   font-size: 18px;
   display: inline-block;
