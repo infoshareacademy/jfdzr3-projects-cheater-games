@@ -15,26 +15,53 @@ const hardMonsters = [hard1, hard2, hard3];
 
 export const Modal = ({ onClose, difficulty }) => {
   const [monsterImg, setMonsterImg] = useState(null);
+  const [numClicks, setNumClicks] = useState(0);
+  const [time, setTime] = useState(null);
+  const [gamePlaying, setGamePlaying] = useState(true);
+
+  const handleOnClick = () => {
+    if (numClicks > 0) {
+      setNumClicks(numClicks - 1);
+    } else {
+      setGamePlaying(false);
+    }
+  };
+
   useEffect(() => {
     const randomNumber = Math.round(Math.random() * 3);
-    let drawnMonster;
+    let drawnMonster, numClicks, time;
     if (difficulty === "easy") {
       drawnMonster = easyMonsters[randomNumber];
+      numClicks = 10;
+      time = 3000;
     } else if (difficulty === "medium") {
       drawnMonster = mediumMonsters[randomNumber];
+      numClicks = 20;
+      time = 2000;
     } else {
       drawnMonster = hardMonsters[randomNumber];
+      numClicks = 30;
+      time = 1000;
     }
     setMonsterImg(drawnMonster);
+    setNumClicks(numClicks);
+    setTime(time);
   }, [difficulty]);
   return (
     <div className="modal">
       <div className="modal__heading">
         <h2>Walcz!</h2>
-        <span>Pozostało ci: xxx sekund i xxx kliknięć!</span>
+        <span>
+          Pozostało ci: {time} sekund i {numClicks} kliknięć!
+        </span>
       </div>
       <div className="modal__content">
-        <img src={monsterImg} style={{ height: "450px" }} alt="" />
+        <img
+          src={monsterImg}
+          style={{ height: "450px" }}
+          alt=""
+          onClick={handleOnClick}
+        />
       </div>
     </div>
   );
