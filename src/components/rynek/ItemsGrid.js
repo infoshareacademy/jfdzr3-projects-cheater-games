@@ -11,10 +11,15 @@ const ItemsWrapper = styled.div`
   transform: scale3d(95%, 95%, 100%);
   overflow: scroll;
   min-height: 400px;
+  max-height: 600px;
+  // background-color: #f2f2f2;
+  // background-image: url(https://firebasestorage.googleapis.com/v0/b/monster-hunt-v1.appspot.com/o/chat-background.jpg?alt=media&token=1cf27985-756a-4208-aec7-98b76944347a);
+  // background-position: center;
+  // background-size: 80%
 `;
 
 export const ItemsGrid = ({ text, children }) => (
-  <ItemsWrapper>
+  <ItemsWrapper >
     <TextBlock>{text}</TextBlock>
     {children}
   </ItemsWrapper>

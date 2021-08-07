@@ -1,9 +1,13 @@
-import React from "react";
+import React, {useState} from "react";
 import { TextBlock } from "./TextBlock";
 import styled from "styled-components";
 import { SellItem } from "./SellItem";
 import { SellButton } from "./SellButton";
 import { useCart } from "./CartContext";
+import Snackbar from "@material-ui/core/Snackbar";
+import Button from "@material-ui/core/Button";
+import IconButton from "@material-ui/core/IconButton";
+import CloseIcon from "@material-ui/icons/Close";
 
 const List = styled.ul`
   list-style: none;
@@ -33,10 +37,46 @@ export const SellPage = () => {
   const sellItems = getSellCartItems();
   const totalPrice = getTotalSellPrice();
 
+  const [open, setOpen] = useState(false);
+  const handleClick = () => {
+      setOpen(true);
+  };
+  const handleClose = (event, reason) => {
+    if (reason === "clickaway") {
+      return;
+    }
+    setOpen(false);
+  };
+
   return (
     <>
       {sellItems.length === 0 ? (
-        <TextBlock>Nie masz przedmiotów na sprzedaż</TextBlock>
+        <><TextBlock>Nie masz przedmiotów na sprzedaż</TextBlock>
+        <Snackbar
+            anchorOrigin={{
+              vertical: "bottom",
+              horizontal: "center",
+            }}
+            open={open}
+            autoHideDuration={6000}
+            onClose={handleClose}
+            message="Sprzedałeś swój ekwipunek handlarzowi"
+            action={
+              <>
+                <Button color="secondary" size="small" onClick={handleClose} > sukces
+                </Button>
+                <IconButton
+                  size="small"
+                  aria-label="close"
+                  color="inherit"
+                  onClick={handleClose}
+                >
+                  <CloseIcon fontSize="small" />
+                </IconButton>
+              </>
+            }
+          />
+        </>
       ) : (
         <>
           <TextBlock>Twój ekwipunek na sprzedaż</TextBlock>
@@ -62,7 +102,7 @@ export const SellPage = () => {
         ) : (
           <>
             <TextBlock>Wartość w złocie: {totalPrice}</TextBlock>
-            <SellButton />
+            <SellButton handleClick={handleClick}/>
           </>
         )}
       </BuyButtonSection>
