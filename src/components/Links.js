@@ -19,8 +19,8 @@ export const Links = () => {
     <HuntLink />,
     <ArmoryLink />,
     <StoreLink />,
-    <Logout />,
     <AboutUsLink/>,
+    <Logout />,
   ];
 
   const userLinks = [
@@ -29,8 +29,8 @@ export const Links = () => {
     <HuntLink />,
     <ArmoryLink />,
     <StoreLink />,
-    <Logout />,
     <AboutUsLink/>,
+    <Logout />,
   ];
 
   if (user?.role === "admin") {
