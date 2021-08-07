@@ -35,7 +35,6 @@ export const SellButton = ({ handleClick }) => {
         },
       });
   };
-
   return (
     <div>
       <button
