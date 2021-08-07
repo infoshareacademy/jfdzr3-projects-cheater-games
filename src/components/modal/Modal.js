@@ -16,7 +16,7 @@ const hardMonsters = [hard1, hard2, hard3];
 export const Modal = ({ onClose, difficulty }) => {
   const [monsterImg, setMonsterImg] = useState(null);
   const [numClicks, setNumClicks] = useState(0);
-  const [time, setTime] = useState(null);
+  const [time, setTime] = useState(0);
   const [gamePlaying, setGamePlaying] = useState(true);
 
   const handleOnClick = () => {
@@ -47,12 +47,26 @@ export const Modal = ({ onClose, difficulty }) => {
     setNumClicks(numClicks);
     setTime(time);
   }, [difficulty]);
+
+  useEffect(() => {
+    let interval;
+    if (gamePlaying && time >= 0) {
+      interval = setInterval(() => {
+        setTime((previousTime) => previousTime - 10);
+      }, 10);
+      return () => clearInterval(interval);
+    } else {
+      clearInterval(interval);
+      setGamePlaying(false);
+    }
+  }, [gamePlaying, time]);
   return (
     <div className="modal">
       <div className="modal__heading">
         <h2>Walcz!</h2>
         <span>
-          Pozostało ci: {time} sekund i {numClicks} kliknięć!
+          Pozostało ci: {time < 0 ? 0 : time / 1000} sekund i {numClicks}{" "}
+          kliknięć!
         </span>
       </div>
       <div className="modal__content">
