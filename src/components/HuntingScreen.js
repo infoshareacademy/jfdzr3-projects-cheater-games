@@ -132,7 +132,11 @@ export const HuntingScreen = () => {
           </div>
         </div>
       </section>
-      <ModalController open={isOpen} onClose={toggleIsOpen} />
+      <ModalController
+        open={isOpen}
+        onClose={toggleIsOpen}
+        difficulty={currentLevelId}
+      />
     </>
   );
 };
