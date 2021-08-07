@@ -3,7 +3,7 @@ import { useUser } from "../../hooks/useUser";
 import { useCart } from "./CartContext";
 import { TextBlock } from "./TextBlock";
 
-export const SellButton = ({handleClick}) => {
+export const SellButton = ({ handleClick }) => {
   const user = useUser();
   const { getSellCartItems, resetSellCart, getTotalSellPrice } = useCart();
 
@@ -36,11 +36,6 @@ export const SellButton = ({handleClick}) => {
       });
   };
 
-  const checkItemsValue = getSellCartItems().map((item)=> {
-    return item.val.value
-  })
-console.log(checkItemsValue);
-  
   return (
     <div>
       <button
@@ -51,7 +46,6 @@ console.log(checkItemsValue);
           resetSellCart();
           updateUserGold();
         }}
-        disabled={!checkItemsValue !== "number"}
       >
         Sprzedaj
       </button>
