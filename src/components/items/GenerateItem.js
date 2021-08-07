@@ -267,43 +267,9 @@ export const GenerateItem = ({ openFightBox }) => {
         .then(() => {
           alert("Dodano przedmiot do zbrojowni");
           history.push("/hunt");
-          // history.push("/hunt");
         });
     }
     return;
-  };
-
-  const sellItem = (e) => {
-    const expGained = Math.floor(Math.random() * 5);
-
-    alert(`${expGained} zdobyłeś tyle doświadczenia!`);
-
-    // if (!user?.uid) {
-    //   return;
-    // }
-    // if (
-    //   itemName?.name === undefined ||
-    //   itemSuffix?.name === undefined ||
-    //   itemPrefix?.name === undefined
-    // ) {
-    //   return;
-    // } else {
-    //   if (userGold !== undefined && itemTotalValue !== undefined) {
-    //     db.collection("users")
-    //       .doc(user?.uid)
-    //       .update({
-    //         "resources.gold": userGold,
-    //       })
-    //       .then(() => {
-    //         e.preventDefault();
-    //         alert("Sprzedano przedmiot");
-    //         history.push("/hunt");
-    //         // window.location = "/hunt";
-    //       });
-    //   } else {
-    //     return;
-    //   }
-    return expGained;
   };
 
   return (
@@ -322,23 +288,8 @@ export const GenerateItem = ({ openFightBox }) => {
       </span>
 
       <div>
-        <button
-          className="btn btn-green btn-small"
-          onClick={() => {
-            addItem();
-            openFightBox();
-          }}
-        >
+        <button className="btn btn-green" onClick={addItem}>
           Zachowaj przedmiot
-        </button>{" "}
-        <button
-          className="btn btn-red btn-small"
-          onClick={() => {
-            sellItem();
-            openFightBox();
-          }}
-        >
-          Zawalcz o punkty doświadczenia
         </button>
       </div>
     </div>
