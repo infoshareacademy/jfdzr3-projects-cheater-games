@@ -274,32 +274,36 @@ export const GenerateItem = () => {
   };
 
   const sellItem = (e) => {
-    if (!user?.uid) {
-      return;
-    }
-    if (
-      itemName?.name === undefined ||
-      itemSuffix?.name === undefined ||
-      itemPrefix?.name === undefined
-    ) {
-      return;
-    } else {
-      if (userGold !== undefined && itemTotalValue !== undefined) {
-        db.collection("users")
-          .doc(user?.uid)
-          .update({
-            "resources.gold": userGold,
-          })
-          .then(() => {
-            e.preventDefault();
-            alert("Sprzedano przedmiot");
-            history.push("/hunt");
-            // window.location = "/hunt";
-          });
-      } else {
-        return;
-      }
-    }
+    const expGained = Math.floor(Math.random() * 5);
+
+    console.log(expGained);
+
+    // if (!user?.uid) {
+    //   return;
+    // }
+    // if (
+    //   itemName?.name === undefined ||
+    //   itemSuffix?.name === undefined ||
+    //   itemPrefix?.name === undefined
+    // ) {
+    //   return;
+    // } else {
+    //   if (userGold !== undefined && itemTotalValue !== undefined) {
+    //     db.collection("users")
+    //       .doc(user?.uid)
+    //       .update({
+    //         "resources.gold": userGold,
+    //       })
+    //       .then(() => {
+    //         e.preventDefault();
+    //         alert("Sprzedano przedmiot");
+    //         history.push("/hunt");
+    //         // window.location = "/hunt";
+    //       });
+    //   } else {
+    //     return;
+    //   }
+    return expGained;
   };
 
   return (

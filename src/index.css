@@ -280,7 +280,7 @@ li:hover {
 }
 
 .hunting__screen--level_description p {
-  text-align: justify;
+  margin: 0 auto;
   min-height: 25vh;
   width: 67vw;
 }
