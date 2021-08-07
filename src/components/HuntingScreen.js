@@ -1,7 +1,7 @@
 import { useState } from "react";
 import { Link } from "react-router-dom";
 import { ModalController } from "./modal/ModalController";
-import { GenerateItem } from "./items/GenerateItem";
+
 import {
   IoMdArrowRoundBack,
   IoMdArrowRoundForward,

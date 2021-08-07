@@ -19,7 +19,7 @@ export const GenerateItem = ({ openFightBox }) => {
   const [itemSuffix, setItemSuffix] = useState([]);
   const [itemQuality, setItemQuality] = useState(0);
   const [, setItemID] = useState(0);
-  const [userGold, setUserGold] = useState(0);
+  const [, setUserGold] = useState(0);
 
   useEffect(() => {
     setItemID(Date.now());
