@@ -29,8 +29,12 @@ export const Modal = ({ onClose, difficulty }) => {
   }, [difficulty]);
   return (
     <div className="modal">
+      <div className="modal__heading">
+        <h2>Walcz!</h2>
+        <span>Pozostało ci: xxx sekund i xxx kliknięć!</span>
+      </div>
       <div className="modal__content">
-        <img src={monsterImg} alt="" />
+        <img src={monsterImg} style={{ height: "450px" }} alt="" />
       </div>
     </div>
   );
