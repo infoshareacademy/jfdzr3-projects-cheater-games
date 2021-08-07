@@ -130,7 +130,7 @@ export const HuntingScreen = () => {
             </div>
           </>
         ) : (
-          <GenerateItem />
+          <GenerateItem openFightBox={openFightBox} />
         )}
       </div>
     </section>

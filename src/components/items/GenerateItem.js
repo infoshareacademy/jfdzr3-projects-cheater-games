@@ -8,7 +8,7 @@ import Typography from "@material-ui/core/Typography";
 
 import { useHistory } from "react-router-dom";
 
-export const GenerateItem = () => {
+export const GenerateItem = ({ openFightBox }) => {
   const user = useUser();
   const history = useHistory();
 
@@ -276,7 +276,7 @@ export const GenerateItem = () => {
   const sellItem = (e) => {
     const expGained = Math.floor(Math.random() * 5);
 
-    console.log(expGained);
+    alert(`${expGained} zdobyłeś tyle doświadczenia!`);
 
     // if (!user?.uid) {
     //   return;
@@ -322,10 +322,22 @@ export const GenerateItem = () => {
       </span>
 
       <div>
-        <button className="btn btn-green btn-small" onClick={addItem}>
+        <button
+          className="btn btn-green btn-small"
+          onClick={() => {
+            addItem();
+            openFightBox();
+          }}
+        >
           Zachowaj przedmiot
         </button>{" "}
-        <button className="btn btn-red btn-small" onClick={sellItem}>
+        <button
+          className="btn btn-red btn-small"
+          onClick={() => {
+            sellItem();
+            openFightBox();
+          }}
+        >
           Zawalcz o punkty doświadczenia
         </button>
       </div>
