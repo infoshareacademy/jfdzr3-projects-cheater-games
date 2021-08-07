@@ -1,50 +1,44 @@
 import React from "react";
 import { useShowItems } from "../../hooks/useShowItems";
 import styled from "styled-components";
+import {TextBlock} from "../rynek/TextBlock"
 
 const Wrapper = styled.div`
+display: flex;
+flex-flow: row;
+margin: 10px 10px 0 10px;
+box-shadow: 0 3px 7px rgba(0, 0, 0, 0.5);
+width: 98%;
 
 `;
 export const ShowItem = ({ itemID }) => {
   const item = useShowItems(itemID);
+console.log(item);
+
+
 
   return (
     <>
       {item.itemData ? (
-        <Wrapper 
-          style={{
-            display: "flex",
-            flexFlow: "row",
-            alignItems: "center",
-            // justifyContent: "space-between",
-            margin: "10px 10px 0 10px",
-            padding:"0px",
-            boxShadow: "0 3px 7px rgba(0, 0, 0, 0.5)"
-
-          }}
-        >
-          <div>
+        <Wrapper>
+          <div style={{padding: "0"}}>
             <img
               src={item.weaponIcon}
               style={{
                 width: "100px",
                 height: "150px",
-                // border: "1px solid black",
-                boxShadow: "0 3px 7px rgba(0, 0, 0, 0.5)"
-
-              }}
-              alt=""
-            />
+                boxShadow: "0 3px 7px rgba(0, 0, 0, 0.5)",
+              }} alt="" />
           </div>
-          <div style={{ width: "500px" }}>
-            <div>
-              Nazwa:{" "}
-              <span>
+          <div style={{minWidth: "750px", }}>
+            <TextBlock >
+              <span > 
                 {item.displayingQuality} {item.itemData?.prefix}{" "}
                 {item.itemData?.name} {item.itemData?.suffix}
               </span>
-            </div>
-            <div>
+            </TextBlock>
+            <div style={{marginLeft: "20px"}}>
+            <div style={{textWeight: "bold"}}>
               Wartość przedmiotu:{" "}
               {item.itemData.quality *
                 (item.itemStats?.value +
@@ -53,11 +47,11 @@ export const ShowItem = ({ itemID }) => {
               golda
             </div>
             <div>
-              Obrażenia: {parseInt(item.itemData?.quality * item.weaponDmgLow)}{" "}
+              Obrażenia: {parseInt(item.itemData?.quality * item.weaponDmgLow)}
               {"-"} {parseInt(item.itemData?.quality * item.weaponDmgUpp)}
             </div>
-            <div>
-              Cechy:{" "}
+            {/* <div>
+              Cechy
               {item.fullItemStatsArray === ["Loading"]
                 ? item.fullItemStatsArray
                 : item.fullItemStatsArray
@@ -71,7 +65,7 @@ export const ShowItem = ({ itemID }) => {
                       ) {
                         return false;
                       } else {
-                        if (el?.value === 0) {
+                        if (el?.value === 0 || el?.value === undefined) {
                           return false;
                         }
                       }
@@ -79,12 +73,18 @@ export const ShowItem = ({ itemID }) => {
                     })
                     .map((el, index) => {
                       return (
-                        <span key={index}>
-                          {item.unitsMap[el?.name]?.label || el?.name}:{" +"}
+                        <>
+                        <span key={index} >
+                          {item.unitsMap[el?.name]?.label || el?.name}:{" + "}
                           {parseInt(item.itemData?.quality * el?.value)},{" "}
                         </span>
+                        
+
+</>
+
                       );
                     })}
+            </div> */}
             </div>
           </div>
         </Wrapper>

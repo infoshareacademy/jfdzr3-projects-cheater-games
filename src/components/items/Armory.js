@@ -8,7 +8,7 @@ const ArmoryWrapper = styled.div`
 display: grid;
   align-content: start;
   width: 100%;
-  min-width: 900px;
+  max-width: 900px;
   height: 100%;
   margin-top: 60px;
   box-shadow: 0 5px 10px rgba(0, 0, 0, 0.5);
