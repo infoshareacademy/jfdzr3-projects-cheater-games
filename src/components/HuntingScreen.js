@@ -5,6 +5,7 @@ import {
   IoMdArrowRoundForward,
   IoMdArrowRoundUp,
 } from "react-icons/io";
+import { GenerateItem } from "./items/GenerateItem";
 
 const description = [
   {
@@ -32,19 +33,15 @@ const description = [
   },
 ];
 
-const LeftArrow = () => {
-  return <IoMdArrowRoundBack className="chose__way__arrow" />;
-};
-const RightArrow = () => {
-  return <IoMdArrowRoundForward className="chose__way__arrow" />;
-};
-const UpArrow = () => {
-  return <IoMdArrowRoundUp className="chose__way__arrow" />;
-};
-
 export const HuntingScreen = () => {
   const [currentLevelId, setCurrentLevel] = useState("");
   const currentLevel = description.find((desc) => desc.name === currentLevelId);
+
+  const [isOpen, setIsOpen] = useState(false);
+
+  const openFightBox = () => {
+    setIsOpen((old) => !old);
+  };
 
   const ifEmpty = () => {
     if (currentLevel === undefined) {
@@ -56,6 +53,27 @@ export const HuntingScreen = () => {
     } else {
       return <p> {currentLevel.descr}</p>;
     }
+  };
+  const LeftArrow = ({ openFightBox }) => {
+    return (
+      <IoMdArrowRoundBack
+        onClick={openFightBox}
+        className="chose__way__arrow"
+      />
+    );
+  };
+  const RightArrow = ({ openFightBox }) => {
+    return (
+      <IoMdArrowRoundForward
+        onClick={openFightBox}
+        className="chose__way__arrow"
+      />
+    );
+  };
+  const UpArrow = ({ openFightBox }) => {
+    return (
+      <IoMdArrowRoundUp onClick={openFightBox} className="chose__way__arrow" />
+    );
   };
 
   return (
@@ -93,20 +111,27 @@ export const HuntingScreen = () => {
         <div className="hunting__screen--level_description">
           <div>{ifEmpty()}</div>
         </div>
-        <div className="hunting__screen--level-arrows">
-          <h3>Wybierz ścieżkę polowania</h3>
-          <div className="hunting__screen--choose_ways">
-            <Link to="/hunt" className="choose__ways__arrows-links">
-              <LeftArrow />
-            </Link>
-            <Link to="/hunt" className="choose__ways__arrows-links">
-              <UpArrow />
-            </Link>
-            <Link to="/hunt" className="choose__ways__arrows-links">
-              <RightArrow />
-            </Link>
-          </div>
-        </div>
+
+        {!isOpen ? (
+          <>
+            <div className="hunting__screen--level-arrows">
+              <h3>Wybierz ścieżkę polowania</h3>
+              <div className="hunting__screen--choose_ways">
+                <Link to="/hunt" className="choose__ways__arrows-links">
+                  <LeftArrow openFightBox={openFightBox} />
+                </Link>
+                <Link to="/hunt" className="choose__ways__arrows-links">
+                  <UpArrow openFightBox={openFightBox} />
+                </Link>
+                <Link to="/hunt" className="choose__ways__arrows-links">
+                  <RightArrow openFightBox={openFightBox} />
+                </Link>
+              </div>
+            </div>
+          </>
+        ) : (
+          <GenerateItem />
+        )}
       </div>
     </section>
   );

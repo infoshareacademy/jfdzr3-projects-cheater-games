@@ -68,7 +68,7 @@ export const GenerateItem = () => {
           return (itemsNamesAndValues[i] = {
             name: names,
             value: itemsValuesArray[i],
-            icon: itemsIconsArray[i]
+            icon: itemsIconsArray[i],
           });
         });
         const getFilteredValues = (itemArray) => {
@@ -229,10 +229,9 @@ export const GenerateItem = () => {
           } else {
             if (isNaN(itemTotalValue)) {
               return;
-            }
-            else {
-            let gold = resources.data().resources?.gold;
-            setUserGold(gold+itemTotalValue);
+            } else {
+              let gold = resources.data().resources?.gold;
+              setUserGold(gold + itemTotalValue);
             }
           }
         });
@@ -267,7 +266,7 @@ export const GenerateItem = () => {
         })
         .then(() => {
           alert("Dodano przedmiot do zbrojowni");
-          history.push("/hunt")
+          history.push("/hunt");
           // history.push("/hunt");
         });
     }
@@ -294,7 +293,7 @@ export const GenerateItem = () => {
           .then(() => {
             e.preventDefault();
             alert("Sprzedano przedmiot");
-            history.push("/hunt")
+            history.push("/hunt");
             // window.location = "/hunt";
           });
       } else {
@@ -306,7 +305,7 @@ export const GenerateItem = () => {
   return (
     <div>
       <span>
-        Zdobyto przedmiot:{" "}
+        {" "}
         <Paper>
           <Typography>
             {displayingQuality} {fullItem?.prefix} {fullItem?.name}{" "}
@@ -317,13 +316,13 @@ export const GenerateItem = () => {
           </Typography>
         </Paper>
       </span>
-      
+
       <div>
         <button className="btn btn-green btn-small" onClick={addItem}>
           Zachowaj przedmiot
         </button>{" "}
         <button className="btn btn-red btn-small" onClick={sellItem}>
-          Sprzedaj przedmiot
+          Zawalcz o punkty doświadczenia
         </button>
       </div>
     </div>
