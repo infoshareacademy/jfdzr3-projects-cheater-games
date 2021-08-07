@@ -23,7 +23,7 @@ Simple web game app created with React and Firebase
 
 ## Intro
 <br>
-Project is being created by the group of five developers, work with SCRUM principles.
+Project was created by the group of five developers, working with SCRUM principles.
 <br>
 At the first design meeting, we managed to create an initial visualization of our application in Excalidraw. 
 
@@ -32,6 +32,14 @@ At the first design meeting, we managed to create an initial visualization of ou
 <img src="https://firebasestorage.googleapis.com/v0/b/monster-hunt-v1.appspot.com/o/excalidraw.png?alt=media&token=58545bcf-db48-4161-97ec-8af8f38fffcf" alt="Visualization on Excalidraw">
 
 This project is a web app game which allows us to register a new user. 
+
+
+In Monster Hunt users can register or log in as registered user. On registration user can pick from variety of races and set their own character. Each race has unique statistics like strength,.......... which determine future fight.
+After setting up statistics user may acces main menu in which can choose Character View Page, Store Page, Hunting Screen, Our Teem, Chat or log out.
+
+
+
+
 
 
 ## Tech Stack
