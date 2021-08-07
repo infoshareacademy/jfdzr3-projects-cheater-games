@@ -1,6 +1,6 @@
 import s from "styled-components";
-import { GlobalChat } from "../global-chat/global-chat";
 import { useUser } from "../hooks/useUser";
+import { Chat } from "./global-chat/Chat";
 import { PropTypes } from "prop-types";
 import { CircularProgress } from "@material-ui/core";
 import { Typography } from "@material-ui/core";
@@ -221,7 +221,7 @@ export const CharacterViewPage = () => {
           </CharacterNameAndStatsBox>
         </CharacterMainBax>
       </Wrapper>
-      <GlobalChat />
+      <Chat size="sm" />
     </>
   );
 };

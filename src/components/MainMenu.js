@@ -1,10 +1,9 @@
-import React from "react";
 import { Links } from "./Links";
 
 export const MainMenu = () => {
   return (
     <nav className="nav">
-      <ul>
+      <ul className="navigation__list">
         <Links />
       </ul>
     </nav>
