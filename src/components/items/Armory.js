@@ -2,7 +2,17 @@ import "../../auth/auth.css";
 import React from "react";
 import { useUserItems } from "../../hooks/useUserItems";
 import { ShowItem } from "./ShowItem";
-import { GenerateItem } from "./GenerateItem";
+import styled from "styled-components";
+
+const ArmoryWrapper = styled.div`
+display: grid;
+  align-content: start;
+  width: 100%;
+  min-width: 900px;
+  height: 100%;
+  margin-top: 60px;
+  box-shadow: 0 5px 10px rgba(0, 0, 0, 0.5);
+`;
 
 export const Armory = () => {
   
@@ -24,13 +34,14 @@ export const Armory = () => {
 
   return (
     <>
-      <h1>Zbrojownia</h1>
-      <GenerateItem />
-      <div>
+      <h1 style={{textAlign: "center"}}>Zbrojownia</h1>
+      {/* <GenerateItem /> */}
+
+      <ArmoryWrapper>
         {result.map((itemID) => {
           return <ShowItem itemID={itemID} key={itemID} />;
         })}
-      </div>
+      </ArmoryWrapper>
     </>
   );
 };
