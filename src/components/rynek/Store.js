@@ -51,7 +51,7 @@ export const Store = () => {
 
   if (isOpen === true) {
     return (
-      <ModalWrapper>
+      <ModalWrapper >
         <CloseIconStyle onClick={closeModal} />
         <CartPage />
       </ModalWrapper>
