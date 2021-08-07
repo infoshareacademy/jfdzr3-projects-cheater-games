@@ -1,4 +1,3 @@
-import React from "react";
 import { Links } from "./Links";
 
 import s from 'styled-components'
@@ -14,7 +13,7 @@ export const MainMenu = () => {
   return (
     <nav className="nav">
       <Logo src={`${process.env.PUBLIC_URL}/logo-monster-hunt.png`} alt="" />
-      <ul>
+      <ul className="navigation__list">
         <Links />
       </ul>
     </nav>

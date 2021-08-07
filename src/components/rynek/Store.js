@@ -1,12 +1,12 @@
 import { Avatar } from "./Avatar";
 import { CartInformation } from "./CartInformation";
-import { GlobalChat } from "../../global-chat/global-chat";
 import styled from "styled-components";
 import CloseIcon from "@material-ui/icons/Close";
 import { CartPage } from "./CartPage";
 import { useModal } from "./hooks";
 import { UserInventory } from "./UserInventory";
 import { MerchantOffer } from "./MerchantOffer";
+import { Chat } from "../global-chat/Chat";
 import { SellPage } from "./SellPage";
 
 const ModalWrapper = styled.section`
@@ -51,7 +51,7 @@ export const Store = () => {
 
   if (isOpen === true) {
     return (
-      <ModalWrapper>
+      <ModalWrapper >
         <CloseIconStyle onClick={closeModal} />
         <CartPage />
       </ModalWrapper>
@@ -84,7 +84,7 @@ export const Store = () => {
         <MerchantOffer />
       </StoreWrapper>
       <section>
-        <GlobalChat />
+        <Chat size="sm" />
       </section>
     </StoreScreen>
   );
