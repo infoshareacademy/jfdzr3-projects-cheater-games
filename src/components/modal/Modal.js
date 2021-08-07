@@ -34,14 +34,14 @@ export const Modal = ({ onClose, difficulty }) => {
     if (difficulty === "easy") {
       drawnMonster = easyMonsters[randomNumber];
       numClicks = 10;
-      time = 3000;
+      time = 2000;
     } else if (difficulty === "medium") {
       drawnMonster = mediumMonsters[randomNumber];
-      numClicks = 20;
+      numClicks = 15;
       time = 2000;
     } else {
       drawnMonster = hardMonsters[randomNumber];
-      numClicks = 30;
+      numClicks = 10;
       time = 1000;
     }
     setMonsterImg(drawnMonster);
@@ -64,15 +64,15 @@ export const Modal = ({ onClose, difficulty }) => {
 
   if (gamePlaying) {
     return (
-      <div className="modal">
-        <div className="modal__heading">
+      <div className="fight-modal">
+        <div className="fight-modal__heading">
           <h2>Walcz!</h2>
           <span>
             Pozostało ci: {time < 0 ? 0 : time / 1000} sekund i {numClicks}{" "}
             kliknięć!
           </span>
         </div>
-        <div className="modal__content">
+        <div className="fight-modal__content">
           <img
             src={monsterImg}
             style={{ height: "450px" }}
@@ -84,9 +84,9 @@ export const Modal = ({ onClose, difficulty }) => {
     );
   } else if (!gamePlaying && time > 0 && numClicks === 0) {
     return (
-      <div className="modal">
-        <div className="modal__content">
-          <div className="modal__heading">
+      <div className="fight-modal">
+        <div className="fight-modal__content">
+          <div className="fight-modal__heading">
             <h1>Pokonałeś potwora!</h1>
             <span>Wybierz swoją nagrodę!</span>
           </div>
@@ -95,9 +95,9 @@ export const Modal = ({ onClose, difficulty }) => {
     );
   } else if (!gamePlaying && time <= 0 && numClicks > 0) {
     return (
-      <div className="modal">
-        <div className="modal__content">
-          <div className="modal__heading">
+      <div className="fight-modal">
+        <div className="fight-modal__content">
+          <div className="fight-modal__heading">
             <h1>Porażka!</h1>
             <span>Zamknij okno i spróbój ponownie!</span>
           </div>
