@@ -13,7 +13,6 @@ export const ShowItem = ({ itemID }) => {
             flexFlow: "row",
             alignItems: "center",
             justifyContent: "space-around",
-            margin: "0 auto",
           }}
         >
           <div style={{flexGrow: "1"}}>
@@ -22,7 +21,7 @@ export const ShowItem = ({ itemID }) => {
               style={{
                 width: "100px",
                 height: "150px",
-                border: "1px solid black",
+                padding: "10px"
               }}
               alt=""
             />

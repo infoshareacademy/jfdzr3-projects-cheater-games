@@ -1,5 +1,4 @@
 import { useState, useEffect } from "react";
-import { Logout } from "../auth/Logout";
 import { Link } from "react-router-dom";
 import { useUser } from "../hooks/useUser";
 import { db } from "../firebaseConfig";
@@ -43,7 +42,17 @@ const Image = s.img`
   display: block;
   max-height: 350px;
 `;
-
+const Wrapper = s.div`
+  display: flex;
+  perspective: 500px;
+  height: 600px;
+  margin-top: -100px;
+  justify-content: center;
+`;
+const Columns = s.div`
+  display: flex;
+  justify-content: top;
+`
 export const SelectRace = () => {
   const getRaceFromDB = () => {
     return db
@@ -117,7 +126,7 @@ export const SelectRace = () => {
   };
   return (
     <section className="select-race">
-      <div className="wrapper">
+      <Wrapper>
         <div className="slider">
           <BsChevronLeft className="arrow prev" onClick={getPrevSlide} />
           <BsChevronRight className="arrow next" onClick={getNextSlide} />
@@ -144,24 +153,9 @@ export const SelectRace = () => {
             );
           })}
         </div>
-      </div>
+      </Wrapper>
 
       <div className="wrapper__desc">
-        <h2 className="description race__name">{name}</h2>
-        <div className="description">{description}</div>
-        <div className="bonus bonus__title">Bonus rasowy:</div>
-        <div className="bonus">
-          {bonus
-            .filter((bonus) => bonus.change !== 0)
-            .map((bonus) => (
-              <div key={bonus.name}>
-                {unitsMap[bonus.name]?.label || bonus.name}:{" "}
-                {bonus.change > 0 ? "+" : ""}
-                {bonus.change}
-                {unitsMap[bonus.name]?.unit}
-              </div>
-            ))}
-        </div>
         <div className="wrapper-choosing-race">
           <Link
             to="/"
@@ -172,10 +166,26 @@ export const SelectRace = () => {
               Wybierz rasę: {name}
             </button>
           </Link>
-          <button className="btn btn-red">
-            <Logout />
-          </button>
         </div>
+        <Columns>
+          <div className="description">
+            <h3>{name}</h3>
+            {description}
+          </div>
+          <div className="bonus">
+            <h3>Bonus rasowy:</h3>
+            {bonus
+              .filter((bonus) => bonus.change !== 0)
+              .map((bonus) => (
+                <div key={bonus.name}>
+                  {unitsMap[bonus.name]?.label || bonus.name}:{" "}
+                  {bonus.change > 0 ? "+" : ""}
+                  {bonus.change}
+                  {unitsMap[bonus.name]?.unit}
+                </div>
+              ))}
+          </div>
+        </Columns>
       </div>
     </section>
   );

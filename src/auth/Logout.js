@@ -19,5 +19,5 @@ export const Logout = () => {
       .catch((error) => console.log(error));
   };
 
-  return <div onClick={logoutClick}>Wyloguj</div>;
+  return <button onClick={logoutClick}>Wyloguj</button>;
 };

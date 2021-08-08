@@ -13,18 +13,20 @@ export function Stats() {
   return (
     <StatsProvider uid={user?.uid}>
       <Main>
-        <Heading />
-        <Form uid={user?.uid}>
-          <PointsLeft />
-          <Stat title="Siła" statAbr="str" />
-          <Stat title="Zręczność" statAbr="agi" />
-          <Stat title="Wytrzymałość" statAbr="tough" />
-          <Stat title="Żywotność" statAbr="vit" />
-          <Stat title="Spostrzegawczość" statAbr="perc" />
-          <Stat title="Inteligencja" statAbr="int" />
-          <Stat title="Szybkość" statAbr="speed" />
-          <SubmitButton />
-        </Form>
+        <div style={{ display: 'grid', minHeight: '100vh', alignItems: 'center'}}>
+          <Form uid={user?.uid}>
+            <Heading />
+            <PointsLeft />
+            <Stat title="Siła" statAbr="str" />
+            <Stat title="Zręczność" statAbr="agi" />
+            <Stat title="Wytrzymałość" statAbr="tough" />
+            <Stat title="Żywotność" statAbr="vit" />
+            <Stat title="Spostrzegawczość" statAbr="perc" />
+            <Stat title="Inteligencja" statAbr="int" />
+            <Stat title="Szybkość" statAbr="speed" />
+            <SubmitButton />
+          </Form>
+        </div>
       </Main>
     </StatsProvider>
   );
