@@ -1,70 +1,196 @@
-# Getting Started with Create React App
+<div align="center">
+<img  src="https://firebasestorage.googleapis.com/v0/b/monster-hunt-v1.appspot.com/o/logo-monster-hunt.png?alt=media&token=9e1bc6fd-5b99-4c3a-9b18-091a7a3f5fb8"  alt="Logo" width="350px">
+</div>
+<br>
+<div align="center">
 
-This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
+#
 
-## Available Scripts
+Monster Hunt - exciting Web App game created in ReactJS
 
-In the project directory, you can run:
+#
 
-### `npm start`
+</div>
 
-Runs the app in the development mode.\
-Open [http://localhost:3000](http://localhost:3000) to view it in the browser.
+<br>
 
-The page will reload if you make edits.\
-You will also see any lint errors in the console.
+### Table of Content:
 
-### `npm test`
+- [Intro](#intro)
+- [Process](#process)
+- [Tech Stack](#tech-stack)
+- [Features](#features)
+- [Live Demo & Setup](#live-demo-&-setup)
+- [Our Team](#our-scrum-developement-team)
+- [Feedback](#feedback)
+- [Thanks](#thanks)
 
-Launches the test runner in the interactive watch mode.\
-See the section about [running tests](https://facebook.github.io/create-react-app/docs/running-tests) for more information.
+<br>
 
-### `npm run build`
+## Intro
 
-Builds the app for production to the `build` folder.\
-It correctly bundles React in production mode and optimizes the build for the best performance.
+<br>
 
-The build is minified and the filenames include the hashes.\
-Your app is ready to be deployed!
+Monster Hunt is a challenging Web App game where user takes on a role of hunter and quest for monsters to slay. The more beasts fallen down, the better arms gained by the player to beat bigger and badder foes!
 
-See the section about [deployment](https://facebook.github.io/create-react-app/docs/deployment) for more information.
+<br>
 
-### `npm run eject`
+Monster Hunt project was developed in ReactJS and accelerated with backend infrastructure set in Cloud Firestore by Firebase. Moreover Firebase Authentication was used to build secure authentication system for the application.
 
-**Note: this is a one-way operation. Once you `eject`, you can’t go back!**
+<br>
 
-If you aren’t satisfied with the build tool and configuration choices, you can `eject` at any time. This command will remove the single build dependency from your project.
+Our team of five developers created Monster Hunt game during Junior Frontend Developer Bootcamp organised by [infoShare Academy](https://github.com/infoshareacademy).
 
-Instead, it will copy all the configuration files and the transitive dependencies (webpack, Babel, ESLint, etc) right into your project so you have full control over them. All of the commands except `eject` will still work, but they will point to the copied scripts so you can tweak them. At this point you’re on your own.
+<br>
 
-You don’t have to ever use `eject`. The curated feature set is suitable for small and middle deployments, and you shouldn’t feel obligated to use this feature. However we understand that this tool wouldn’t be useful if you couldn’t customize it when you are ready for it.
+## Process
 
-## Learn More
+<br>
 
-You can learn more in the [Create React App documentation](https://facebook.github.io/create-react-app/docs/getting-started).
+In the process of developing Monster Hunt we used JIRA for project management and follow SCRUM principles.
 
-To learn React, check out the [React documentation](https://reactjs.org/).
+During several design meetings we managed to create an initial visualization of our application in Excalidraw.
 
-### Code Splitting
+ <br>
 
-This section has moved here: [https://facebook.github.io/create-react-app/docs/code-splitting](https://facebook.github.io/create-react-app/docs/code-splitting)
+<img src="https://firebasestorage.googleapis.com/v0/b/monster-hunt-v1.appspot.com/o/excalidraw.png?alt=media&token=58545bcf-db48-4161-97ec-8af8f38fffcf" alt="Visualization on Excalidraw">
 
-### Analyzing the Bundle Size
+<br>
 
-This section has moved here: [https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size](https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size)
+In Monster Hunt users can register or log in as registered user. On registration user can pick from variety of races and set their own character. Each race has unique statistics like strength,.......... which determine future fight.
+After setting up statistics user may acces main menu in which can choose Character View Page, Store Page, Hunting Screen, Our Teem, Chat or log out.
 
-### Making a Progressive Web App
+## Tech Stack
 
-This section has moved here: [https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app](https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app)
+<br>
 
-### Advanced Configuration
+- React
+- React Router
+- Firebase (Firestore, Authentication)
+- Javascript
+- Material UI
+- Styled Component
+- React Icons
 
-This section has moved here: [https://facebook.github.io/create-react-app/docs/advanced-configuration](https://facebook.github.io/create-react-app/docs/advanced-configuration)
+Monster Hunt application was written in <a href="https://en.reactjs.org/" target="_blank">React</a>.
+It is up to modern web app standards, implementing various features using <a href="https://en.reactjs.org/docs/hooks-intro.html" target="_blank">React Hooks</a>: useState hook was applied in order to manage application state, useEffect, useContext or useRef.
+For styling our application <a href="https://styled-components.com/" target="_blank">styled-components</a> and <a href="https://material-ui.com/" target="_blank">material-ui</a> were successfully used.
+<a href="https://firebase.google.com/products/auth" target="_blank">Firebase Authentication</a> was used to build secure authentication system for the application.
+<a href="https://firebase.google.com/products/firestore" target="_blank">Cloud Firestore</a> as a NoSQL document database was added to store, sync, and query data for Monster Hunt project.
 
-### Deployment
+<br>
 
-This section has moved here: [https://facebook.github.io/create-react-app/docs/deployment](https://facebook.github.io/create-react-app/docs/deployment)
+## Features
 
-### `npm run build` fails to minify
+<br>
 
-This section has moved here: [https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify](https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify)
+1. Creating user profile
+
+   - registration of new user
+   - selection of race
+   - adding statistics
+   - view of profile in Character View Page
+
+2. Character View Page
+
+   - check statistics of logged in user
+   - view of extra quality weapons gained during succesfull huntings
+
+3. Hunting
+
+   - user can choose difficulty level of battle
+   - there are also three paths that user can follow
+   - on selection of path user starts fighting with monster showing up on their way
+   - after winning the fight user gains extra quality weapon or expierence points
+   - in case of lost fight user can quest for another monster
+
+4. Global chat & private chat between users
+
+   - on the chat page you can search for user you'd like to text and start a conversation
+   - you can also go to chat with other players in global chat
+
+5. Store
+
+   - purchasing basic armory from merchant Mirek store (\*extra quality weapons only gained during succesfull hunting)
+   - selling all items from user's inventory
+
+6. Admin Panel
+
+   - admins add new weapons using designed template
+
+<br>
+
+## Live Demo & Setup
+
+<br>
+
+Monster Hunt has been deployed via (Github Pages/ Firebase Hosting ???), create your profile, hunt, communicate with others and visit merchant Mirek: Link to page: ....
+or
+Clone this repo and run `$ npm install` to install all dependecies.
+Once all the dependecies are installed, you can run `$ npm start` to start the application.
+It runs the app in the development mode.
+
+<br>
+
+## Our Team
+
+<br>
+
+### Dawid Ossowski
+
+Dawid was responsible for creating an animated carousel of races, Character View Page and Go Hunting Page, where the user selects the difficulty level of the fights.
+
+[Email ](ossowski.dawid@gmail.com)
+[GitHub ](https://github.com/ossowskid)
+[LinkedIn ](https://www.linkedin.com/in/dawid-ossowski/)
+
+### Anna Sawicka-Ziółkowska
+
+Anna was responsible for setting up a new project in the Firebase console. Configuring Firebase Auth along with Firestore Database for the created project. Adding components with the registration and login form.
+"Rynek" - a place in the application where the user can buy basic equipment from Marchant Mirek for the gold he earns. He can also sell items, e.g. from won fights, that he has in his collection. All user and inventory data for purchase and sale are downloaded and updated in the Firestore Database.
+Logo design
+
+[Email ](aniasawicka@gmail.com)
+[GitHub ](https://github.com/AnnaSawickaZiolkowska)
+[LinkedIn ](https://www.linkedin.com/in/AnnaSawickaZiolkowska/)
+
+### Agnieszka Skorupa
+
+Agnieszka was responsible for creating a global chat of logged in users and the "About us" Page presenting team members.
+
+[Email ](agnieszka.agata.skorupa@gmail.com)
+[GitHub ](https://github.com/agaskorupa)
+[LinkedIn ](https://www.linkedin.com/in/agnieszka-agata-skorupa)
+
+### Marcin Tomkiewicz
+
+Marcin was responsible for the overall vision of the game, the creation of the administration panel and the race selection page, as well as for the feature which generates and shows extra quality weapons obtained during succesfull huntings.
+
+[Email ](marc.tomk@gmail.com)
+[GitHub ](https://github.com/MarcinTomkiewicz)
+[LinkedIn ](https://www.linkedin.com/in/marcintomkiewicz)
+
+### Przemysław Welenc
+
+Przemysław was responsible for the final concept of hunting feature, chat between users, Statistics Page and unification of the application style.
+
+[Email ](przewelenc@gmail.com)
+[GitHub ](https://github.com/Przemo246)
+[LinkedIn ](https://www.linkedin.com/in/przemyslaw-welenc)
+
+<br>
+
+### Feedback
+
+<br>
+
+If you have any comments on this project feel free to leave them in issues or contact us via GitHub.
+
+<br>
+
+### Thanks
+
+<br>
+
+Monster Hunt project was supervised by [infoShare Academy](https://github.com/infoshareacademy).
+We would like to express gratitude to all trainers during course and special thanks to <a href="https://github.com/cytrowski">@cytrowski</a> for support, motivating and constructive crticism.
