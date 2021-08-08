@@ -57,6 +57,9 @@ During several design meetings we managed to create an initial visualization of 
 
 <br>
 
+In Monster Hunt users can register or log in as registered user. On registration user can pick from variety of races and set their own character. Each race has unique statistics like strength,.......... which determine future fight.
+After setting up statistics user may acces main menu in which can choose Character View Page, Store Page, Hunting Screen, Our Teem, Chat or log out.
+
 ## Tech Stack
 
 <br>
