@@ -1,18 +1,10 @@
 import { Links } from "./Links";
-
-import s from 'styled-components'
-
-const Logo = s.img`
-  width: 80%;
-  display: block;
-  margin: 0 auto;
-  padding-bottom: 20px;
-`
+import { Logo } from "./Logo";
 
 export const MainMenu = () => {
   return (
     <nav className="nav">
-      <Logo src={`${process.env.PUBLIC_URL}/logo-monster-hunt.png`} alt="" />
+      <Logo />
       <ul className="navigation__list">
         <Links />
       </ul>
