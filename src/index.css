@@ -28,7 +28,7 @@
 
 :root {
   --color-primary-green: #315e3c;
-  --color-primary-dark-green: #315e3c;
+  --color-primary-dark-green: #174622;
   --color-secondary-gray: #2e2c2f;
   --color-grey-light: #f2f2f2;
   --color-grey-dark: #857891;
@@ -284,7 +284,7 @@ body {
   display: grid;
   place-items: center;
   gap: 40px;
-  padding: 0 25px;
+  padding: 50px 25px;
   grid-row: 2/3;
 }
 
@@ -427,9 +427,6 @@ h1 {
 }
 .player__information {
   padding-bottom: 25px;
-}
-.character__overview__stats {
-  /* padding: 5px; */
 }
 
 .character__overview__stats p {

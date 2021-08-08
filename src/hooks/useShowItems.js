@@ -66,7 +66,6 @@ export const useShowItems = (itemID) => {
       .doc(`${itemData.type}Suffix`)
       .onSnapshot((stats) => {
         if (stats.data() === undefined) {
-          console.log("Loading");
           return;
         }
         setItemSuffix(
@@ -80,7 +79,8 @@ export const useShowItems = (itemID) => {
     if (itemData === null) {
       return;
     }
-    return db.collection("items")
+    return db
+      .collection("items")
       .doc(`${itemData.type}Prefix`)
       .onSnapshot((stats) => {
         if (stats.data() === undefined) {

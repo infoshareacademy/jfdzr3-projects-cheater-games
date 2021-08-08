@@ -18,7 +18,6 @@ export const ItemStyle = styled.div`
   min-width: 10px;
   min-height: 165px;
   background: #f2f2f2;
-
 `;
 export const Wrapper = styled.div`
   display: grid;
@@ -57,6 +56,8 @@ export const Items = ({ items, onBuyClick, onSellClick }) => {
               icon={item.val.icon}
               name={item.key}
               value={item.val.value}
+              prefix={item.val.prefix}
+              suffix={item.val.suffix}
               onBuyClick={onBuyClick && (() => onBuyClick(item))}
               onSellClick={onSellClick && (() => onSellClick(item))}
             />

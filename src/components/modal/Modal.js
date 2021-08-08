@@ -27,9 +27,10 @@ export const Modal = ({ onClose, difficulty }) => {
   const user = useUser();
 
   const handleOnClick = () => {
-    if (numClicks > 0) {
+    if (numClicks > 1) {
       setNumClicks(numClicks - 1);
     } else {
+      setNumClicks(0);
       setGamePlaying(false);
     }
   };
@@ -99,7 +100,7 @@ export const Modal = ({ onClose, difficulty }) => {
     timeoutId = setTimeout(() => {
       setTime((previousTime) => previousTime - 10);
     }, 10);
-    
+
     return () => clearTimeout(timeoutId);
   }, [gamePlaying, time]);
 
@@ -109,8 +110,8 @@ export const Modal = ({ onClose, difficulty }) => {
         <div className="fight-modal__heading">
           <h2>Walcz!</h2>
           <span>
-            Pozostało ci: <code>{(time < 0 ? 0 : time / 1000).toFixed(2)}</code> sekund i {numClicks}{" "}
-            kliknięć!
+            Pozostało ci: <code>{(time < 0 ? 0 : time / 1000).toFixed(2)}</code>{" "}
+            sekund i {numClicks} kliknięć!
           </span>
         </div>
         <div className="fight-modal__content">

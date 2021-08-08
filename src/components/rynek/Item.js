@@ -10,8 +10,15 @@ import { useUser } from "../../hooks/useUser";
 import { useCart } from "./CartContext";
 import { Link } from "react-router-dom";
 
-
-export const Item = ({ name, value, icon, onBuyClick, onSellClick }) => {
+export const Item = ({
+  name,
+  value,
+  icon,
+  onBuyClick,
+  onSellClick,
+  prefix,
+  suffix,
+}) => {
   const [open, setOpen] = useState(false);
   const { getTotalPrice } = useCart();
   const totalPrice = getTotalPrice();
@@ -31,7 +38,9 @@ export const Item = ({ name, value, icon, onBuyClick, onSellClick }) => {
   };
   return (
     <>
-      <h5>{name}</h5>
+      <h5>
+        {prefix} {name} {suffix}
+      </h5>
       <img src={icon} style={{ height: "70px" }} alt="" />
       {onSellClick && (
         <button onClick={() => onSellClick()}>
@@ -76,9 +85,11 @@ export const Item = ({ name, value, icon, onBuyClick, onSellClick }) => {
             message="Nie masz wystarczającej ilości złota"
             action={
               <>
-                  <Link to="/hunt"><Button color="secondary" size="small" onClick={handleClose}>
-                  IDŹ NA POLOWANIE
-                </Button></Link>
+                <Link to="/hunt">
+                  <Button color="secondary" size="small" onClick={handleClose}>
+                    IDŹ NA POLOWANIE
+                  </Button>
+                </Link>
                 <IconButton
                   size="small"
                   aria-label="close"
