@@ -147,6 +147,9 @@ export const CharacterViewPage = () => {
     }, []);
     return <CircularProgressWithLabel value={progress} />;
   };
+  if (!user || !bonusStats) {
+    return <p>Loading...</p>;
+  }
   return (
     <>
       <Wrapper>

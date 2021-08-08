@@ -108,7 +108,7 @@ export const ChatBig = ({ input, sendMessage, setInput, messages }) => {
   }, [user?.uid]);
 
   useEffect(() => {
-    db.collection("users").onSnapshot((usersList) => {
+    return db.collection("users").onSnapshot((usersList) => {
       setUsers(
         usersList.docs.map((doc) => ({
           name: doc.data().name,
