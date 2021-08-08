@@ -18,8 +18,8 @@ export const Links = () => {
     <HuntLink />,
     <StoreLink />,
     <ChatLink />,
-    <Logout />,
     <AboutUsLink />,
+    <Logout />,
   ];
 
   const adminLinks = [<AdminLink />, ...userLinks];
