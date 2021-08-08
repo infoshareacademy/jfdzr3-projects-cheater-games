@@ -1,5 +1,4 @@
 import { useState, useEffect } from "react";
-import { Logout } from "../auth/Logout";
 import { Link } from "react-router-dom";
 import { useUser } from "../hooks/useUser";
 import { db } from "../firebaseConfig";

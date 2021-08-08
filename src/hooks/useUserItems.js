@@ -8,7 +8,7 @@ export const useUserItems = () => {
 
   useEffect(() => {
     if (user?.uid) {
-      db.collection("users")
+      return db.collection("users")
         .doc(user?.uid)
         .collection("armory")
         .onSnapshot((snapshot) => {

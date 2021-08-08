@@ -12,7 +12,7 @@ export function Chat({ size }) {
   const messagesEndRef = useRef(null);
 
   useEffect(() => {
-    db.collection("messages")
+    return db.collection("messages")
       .orderBy("time")
       .onSnapshot((messages) => {
         setMessages(messages.docs.map((doc) => doc.data()));

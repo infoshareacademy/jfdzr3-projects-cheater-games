@@ -93,7 +93,7 @@ export const ChatBig = ({ input, sendMessage, setInput, messages }) => {
   };
 
   useEffect(() => {
-    db.collection("privateMessages")
+    return db.collection("privateMessages")
       .doc(privateMessageUser?.chatID)
       .collection("messages")
       .orderBy("time")
