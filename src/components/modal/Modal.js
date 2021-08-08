@@ -21,7 +21,7 @@ const drawNumber = (num, incr = 0) => Math.round(Math.random() * num) + incr;
 export const Modal = ({ onClose, difficulty }) => {
   const [monsterImg, setMonsterImg] = useState(null);
   const [numClicks, setNumClicks] = useState(0);
-  const [time, setTime] = useState(0);
+  const [time, setTime] = useState(1000);
   const [gamePlaying, setGamePlaying] = useState(true);
   const [prize, setPrize] = useState(null);
   const user = useUser();
@@ -87,17 +87,21 @@ export const Modal = ({ onClose, difficulty }) => {
   }, [difficulty]);
 
   useEffect(() => {
-    let interval;
-    if (gamePlaying && time >= 0) {
-      interval = setInterval(() => {
-        setTime((previousTime) => previousTime - 10);
-      }, 10);
-      return () => clearInterval(interval);
-    } else {
-      clearInterval(interval);
+    let timeoutId;
+    if (gamePlaying === false) {
+      return;
+    }
+
+    if (time <= 0) {
       setGamePlaying(false);
     }
-  }, [time, gamePlaying]);
+
+    timeoutId = setTimeout(() => {
+      setTime((previousTime) => previousTime - 10);
+    }, 10);
+    
+    return () => clearTimeout(timeoutId);
+  }, [gamePlaying, time]);
 
   if (gamePlaying) {
     return (
@@ -105,7 +109,7 @@ export const Modal = ({ onClose, difficulty }) => {
         <div className="fight-modal__heading">
           <h2>Walcz!</h2>
           <span>
-            Pozostało ci: {time < 0 ? 0 : time / 1000} sekund i {numClicks}{" "}
+            Pozostało ci: <code>{(time < 0 ? 0 : time / 1000).toFixed(2)}</code> sekund i {numClicks}{" "}
             kliknięć!
           </span>
         </div>
@@ -119,7 +123,9 @@ export const Modal = ({ onClose, difficulty }) => {
         </div>
       </div>
     );
-  } else if (!gamePlaying && time > 0 && numClicks === 0) {
+  }
+
+  if (time > 0 && numClicks <= 0) {
     return (
       <div className="fight-modal">
         <div className="fight-modal__content">
@@ -145,19 +151,19 @@ export const Modal = ({ onClose, difficulty }) => {
         </div>
       </div>
     );
-  } else if (!gamePlaying && time <= 0 && numClicks > 0) {
-    return (
-      <div className="fight-modal">
-        <div className="fight-modal__content">
-          <div className="fight-modal__heading">
-            <h1>Porażka!</h1>
-            <span>Zamknij okno i spróbój ponownie!</span>
-          </div>
-          <button className="btn btn-red" onClick={onClose}>
-            Zamknij
-          </button>
-        </div>
-      </div>
-    );
   }
+
+  return (
+    <div className="fight-modal">
+      <div className="fight-modal__content">
+        <div className="fight-modal__heading">
+          <h1>Porażka!</h1>
+          <span>Zamknij okno i spróbój ponownie!</span>
+        </div>
+        <button className="btn btn-red" onClick={onClose}>
+          Zamknij
+        </button>
+      </div>
+    </div>
+  );
 };

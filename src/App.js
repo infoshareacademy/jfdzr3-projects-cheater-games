@@ -5,7 +5,6 @@ import { RegistrationPage } from "./components/RegistrationPage";
 import { HuntingScreen } from "./components/HuntingScreen";
 import { HomePage } from "./components/HomePage";
 import { MainMenu } from "./components/MainMenu";
-import { Armory } from "./components/items/Armory";
 import { AdminPanel } from "./components/AdminPanel";
 import { StorePage } from "./components/rynek/StorePage";
 import { Stats } from "./components/stats/Stats";
@@ -33,9 +32,6 @@ function App() {
               </Route>
               <Route path="/hunt">
                 <HuntingScreen />
-              </Route>
-              <Route path="/armory">
-                <Armory />
               </Route>
               <Route path="/stats">
                 <Stats />

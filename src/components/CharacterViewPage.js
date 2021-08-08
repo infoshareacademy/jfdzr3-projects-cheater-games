@@ -1,6 +1,5 @@
 import s from "styled-components";
 import { useUser } from "../hooks/useUser";
-import { Chat } from "./global-chat/Chat";
 import { PropTypes } from "prop-types";
 import { CircularProgress } from "@material-ui/core";
 import { Typography } from "@material-ui/core";
@@ -19,6 +18,7 @@ import {
   GiFoxHead,
 } from "react-icons/gi";
 import { useStatsFromDb } from "../hooks/useStatsFromDb";
+import { Armory } from "./items/Armory";
 
 const Wrapper = s.div`
 color: #fffef8;
@@ -221,7 +221,7 @@ export const CharacterViewPage = () => {
           </CharacterNameAndStatsBox>
         </CharacterMainBax>
       </Wrapper>
-      <Chat size="sm" />
+      <Armory />
     </>
   );
 };

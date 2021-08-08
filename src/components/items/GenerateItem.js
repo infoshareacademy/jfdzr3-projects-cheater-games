@@ -266,7 +266,7 @@ export const GenerateItem = ({ openFightBox }) => {
         })
         .then(() => {
           alert("Dodano przedmiot do zbrojowni");
-          history.push("/hunt");
+          history.push("/character");
         });
     }
     return;
