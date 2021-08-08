@@ -17,6 +17,8 @@ export const ItemStyle = styled.div`
   height: 100%;
   min-width: 10px;
   min-height: 165px;
+  background: #f2f2f2;
+
 `;
 export const Wrapper = styled.div`
   display: grid;
@@ -48,7 +50,7 @@ export const Items = ({ items, onBuyClick, onSellClick }) => {
                     buyItem.key === item.key && item.type === "handWeapon"
                 )
                   ? "rgba(49, 94, 60, 0.20)"
-                  : "inherit",
+                  : "#f2f2f2",
             }}
           >
             <Item

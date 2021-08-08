@@ -64,10 +64,5 @@
 
 .img:hover {
   box-shadow: 0px 10px 30px;
-  width: 255px;
-  height: 255px;
-}
-
-.team-header h2 {
-  margin-bottom: 10px;
+  transform: scale(1.1);
 }

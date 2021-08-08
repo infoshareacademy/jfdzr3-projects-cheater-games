@@ -1,9 +1,13 @@
-import React from "react";
+import React, { useState } from "react";
 import { TextBlock } from "./TextBlock";
 import styled from "styled-components";
 import { CartItem } from "./CartItem";
 import { BuyButton } from "./BuyButton";
 import { useCart } from "./CartContext";
+import Snackbar from "@material-ui/core/Snackbar";
+import Button from "@material-ui/core/Button";
+import IconButton from "@material-ui/core/IconButton";
+import CloseIcon from "@material-ui/icons/Close";
 
 const List = styled.ul`
   list-style: none;
@@ -52,11 +56,46 @@ export const CartPage = () => {
 
   const totalPrice = getTotalPrice();
 
+  const [open, setOpen] = useState(false);
+  const handleClick = () => {
+      setOpen(true);
+  };
+  const handleClose = (event, reason) => {
+    if (reason === "clickaway") {
+      return;
+    }
+    setOpen(false);
+  };
+
   return (
     <>
       {cartItems.length === 0 ? (
         <>
           <TextBlock>Nie masz przedmiotów w koszyku</TextBlock>
+          <Snackbar
+            anchorOrigin={{
+              vertical: "bottom",
+              horizontal: "center",
+            }}
+            open={open}
+            autoHideDuration={6000}
+            onClose={handleClose}
+            message="Dodaliśmy przedmioty do Twojej kolekcji"
+            action={
+              <>
+                <Button color="secondary" size="small" onClick={handleClose} > sukces
+                </Button>
+                <IconButton
+                  size="small"
+                  aria-label="close"
+                  color="inherit"
+                  onClick={handleClose}
+                >
+                  <CloseIcon fontSize="small" />
+                </IconButton>
+              </>
+            }
+          />
         </>
       ) : (
         <>
@@ -85,7 +124,7 @@ export const CartPage = () => {
         ) : (
           <>
             <TextBlock>Razem: {totalPrice}</TextBlock>
-            <BuyButton />
+            <BuyButton handleClick={handleClick}/>
           </>
         )}
       </BuyButtonSection>

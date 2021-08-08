@@ -8,7 +8,7 @@ import Typography from "@material-ui/core/Typography";
 
 import { useHistory } from "react-router-dom";
 
-export const GenerateItem = () => {
+export const GenerateItem = ({ openFightBox }) => {
   const user = useUser();
   const history = useHistory();
 
@@ -19,7 +19,7 @@ export const GenerateItem = () => {
   const [itemSuffix, setItemSuffix] = useState([]);
   const [itemQuality, setItemQuality] = useState(0);
   const [, setItemID] = useState(0);
-  const [userGold, setUserGold] = useState(0);
+  const [, setUserGold] = useState(0);
 
   useEffect(() => {
     setItemID(Date.now());
@@ -68,7 +68,7 @@ export const GenerateItem = () => {
           return (itemsNamesAndValues[i] = {
             name: names,
             value: itemsValuesArray[i],
-            icon: itemsIconsArray[i]
+            icon: itemsIconsArray[i],
           });
         });
         const getFilteredValues = (itemArray) => {
@@ -229,10 +229,9 @@ export const GenerateItem = () => {
           } else {
             if (isNaN(itemTotalValue)) {
               return;
-            }
-            else {
-            let gold = resources.data().resources?.gold;
-            setUserGold(gold+itemTotalValue);
+            } else {
+              let gold = resources.data().resources?.gold;
+              setUserGold(gold + itemTotalValue);
             }
           }
         });
@@ -267,46 +266,16 @@ export const GenerateItem = () => {
         })
         .then(() => {
           alert("Dodano przedmiot do zbrojowni");
-          history.push("/hunt")
-          // history.push("/hunt");
+          history.push("/character");
         });
     }
     return;
   };
 
-  const sellItem = (e) => {
-    if (!user?.uid) {
-      return;
-    }
-    if (
-      itemName?.name === undefined ||
-      itemSuffix?.name === undefined ||
-      itemPrefix?.name === undefined
-    ) {
-      return;
-    } else {
-      if (userGold !== undefined && itemTotalValue !== undefined) {
-        db.collection("users")
-          .doc(user?.uid)
-          .update({
-            "resources.gold": userGold,
-          })
-          .then(() => {
-            e.preventDefault();
-            alert("Sprzedano przedmiot");
-            history.push("/hunt")
-            // window.location = "/hunt";
-          });
-      } else {
-        return;
-      }
-    }
-  };
-
   return (
     <div>
       <span>
-        Zdobyto przedmiot:{" "}
+        {" "}
         <Paper>
           <Typography>
             {displayingQuality} {fullItem?.prefix} {fullItem?.name}{" "}
@@ -317,13 +286,10 @@ export const GenerateItem = () => {
           </Typography>
         </Paper>
       </span>
-      
+
       <div>
-        <button className="btn btn-green btn-small" onClick={addItem}>
+        <button className="btn btn-green" onClick={addItem}>
           Zachowaj przedmiot
-        </button>{" "}
-        <button className="btn btn-red btn-small" onClick={sellItem}>
-          Sprzedaj przedmiot
         </button>
       </div>
     </div>

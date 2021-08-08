@@ -1,11 +1,11 @@
-.message_view {
-  margin: 5px;
+.message__view {
+  margin: 5px 10px;
   padding: 0 5px 0;
-  border-color: black;
   border-radius: 5px;
   border-style: none;
   width: fit-content;
   word-break: break-word;
+  background-color: #fff;
   font-size: 15px;
   line-height: 25px;
   text-align: left;

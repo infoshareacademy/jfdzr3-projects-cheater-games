@@ -1,7 +1,6 @@
 .main {
   display: grid;
   place-items: center;
-  grid-row: 2/3;
   gap: 40px;
 }
 
