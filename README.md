@@ -91,18 +91,29 @@ For styling our application <a href="https://styled-components.com/" target="_bl
 2. Character View Page
 
    - check statistics of logged in user
+   - view of extra quality weapons gained during succesfull huntings
 
-3. Global chat & private chat between users
+3. Hunting
+
+   - user can choose difficulty level of battle
+   - there are also three paths that user can follow
+   - on selection of path user starts fighting with monster showing up on their way
+   - after winning the fight user gains extra quality weapon or expierence points
+   - in case of lost fight user can quest for another monster
+
+4. Global chat & private chat between users
 
    - on the chat page you can search for user you'd like to text and start a conversation
-   - you can also go to chat with a selected user
+   - you can also go to chat with other players in global chat
 
-4. Store
+5. Store
 
-   - Adding items to the shopping cart
-   - Sell items from your inventory
+   - purchasing basic armory from merchant Mirek store (\*extra quality weapons only gained during succesfull hunting)
+   - selling all items from user's inventory
 
-5. Admin Panel
+6. Admin Panel
+
+   - admins add new weapons using designed template
 
 <br>
 
@@ -150,7 +161,7 @@ Agnieszka was responsible for creating a global chat of logged in users and the 
 
 ### Marcin Tomkiewicz
 
-Marcin was responsible for the overall vision of the game, the creation of the administration panel and the race selection page, as well as for the development of the user's fights with opponents and the armory.
+Marcin was responsible for the overall vision of the game, the creation of the administration panel and the race selection page, as well as for the feature which generates and shows extra quality weapons obtained during succesfull huntings.
 
 [Email ](marc.tomk@gmail.com)
 [GitHub ](https://github.com/MarcinTomkiewicz)
@@ -158,7 +169,7 @@ Marcin was responsible for the overall vision of the game, the creation of the a
 
 ### Przemysław Welenc
 
-Przemysław was responsible for the chat between users, the "Statistics" Page and the unification of the application style.
+Przemysław was responsible for the final concept of hunting feature, chat between users, Statistics Page and unification of the application style.
 
 [Email ](przewelenc@gmail.com)
 [GitHub ](https://github.com/Przemo246)
