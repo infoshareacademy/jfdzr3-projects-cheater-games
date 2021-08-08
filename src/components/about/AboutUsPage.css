@@ -18,7 +18,6 @@
 
 .team-member-gallery {
   display: grid;
-  overflow: auto;
   grid-template-columns: repeat(3, 1fr);
   grid-template-rows: 475px 475px;
   justify-items: center;

@@ -121,7 +121,7 @@ export const CharacterViewPage = () => {
             alignItems="center"
             justifyContent="center"
           >
-            <Typography variant="caption" component="div" color="#00695f">
+            <Typography variant="caption" component="div">
               {`${user?.exp}XP`}
             </Typography>
           </Box>
@@ -204,12 +204,8 @@ export const CharacterViewPage = () => {
           <CharacterAvatarBox>{checkRaceToSetAvatar()}</CharacterAvatarBox>
           <CharacterNameAndStatsBox>
             <div className="player__information">
-              <p>
-                <h2>{user?.name}</h2>
-              </p>
-              <p>
-                <h4>{user?.race}</h4>
-              </p>
+              <h2>{user?.name}</h2>
+              <h4>{user?.race}</h4>
             </div>
             <div>
               <p>

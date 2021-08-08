@@ -10,12 +10,8 @@ export function StatsProvider({ uid, children }) {
       .doc(uid)
       .get()
       .then((doc) => {
-        if (doc.exists) {
-          const { stats } = doc.data();
-          setPoints(stats);
-        } else {
-          console.log("No such document!");
-        }
+        const { stats } = doc.data();
+        setPoints(stats);
       })
       .catch((error) => {
         console.log("Error getting document:", error);
