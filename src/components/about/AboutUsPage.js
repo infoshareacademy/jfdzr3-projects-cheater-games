@@ -17,7 +17,7 @@ export const AboutUsPage = () => {
         {
           name: 'Agnieszka Skorupa',
           title: 'Junior Frontend Developer',
-          description: 'W projekcie Monster Hunt Agnieszka odpowiedzialna była za stworzenie globalnego czatu zalogowanych u użytkowników oraz zakładki "O nas" prezentującej członków zespołu.',
+          description: 'W projekcie Monster Hunt Agnieszka odpowiedzialna była za stworzenie globalnego czatu zalogowanych użytkowników oraz zakładki "O nas" prezentującej członków zespołu.',
           email: 'agnieszka.agata.skorupa@gmail.com',
           image: 'img/about/aga.jpeg',
           github: 'https://github.com/agaskorupa',
@@ -58,7 +58,7 @@ export const AboutUsPage = () => {
   return (
     <>
     
-    <div className="wrapper">
+    <div className="wrapper-team">
         <div className="team-header">
           <h2>Zespół Monster Hunt</h2>
           <p className="team-welcome">Cześć! Jesteśmy uczestnikami zdalnego kursu Junior Fronted Developer w infoShare Academy. Nie spotkaliśmy się nigdy osobiście, ale pomimo dzielących nas odległości, trudności komunikacyjnych i różnic charakterów, udało nam się efektywnie współtworzyć Monster Hunt. Poznaj nasz zespół!
@@ -67,10 +67,14 @@ export const AboutUsPage = () => {
         <div  className="team-member-gallery">
             {team.map((person, index) => (
             <div className="team-member-card" key={index}>
-              <img src={person.image} className="img" alt="team-member-img" onClick={() => setSelectedPersonIndex(index)}/>
+              <div style={{height: "315px"}}>
+              <img src={person.image} className="img" alt="team-member-img" onMouseOver={() => setSelectedPersonIndex(index)} onMouseLeave={() => setSelectedPersonIndex(null)}/>
+              </div>
+              <div >
               <p className="team-member-data"><strong>{person.name}</strong></p>
               <p className="team-member-data">{person.title}</p>
               <p className="team-member-data">{person.email}</p>
+              </div>
               <ul className="team-member-data">
                 <a href={person.github} className="icon">
                   <FaGithub color="#315e3c" size="20px"/> 
