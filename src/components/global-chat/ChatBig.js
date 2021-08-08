@@ -93,7 +93,8 @@ export const ChatBig = ({ input, sendMessage, setInput, messages }) => {
   };
 
   useEffect(() => {
-    return db.collection("privateMessages")
+    return db
+      .collection("privateMessages")
       .doc(privateMessageUser?.chatID)
       .collection("messages")
       .orderBy("time")
@@ -107,19 +108,15 @@ export const ChatBig = ({ input, sendMessage, setInput, messages }) => {
   }, [user?.uid]);
 
   useEffect(() => {
-    const getUsers = async () => {
-      const response = await db.collection("users").get();
-      const usersList = [];
-      response.forEach((user) => {
-        usersList.push({
-          name: user.data().name,
-          isOnline: user.data().isOnline,
-          uid: user.data().uid,
-        });
-      });
-      setUsers(usersList);
-    };
-    getUsers();
+    db.collection("users").onSnapshot((usersList) => {
+      setUsers(
+        usersList.docs.map((doc) => ({
+          name: doc.data().name,
+          isOnline: doc.data().isOnline,
+          uid: doc.data().uid,
+        }))
+      );
+    });
   }, []);
 
   return (

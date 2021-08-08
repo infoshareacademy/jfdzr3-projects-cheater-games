@@ -24,12 +24,13 @@ const useInventory = () => {
         snapshot.forEach((doc) => {
           userItems.push({ id: doc.id, key: doc.data().name, val: doc.data() });
         });
-        setItems(userItems.filter((item) => {
-          return item.key !== undefined && typeof item.val.value === "number"}));
-
+        setItems(
+          userItems.filter((item) => {
+            return item.key !== undefined && typeof item.val.value === "number";
+          })
+        );
       });
   }, [uid]);
-  console.log(items);
   return items;
 };
 
@@ -40,7 +41,7 @@ export const UserInventory = () => {
   return (
     <ItemsGrid text="Sprzedaj">
       {items.length !== 0 ? (
-        <Items items={items} onSellClick={addToSellCart} /> 
+        <Items items={items} onSellClick={addToSellCart} />
       ) : (
         <span>
           Nie masz żadnych rekwizytów. <br />
